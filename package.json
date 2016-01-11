@@ -1,0 +1,15 @@
+{
+  "name": "E-Remedium",
+  "description": "E-Remedium Web Application",
+  "version": "0.0.0",
+  "homepage": "https://github.com/msingh36/ERemediumWebApp",
+  "license": "Copyright",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "html5-boilerplate": "~5.2.0"
+  }
+}
