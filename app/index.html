@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp" class="no-js"> 
+<html lang="en" ng-app="ERemediumWebApp" class="no-js"> 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,15 +12,16 @@
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
         <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="css/app.css">
         <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
         <ul class="menu">
-            <li><a href="#/view1">view1</a></li>
-            <li><a href="#/view2">view2</a></li>
+            <li><a href="#/patients">Patients</a></li>
+            <li><a href="#/reportinganalytics">Reporting & Analytics</a></li>
+            <li><a href="#/doctor_settings">Settings</a></li>
         </ul>
-
+        <hr>
         <div ng-view></div>
 
 
@@ -35,9 +36,10 @@
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="app.js"></script>
-        <script src="view1/view1.js"></script>
-        <script src="view2/view2.js"></script>
+        <script src="js/app.js"></script>
+        <script src="Patients/patients.js"></script>
+        <script src="ReportingAnalytics/reportinganalytics.js"></script>
+        <script src="Doctor_Settings/doctor_settings.js"></script>
         <script src="components/version/version.js"></script>
         <script src="components/version/version-directive.js"></script>
         <script src="components/version/interpolate-filter.js"></script>
