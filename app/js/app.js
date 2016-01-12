@@ -5,8 +5,9 @@ angular.module('ERemediumWebApp', [
   'ngRoute',
   'ERemediumWebApp.patients',
   'ERemediumWebApp.reportinganalytics',
-  'ERemediumWebApp.doctor_settings'
+  'ERemediumWebApp.doctor_settings',
+  'ERemediumWebApp.login'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/patients'});
+  $routeProvider.otherwise({redirectTo: '/login'});
 }]);
