@@ -26,12 +26,29 @@
                 </ul>
                 <hr>-->
 
-        <div class="container">     
+
+        <div class="container">
+            <br>
+
+            <img src="img/logo.png" class="img-responsive img-thumbnail logo" alt="E-Remedium">
+
+
+            <ul class="nav nav-pills pull-right " role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#loginContent" id="loginTab" role="tab" data-toggle="pill">Login</a>
+                </li>
+                <li role="presentation">
+                    <a href="#registerContent" id="registerTab" role="tab" data-toggle="pill">Register</a>
+                </li>
+            </ul>
+
+            <hr>
+
             <div ng-view >
             </div>
 
             <div class="footer">
-                <hr>    
+                <hr>
                 <div>
                     <a class="bottomLinks" href="#">About</a>
                     <a class="bottomLinks" href="#">Careers</a>
@@ -54,9 +71,16 @@
         <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
         <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
+        <!--&lt;!&ndash; Typeahead &ndash;&gt;-->
+        <!--<script type="text/javascript" src="bower_components/typeahead.js/dist/typeahead.jquery.js"></script>-->
+
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+
+        <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
         <script src="js/app.js"></script>
         <script src="Login/login.js"></script>
         <script src="Patients/patients.js"></script>
@@ -67,10 +91,12 @@
         <script src="Prescriptions/js/prescriptions.module.js"></script>
         <script src="Prescriptions/js/prescriptions.routes.js"></script>
         <script src="Prescriptions/js/controllers/index.controller.js"></script>
+        <script src="Prescriptions/js/controllers/medicines.controller.js"></script>
 
         <!-- Utils -->
         <script src="Utils/js/utils.module.js"></script>
         <script src="Utils/js/directives/datetimepicker.directive.js"></script>
+        <!--<script src="Utils/js/directives/typeahead.directive.js"></script>-->
 
         <script src="components/version/version.js"></script>
         <script src="components/version/version-directive.js"></script>

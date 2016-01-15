@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('ERemediumWebApp', [
   'ngRoute',
+  'ui.bootstrap',
   'ngMessages',
   'ERemediumWebApp.patients',
   'ERemediumWebApp.reportinganalytics',
