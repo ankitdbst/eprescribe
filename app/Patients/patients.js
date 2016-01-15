@@ -4,7 +4,7 @@ angular.module('ERemediumWebApp.patients', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/patients', {
-    templateUrl: 'Patients/patients.html',
+    templateUrl: 'Patients/patient_profile.html',
     controller: 'PatientsCtrl'
   });
 }])
