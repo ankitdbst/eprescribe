@@ -15,7 +15,8 @@
     "angular-messages": "~1.4.0",
     "html5-boilerplate": "~5.2.0",
     "eonasdan-bootstrap-datetimepicker": "~4.17.37",
+    "typeahead.js": "~0.11.1",
+    "angular-bootstrap": "~1.0.3",
     "fontawesome": "https://github.com/FortAwesome/Font-Awesome.git#~4.x.x"
-
   }
 }
