@@ -9,6 +9,7 @@
     function datetimepicker($rootScope) {
         function link(scope, element, attrs) {
             element.find('.date').datetimepicker();
+            element.find('input').attr('placeholder', attrs.placeholder);
         }
 
         var directive = {

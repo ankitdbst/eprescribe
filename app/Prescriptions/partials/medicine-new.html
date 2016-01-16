@@ -1,45 +1,80 @@
 <form>
-  <fieldset>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" placeholder="Name">
-    </div>
-    <div class="form-group">
+   <div class="form-group">
+      <label for="medicineName">Medicine Name</label>
+      <input type="text" ng-model="medicineName" class="form-control" id="medicineName" placeholder="Start typing the name of the medicine..." uib-typeahead="medicine for medicine in medicines | filter:$viewValue | limitTo:3" />
+   </div>
+  <div class="row">
+    <div class="form-group col-md-6">
       <label for="sDate">Start Date</label>
-      <datetimepicker id="sDate"/>
+      <datetimepicker id="sDate" placeholder="Start Date"/>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="eDate">End Date</label>
-      <datetimepicker id="eDate"/>
+      <datetimepicker id="eDate" placeholder="End Date"/>
     </div>
-    <div class="form-group">
-      <label for="dosage">Dosage</label>
-      <input type="number" class="form-control" id="dosage" placeholder="">
+  </div>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label for="maxDosage">Max Dosage</label>
+      <input type="number" class="form-control" id="maxDosage" placeholder="Max Dosage"/>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-4">
       <label for="frequency">Frequency</label>
       <input type="text" ng-model="frequency" class="form-control" id="frequency" placeholder="Frequency of the dosage" uib-typeahead="frequency for frequency in frequencies | filter:$viewValue | limitTo:3" />
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-4">
       <label for="dosageQuantiy">Dosage Quantity</label>
       <input type="text" ng-model="dosageQuantity" class="form-control" id="dosageQuantiy" placeholder="Quantity of the dosage" uib-typeahead="quantity for quantity in quantities | filter:$viewValue | limitTo:3" />
     </div>
-    <div class="form-group">
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
       <label for="fComment">Frequency Comment</label>
-      <input type="text" class="form-control" id="fComment" placeholder="Comment for the Frequency" />
+      <input type="text" ng-model="fComment" class="form-control" id="fComment" placeholder="Comment for the Frequency" uib-typeahead="fComment for fComment in fComments | filter:$viewValue | limitTo:3" />
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="intakeComm">Intake Comment</label>
-      <input type="text" class="form-control" id="intakeComm" placeholder="Comment for the Dosage Intake" />
+      <input type="text" ng-model="intakeComm" class="form-control" id="intakeComm" placeholder="Comment for the Dosage Intake" uib-typeahead="intakeComm for intakeComm in intakeComms | filter:$viewValue | limitTo:3" />
     </div>
-    <div class="form-group">
-      <label for="associatedDiagnosis">Associated Diagnosis</label>
-      <input type="text" class="form-control" id="associatedDiagnosis" placeholder="Associated Diagnosis">
+  </div>
+  <div class="form-group">
+    <label for="associatedDiagnosis">Associated Diagnosis</label>
+    <input type="text" class="form-control" id="associatedDiagnosis" placeholder="Associated Diagnosis"/>
+  </div>
+  <div class="form-group">
+    <label for="medComment">Medication Comment</label>
+    <input type="text" class="form-control" id="medComment" placeholder="Medication Comment"/>
+  </div>
+  <!-- Pharma Details -->
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label for="dQuantity">Dispense Quantity</label>
+      <input type="text" class="form-control" id="dQuantity" placeholder="Dispense Quantity"/>
     </div>
-    <div class="form-group">
-      <label for="medComment">Medication Comment</label>
-      <input type="text" class="form-control" id="medComment" placeholder="Medication Comment">
+    <div class="form-group col-md-4">
+      <label for="unit">Unit</label>
+      <input type="text" class="form-control" id="unit" placeholder="Unit" uib-typeahead="unit for unit in units | filter:$viewValue | limitTo:3" />
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-  </fieldset>
+    <div class="form-group col-md-4">
+      <label for="refills">Refills</label>
+      <input type="number" class="form-control" id="refills" placeholder="No of Refills"/>
+    </div>
+  </div>
+  <div class="checkbox">
+    <label for="refillAsNeeded">
+      <input type="checkbox" value="" id="refillAsNeeded">
+      Refill as needed
+    </label>
+  </div>
+  <div class="checkbox">
+    <label for="refillApproval">
+      <input type="checkbox" value="" id="refillApproval">
+      Refill approval needed
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="note">Note to Pharmacy</label>
+    <textarea class="form-control" rows="2" id="note" placeholder="Note to Pharmacy"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
 </form>
