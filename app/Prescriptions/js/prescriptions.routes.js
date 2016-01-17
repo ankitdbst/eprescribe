@@ -4,15 +4,17 @@
   angular.module('ERemediumWebApp.prescriptions.routes')
 
   .config([
-    '$routeProvider',
+    '$stateProvider',
 
-    function($routeProvider) {
-      $routeProvider
-      .when('/prescriptions', {
+    function($stateProvider) {
+      $stateProvider
+      .state('prescriptions', {
+        url: '/prescriptions',
         templateUrl: 'Prescriptions/partials/index.html',
         controller: 'PrescriptionsIndexCtrl'
       })
-      .when('/medicines', {
+      .state('prescriptions.addMedicine', {
+        url: '/add-medicine',
         templateUrl: 'Prescriptions/partials/medicine-new.html',
         controller: 'MedicinesIndexCtrl'
       });

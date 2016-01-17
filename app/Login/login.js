@@ -1,9 +1,12 @@
 'use strict';
 
-angular.module('ERemediumWebApp.login', ['ngRoute', 'ngMessages'])
+angular.module('ERemediumWebApp.login', ['ui.router', 'ngMessages'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/login', {
+.
+config(['$stateProvider', function($stateProvider) {
+  $stateProvider
+  .state('login', {
+    url: '/login',
     templateUrl: 'Login/login.html',
     controller: 'LoginCtrl'
   });

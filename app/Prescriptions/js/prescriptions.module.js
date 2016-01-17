@@ -6,6 +6,6 @@
         'ERemediumWebApp.prescriptions.controllers'
     ]);
 
-    angular.module('ERemediumWebApp.prescriptions.routes', ['ngRoute']);
+    angular.module('ERemediumWebApp.prescriptions.routes', ['ui.router']);
     angular.module('ERemediumWebApp.prescriptions.controllers', []);
 })();

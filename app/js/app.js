@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module('ERemediumWebApp', [
-  'ngRoute',
+  'ui.router',
   'ui.bootstrap',
   'ngMessages',
   'ERemediumWebApp.patients',
@@ -12,8 +12,8 @@ angular.module('ERemediumWebApp', [
 
   'ERemediumWebApp.prescriptions',
   'ERemediumWebApp.utils'
-]).
-
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/login'});
-}]);
+]);
+//
+//config(['$urlRouterProvider', function($urlRouterProvider) {
+//  $urlRouterProvider.otherwise('/login');
+//}]);

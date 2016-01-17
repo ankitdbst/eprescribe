@@ -18,6 +18,8 @@
         <link href="css/simple-sidebar.css" rel="stylesheet" type="text/css"/>
         <link href="bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <link rel="stylesheet" href="Prescriptions/css/prescriptions.css" type="text/css"/>
     </head>
     <body>
         <div class="container">
@@ -38,6 +40,7 @@
 
                 <div id="wrapper" class="toggled-2">
 
+                    <!-- Sidebar -->
                     <!-- Sidebar -->
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
@@ -68,11 +71,7 @@
                     <!-- Page Content -->
                     <div id="page-content-wrapper">
                         <div class="container-fluid">
-
-                            <div ng-view >
-
-                            </div>
-
+                            <div ui-view></div>
                         </div>
                     </div>
                     <!-- /#page-content-wrapper -->
@@ -105,7 +104,7 @@
                 <!--<script type="text/javascript" src="bower_components/typeahead.js/dist/typeahead.jquery.js"></script>-->
 
                 <script src="bower_components/angular/angular.js"></script>
-                <script src="bower_components/angular-route/angular-route.js"></script>
+                <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
                 <script src="bower_components/angular-messages/angular-messages.min.js"></script>
 
                 <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>

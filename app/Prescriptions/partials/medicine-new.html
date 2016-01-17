@@ -1,8 +1,9 @@
 <form>
-   <div class="form-group">
-      <label for="medicineName">Medicine Name</label>
-      <input type="text" ng-model="medicineName" class="form-control" id="medicineName" placeholder="Start typing the name of the medicine..." uib-typeahead="medicine for medicine in medicines | filter:$viewValue | limitTo:3" />
-   </div>
+  <div class="form-group">
+    <label for="medicineName">Medicine Name</label>
+    <input type="text" ng-model="medicineName" class="form-control" id="medicineName" placeholder="Start typing the name of the medicine..." uib-typeahead="medicine for medicine in medicines | filter:$viewValue | limitTo:3" />
+  </div>
+  <hr>
   <div class="row">
     <div class="form-group col-md-6">
       <label for="sDate">Start Date</label>
@@ -37,14 +38,7 @@
       <input type="text" ng-model="intakeComm" class="form-control" id="intakeComm" placeholder="Comment for the Dosage Intake" uib-typeahead="intakeComm for intakeComm in intakeComms | filter:$viewValue | limitTo:3" />
     </div>
   </div>
-  <div class="form-group">
-    <label for="associatedDiagnosis">Associated Diagnosis</label>
-    <input type="text" class="form-control" id="associatedDiagnosis" placeholder="Associated Diagnosis"/>
-  </div>
-  <div class="form-group">
-    <label for="medComment">Medication Comment</label>
-    <input type="text" class="form-control" id="medComment" placeholder="Medication Comment"/>
-  </div>
+  <hr>
   <!-- Pharma Details -->
   <div class="row">
     <div class="form-group col-md-4">
@@ -53,7 +47,7 @@
     </div>
     <div class="form-group col-md-4">
       <label for="unit">Unit</label>
-      <input type="text" class="form-control" id="unit" placeholder="Unit" uib-typeahead="unit for unit in units | filter:$viewValue | limitTo:3" />
+      <input type="text" ng-model="unit" class="form-control" id="unit" placeholder="Unit" uib-typeahead="unit for unit in units | filter:$viewValue | limitTo:3" />
     </div>
     <div class="form-group col-md-4">
       <label for="refills">Refills</label>
@@ -76,5 +70,14 @@
     <label for="note">Note to Pharmacy</label>
     <textarea class="form-control" rows="2" id="note" placeholder="Note to Pharmacy"></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">Save</button>
+  <div class="form-group">
+    <label for="associatedDiagnosis">Associated Diagnosis</label>
+    <input type="text" class="form-control" id="associatedDiagnosis" placeholder="Associated Diagnosis"/>
+  </div>
+  <div class="form-group">
+    <label for="medComment">Medication Comment</label>
+    <input type="text" class="form-control" id="medComment" placeholder="Medication Comment"/>
+  </div>
+  <button type="submit" class="btn btn-primary">+ Add</button>
+  <button type="submit" class="btn btn-default">Close</button>
 </form>

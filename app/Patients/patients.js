@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('ERemediumWebApp.patients', ['ngRoute'])
+angular.module('ERemediumWebApp.patients', ['ui.router'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/patients', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider
+  .state('patients.index', {
+    url: '/patients',
     templateUrl: 'Patients/patient_profile.html',
     controller: 'PatientsCtrl'
   });

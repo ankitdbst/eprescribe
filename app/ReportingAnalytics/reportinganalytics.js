@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('ERemediumWebApp.reportinganalytics', ['ngRoute'])
+angular.module('ERemediumWebApp.reportinganalytics', ['ui.router'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/reportinganalytics', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider
+  .state('reporting.index', {
+    url: '/reportinganalytics',
     templateUrl: 'ReportingAnalytics/reportinganalytics.html',
     controller: 'ReportingAnalyticsCtrl'
   });

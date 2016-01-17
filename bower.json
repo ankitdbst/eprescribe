@@ -9,7 +9,6 @@
     "angular": "~1.4.0",
     "jquery": "~2.1.1",
     "bootstrap": "~3.1.1",
-    "angular-route": "~1.4.0",
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0",
     "angular-messages": "~1.4.0",
@@ -17,6 +16,7 @@
     "eonasdan-bootstrap-datetimepicker": "~4.17.37",
     "typeahead.js": "~0.11.1",
     "angular-bootstrap": "~1.0.3",
-    "fontawesome": "https://github.com/FortAwesome/Font-Awesome.git#~4.x.x"
+    "fontawesome": "https://github.com/FortAwesome/Font-Awesome.git#~4.x.x",
+    "angular-ui-router": "~0.2.15"
   }
 }
