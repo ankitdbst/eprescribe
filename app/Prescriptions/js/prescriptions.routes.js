@@ -8,15 +8,20 @@
 
     function($stateProvider) {
       $stateProvider
-      .state('prescriptions', {
+      .state('PrescriptionList', {
         url: '/prescriptions',
-        templateUrl: 'Prescriptions/partials/index.html',
-        controller: 'PrescriptionsIndexCtrl'
+        templateUrl: 'Prescriptions/partials/prescriptions.index.html',
+        controller: 'PrescriptionIndexCtrl'
       })
-      .state('prescriptions.addMedicine', {
-        url: '/add-medicine',
-        templateUrl: 'Prescriptions/partials/medicine-new.html',
-        controller: 'MedicinesIndexCtrl'
+      .state('PrescriptionNewOrEdit', {
+        url: '/prescriptions/edit',
+        templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
+        controller: 'PrescriptionNewOrEditCtrl'
+      })
+      .state('PrescriptionNewOrEdit.AddMedicine', {
+        url: '',
+        templateUrl: 'Prescriptions/partials/prescriptions.add-medicine.html',
+        controller: 'PrescriptionAddMedicineCtrl'
       });
     }
   ]);

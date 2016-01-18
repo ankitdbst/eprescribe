@@ -3,14 +3,15 @@
 
   angular.module('ERemediumWebApp.prescriptions.controllers')
 
-  .controller('MedicinesIndexCtrl', MedicinesIndexCtrl);
+  .controller('PrescriptionAddMedicineCtrl', PrescriptionAddMedicineCtrl);
 
-  MedicinesIndexCtrl.$inject = ['$scope'];
+  PrescriptionAddMedicineCtrl.$inject = ['$scope'];
 
-  function MedicinesIndexCtrl($scope) {
+  function PrescriptionAddMedicineCtrl($scope) {
     activate();
 
     function activate() {
+      // Need to retrieve these from the server as well!
       $scope.frequencies = ['Daily', 'Weekly', 'Monthly'];
       $scope.quantities = ['1 tablet', '1 spoon', '5 ml'];
       $scope.medicines = ['Brufen', 'D-Cold', 'Paracetamol', 'Vicks', 'Crocin'];
@@ -31,6 +32,19 @@
       $scope.intakeComms = ["Don't eat anything after this medicine",
                             "Take after morning bowl"];
       $scope.units = ["Tablet", "Strip"];
+    }
+
+    $scope.medcine = {};
+    $scope.save = AddMedicine;
+    $scope.close = Close;
+
+    function AddMedicine() {
+      $scope.$parent.prescription.medcines.push($scope.medcine);
+      $scope.medcine = {};
+    }
+
+    function Close() {
+      // Close
     }
   }
 

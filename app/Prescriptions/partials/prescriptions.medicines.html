@@ -1,0 +1,12 @@
+<table class="table" ng-show="prescription.medcines.length">
+  <thead>
+    <th>#</th>
+    <th>Medicine Name</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="medicine in prescription.medcines">
+      <td>{{ $index+1 }}</td>
+      <td>{{ medicine.name }}</td>
+    </tr>
+  </tbody>
+</table>
