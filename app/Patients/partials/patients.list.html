@@ -1,5 +1,55 @@
-<div class="panel panel-info">
-    
-    
-    
-</div>
+<form>
+    <div class="row">
+        <div class="form-group col-md-offset-4 col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Patient's Mobile Number.." ng-model="patient.search.mobilenumber" id="patientsearchmobilenumber">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="searchByMobileNumber()"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div><!-- /input-group -->
+        </div>
+        <div class="form-group col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Patient's Name.." ng-model="patient.search.name" id="patientsearchname" uib-typeahead="patientName for patientName in patientNames | filter:$viewValue | limitTo:3" >
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="searchByName()"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+    <div class="row">
+        <!--show last 25 patient visit -->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>                     
+                    <th>Date of Birth</th> 
+                    <th>Gender</th> 
+                    <th>Mobile Number</th> 
+                    <th>Email Id</th> 
+                    <th>Address</th> 
+                    <th><span class="fa-lg" uib-tooltip="Click to view Prescriptions" tooltip-placement="top-right">&#8478;</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="patientObj in patientList| filter:patient.search"> 
+                    <!-- Hyperlink to Profile Page using unique Patient Id -->
+                    <td>
+                        <a href="#/patients/{{patientObj.id}}" uib-tooltip="View Patient Profile"> {{patientObj.name}}</a>
+                    </td>
+                    <!-- End Hyperlink -->
+                    <td>{{patientObj.dateofbirth}}</td>
+                    <td>{{patientObj.gender}}</td> 
+                    <td>{{patientObj.mobilenumber}}</td> 
+                    <td>{{patientObj.emailid}}</td> 
+                    <td>{{patientObj.address}}</td> 
+                    <td> 
+                        <a href="#/prescriptions/{{patientObj.id}}">
+                            <i class="fa fa-medkit fa-lg"></i>
+                        </a> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
