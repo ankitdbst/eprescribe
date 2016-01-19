@@ -13,12 +13,13 @@
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Bootstrap DateTime Picker -->
         <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-
+                
         <link rel="stylesheet" href="css/app.css">
         <link href="css/simple-sidebar.css" rel="stylesheet" type="text/css"/>
         <link href="bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
+        <!-- Prescription CSS -->
         <link rel="stylesheet" href="Prescriptions/css/prescriptions.css" type="text/css"/>
     </head>
     <body>
@@ -89,9 +90,6 @@
             </div>
 
             <!--ALL SCRIPTS SECTION-->
-            <!-- In production use:
-            <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-            -->
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
             <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -100,23 +98,27 @@
             <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
             <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
-            <!--&lt;!&ndash; Typeahead &ndash;&gt;-->
-            <!--<script type="text/javascript" src="bower_components/typeahead.js/dist/typeahead.jquery.js"></script>-->
-
-            <script src="bower_components/angular/angular.js"></script>
-            <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+            <script src="bower_components/angular/angular.min.js"></script>
+            <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
             <script src="bower_components/angular-messages/angular-messages.min.js"></script>
             <script src="bower_components/angular-resource/angular-resource.min.js"></script>
 
-            <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-            <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+            <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+            <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
             <script src="js/app.js"></script>
             <script src="Login/login.js"></script>
-            <script src="Patients/patients.js"></script>
             <script src="ReportingAnalytics/reportinganalytics.js"></script>
             <script src="Doctor_Settings/doctor_settings.js"></script>
-
+            
+            <!-- Patients -->
+            <script src="Patients/js/patients.module.js" type="text/javascript"></script>
+            <script src="Patients/js/patients.routes.js" type="text/javascript"></script>
+            <script src="Patients/js/controllers/patients.list.controller.js" type="text/javascript"></script>
+            <script src="Patients/js/controllers/patients.edit.controller.js" type="text/javascript"></script>
+            <script src="Patients/js/services/patients.service.js" type="text/javascript"></script>
+            
+            
             <!-- Prescriptions -->
             <script src="Prescriptions/js/prescriptions.module.js"></script>
             <script src="Prescriptions/js/prescriptions.routes.js"></script>
