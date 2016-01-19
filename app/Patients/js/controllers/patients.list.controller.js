@@ -4,9 +4,9 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientsListCtrl', PatientsListCtrl);
 
-    PatientsListCtrl.$inject = ['$scope', 'Patient'];
+    PatientsListCtrl.$inject = ['$scope', 'Patient', '$state'];
 
-    function PatientsListCtrl($scope, Patient) {
+    function PatientsListCtrl($scope, Patient, $state) {
 
         //Initialize
         $scope.patient = {};
@@ -24,11 +24,17 @@
             {id: 107, name: 'Nitin Raj', dateofbirth: '09/05/1970', gender: 'M', mobilenumber: 9543445639, emailid: '', address: 'Deshbandhu Apartments, Kalkaji, 110019'},
             {id: 108, name: 'Santosh Gupta', dateofbirth: '04/11/1989', gender: 'M', mobilenumber: 9810423469, emailid: 'santosh.gupta@yahoo.com', address: 'Mahagun Moderne, Sector 78, Noida, 201301'},
             {id: 109, name: 'Gauri Saini', dateofbirth: '12/11/1987', gender: 'F', mobilenumber: 9780424984, emailid: 'gauri.saini@gmail.com', address: 'Gurgaon, 470002'}
-            ];
+        ];
 
         //Functions
         $scope.searchByName = SearchByName;
         $scope.searchByMobileNumber = SearchByMobileNumber;
+        $scope.createPatientProfile = CreatePatientProfile;
+
+        function CreatePatientProfile() {
+
+            $state.go('PatientNewOrEdit');
+        }
 
         function searchParameterReset() {
             $scope.patient.search = {name: '', mobilenumber: ''};
