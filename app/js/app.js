@@ -18,6 +18,7 @@ angular.module('ERemediumWebApp', [
                 $urlRouterProvider.otherwise('/login');
             }]);
 
+//For correctly applying Active Class on Side Menu
 $(".sidebar-nav a").on("click", function () {
     $(".sidebar-nav").find(".active").removeClass("active");
     $(this).parent().addClass("active");

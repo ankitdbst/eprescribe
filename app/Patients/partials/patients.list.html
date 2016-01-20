@@ -31,14 +31,16 @@
                     <th>Mobile Number</th> 
                     <th>Email Id</th> 
                     <th>Address</th> 
-                    <th><span class="fa-lg" uib-tooltip="Click to view Prescriptions" tooltip-placement="top-right">&#8478;</span></th>
+                    <th>
+                        <span class="fa-lg" uib-tooltip="Click to view Prescriptions" tooltip-placement="top-right">&#8478;</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="patientObj in patientList| filter:patient.search"> 
                     <!-- Hyperlink to Profile Page using unique Patient Id -->
                     <td>
-                        <a href="#/patients/{{patientObj.id}}" uib-tooltip="View Patient Profile"> {{patientObj.name}}</a>
+                        <a href="#/patients/edit/{{patientObj.id}}" uib-tooltip="View Patient Profile"> {{patientObj.name}}</a>
                     </td>
                     <!-- End Hyperlink -->
                     <td>{{patientObj.dateofbirth}}</td>

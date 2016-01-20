@@ -6,7 +6,7 @@
                     $stateProvider
                             .state('login', {
                                 url: '/login',
-                                templateUrl: 'Login/login.html',
+                                templateUrl: 'Login/partials/login.html',
                                 controller: 'LoginCtrl'
                             });
                 }])

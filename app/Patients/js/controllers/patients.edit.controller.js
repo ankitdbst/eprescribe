@@ -1,27 +1,41 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular.module('ERemediumWebApp.patients.controllers')
-  .controller('PatientNewOrEditCtrl', PatientNewOrEditCtrl);
+    angular.module('ERemediumWebApp.patients.controllers')
+            .controller('PatientNewOrEditCtrl', PatientNewOrEditCtrl);
 
-  PatientNewOrEditCtrl.$inject = ['$scope', 'Patient'];
+    PatientNewOrEditCtrl.$inject = ['$scope', '$stateParams', 'Patient', '$state'];
 
-  function PatientNewOrEditCtrl($scope, Patient) {
-    $scope.patient = new Patient();
-    // Fill defaults from session object maybe
-    $scope.patient.patientId = '';
-//    $scope.patient.doctorId = '';
-    $scope.patient.isUpdate = false; // for edit we change this to true
+    function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state) {
+        //Intialize
+        $scope.genders = ["Male", "Female"];
 
-    $scope.save = CreatePatient;
+        if ($stateParams.patientId == '') {
+            //A new patient profile is being created!
+            //Set empty object..
+            $scope.patient = {};
+            $scope.patient.isUpdate = false;
+            $scope.patient.gender = "Male";//set default value..
+        } else {
+            //Get Patient Details from server and populate patient object..
+            $scope.patient = Patient.get($stateParams.patientId);
+            $scope.patient.isUpdate = true;
+        }
 
-    // Store all relationships e.g. Father, Mother needed in case of childrens
-    $scope.patient.relationships = [];
+        $scope.savePatientProfile = SavePatientProfile;
+        $scope.close              = Close;
+        // Store all relationships e.g. Father, Mother needed in case of childrens
+        $scope.patient.relationships = [];
 
-    function CreatePatient() {
-      var params = {};
-      Patient.upsert(params, $scope.patient);
+        function SavePatientProfile() {
+            var params = {};
+            Patient.upsert(params, $scope.patient);
+            $state.go('PatientsList');
+        }
+        
+        function Close(){
+            $state.go('PatientsList');
+        }
     }
-  }
 
-}) ();
+})();
