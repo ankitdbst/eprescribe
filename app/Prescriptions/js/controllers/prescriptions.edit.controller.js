@@ -4,12 +4,12 @@
   angular.module('ERemediumWebApp.prescriptions.controllers')
   .controller('PrescriptionNewOrEditCtrl', PrescriptionNewOrEditCtrl);
 
-  PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription', '$stateParams'];
+  PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription', '$stateParams', '$state'];
 
-  function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams) {
+  function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, $state) {
     var pid = $stateParams.id;
 
-    if (angular.isDefined(pid)) {
+    if (pid !== undefined && pid.length !== 0) {
       $scope.prescription = Prescription.get({
         user: 'sujeet',
         sessionId: '78131321',
@@ -25,6 +25,7 @@
     }
 
     $scope.save = UpsertPrescription;
+    $scope.close = Close;
 
     function UpsertPrescription() {
       $scope.prescription.patientId = 2;
@@ -36,6 +37,11 @@
         prescription: $scope.prescription
       };
       Prescription.upsert(params, $scope.prescription);
+      $state.go('PrescriptionList');
+    }
+
+    function Close(){
+      $state.go('PrescriptionList');
     }
   }
 
