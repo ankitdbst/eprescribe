@@ -38,14 +38,14 @@
         </div>
         <div class="form-group col-md-4" ng-class="{ 'has-error': formPrescriptionAddMedicine.frequency.$touched && formPrescriptionAddMedicine.frequency.$invalid }">
           <label for="frequency">Frequency*</label>
-          <input type="text" name="frequency" ng-model="medcine.frequency.dFreq" class="form-control" id="frequency" placeholder="Frequency of the dosage" uib-typeahead="frequency for frequency in frequencies | filter:$viewValue | limitTo:3" />
+          <input type="text" name="frequency" ng-model="medcine.frequency.dFreq" class="form-control" id="frequency" placeholder="Frequency of the dosage" uib-typeahead="frequency for frequency in frequencies | filter:$viewValue | limitTo:3" required/>
           <div class="help-block" ng-messages="formPrescriptionAddMedicine.frequency.$error" ng-if="formPrescriptionAddMedicine.frequency.$touched">
             <p ng-message="required">Frequency is required!</p>
           </div>
       </div>
-        <div class="form-group col-md-4" ng-class="{ 'has-error': formPrescriptionAddMedicine.dosageQuantiy.$touched && formPrescriptionAddMedicine.dosageQuantiy.$invalid }">
+        <div class="form-group col-md-4" ng-class="{ 'has-error': formPrescriptionAddMedicine.dosageQuantiy.$touched && formPrescriptionAddMedicine.dosageQuantity.$invalid }">
           <label for="dosageQuantiy">Dosage Quantity*</label>
-          <input type="text" name="dosageQuantity" ng-model="medcine.frequency.dQty" class="form-control" id="dosageQuantiy" placeholder="Quantity of the dosage" uib-typeahead="quantity for quantity in quantities | filter:$viewValue | limitTo:3" />
+          <input type="text" name="dosageQuantity" ng-model="medcine.frequency.dQty" class="form-control" id="dosageQuantiy" placeholder="Quantity of the dosage" uib-typeahead="quantity for quantity in quantities | filter:$viewValue | limitTo:3" required/>
           <div class="help-block" ng-messages="formPrescriptionAddMedicine.dosageQuantity.$error" ng-if="formPrescriptionAddMedicine.dosageQuantity.$touched">
             <p ng-message="required">Dosage Quantity is required!</p>
           </div>
@@ -115,6 +115,6 @@
   <hr>
   <div class="form-group">
     <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescriptionAddMedicine.$invalid">+ Add</button>
-    <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
+    <button type="button" class="btn btn-danger" ng-click="reset()">Reset</button>
   </div>
 </form>

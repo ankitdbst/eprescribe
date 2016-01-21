@@ -2,11 +2,17 @@
   <thead>
     <th>#</th>
     <th>Medicine Name</th>
+    <th>Start</th>
+    <th>Frequency</th>
+    <th>Dosage Quantity</th>
   </thead>
   <tbody>
     <tr ng-repeat="medicine in prescription.medcines">
       <td>{{ $index+1 }}</td>
       <td>{{ medicine.name }}</td>
+      <td>{{ medicine.frequency.sDate | datetime:'medium' }}</td>
+      <td>{{ medicine.frequency.dFreq }}</td>
+      <td>{{ medicine.frequency.dQty }}</td>
     </tr>
   </tbody>
 </table>

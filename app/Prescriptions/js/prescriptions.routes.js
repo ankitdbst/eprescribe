@@ -22,6 +22,11 @@
         url: '',
         templateUrl: 'Prescriptions/partials/prescriptions.add-medicine.html',
         controller: 'PrescriptionAddMedicineCtrl'
+      })
+      .state('PrescriptionOrder', {
+        url: '/prescriptions/order/:id',
+        templateUrl: 'Prescriptions/partials/prescriptions.order.html',
+        controller: 'PrescriptionOrderCtrl'
       });
     }
   ]);

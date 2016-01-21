@@ -29,6 +29,7 @@
                 <a ui-sref="PrescriptionNewOrEdit.AddMedicine"><strong>+ Add Medicine</strong></a>
               </div>
             </div>
+            <hr>
             <medicines/>
           </div>
         </div>
@@ -44,7 +45,8 @@
       </div>
       <hr>
       <div class="form-group">
-          <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescription.$invalid">Save</button>
+          <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescription.$invalid">Save & Print</button>
+          <button type="button" class="btn btn-success" ng-click="order()" ng-disabled="!saved">Order</button>
           <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
       </div>
     </form>

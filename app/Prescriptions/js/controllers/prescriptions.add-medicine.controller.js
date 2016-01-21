@@ -36,15 +36,15 @@
 
     $scope.medcine = {};
     $scope.save = AddMedicine;
-    $scope.close = Close;
+    $scope.reset = Reset;
 
     function AddMedicine() {
       $scope.$parent.prescription.medcines.push($scope.medcine);
       $scope.medcine = {};
     }
 
-    function Close() {
-      // Close
+    function Reset() {
+      $scope.medcine = {};
     }
   }
 
