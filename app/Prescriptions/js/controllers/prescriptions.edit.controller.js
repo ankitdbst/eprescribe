@@ -24,8 +24,12 @@
       $scope.prescription.medcines = [];
     }
 
+    $scope.saved = false;
+
+    // Methods
     $scope.save = UpsertPrescription;
     $scope.close = Close;
+    $scope.order = Order;
 
     function UpsertPrescription() {
       $scope.prescription.patientId = 2;
@@ -37,11 +41,21 @@
         prescription: $scope.prescription
       };
       Prescription.upsert(params, $scope.prescription);
+      $scope.saved = true;
+    }
+
+    function Close() {
       $state.go('PrescriptionList');
     }
 
-    function Close(){
-      $state.go('PrescriptionList');
+    function Order() {
+      if( !$scope.saved ) { // Defensive
+        UpsertPrescription();
+      }
+
+      $state.go('PrescriptionOrder', {
+        id: $scope.prescription.pid
+      });
     }
   }
 
