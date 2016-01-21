@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="prescription in prescriptions" class="eremedium-prescription-list" uib-tooltip="View Prescription" tooltip-placement="top-right" ng-click="view(prescription.pid)">
+            <tr ng-repeat="prescription in prescriptions" class="eremedium-prescription-list" uib-tooltip="View Prescription" ng-click="view(prescription.pid)">
               <td>{{prescription.pDate | date:'mediumDate'}}</td>
               <td>{{prescription.pDate | date:'mediumTime'}}</td>
               <td>
