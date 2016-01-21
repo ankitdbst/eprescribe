@@ -10,11 +10,11 @@
       $stateProvider
       .state('PrescriptionList', {
         url: '/prescriptions',
-        templateUrl: 'Prescriptions/partials/prescriptions.index.html',
-        controller: 'PrescriptionIndexCtrl'
+        templateUrl: 'Prescriptions/partials/prescriptions.list.html',
+        controller: 'PrescriptionListCtrl'
       })
       .state('PrescriptionNewOrEdit', {
-        url: '/prescriptions/edit',
+        url: '/prescriptions/edit/:id',
         templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
         controller: 'PrescriptionNewOrEditCtrl'
       })

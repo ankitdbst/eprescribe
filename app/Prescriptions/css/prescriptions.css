@@ -1,3 +1,11 @@
 .add-new-medicine {
   border-left: 1px solid #ccc;
 }
+
+.eremedium-prescription-list {
+  cursor: pointer;
+}
+
+.eremedium-prescription-item-list {
+  padding-left: 15px;
+}

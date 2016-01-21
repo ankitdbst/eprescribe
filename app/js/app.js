@@ -14,9 +14,9 @@ angular.module('ERemediumWebApp', [
     'ERemediumWebApp.utils'
 ])
 
-        .config(['$urlRouterProvider', function ($urlRouterProvider) {
-                $urlRouterProvider.otherwise('/login');
-            }]);
+//.config(['$urlRouterProvider', function ($urlRouterProvider) {
+//        $urlRouterProvider.otherwise('/login');
+//    }]);
 
 //For correctly applying Active Class on Side Menu
 $(".sidebar-nav a").on("click", function () {

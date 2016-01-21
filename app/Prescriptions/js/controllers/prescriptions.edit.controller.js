@@ -4,22 +4,37 @@
   angular.module('ERemediumWebApp.prescriptions.controllers')
   .controller('PrescriptionNewOrEditCtrl', PrescriptionNewOrEditCtrl);
 
-  PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription'];
+  PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription', '$stateParams'];
 
-  function PrescriptionNewOrEditCtrl($scope, Prescription) {
-    $scope.prescription = new Prescription();
-    // Fill defaults from session object maybe
-    $scope.prescription.patientId = '';
-    $scope.prescription.doctorId = '';
-    $scope.prescription.isUpdate = false; // for edit we change this to true
+  function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams) {
+    var pid = $stateParams.id;
 
-    $scope.save = CreatePrescription;
+    if (angular.isDefined(pid)) {
+      $scope.prescription = Prescription.get({
+        user: 'sujeet',
+        sessionId: '78131321',
+        pid: pid
+      });
+      $scope.prescription.isUpdate = true; // for edit we change this to true
+    } else {
+      $scope.prescription = new Prescription();
+      // Fill defaults from session object maybe
+      $scope.prescription.isUpdate = false; // for edit we change this to true
+      // Medications
+      $scope.prescription.medcines = [];
+    }
 
-    // Medications
-    $scope.prescription.medcines = [];
+    $scope.save = UpsertPrescription;
 
-    function CreatePrescription() {
-      var params = {};
+    function UpsertPrescription() {
+      $scope.prescription.patientId = 2;
+      $scope.prescription.doctorId = 101;
+
+      var params = {
+        user: 'sujeet',
+        sessionId: '78131321',
+        prescription: $scope.prescription
+      };
       Prescription.upsert(params, $scope.prescription);
     }
   }
