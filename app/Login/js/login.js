@@ -16,6 +16,7 @@
 
     function LoginCtrl($scope, $rootScope, $state) {
         $rootScope.showMenu = false;
+        $rootScope.pageHeader = "";
         
         $scope.signIn = SignIn;
 

@@ -4,11 +4,12 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientsListCtrl', PatientsListCtrl);
 
-    PatientsListCtrl.$inject = ['$scope', 'Patient', '$state'];
+    PatientsListCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope'];
 
-    function PatientsListCtrl($scope, Patient, $state) {
+    function PatientsListCtrl($scope, Patient, $state, $rootScope) {
 
         //Initialize
+        $rootScope.pageHeader = "Patients";
         $scope.patient = {};
         searchParameterReset();
         //Get from Server..

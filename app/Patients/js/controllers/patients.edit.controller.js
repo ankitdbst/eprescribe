@@ -4,12 +4,12 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientNewOrEditCtrl', PatientNewOrEditCtrl);
 
-    PatientNewOrEditCtrl.$inject = ['$scope', '$stateParams', 'Patient', '$state'];
+    PatientNewOrEditCtrl.$inject = ['$scope', '$stateParams', 'Patient', '$state', '$rootScope'];
 
-    function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state) {
+    function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state, $rootScope) {
         //Intialize
         $scope.genders = ["Male", "Female"];
-
+        $rootScope.pageHeader = "Patient Profile";
         if ($stateParams.patientId == '') {
             //A new patient profile is being created!
             //Set empty object..
@@ -23,7 +23,7 @@
         }
 
         $scope.savePatientProfile = SavePatientProfile;
-        $scope.close              = Close;
+        $scope.close = Close;
         // Store all relationships e.g. Father, Mother needed in case of childrens
         $scope.patient.relationships = [];
 
@@ -32,8 +32,8 @@
             Patient.upsert(params, $scope.patient);
             $state.go('PatientsList');
         }
-        
-        function Close(){
+
+        function Close() {
             $state.go('PatientsList');
         }
     }
