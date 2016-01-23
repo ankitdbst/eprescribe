@@ -9,7 +9,7 @@
     function($stateProvider) {
       $stateProvider
       .state('PrescriptionList', {
-        url: '/prescriptions/:patientId',
+        url: '/prescriptions',
         templateUrl: 'Prescriptions/partials/prescriptions.list.html',
         controller: 'PrescriptionListCtrl'
       })
