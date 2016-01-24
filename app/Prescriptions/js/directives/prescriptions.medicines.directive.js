@@ -14,7 +14,8 @@
         var directive = {
             link: link,
             restrict: 'E',
-            templateUrl: 'Prescriptions/partials/prescriptions.medicines.html'
+            templateUrl: 'Prescriptions/partials/prescriptions.medicines.html',
+            controller: 'PrescriptionMedicinesCtrl'
         };
 
         return directive;

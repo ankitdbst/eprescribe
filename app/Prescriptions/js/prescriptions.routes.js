@@ -9,22 +9,22 @@
     function($stateProvider) {
       $stateProvider
       .state('PrescriptionList', {
-        url: '/prescriptions/:patiendId',
+        url: '/prescriptions',
         templateUrl: 'Prescriptions/partials/prescriptions.list.html',
         controller: 'PrescriptionListCtrl'
       })
       .state('PrescriptionNewOrEdit', {
-        url: '/prescriptions/edit/:id',
+        url: '/prescriptions/edit/:pId',
         templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
         controller: 'PrescriptionNewOrEditCtrl'
       })
-      .state('PrescriptionNewOrEdit.AddMedicine', {
-        url: '',
-        templateUrl: 'Prescriptions/partials/prescriptions.add-medicine.html',
-        controller: 'PrescriptionAddMedicineCtrl'
+      .state('PrescriptionNewOrEdit.UpsertMedicine', {
+        url: '/medicines/:mId',
+        templateUrl: 'Prescriptions/partials/prescriptions.upsert-medicine.html',
+        controller: 'PrescriptionUpsertMedicineCtrl'
       })
       .state('PrescriptionOrder', {
-        url: '/prescriptions/order/:id',
+        url: '/prescriptions/order/:pId',
         templateUrl: 'Prescriptions/partials/prescriptions.order.html',
         controller: 'PrescriptionOrderCtrl'
       })

@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="panel panel-primary">
-    <div class="panel-heading">Medicine Intake Details</div>
+    <div class="panel-heading">Medicine Details</div>
     <div class="panel-body">
       <!--<div class="row">-->
         <!--<div class="form-group col-md-6" ng-class="{ 'has-error': formPrescriptionAddMedicine.sDate.$touched && formPrescriptionAddMedicine.sDate.$invalid }">-->
@@ -49,9 +49,9 @@
         <div class="form-group col-md-4">
           <label for="frequency">Frequency</label>
           <select class="form-control" id="frequency" name="frequency" ng-model="medcine.frequency.freq">
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
           </select>
           <!--<input type="text" name="frequency" ng-model="medcine.frequency.freq" class="form-control" id="frequency" placeholder="Frequency of the dosage" uib-typeahead="frequency for frequency in frequencies | filter:$viewValue | limitTo:3" required/>-->
           <!--<div class="help-block" ng-messages="formPrescriptionAddMedicine.frequency.$error" ng-if="formPrescriptionAddMedicine.frequency.$touched">-->
@@ -61,13 +61,13 @@
         <div class="form-group col-md-4" ng-show="medcine.frequency.freq == 'weekly'">
           <label for="intakeDays">Intake Days</label>
           <select multiple class="form-control" id="intakeDays" name="frequency" ng-model="medcine.frequency.intakeDays">
-            <option value="mon">Mon</option>
-            <option value="tue">Tue</option>
-            <option value="wed">Wed</option>
-            <option value="thur">Thur</option>
-            <option value="fri">Fri</option>
-            <option value="sat">Sat</option>
-            <option value="sun">Sun</option>
+            <option value="Mon">Mon</option>
+            <option value="Tue">Tue</option>
+            <option value="Wed">Wed</option>
+            <option value="Thur">Thur</option>
+            <option value="Fri">Fri</option>
+            <option value="Sat">Sat</option>
+            <option value="Sun">Sun</option>
           </select>
         </div>
         <div class="form-group col-md-4">
@@ -171,7 +171,7 @@
   </div>
   <hr>
   <div class="form-group">
-    <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescriptionAddMedicine.$invalid">+ Add</button>
-    <button type="button" class="btn btn-danger" ng-click="reset()">Reset</button>
+    <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescriptionAddMedicine.$invalid">+ {{saveBtnName}}</button>
+    <button type="button" class="btn btn-danger" ng-if="reset" ng-click="reset()">Reset</button>
   </div>
 </form>

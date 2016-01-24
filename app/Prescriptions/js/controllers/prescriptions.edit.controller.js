@@ -2,14 +2,14 @@
     'use strict';
 
     angular.module('ERemediumWebApp.prescriptions.controllers')
-            .controller('PrescriptionNewOrEditCtrl', PrescriptionNewOrEditCtrl);
+    .controller('PrescriptionNewOrEditCtrl', PrescriptionNewOrEditCtrl);
 
     PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription', '$stateParams', '$state', '$rootScope'];
 
     function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, $state, $rootScope) {
         //Intialize
         $rootScope.pageHeader = "Prescription Detail";
-        var pid = $stateParams.id;
+        var pid = $stateParams.pId;
 
         if (pid !== undefined && pid.length !== 0) {
             $scope.prescription = Prescription.get({
