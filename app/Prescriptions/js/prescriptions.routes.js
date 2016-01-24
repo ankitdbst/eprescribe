@@ -27,6 +27,11 @@
         url: '/prescriptions/order/:id',
         templateUrl: 'Prescriptions/partials/prescriptions.order.html',
         controller: 'PrescriptionOrderCtrl'
+      })
+      .state('PrescriptionOrder.PatientNewOrEditAddress', {
+        url: '',
+        templateUrl: 'Patients/partials/patients.edit-address.html',
+        controller: 'PatientNewOrEditAddressCtrl'
       });
     }
   ]);
