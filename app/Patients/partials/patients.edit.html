@@ -1,5 +1,4 @@
 
-
 <form name="formPatientProfile" class="panel-group" novalidate>
     <div class="panel panel-primary">
         <div class="panel-heading">Identifying Details</div>
@@ -41,6 +40,10 @@
                 </div>
             </div>
             <div class="form-group col-md-4">
+                <label for="patientRelationshipType">Relationship Type*:</label>
+                <select ng-model="patient.relationshiptype" ng-options="relationshiptype for relationshiptype in relationshiptypes" class="form-control" name="patientRelationshipType" id="patientRelationshipType"></select>
+            </div>
+            <div class="form-group col-md-4">
                 <label for="patientLandlineNumber">Landline Number:</label>
                 <input type="number" ng-model="patient.landlinenumber" class="form-control" id="patientLandlineNumber" name="patientLandlineNumber" placeholder="Landline Number" />
             </div>
@@ -50,8 +53,6 @@
             </div>
         </div>
     </div>
-
-
 
     <div class="panel panel-primary">
         <div class="panel-heading">Primary Address</div>
@@ -70,7 +71,7 @@
             <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientCity.$touched && formPatientProfile.patientCity.$invalid }">
                 <label for="patientCity">City*:</label>
                 <input type="text" ng-model="patient.patientcity" class="form-control" id="patientCity" name="patientCity" placeholder="City" required />
-                 <div class="help-block" ng-messages="formPatientProfile.patientCity.$error" ng-if="formPatientProfile.patientCity.$touched">                    
+                <div class="help-block" ng-messages="formPatientProfile.patientCity.$error" ng-if="formPatientProfile.patientCity.$touched">                    
                     <p ng-message="required">City is mandatory!</p>
                 </div>
             </div>
@@ -104,7 +105,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="patientAlternativeCity">City:</label>
-                 <input type="text" ng-model="patient.patientalternativecity" class="form-control" id="patientAlternativeCity" name="patientAlternativeCity" placeholder="City" />
+                <input type="text" ng-model="patient.patientalternativecity" class="form-control" id="patientAlternativeCity" name="patientAlternativeCity" placeholder="City" />
             </div>
             <div class="form-group col-md-4">
                 <label for="patientAlternativeState">State:</label>
@@ -116,7 +117,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="panel panel-info">
         <div class="panel-heading">History</div>
@@ -164,11 +164,6 @@
                 <textarea class="form-control" ng-model="patient.environmentalallergies" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
             </div>   
         </div>
-    </div>
-
-    <div class="panel panel-info">
-        <div class="panel-heading">Prescriptions</div>
-        <div class="panel-body"><!--Bring from Ankit's Prescription Index Page --></div>
     </div>
 
     <hr>

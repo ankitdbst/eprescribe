@@ -3,19 +3,11 @@
         <div class="form-group col-md-4">
             <button class="btn btn-primary" ng-click="createPatientProfile()" >+ Create Patient Profile</button>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-offset-4 col-md-4">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search by Patient's Mobile Number.." ng-model="patient.search.mobilenumber" id="patientsearchmobilenumber">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="searchByMobileNumber()"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-            </div><!-- /input-group -->
-        </div>
-        <div class="form-group col-md-4">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search by Patient's Name.." ng-model="patient.search.name" id="patientsearchname" uib-typeahead="patientName for patientName in patientNames | filter:$viewValue | limitTo:3" >
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="searchByName()"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div><!-- /input-group -->
         </div>
