@@ -9,7 +9,7 @@
     function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state, $rootScope) {
         //Intialize
         $scope.genders = ["Male", "Female"];
-        $scope.relationshiptypes = ["None", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister"];
+        $scope.relationshiptypes = ["None", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister", "Others"];
         $rootScope.pageHeader = "Patient Profile";
         if ($stateParams.patientId == '') {
             //A new patient profile is being created!
