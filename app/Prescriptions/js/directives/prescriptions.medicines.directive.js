@@ -8,7 +8,10 @@
 
     function medicines($rootScope) {
         function link(scope, element, attrs) {
-           //
+           scope.editable = false;
+           if(attrs.editable) {
+            scope.editable = true;
+           }
         }
 
         var directive = {

@@ -23,6 +23,11 @@
         templateUrl: 'Prescriptions/partials/prescriptions.upsert-medicine.html',
         controller: 'PrescriptionUpsertMedicineCtrl'
       })
+      .state('PrescriptionDetail', {
+        url: '/prescriptions/view/:id',
+        templateUrl: 'Prescriptions/partials/prescriptions.detail.html',
+        controller: 'PrescriptionDetailCtrl'
+      })
       .state('PrescriptionOrder', {
         url: '/prescriptions/order/:pId',
         templateUrl: 'Prescriptions/partials/prescriptions.order.html',

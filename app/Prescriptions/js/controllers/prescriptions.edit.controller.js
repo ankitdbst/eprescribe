@@ -8,10 +8,11 @@
 
     function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, $state, $rootScope) {
         //Intialize
-        $rootScope.pageHeader = "Prescription Detail";
         var pid = $stateParams.pId;
 
         if (pid !== undefined && pid.length !== 0) {
+            $rootScope.pageHeader = "Update Prescription";
+
             $scope.prescription = Prescription.get({
                 user: 'sujeet',
                 sessionId: '78131321',
@@ -19,6 +20,8 @@
             });
             $scope.prescription.isUpdate = true; // for edit we change this to true
         } else {
+            $rootScope.pageHeader = "Create Prescription";
+
             $scope.prescription = new Prescription();
             // Fill defaults from session object maybe
             $scope.prescription.isUpdate = false; // for edit we change this to true
@@ -26,12 +29,9 @@
             $scope.prescription.medcines = [];
         }
 
-        $scope.saved = false;
-
         // Methods
         $scope.save = UpsertPrescription;
         $scope.close = Close;
-        $scope.order = Order;
 
         function UpsertPrescription() {
             $scope.prescription.patientId = 2;
@@ -43,21 +43,14 @@
                 prescription: $scope.prescription
             };
             Prescription.upsert(params, $scope.prescription);
-            $scope.saved = true;
+
+            $state.go('PrescriptionDetail', {
+              pId: $scope.prescription.pid
+            });
         }
 
         function Close() {
             $state.go('PrescriptionList');
-        }
-
-        function Order() {
-            if (!$scope.saved) { // Defensive
-                UpsertPrescription();
-            }
-
-            $state.go('PrescriptionOrder', {
-                id: $scope.prescription.pid
-            });
         }
     }
 

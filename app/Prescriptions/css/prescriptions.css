@@ -17,3 +17,16 @@
 .radio+.radio {
   margin-top: 0px;
 }
+
+.eremedium-prescription-date {
+  margin-top: 20px;
+}
+
+.eremedium-frequenct-intake-time div {
+  width: 100px;
+}
+
+.eremedium-frequenct-intake-time div:no
+t(:first-child) {
+  text-align: center;
+}
