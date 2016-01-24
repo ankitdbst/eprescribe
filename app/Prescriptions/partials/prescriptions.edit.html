@@ -34,8 +34,12 @@
       </div>
     </div>
     <div class="panel panel-info">
-      <div class="panel-heading">Medications</div>
+      <div class="panel-heading">Other</div>
       <div class="panel-body">
+        <div class="form-group">
+          <label for="validUpto">Valid Upto</label>
+          <datetimepicker ng-model="prescription.validUpto" id="validUpto" placeholder="Prescription Valid Upto"></datetimepicker>
+        </div>
         <div class="form-group">
           <label for="nextVisit">Next Visit</label>
           <datetimepicker ng-model="prescription.nextVisit" id="nextVisit" placeholder="Schedule Next Visit"></datetimepicker>

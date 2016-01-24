@@ -14,91 +14,148 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Medicine Intake Details</div>
     <div class="panel-body">
-      <div class="row">
-        <div class="form-group col-md-6" ng-class="{ 'has-error': formPrescriptionAddMedicine.sDate.$touched && formPrescriptionAddMedicine.sDate.$invalid }">
-          <label for="sDate">Start Date*</label>
-          <datetimepicker name="sDate" id="sDate" ng-model="medcine.frequency.sDate" placeholder="Start Date"/>
-          <div class="help-block" ng-messages="formPrescriptionAddMedicine.sDate.$error" ng-if="formPrescriptionAddMedicine.sDate.$touched">
-            <p ng-message="required">Start Date is required!</p>
-          </div>
-        </div>
-        <div class="form-group col-md-6" ng-class="{ 'has-error': formPrescriptionAddMedicine.eDate.$touched && formPrescriptionAddMedicine.eDate.$invalid }">
-          <label for="eDate">End Date*</label>
-          <datetimepicker name="eDate" id="eDate" ng-model="medcine.frequency.eDate" placeholder="End Date"/>
-          <div class="help-block" ng-messages="formPrescriptionAddMedicine.eDate.$error" ng-if="formPrescriptionAddMedicine.eDate.$touched">
-            <p ng-message="required">End Date is required!</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group col-md-4">
-          <label for="maxDosage">Max Dosage</label>
-          <input type="number" name="maxDosage" class="form-control" ng-model="medcine.frequency.mDaose" id="maxDosage" placeholder="Max Dosage"/>
-        </div>
-        <div class="form-group col-md-4" ng-class="{ 'has-error': formPrescriptionAddMedicine.frequency.$touched && formPrescriptionAddMedicine.frequency.$invalid }">
-          <label for="frequency">Frequency*</label>
-          <input type="text" name="frequency" ng-model="medcine.frequency.dFreq" class="form-control" id="frequency" placeholder="Frequency of the dosage" uib-typeahead="frequency for frequency in frequencies | filter:$viewValue | limitTo:3" required/>
-          <div class="help-block" ng-messages="formPrescriptionAddMedicine.frequency.$error" ng-if="formPrescriptionAddMedicine.frequency.$touched">
-            <p ng-message="required">Frequency is required!</p>
-          </div>
-        </div>
-        <div class="form-group col-md-4" ng-class="{ 'has-error': formPrescriptionAddMedicine.dosageQuantiy.$touched && formPrescriptionAddMedicine.dosageQuantity.$invalid }">
-          <label for="dosageQuantiy">Dosage Quantity*</label>
-          <input type="text" name="dosageQuantity" ng-model="medcine.frequency.dQty" class="form-control" id="dosageQuantiy" placeholder="Quantity of the dosage" uib-typeahead="quantity for quantity in quantities | filter:$viewValue | limitTo:3" required/>
-          <div class="help-block" ng-messages="formPrescriptionAddMedicine.dosageQuantity.$error" ng-if="formPrescriptionAddMedicine.dosageQuantity.$touched">
-            <p ng-message="required">Dosage Quantity is required!</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-          <label for="fComment">Frequency Comment</label>
-          <input type="text" ng-model="medcine.frequency.fComment" class="form-control" id="fComment" placeholder="Comment for the Frequency" uib-typeahead="fComment for fComment in fComments | filter:$viewValue | limitTo:3" />
-        </div>
-        <div class="form-group col-md-6">
-          <label for="intakeComm">Intake Comment</label>
-          <input type="text" ng-model="medcine.frequency.intakeComm" class="form-control" id="intakeComm" placeholder="Comment for the Dosage Intake" uib-typeahead="intakeComm for intakeComm in intakeComms | filter:$viewValue | limitTo:3" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Pharma Details -->
-  <div class="panel panel-primary">
-    <div class="panel-heading">Pharmacy Details</div>
-    <div class="panel-body">
+      <!--<div class="row">-->
+        <!--<div class="form-group col-md-6" ng-class="{ 'has-error': formPrescriptionAddMedicine.sDate.$touched && formPrescriptionAddMedicine.sDate.$invalid }">-->
+          <!--<label for="sDate">Start Date*</label>-->
+          <!--<datetimepicker name="sDate" id="sDate" ng-model="medcine.frequency.sDate" placeholder="Start Date"/>-->
+          <!--<div class="help-block" ng-messages="formPrescriptionAddMedicine.sDate.$error" ng-if="formPrescriptionAddMedicine.sDate.$touched">-->
+            <!--<p ng-message="required">Start Date is required!</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group col-md-6" ng-class="{ 'has-error': formPrescriptionAddMedicine.eDate.$touched && formPrescriptionAddMedicine.eDate.$invalid }">-->
+          <!--<label for="eDate">End Date*</label>-->
+          <!--<datetimepicker name="eDate" id="eDate" ng-model="medcine.frequency.eDate" placeholder="End Date"/>-->
+          <!--<div class="help-block" ng-messages="formPrescriptionAddMedicine.eDate.$error" ng-if="formPrescriptionAddMedicine.eDate.$touched">-->
+            <!--<p ng-message="required">End Date is required!</p>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="row">
         <div class="form-group col-md-4">
           <label for="dQuantity">Dispense Quantity</label>
-          <input type="text" ng-model="medcine.pharmaDetails.dispenseQty" class="form-control" id="dQuantity" placeholder="Dispense Quantity"/>
+          <input type="text" ng-model="medcine.dispenseQty" class="form-control" id="dQuantity" placeholder="Dispense Quantity"/>
         </div>
         <div class="form-group col-md-4">
           <label for="unit">Unit</label>
-          <input type="text" ng-model="medcine.pharmaDetails.unit" class="form-control" id="unit" placeholder="Unit" uib-typeahead="unit for unit in units | filter:$viewValue | limitTo:3" />
+          <select class="form-control" id="unit" name="unit" ng-model="medcine.dispenseUnit">
+            <option>Tablet/Capsule</option>
+            <option>Strip</option>
+            <option>Bottle</option>
+          </select>
+          <!--<input type="text" ng-model="medcine.pharmaDetails.unit" class="form-control" id="unit" placeholder="Unit" uib-typeahead="unit for unit in units | filter:$viewValue | limitTo:3" />-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="frequency">Frequency</label>
+          <select class="form-control" id="frequency" name="frequency" ng-model="medcine.frequency.freq">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+          <!--<input type="text" name="frequency" ng-model="medcine.frequency.freq" class="form-control" id="frequency" placeholder="Frequency of the dosage" uib-typeahead="frequency for frequency in frequencies | filter:$viewValue | limitTo:3" required/>-->
+          <!--<div class="help-block" ng-messages="formPrescriptionAddMedicine.frequency.$error" ng-if="formPrescriptionAddMedicine.frequency.$touched">-->
+            <!--<p ng-message="required">Frequency is required!</p>-->
+          <!--</div>-->
+        </div>
+        <div class="form-group col-md-4" ng-show="medcine.frequency.freq == 'weekly'">
+          <label for="intakeDays">Intake Days</label>
+          <select multiple class="form-control" id="intakeDays" name="frequency" ng-model="medcine.frequency.intakeDays">
+            <option value="mon">Mon</option>
+            <option value="tue">Tue</option>
+            <option value="wed">Wed</option>
+            <option value="thur">Thur</option>
+            <option value="fri">Fri</option>
+            <option value="sat">Sat</option>
+            <option value="sun">Sun</option>
+          </select>
         </div>
         <div class="form-group col-md-4">
-          <label for="refills">Refills</label>
-          <input type="number" ng-model="medcine.pharmaDetails.refills" class="form-control" id="refills" placeholder="No of Refills"/>
+          <label for="intakeTime">Intake Time</label>
+          <select multiple class="form-control" id="intakeTime" name="intakeTime" ng-model="medcine.frequency.intakeTime">
+            <option>Morning</option>
+            <option>Afternoon</option>
+            <option>Night</option>
+          </select>
         </div>
       </div>
-      <div class="checkbox">
-        <label for="refillAsNeeded">
-          <input type="checkbox" ng-model="medcine.pharmaDetails.refillAsNeeded" value="" id="refillAsNeeded">
-          Refill as needed
-        </label>
+      <div class="form-group row">
+        <div class="form-group col-md-4">
+          <label for="dosageQuantiy">Dosage Quantity</label>
+          <input type="number" name="dosageQuantity" ng-model="medcine.frequency.daose" class="form-control" id="dosageQuantiy" placeholder="Quantity of the dosage" />
+          <!--<div class="help-block" ng-messages="formPrescriptionAddMedicine.dosageQuantity.$error" ng-if="formPrescriptionAddMedicine.dosageQuantity.$touched">-->
+            <!--<p ng-message="required">Dosage Quantity is required!</p>-->
+          <!--</div>-->
+        </div>
+        <div class="form-group col-md-4">
+          <label for="dType">Dosage Unit</label>
+          <select class="form-control" id="dType" name="dType" ng-model="medcine.frequency.dType">
+            <option>tablet or capsule</option>
+            <option>ml</option>
+            <option>spoon</option>
+          </select>
+
+          <!--<input type="number" name="dosageQuantity" ng-model="medcine.frequency.dType" class="form-control" id="dType" placeholder="Quantity of the dosage" />-->
+          <!--<div class="help-block" ng-messages="formPrescriptionAddMedicine.dosageQuantity.$error" ng-if="formPrescriptionAddMedicine.dosageQuantity.$touched">-->
+            <!--<p ng-message="required">Dosage Quantity is required!</p>-->
+          <!--</div>-->
+        </div>
+
       </div>
-      <div class="checkbox">
-        <label for="refillApproval">
-          <input type="checkbox" ng-model="medcine.pharmaDetails.refillApproval" value="" id="refillApproval">
-          Refill approval needed
-        </label>
+      <!--<div class="row">-->
+      <div class="form-group">
+        <label for="comments">Instructions</label>
+        <textarea class="form-control" ng-model="medcine.frequency.comments" rows="4" id="comments" placeholder="Instructions"></textarea>
+        <!--<input type="text" ng-model="medcine.frequency.fComment" class="form-control" id="instructions" placeholder="Instructions..." uib-typeahead="fComment for fComment in fComments | filter:$viewValue | limitTo:3" />-->
       </div>
       <div class="form-group">
         <label for="note">Note to Pharmacy</label>
-        <textarea class="form-control" ng-model="medcine.pharmaDetails.note" rows="2" id="note" placeholder="Note to Pharmacy"></textarea>
+        <textarea class="form-control" ng-model="medcine.pharmaDetails.note" rows="3" id="note" placeholder="Note to Pharmacy"></textarea>
       </div>
+
+        <!--<div class="form-group col-md-6">-->
+          <!--<label for="intakeComm">Intake Comment</label>-->
+          <!--<input type="text" ng-model="medcine.frequency.intakeComm" class="form-control" id="intakeComm" placeholder="Comment for the Dosage Intake" uib-typeahead="intakeComm for intakeComm in intakeComms | filter:$viewValue | limitTo:3" />-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
+  <!-- Pharma Details -->
+  <!--<div class="panel panel-primary">-->
+    <!--<div class="panel-heading">Pharmacy Details</div>-->
+    <!--<div class="panel-body">-->
+      <!--<div class="row">-->
+        <!--&lt;!&ndash;<div class="form-group col-md-4">&ndash;&gt;-->
+          <!--&lt;!&ndash;<label for="dQuantity">Dispense Quantity</label>&ndash;&gt;-->
+          <!--&lt;!&ndash;<input type="text" ng-model="medcine.pharmaDetails.dispenseQty" class="form-control" id="dQuantity" placeholder="Dispense Quantity"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="form-group col-md-4">&ndash;&gt;-->
+          <!--&lt;!&ndash;<label for="unit">Unit</label>&ndash;&gt;-->
+          <!--&lt;!&ndash;<input type="text" ng-model="medcine.pharmaDetails.unit" class="form-control" id="unit" placeholder="Unit" uib-typeahead="unit for unit in units | filter:$viewValue | limitTo:3" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<div class="form-group col-md-4">-->
+          <!--<label for="refills">Refills</label>-->
+          <!--<input type="number" ng-model="medcine.pharmaDetails.refills" class="form-control" id="refills" placeholder="No of Refills"/>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="checkbox">-->
+        <!--<label for="refillAsNeeded">-->
+          <!--<input type="checkbox" ng-model="medcine.pharmaDetails.refillAsNeeded" value="" id="refillAsNeeded">-->
+          <!--Refill as needed-->
+        <!--</label>-->
+      <!--</div>-->
+      <!--<div class="checkbox">-->
+        <!--<label for="refillApproval">-->
+          <!--<input type="checkbox" ng-model="medcine.pharmaDetails.refillApproval" value="" id="refillApproval">-->
+          <!--Refill approval needed-->
+        <!--</label>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="note">Note to Pharmacy</label>-->
+        <!--<textarea class="form-control" ng-model="medcine.pharmaDetails.note" rows="2" id="note" placeholder="Note to Pharmacy"></textarea>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
   <div class="panel panel-info">
     <div class="panel-heading">Other Details</div>
     <div class="panel-body">
