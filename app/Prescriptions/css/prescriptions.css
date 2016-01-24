@@ -9,3 +9,11 @@
 .eremedium-prescription-item-list {
   padding-left: 15px;
 }
+
+.eremedium-delivery-address.radio {
+  margin-top: 0px;
+}
+
+.radio+.radio {
+  margin-top: 0px;
+}

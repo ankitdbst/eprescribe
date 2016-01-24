@@ -1,0 +1,43 @@
+<hr>
+<form name="formNewOrEditAddress" class="panel-group" novalidate>
+  <div class="panel panel-primary">
+      <div class="panel-heading">Add a new address</div>
+      <div class="panel-body">
+          <div class="form-group col-md-4">
+              <label for="line1">Address Line 1:</label>
+              <textarea class="form-control" ng-model="address.line1" id="line1" name="line1" rows="1" placeholder="Address Line 1"></textarea>
+          </div>
+          <div class="form-group col-md-4">
+              <label for="line2">Address Line 2:</label>
+              <textarea class="form-control" ng-model="address.line2" id="line2" name="line2" rows="1" placeholder="Address Line 2"></textarea>
+          </div>
+          <div class="form-group col-md-4" ng-class="{ 'has-error': formNewOrEditAddress.city.$touched && formNewOrEditAddress.city.$invalid }">
+              <label for="city">City:*</label>
+              <input type="text" ng-model="address.city" class="form-control" id="city" name="city" placeholder="City" required/>
+              <div class="help-block" ng-messages="formNewOrEditAddress.city.$error" ng-if="formNewOrEditAddress.city.$touched">
+                <p ng-message="required">City is mandatory!</p>
+              </div>
+          </div>
+          <div class="form-group col-md-4" ng-class="{ 'has-error': formNewOrEditAddress.state.$touched && formNewOrEditAddress.state.$invalid }">
+              <label for="state">State:*</label>
+              <input type="text" ng-model="address.state" class="form-control" id="state" name="state" placeholder="State" required/>
+              <div class="help-block" ng-messages="formNewOrEditAddress.state.$error" ng-if="formNewOrEditAddress.state.$touched">
+                <p ng-message="required">State is mandatory!</p>
+              </div>
+          </div>
+          <div class="form-group col-md-4" ng-class="{ 'has-error': formNewOrEditAddress.pincode.$touched && formNewOrEditAddress.pincode.$invalid }">
+              <label for="pincode">Pincode:*</label>
+              <input type="text" ng-model="address.pincode" class="form-control" id="pincode" name="pincode" placeholder="Pincode" required/>
+              <div class="help-block" ng-messages="formNewOrEditAddress.pincode.$error" ng-if="formNewOrEditAddress.pincode.$touched">
+                <p ng-message="required">Pincode is mandatory!</p>
+              </div>
+          </div>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formNewOrEditAddress.$invalid">Deliver to this address</button>
+        </div>
+      </div>
+  </div>
+</form>
+<hr>

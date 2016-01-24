@@ -1,0 +1,44 @@
+<form name="formPrescriptionOrder" class="panel-group" novalidate>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Select pharmacy</div>
+    <div class="panel-body">
+      <div class="form-group clearfix">
+        <div class="form-group col-md-4" ng-class="{ 'has-error': formPrescriptionOrder.pharmacy.$touched && formPrescriptionOrder.pharmacy.$invalid }">
+          <label for="frequency">Pharmacy*</label>
+          <input type="text" name="pharmacy" ng-model="order.pharmacy" class="form-control" id="pharmacy" placeholder="Select the pharmacy to order from" uib-typeahead="pharmacy for pharmacy in pharmacies | filter:$viewValue | limitTo:5" typeahead-editable="false" required/>
+          <div class="help-block" ng-messages="formPrescriptionOrder.pharmacy.$error" ng-if="formPrescriptionOrder.pharmacy.$touched">
+            <p ng-message="required">Pharmacy needs to be selected!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Select a delivery address</div>
+    <div class="panel-body">
+      <div class="form-group clearfix">
+        <p>
+        Is the address you'd like to use displayed below? If so, select the corresponding address. Or you can <a ui-sref="PrescriptionOrder.PatientNewOrEditAddress">enter a new delivery address</a>.
+        </p>
+        <hr>
+        <div class="radio col-md-3 eremedium-delivery-address" ng-repeat="address in addresses">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked />
+            <div>
+              <div><strong>{{prescription.patient.firstName + " " + prescription.patient.lastName }}</strong></div>
+              <div>{{address.line1}}</div>
+              <div>{{address.line2}}</div>
+              <div>{{address.city}}, {{address.state}} {{address.pincode}}</div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="form-group">
+    <button type="button" class="btn btn-primary" ng-click="order()" ng-disabled="formPrescriptionOrder.$invalid">Confirm Order</button>
+    <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
+  </div>
+</form>
+<div ui-view></div>

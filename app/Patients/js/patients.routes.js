@@ -17,7 +17,7 @@
         url: '/patients/edit/:patientId',
         templateUrl: 'Patients/partials/patients.edit.html',
         controller: 'PatientNewOrEditCtrl'
-      }) 
+      });
     }
   ]);
 }) ();
