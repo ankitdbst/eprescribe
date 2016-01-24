@@ -12,8 +12,7 @@
         $rootScope.pageHeader = "Patients";
         $scope.patient = {};
         searchParameterReset();
-        //Get from Server..
-        $scope.patientNames = ['Mohanish', 'Sujeet', 'Ankit', 'Manoj', 'Arka'];
+
         //Bound to Patient List Table
         //$scope.patientList = Patient.list();
         $scope.patientList = [{id: 101, name: 'Mohanish Singh', dateofbirth: '09/05/1984', gender: 'M', mobilenumber: 9910430979, emailid: 'mohanish.singh@gmail.com', address: 'B202, Civitech Sampriti, Sector 77, Noida, 201301'},
@@ -28,7 +27,6 @@
         ];
 
         //Functions
-        $scope.searchByName = SearchByName;
         $scope.searchByMobileNumber = SearchByMobileNumber;
         $scope.createPatientProfile = CreatePatientProfile;
 
@@ -38,21 +36,9 @@
         }
 
         function searchParameterReset() {
-            $scope.patient.search = {name: '', mobilenumber: ''};
+            $scope.patient.search = {mobilenumber: ''};
         }
 
-        function SearchByName() {
-            $scope.patient = Patient.query($scope.patient.search.name);
-            //If found go to Profile Page else throw alert!
-            if (angular.isUndefined($scope.patient))
-            {
-                alert('Patient not found!');
-            } else
-            {
-                //Navigate to Profile Page using patient Id!
-            }
-            searchParameterReset();
-        }
 
         function SearchByMobileNumber() {
             $scope.patient = Patient.query($scope.patient.search.mobilenumber);

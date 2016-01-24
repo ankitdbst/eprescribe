@@ -9,6 +9,7 @@
     function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state, $rootScope) {
         //Intialize
         $scope.genders = ["Male", "Female"];
+        $scope.relationshiptypes = ["None", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister"];
         $rootScope.pageHeader = "Patient Profile";
         if ($stateParams.patientId == '') {
             //A new patient profile is being created!
@@ -16,6 +17,7 @@
             $scope.patient = {};
             $scope.patient.isUpdate = false;
             $scope.patient.gender = "Male";//set default value..
+            $scope.patient.relationshiptype = "None";
         } else {
             //Get Patient Details from server and populate patient object..
             $scope.patient = Patient.get($stateParams.patientId);
