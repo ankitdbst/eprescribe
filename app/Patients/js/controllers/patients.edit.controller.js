@@ -19,7 +19,7 @@
             $scope.patient = {};
             $scope.patient.isUpdate = false;
             $scope.patient.gender = "Male";//set default value..
-            $scope.patient.relationship = "None";
+            $scope.patient.relation = "";
         } else {
             //Get Patient Details from server and populate patient object..
             Patient.get({
