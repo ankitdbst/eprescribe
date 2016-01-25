@@ -10,6 +10,9 @@
 <div class="tab-content" style="padding-top: 8%;">
     <div role="tabpanel" class="tab-pane fade in active" id="loginContent">
         <form name="formSignIn" class="form-horizontal col-sm-offset-4 col-sm-4" novalidate>
+            <div class="alert alert-danger" role="alert" ng-show="showAlert">
+                {{alertMessage}}
+            </div>
 
             <!--Mobile Number Section-->
             <div class="form-group" ng-class="{ 'has-error': formSignIn.inputMobileNumber.$touched && formSignIn.inputMobileNumber.$invalid }">
@@ -29,7 +32,6 @@
                     <p ng-message="required">Your Mobile Number is mandatory!</p>
                 </div>
             </div>
-
             <!--Password Section-->
             <div class="form-group" ng-class="{ 'has-error': formSignIn.inputPassword.$touched && formSignIn.inputPassword.$invalid }">
                 <div class="input-group">

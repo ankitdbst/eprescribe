@@ -11,7 +11,7 @@
                             });
                 }])
             .controller('LoginCtrl', LoginCtrl);
-    
+
     angular.module('ERemediumWebApp.login.services', []);
 
     LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'Login', '$stateParams'];
@@ -21,33 +21,35 @@
         $rootScope.pageHeader = "";
 
         $scope.signIn = SignIn;
+        $scope.showAlert = false;
 
         function SignIn() {
+            $scope.data = {};
             //validate using username and password
-            alert('You are awesome! Signing In...');
+            Login.validateCredentials({
+                mobile: $scope.mobileNumber,// 7838352425
+                password: $scope.password, //123@ivp
+                deviceKey: "" //empty
+            }, function (response) {
+                $scope.data = response;
+                if (angular.isUndefined($scope.data) || $scope.data.respCode == 0)
+                {
+                    $scope.showAlert = true;
+                    $scope.alertMessage = "Invalid Credentials, Please try again!";
+                } else
+                {
+                    //Store sessionid etc in rootscope as its needed across pages!
+                    $rootScope.sessionId = $scope.data.sessionId;
+                    $rootScope.userId = $scope.data.userId;
+                    $rootScope.userType = $scope.data.userType;
+                    
+                    //start showing menu items 
+                    $rootScope.showMenu = true;
 
-            var data = Login.validateCredentials({
-                mobile: $scope.mobileNumber,
-                password: $scope.password,
-                deviceKey: ""
+                    //Navigate to First Page in menu
+                    $state.go('PatientsList');
+                }
             });
-
-            if (angular.isUndefined(data) || data.respCode == 0)
-            {
-                alert('Invalid Username/Passwrod, Please try again.');
-            } else
-            {
-                
-                alert(data);
-                alert(data.respCode);
-                //start showing menu items 
-                $rootScope.showMenu = true;
-
-
-                //Navigate to First Page in menu
-                $state.go('PatientsList');
-            }
         }
     }
-
 })();

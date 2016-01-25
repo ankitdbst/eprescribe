@@ -9,7 +9,7 @@
       var actions = {
         validateCredentials: {
           method: 'POST',
-          url: ' http://52.74.177.118/ERService/userservice/ValidateCredentials'
+          url: 'http://52.74.177.118/ERService/userservice/ValidateCredentials'
         }
       };
 

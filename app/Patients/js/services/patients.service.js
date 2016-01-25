@@ -11,17 +11,14 @@
           method: 'POST',
           url: '/ERService/patient/UpsertPatient'
         },
-        list: {
-          method: 'GET',
-          url: '/ERService/patient/ListPatient'
-        },
         get: {
           method: 'GET',
           url: '/ERService/patient/GetPatient'
         },
         query: {
-          method: 'GET',
-          url: '/ERService/patient/SearchPatient'
+          method: 'POST',
+          url: 'http://52.74.177.118/ERService/userservice/GetUsersForDoctor',
+          isArray: true
         }
       };
 
