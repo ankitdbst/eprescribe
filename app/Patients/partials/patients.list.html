@@ -3,7 +3,8 @@
         <div class="form-group col-md-4">
             <button class="btn btn-primary" ng-click="createPatientProfile()" >+ Create Patient Profile</button>
         </div>
-        <div class="form-group col-md-offset-4 col-md-4">
+
+        <div class="form-group col-md-4 pull-right">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search by Patient's Mobile Number.." ng-model="patient.search.mobilenumber" id="patientsearchmobilenumber">
                 <span class="input-group-btn">
@@ -13,7 +14,54 @@
         </div>
     </div>
     <div class="row">
-        <!--show last 25 patient visit -->
+        <div class="page-header text-muted" ng-show="showSearchResults">
+            <h4> Search Results:</h4>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showAlert">
+            {{alertMessage}}
+        </div>
+        <table class="table table-hover table-condensed" ng-show="showSearchResults">
+            <thead>
+                <tr>
+                    <th>Name</th>                     
+                    <th>Date of Birth</th> 
+                    <th>Gender</th> 
+                    <th>Mobile Number</th> 
+                    <th>Email Id</th> 
+                    <th>Address</th> 
+                    <th>Relationship</th> 
+                    <th>
+                        <span class="fa-lg" uib-tooltip="Click to view Prescriptions" tooltip-placement="top-right">&#8478;</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="patientObjSearch in searchPatientResults"> 
+                    <!-- Hyperlink to Profile Page using unique Patient Id -->
+                    <td>
+                        <a href="#/patients/edit/{{patientObjSearch.patientId}}" uib-tooltip="View Patient Profile"> {{getFullName(patientObjSearch)}} </a>
+                    </td>
+                    <!-- End Hyperlink -->
+                    <td>{{patientObjSearch.dob}}</td>
+                    <td>{{patientObjSearch.sex}}</td> 
+                    <td>{{patientObjSearch.mobile}}</td> 
+                    <td>{{patientObjSearch.email}}</td> 
+                    <td>{{getFullAddress(patientObjSearch)}}</td> 
+                    <td>{{patientObjSearch.relation}}</td> 
+                    <td> 
+                        <a href="#/prescriptions/{{patientObjSearch.patientId}}">
+                            <i class="fa fa-medkit fa-lg"></i>
+                        </a> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="page-header text-muted">
+            <h4> Your Recent Patients List:</h4>
+        </div>
         <table class="table table-hover table-condensed">
             <thead>
                 <tr>
@@ -30,7 +78,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="patientObj in patientList | filter:patient.search.mobilenumber"> 
+                <tr ng-repeat="patientObj in patientList"> 
                     <!-- Hyperlink to Profile Page using unique Patient Id -->
                     <td>
                         <a href="#/patients/edit/{{patientObj.patientId}}" uib-tooltip="View Patient Profile"> {{getFullName(patientObj)}} </a>

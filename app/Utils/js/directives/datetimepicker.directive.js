@@ -1,8 +1,8 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('ERemediumWebApp.utils.directives').
-    directive('datetimepicker', datetimepicker);
+            directive('datetimepicker', datetimepicker);
 
     datetimepicker.$inject = ['$rootScope'];
 
@@ -11,8 +11,8 @@
             element.find('.date').datetimepicker();
             element.find('input').attr('placeholder', attrs.placeholder);
 
-            element.bind('dp.change', function(e) {
-              scope.ngModel = e.date;
+            element.bind('dp.change', function (e) {
+                scope.ngModel = e.date;
             });
         }
 
@@ -21,7 +21,7 @@
             restrict: 'E',
             templateUrl: 'Utils/partials/datetimepicker.html',
             scope: {
-              ngModel: '='
+                ngModel: '='
             }
         };
 

@@ -9,6 +9,8 @@
     function PatientsListCtrl($scope, Patient, $state, $rootScope) {
 
         //Initialize
+        $scope.showAlert = false;
+        $scope.showSearchResults = false;
         $rootScope.pageHeader = "Patients";
         $scope.patient = {};
         searchParameterReset();
@@ -21,8 +23,8 @@
         Patient.query({
             user: "",
             sessionId: "433781068949947", //$rootScope.sessionId,
-            doctorId: "101",//$rootScope.userId,
-            limit: 10,
+            doctorId: "101", //$rootScope.userId,
+            limit: 50,
             columnsToGet: ""
         }, function (response) {
             $scope.patientList = response;
@@ -37,7 +39,7 @@
         function GetFullName(inputPatientObject) {
             return inputPatientObject.firstName + " " + inputPatientObject.midlleName + " " + inputPatientObject.lastName;
         }
-        
+
         function CreatePatientProfile() {
             $state.go('PatientNewOrEdit');
         }
@@ -48,16 +50,27 @@
 
 
         function SearchByMobileNumber() {
-            $scope.patient = Patient.query($scope.patient.search.mobilenumber);
-            //If found go to Profile Page else throw alert!
-            if (angular.isUndefined($scope.patient))
-            {
-                alert('Patient not found!');
-            } else
-            {
-                //Navigate to Profile Page using patient Id!
+            
+            Patient.searchByMobile({
+                user: "",
+                sessionId: $rootScope.sessionId,
+                doctorId: false,
+                mobile: $scope.patient.search.mobilenumber,
+                columnsToGet: ""
+            }, function (response) {
+                if (angular.isUndefined(response) || response == '')
+                {
+                    $scope.showAlert = true;
+                    $scope.alertMessage = "No Patient Found with Mobile Number: " + $scope.patient.search.mobilenumber + "!";
+                    $scope.showSearchResults = false;
+                } else
+                {
+                    $scope.showAlert = false;
+                    $scope.showSearchResults = true;
+                    $scope.searchPatientResults = response;
+                }
             }
-            searchParameterReset();
+            );
         }
     }
 })();
