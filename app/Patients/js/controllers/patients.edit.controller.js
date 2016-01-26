@@ -17,8 +17,11 @@
             //A new patient profile is being created!
             //Set empty object..
             $scope.patient = {};
+            $scope.patient.history = {};
+            $scope.patient.alergy = {};
+            $scope.patient.address = {};
             $scope.patient.isUpdate = false;
-            $scope.patient.gender = "Male";//set default value..
+            $scope.patient.sex = "Male";//set default value..
             $scope.patient.relation = "";
         } else {
             //Get Patient Details from server and populate patient object..
@@ -32,7 +35,6 @@
                 $scope.patient = response;
                 $scope.patient.isUpdate = true;
             });
-
         }
 
         //Functions..
