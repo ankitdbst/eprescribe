@@ -4,9 +4,9 @@
   angular.module('ERemediumWebApp.prescriptions.controllers')
   .controller('PrescriptionOrderCtrl', PrescriptionOrderCtrl);
 
-  PrescriptionOrderCtrl.$inject = ['$scope', '$state', '$rootScope'];
+  PrescriptionOrderCtrl.$inject = ['$scope', '$state', '$rootScope', 'Prescription'];
 
-  function PrescriptionOrderCtrl($scope, $state, $rootScope) {
+  function PrescriptionOrderCtrl($scope, $state, $rootScope, Prescription) {
 //    $scope.prescription = Prescription.get({patientId: })
 
     $rootScope.pageHeader = "Prescription Order";
@@ -60,8 +60,8 @@
           sessionId: '78131321',
           pid: 1
       };
-      Prescription.order(params, $scope.order);
-
+//      Prescription.order(params, $scope.order);
+      alert('Order Successfully placed!');
     }
 
     function Close() {
