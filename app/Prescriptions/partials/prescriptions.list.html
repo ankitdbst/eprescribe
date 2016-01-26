@@ -18,7 +18,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="prescription in prescriptions" class="eremedium-prescription-list" uib-tooltip="View Prescription" ng-click="view(prescription.pid)">
-          <td>{{prescription.pDate | date:'medium'}}</td>
+          <td>{{prescription.creationDate | date:'medium'}}</td>
           <td>{{ prescription.patientComplaint }}</td>
           <td>{{ prescription.diagnosis }}</td>
           <td>
@@ -35,7 +35,7 @@
               </li>
             </ul>
           </td>
-          <td>{{prescription.nextVisit | date:'medium'}}</td>
+          <td>{{prescription.nextVisit.date | date:'medium'}}</td>
         </tr>
     </tbody>
 </table>

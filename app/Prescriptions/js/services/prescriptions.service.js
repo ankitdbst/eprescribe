@@ -9,19 +9,20 @@
       var actions = {
         upsert: {
           method: 'POST',
-          url: '/ERService/prescription/UpsertPrescription'
+          url: 'http://52.74.177.118/ERService/prescription/UpsertPrescription'
         },
         list: {
-          method: 'GET',
-          url: '/ERService/prescription/ListPrescription'
+          method: 'POST',
+          url: 'http://52.74.177.118/ERService/prescription/ListPrescription',
+          isArray: true
         },
         get: {
           method: 'GET',
-          url: '/ERService/prescription/GetPrescription'
+          url: 'http://52.74.177.118/ERService/prescription/GetPrescription'
         },
         query: {
           method: 'GET',
-          url: '/ERService/prescription/SearchPrescription'
+          url: 'http://52.74.177.118/ERService/prescription/SearchPrescription'
         }
       };
 
