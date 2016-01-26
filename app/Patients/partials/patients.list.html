@@ -1,12 +1,12 @@
 <form>
     <div class="row">
         <div class="form-group col-md-4">
-            <button class="btn btn-primary" ng-click="createPatientProfile()" >+ Create Patient Profile</button>
+            <button type="button" class="btn btn-primary" ng-click="createPatientProfile()" >+ Create Patient Profile</button>
         </div>
 
         <div class="form-group col-md-4 pull-right">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search by Patient's Mobile Number.." ng-model="patient.search.mobilenumber" id="patientsearchmobilenumber">
+                <input type="text" ng-keydown="$event.which === 13 && searchByMobileNumber()" class="form-control" placeholder="Search by Patient's Mobile Number.." ng-model="patient.search.mobilenumber" id="patientsearchmobilenumber">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="searchByMobileNumber()"><span class="glyphicon glyphicon-search"></span></button>
                 </span>

@@ -32,6 +32,7 @@
         );
 
         //Functions
+
         function GetFullAddress(inputPatientObject) {
             return inputPatientObject.address.houseNo + ', ' + inputPatientObject.address.building + ', ' + inputPatientObject.address.locality + ', ' + inputPatientObject.address.landmark + ', ' + inputPatientObject.address.city + ', ' + inputPatientObject.address.pincode;
         }
@@ -50,7 +51,7 @@
 
 
         function SearchByMobileNumber() {
-            
+
             Patient.searchByMobile({
                 user: "",
                 sessionId: $rootScope.sessionId,
