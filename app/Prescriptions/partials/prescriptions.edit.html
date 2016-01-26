@@ -1,4 +1,4 @@
-<div class="col-md-5 create-prescriptions">
+<div class="col-md-6 create-prescriptions">
   <form name="formPrescription" class="panel-group" novalidate>
     <div class="panel panel-primary">
       <div class="panel-heading">Patient Diagnosis</div>
@@ -29,7 +29,7 @@
             </div>
           </div>
           <hr>
-          <medicines editable></medicines>
+          <medicines editable="true"></medicines>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
           <label for="nextVisit">Next Visit</label>
-          <datetimepicker ng-model="prescription.nextVisit" id="nextVisit" placeholder="Schedule Next Visit"></datetimepicker>
+          <datetimepicker ng-model="prescription.nextVisit.date" id="nextVisit" placeholder="Schedule Next Visit"></datetimepicker>
         </div>
       </div>
     </div>
@@ -54,4 +54,4 @@
     </div>
   </form>
 </div>
-<div class="col-md-7 add-new-medicine" ui-view></div>
+<div class="col-md-6 add-new-medicine" ui-view></div>

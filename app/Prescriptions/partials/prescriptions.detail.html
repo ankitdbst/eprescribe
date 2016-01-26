@@ -33,8 +33,8 @@
 <hr>
 <form name="formPrescriptionOrder" novalidate>
   <div class="form-group">
-      <button type="button" class="btn btn-primary" ui-sref="PrescriptionNewOrEdit(prescription.pid)" ng-disabled="formPrescriptionOrder.$invalid">Edit</button>
-      <button type="button" class="btn btn-primary" ui-sref="PrescriptionOrder(prescription.pid)" ng-disabled="formPrescriptionOrder.$invalid">Place Order</button>
-      <button type="button" class="btn btn-default" ui-sref="PrescriptionList">Cancel</button>
+      <button type="button" class="btn btn-primary" ui-sref="PrescriptionNewOrEdit({pId: prescription.pid})" ng-disabled="formPrescriptionOrder.$invalid">Edit</button>
+      <button type="button" class="btn btn-primary" ui-sref="PrescriptionOrder({pId: prescription.pid})" ng-disabled="formPrescriptionOrder.$invalid">Place Order</button>
+      <button type="button" class="btn btn-default" ui-sref="PrescriptionList({patientId: prescription.patient.patientId})">Cancel</button>
   </div>
 </form>

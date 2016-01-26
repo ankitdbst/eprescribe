@@ -15,7 +15,7 @@
 
             $scope.prescription = Prescription.get({
                 user: 'sujeet',
-                sessionId: '78131321',
+                sessionId: $rootScope.sessionId,
                 pid: pid
             });
             $scope.prescription.isUpdate = true; // for edit we change this to true

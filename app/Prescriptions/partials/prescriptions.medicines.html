@@ -4,7 +4,7 @@
     <th>Medicine Name</th>
     <th>Frequency</th>
     <th>Intake Dosage</th>
-    <th>Intake Time</th>
+    <th ng-if="!editable">Intake Time</th>
     <th>Instructions</th>
     <th ng-if="editable">Actions</th>
   </thead>
@@ -20,7 +20,7 @@
         <div>{{ medicine.frequency.intakeDays }}</div>
       </td>
       <td>{{ medicine.frequency.daose }} {{ medicine.frequency.dType }}</td>
-      <td>
+      <td ng-if="!editable">
         <div class="row eremedium-frequenct-intake-time">
           <div class="col-md-4 col-sm-4">{{medicine.frequency.intakeTime.morning}}</div>
           <div class="col-md-4 col-sm-4">{{medicine.frequency.intakeTime.noon}}</div>
