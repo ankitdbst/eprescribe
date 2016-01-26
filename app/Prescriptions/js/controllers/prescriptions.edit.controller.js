@@ -34,23 +34,24 @@
         $scope.close = Close;
 
         function UpsertPrescription() {
-            $scope.prescription.patientId = 2;
-            $scope.prescription.doctorId = 101;
-
             var params = {
                 user: 'sujeet',
-                sessionId: '78131321',
+                sessionId: $rootScope.sessionId,
                 prescription: $scope.prescription
             };
-            Prescription.upsert(params, $scope.prescription);
+            $scope.prescription = Prescription.upsert(params);
 
-            $state.go('PrescriptionDetail', {
-              pId: $scope.prescription.pid
+            $scope.prescription.$promise.then(function(prescription) {
+              $state.go('PrescriptionDetail', {
+                pId: prescription.pid
+              });
             });
         }
 
         function Close() {
-            $state.go('PrescriptionList');
+            $state.go('PrescriptionList', {
+              patientId: prescription.patient.patientId
+            });
         }
     }
 
