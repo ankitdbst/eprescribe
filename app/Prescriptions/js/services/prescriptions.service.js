@@ -17,7 +17,7 @@
           isArray: true
         },
         get: {
-          method: 'GET',
+          method: 'POST',
           url: 'http://52.74.177.118/ERService/prescription/GetPrescription'
         },
         query: {

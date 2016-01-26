@@ -10,7 +10,7 @@
         //Initialize
         var patientId = $stateParams.patientId;
 
-        if (angular.isUndefined(patientId)) {
+        if (angular.isUndefined(patientId) && patientId.length === 0) {
           $state.go('PatientsList');// there needs to be home
         }
 
@@ -37,7 +37,7 @@
         $scope.view = ViewPrescription;
 
         function ViewPrescription(pid) {
-            $state.go('PrescriptionNewOrEdit', {
+            $state.go('PrescriptionDetail', {
                 id: pid
             });
         }
