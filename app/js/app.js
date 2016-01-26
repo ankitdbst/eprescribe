@@ -13,10 +13,18 @@ angular.module('ERemediumWebApp', [
     'ERemediumWebApp.prescriptions',
     'ERemediumWebApp.utils'
 ])
+        .config(['$urlRouterProvider', function ($urlRouterProvider) {
+                $urlRouterProvider.otherwise('/login');
+            }])
+        .run(function ($rootScope) {
+            $rootScope.getFullName = function (inputPatientObject) {
+                return inputPatientObject.firstName + " " + inputPatientObject.midlleName + " " + inputPatientObject.lastName;
+            };
 
-//.config(['$urlRouterProvider', function ($urlRouterProvider) {
-//        $urlRouterProvider.otherwise('/login');
-//    }]);
+            $rootScope.getFullAddress = function (inputPatientObject) {
+                return inputPatientObject.address.addressLine1 + ', ' + inputPatientObject.address.addressLine2 + ', ' + inputPatientObject.address.city + ', ' + inputPatientObject.address.state + inputPatientObject.address.pincode;
+            };
+        });
 
 //For correctly applying Active Class on Side Menu
 $(".sidebar-nav a").on("click", function () {

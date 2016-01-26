@@ -27,20 +27,13 @@
                 <tr ng-repeat="taskObj in taskList"> 
                     <td>{{taskObj.type}}</td>
                     <td>
-                        <a href="#/patients/edit/{{taskObj.patientId}}" uib-tooltip="View Patient Profile"> {{getFullName(patientObj)}} </a>
+                        <a href="#/patients/edit/{{taskObj.patientId}}" uib-tooltip="View Patient Profile"> {{getFullName(taskObj)}} </a>
                     </td>
-                    
-                    <td>{{patientObj.dob}}</td>
-                    <td>{{patientObj.sex}}</td> 
-                    <td>{{patientObj.mobile}}</td> 
-                    <td>{{patientObj.email}}</td> 
-                    <td>{{getFullAddress(patientObj)}}</td> 
-                    <td>{{patientObj.relation}}</td> 
-                    <td> 
-                        <a href="#/prescriptions/{{patientObj.patientId}}">
-                            <i class="fa fa-medkit fa-lg"></i>
-                        </a> 
-                    </td>
+                    <td>{{taskObj.mobile}}</td> 
+                    <td>{{taskObj.email}}</td> 
+                    <td>{{getFullAddress(taskObj)}}</td> 
+                    <td>{{taskObj.dateadded}}</td> 
+                    <td>{{taskObj.comments}}</td> 
                 </tr>
             </tbody>
         </table>

@@ -66,19 +66,19 @@
                     },
                     patientId: $scope.patient.patientId,
                     alergy: {
-                        drug: $scope.patient.drug,
-                        food: $scope.patient.food,
-                        env: $scope.patient.env
+                        drug: $scope.patient.alergy.drug,
+                        food: $scope.patient.alergy.food,
+                        env: $scope.patient.alergy.env
                     },
                     address: {
-                        addressLine1: $scope.patient.addressLine1,
-                        addressLine2: $scope.patient.addressLine2,
-                        city: $scope.patient.city,
-                        state: $scope.patient.state,
-                        pincode: $scope.patient.pincode
+                        addressLine1: $scope.patient.address.addressLine1,
+                        addressLine2: $scope.patient.address.addressLine2,
+                        city: $scope.patient.address.city,
+                        state: $scope.patient.address.state,
+                        pincode: $scope.patient.address.pincode
                     },
                     email: $scope.patient.email,
-                    isDependant: ($scope.patient.relation == '') ? false : true,
+                    isDependant: ($scope.patient.relation == '') ? "false" : "true",
                     dob: $scope.patient.dob,
                     midlleName: $scope.patient.midlleName,
                     firstName: $scope.patient.firstName,

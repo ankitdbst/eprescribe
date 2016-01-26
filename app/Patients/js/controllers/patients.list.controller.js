@@ -14,8 +14,6 @@
         $rootScope.pageHeader = "Patients";
         $scope.patient = {};
         searchParameterReset();
-        $scope.getFullName = GetFullName;
-        $scope.getFullAddress = GetFullAddress;
         $scope.searchByMobileNumber = SearchByMobileNumber;
         $scope.createPatientProfile = CreatePatientProfile;
 
@@ -32,15 +30,6 @@
         );
 
         //Functions
-
-        function GetFullAddress(inputPatientObject) {
-            return inputPatientObject.address.houseNo + ', ' + inputPatientObject.address.building + ', ' + inputPatientObject.address.locality + ', ' + inputPatientObject.address.landmark + ', ' + inputPatientObject.address.city + ', ' + inputPatientObject.address.pincode;
-        }
-
-        function GetFullName(inputPatientObject) {
-            return inputPatientObject.firstName + " " + inputPatientObject.midlleName + " " + inputPatientObject.lastName;
-        }
-
         function CreatePatientProfile() {
             $state.go('PatientNewOrEdit');
         }
