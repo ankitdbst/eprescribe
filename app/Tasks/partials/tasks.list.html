@@ -4,38 +4,39 @@
             <input type="text" class="form-control" placeholder="Search.." ng-model="inputSearch" id="inputSearch">
         </div>
     </div>
-    <div class="row">
-        <div class="page-header text-muted">
-            <h4> Your Tasks List:</h4>
-        </div>
-        <table class="table table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th>Type</th>                     
-                    <th>Patient Name</th> 
-                    <th>Mobile Number</th> 
-                    <th>Email Id</th> 
-                    <th>Address</th> 
-                    <th>Date Added</th> 
-                    <th>Comments</th> 
-                    <th>
-                        <span class="fa-lg" uib-tooltip="Click to perform relevant Action" tooltip-placement="top-right">&#8478;</span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="taskObj in taskList"> 
-                    <td>{{taskObj.type}}</td>
-                    <td>
-                        <a href="#/patients/edit/{{taskObj.patientId}}" uib-tooltip="View Patient Profile"> {{getFullName(taskObj)}} </a>
-                    </td>
-                    <td>{{taskObj.mobile}}</td> 
-                    <td>{{taskObj.email}}</td> 
-                    <td>{{getFullAddress(taskObj)}}</td> 
-                    <td>{{taskObj.dateadded}}</td> 
-                    <td>{{taskObj.comments}}</td> 
-                </tr>
-            </tbody>
-        </table>
+
+    <div class="page-header text-muted">
+        <h4> Your Tasks List:</h4>
     </div>
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Type</th>                     
+                <th>Patient Name</th> 
+                <th>Mobile Number</th> 
+                <th>Address</th> 
+                <th>Date Added</th> 
+                <th>Comments</th> 
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="taskObj in taskList| filter: inputSearch | orderBy:dateadded"> 
+                <td>{{taskObj.type}}</td>
+                <td>
+                    <a href="#/patients/edit/{{taskObj.patient.patientId}}" uib-tooltip="View Patient Profile"> {{$rootScope.getFullName(taskObj.patient)}} </a>
+                </td>
+                <td>{{taskObj.patient.mobile}}</td> 
+                <td>{{$rootScope.getFullAddress(taskObj.patient)}}</td> 
+                <td>{{taskObj.dateadded}}</td> 
+                <td>{{taskObj.comments}}</td> 
+                <td>
+                    <button type="button" class="btn btn-primary"> {{ buttonText(taskObj.type) }}
+                        <span class="fa fa-sign-in fa-stack-1x"></span>
+                    </button>
+                </td> 
+            </tr>
+        </tbody>
+    </table>
+
 </form>

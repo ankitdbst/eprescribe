@@ -11,6 +11,7 @@ angular.module('ERemediumWebApp', [
     'ERemediumWebApp.doctor_settings',
     'ERemediumWebApp.login',
     'ERemediumWebApp.prescriptions',
+    'ERemediumWebApp.tasks',
     'ERemediumWebApp.utils'
 ])
         .config(['$urlRouterProvider', function ($urlRouterProvider) {
@@ -22,7 +23,7 @@ angular.module('ERemediumWebApp', [
             };
 
             $rootScope.getFullAddress = function (inputPatientObject) {
-                return inputPatientObject.address.addressLine1 + ', ' + inputPatientObject.address.addressLine2 + ', ' + inputPatientObject.address.city + ', ' + inputPatientObject.address.state + inputPatientObject.address.pincode;
+                return inputPatientObject.address.addressLine1 + ', ' + inputPatientObject.address.addressLine2 + ', ' + inputPatientObject.address.city + ', ' + inputPatientObject.address.state + ', ' + inputPatientObject.address.pincode;
             };
         });
 
