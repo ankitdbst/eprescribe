@@ -17,11 +17,9 @@ angular.module('ERemediumWebApp', [
     'ERemediumWebApp.utils'
 ])
 
-.config(['$urlRouterProvider', function ($urlRouterProvider) {
-        $urlRouterProvider.otherwise('/login');
-    }])
 .run(function ($rootScope) {
     $rootScope.getFullName = function (inputPatientObject) {
+//        alert(inputPatientObject.firstName);
         return inputPatientObject.firstName + " " + inputPatientObject.midlleName + " " + inputPatientObject.lastName;
     };
 
