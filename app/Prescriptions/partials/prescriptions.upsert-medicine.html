@@ -63,7 +63,7 @@
             <!--<p ng-message="required">Frequency is required!</p>-->
           <!--</div>-->
         </div>
-        <div class="form-group col-md-4" ng-show="medcine.frequency.freq == 'weekly'">
+        <div class="form-group col-md-4" ng-if="medcine.frequency.freq == 'Weekly'">
           <label for="intakeDays">Intake Days</label>
           <select multiple class="form-control" id="intakeDays" name="frequency" ng-model="medcine.frequency.intakeDays">
             <option value="Mon">Mon</option>
