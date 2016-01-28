@@ -4,7 +4,12 @@
     <div class="panel-body">
       <div class="form-group" ng-class="{ 'has-error': formPrescriptionAddMedicine.medicineName.$touched && formPrescriptionAddMedicine.medicineName.$invalid }">
         <input type="text" name="medicineName" ng-model="medcine.name" class="form-control" id="medicineName"
-               placeholder="Start typing the name of the medcine..." uib-typeahead="medicine for medicine in medicines | filter:$viewValue | limitTo:3" required/>
+               placeholder="Start typing the name of the medicine..." uib-typeahead="medicine.name for medicine in search($viewValue)"
+               typeahead-loading="loadingLocations" typeahead-no-results="noResults" required/>
+        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+        <div ng-show="noResults">
+          <i class="glyphicon glyphicon-remove"></i> No Results Found
+        </div>
         <div class="help-block" ng-messages="formPrescriptionAddMedicine.medicineName.$error" ng-if="formPrescriptionAddMedicine.medicineName.$touched">
           <p ng-message="required">Medicine Name is mandatory!</p>
         </div>

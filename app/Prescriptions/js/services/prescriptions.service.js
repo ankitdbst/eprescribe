@@ -23,6 +23,11 @@
         query: {
           method: 'GET',
           url: 'http://52.74.177.118/ERService/prescription/SearchPrescription'
+        },
+        searchMed: {
+          method: 'POST',
+          url: 'http://52.74.177.118/ERService/medcineservice/MedAutocomplete',
+          isArray: true
         }
       };
 

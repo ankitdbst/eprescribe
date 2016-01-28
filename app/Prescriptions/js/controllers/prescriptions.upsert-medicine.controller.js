@@ -5,16 +5,16 @@
 
   .controller('PrescriptionUpsertMedicineCtrl', PrescriptionUpsertMedicineCtrl);
 
-  PrescriptionUpsertMedicineCtrl.$inject = ['$scope', '$stateParams', '$state'];
+  PrescriptionUpsertMedicineCtrl.$inject = ['$scope', '$stateParams', '$state', 'Prescription'];
 
-  function PrescriptionUpsertMedicineCtrl($scope, $stateParams, $state) {
+  function PrescriptionUpsertMedicineCtrl($scope, $stateParams, $state, Prescription) {
     activate();
 
     function activate() {
       // Need to retrieve these from the server as well!
 //      $scope.frequencies = ['Daily', 'Weekly', 'Monthly'];
 //      $scope.quantities = ['1 tablet', '1 spoon', '5 ml'];
-      $scope.medicines = ['Brufen', 'D-Cold', 'Paracetamol', 'Vicks', 'Crocin'];
+//      $scope.medicines = ['Brufen', 'D-Cold', 'Paracetamol', 'Vicks', 'Crocin'];
 //      $scope.fComments = ['Every 2 hours',
 //                          'Every 8 hours',
 //                          'Morning-AfterNoon-Evening',
@@ -52,6 +52,7 @@
     }
 
     $scope.save = UpsertMedicine;
+    $scope.search = SearchMedicine;
     $scope.$watchCollection('$parent.prescription.medcines', function(newValue, oldValue) {
 //      console.log(newValue, oldValue);
       if (oldValue.length !== 0 && newValue.length == 0) {
@@ -59,6 +60,18 @@
       }
     });
 
+
+    function SearchMedicine(searchText) {
+      var params = {
+        "user": "sujeet",
+        "sessionId": "781363i3",
+        "doctorId" : "101",
+        "searchText" : searchText,
+        "limit": 5,
+        "columnsToGet": ""
+      };
+      return Prescription.searchMed(params).$promise;
+    }
 
     function UpsertMedicine() {
       // Call Upsert API, not require right now
