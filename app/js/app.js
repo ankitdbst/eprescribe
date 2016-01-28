@@ -7,7 +7,7 @@ angular.module('ERemediumWebApp', [
     'ngResource',
     'ngMessages',
     'ERemediumWebApp.config',
-    'ERemediumWebApp.router',
+    'ERemediumWebApp.routes',
     'ERemediumWebApp.patients',
     'ERemediumWebApp.reportinganalytics',
     'ERemediumWebApp.doctor_settings',
@@ -37,4 +37,4 @@ $(".sidebar-nav a").on("click", function () {
 });
 
 angular.module('ERemediumWebApp.config', []);
-angular.module('ERemediumWebApp.router', []);
+angular.module('ERemediumWebApp.routes', []);
