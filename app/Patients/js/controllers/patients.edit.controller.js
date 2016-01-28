@@ -37,6 +37,7 @@
             });
         }
 
+
         //Functions..
         $scope.savePatientProfile = SavePatientProfile;
         $scope.close = Close;
@@ -46,52 +47,22 @@
             alert($scope.patient.patientId);
             alert($rootScope.sessionId);
             alert($rootScope.userId);
+            //A computed property!
+            $scope.patient.isDependant = ($scope.patient.relation == '') ? "false" : "true";
+
             Patient.upsert({
                 user: $scope.patient.patientId,
                 sessionId: $rootScope.sessionId,
                 doctorId: $rootScope.userId,
                 patientId: $scope.patient.patientId,
-                userMap: {
-                    lastName: $scope.patient.lastName,
-                    sex: $scope.patient.sex,
-                    relation: $scope.patient.relation,
-                    userType: "patient",
-                    history: {
-                        medical: $scope.patient.history.medical,
-                        surgical: $scope.patient.history.surgical,
-                        family: $scope.patient.history.family,
-                        smoking: $scope.patient.history.smoking,
-                        alcohol: $scope.patient.history.alcohol,
-                        other: $scope.patient.history.other
-                    },
-                    patientId: $scope.patient.patientId,
-                    alergy: {
-                        drug: $scope.patient.drug,
-                        food: $scope.patient.food,
-                        env: $scope.patient.env
-                    },
-                    address: {
-                        addressLine1: $scope.patient.addressLine1,
-                        addressLine2: $scope.patient.addressLine2,
-                        city: $scope.patient.city,
-                        state: $scope.patient.state,
-                        pincode: $scope.patient.pincode
-                    },
-                    email: $scope.patient.email,
-                    isDependant: ($scope.patient.relation == '') ? false : true,
-                    dob: $scope.patient.dob,
-                    midlleName: $scope.patient.midlleName,
-                    firstName: $scope.patient.firstName,
-                    mobile: $scope.patient.mobile,
-                    landlineNumber: $scope.patient.landlineNumber
-                }
+                userMap: $scope.patient
             }, function (response) {
                 $scope.showAlert = true;
                 //Show Proper Alert with option of going back.
-                if (angular.isUndefined(response) || response.result == 'Failure'){
+                if (angular.isUndefined(response) || response.result == 'Failure') {
                     $scope.alertMessage = "Error in saving, Please try again!";
                     $scope.alertClass = "alert-danger";
-                } else if (response.result == "Success"){
+                } else if (response.result == "Success") {
                     $scope.alertMessage = "Patient Profile Saved Successfully!";
                     $scope.alertClass = "alert-success";
                 } else {

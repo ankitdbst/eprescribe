@@ -39,14 +39,14 @@
                 <tr ng-repeat="patientObjSearch in searchPatientResults"> 
                     <!-- Hyperlink to Profile Page using unique Patient Id -->
                     <td>
-                        <a href="#/patients/edit/{{patientObjSearch.patientId}}" uib-tooltip="View Patient Profile"> {{getFullName(patientObjSearch)}} </a>
+                        <a href="#/patients/edit/{{patientObjSearch.patientId}}" uib-tooltip="View Patient Profile"> {{$rootScope.getFullName(patientObjSearch)}} </a>
                     </td>
                     <!-- End Hyperlink -->
                     <td>{{patientObjSearch.dob}}</td>
                     <td>{{patientObjSearch.sex}}</td> 
                     <td>{{patientObjSearch.mobile}}</td> 
                     <td>{{patientObjSearch.email}}</td> 
-                    <td>{{getFullAddress(patientObjSearch)}}</td> 
+                    <td>{{$rootScope.getFullAddress(patientObjSearch)}}</td> 
                     <td>{{patientObjSearch.relation}}</td> 
                     <td> 
                         <a href="#/prescriptions/{{patientObjSearch.patientId}}">
