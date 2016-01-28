@@ -73,3 +73,8 @@
 .tt-suggestion p {
   margin: 0;
 }
+
+// Fix issue with datetimepicker
+.panel-group .panel {
+  overflow: inherit;
+}
