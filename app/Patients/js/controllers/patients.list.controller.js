@@ -22,7 +22,7 @@
         $scope.createPatientProfile = CreatePatientProfile;
 
 
-        $scope.myPromise = Patient.query({
+        $scope.patientList = Patient.query({
             user: "",
             sessionId: "433781068949947", //$rootScope.sessionId,
             doctorId: "101", //$rootScope.userId,
@@ -32,6 +32,8 @@
             $scope.patientList = response;
         }
         );
+
+        $scope.myPromise = $scope.patientList.$promise;
 
         //Functions
         function CreatePatientProfile() {
@@ -45,7 +47,7 @@
 
         function SearchByMobileNumber() {
 
-            $scope.myPromise = Patient.searchByMobile({
+            $scope.searchPatientResults = Patient.searchByMobile({
                 user: "",
                 sessionId: $rootScope.sessionId,
                 doctorId: false,
@@ -65,6 +67,8 @@
                 }
             }
             );
+
+            $scope.myPromise = $scope.searchPatientResults.$promise;
         }
     }
 })();
