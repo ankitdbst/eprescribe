@@ -4,18 +4,24 @@
     angular.module('ERemediumWebApp.prescriptions.controllers')
     .controller('PrescriptionNewOrEditCtrl', PrescriptionNewOrEditCtrl);
 
-    PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription', '$stateParams', '$state', '$rootScope'];
+    PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription', '$stateParams', '$state', '$rootScope', 'Account'];
 
-    function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, $state, $rootScope) {
+    function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, $state, $rootScope, Account) {
         //Intialize
+        if(!Account.isAuthenticated()) {
+          $state.go('login'); return;
+        }
+
+        var account = Account.getAuthenticatedAccount();
         var pid = $stateParams.pId;
+        var patientId = $stateParams.patientId;
 
         if (pid !== undefined && pid.length !== 0) {
             $rootScope.pageHeader = "Update Prescription";
 
             $scope.prescription = Prescription.get({
                 user: 'sujeet',
-                sessionId: $rootScope.sessionId,
+                sessionId: account.sessionId,
                 pid: pid
             });
             $scope.myPromise = $scope.prescription.$promise;
@@ -24,6 +30,8 @@
             $rootScope.pageHeader = "Create Prescription";
 
             $scope.prescription = new Prescription();
+            $scope.prescription.patientId = patientId;
+            $scope.prescription.doctorId = account.userId;
             // Fill defaults from session object maybe
             $scope.prescription.isUpdate = false; // for edit we change this to true
             // Medications
@@ -43,7 +51,7 @@
         function UpsertPrescription() {
             var params = {
                 user: 'sujeet',
-                sessionId: $rootScope.sessionId,
+                sessionId: account.sessionId,
                 prescription: $scope.prescription
             };
 

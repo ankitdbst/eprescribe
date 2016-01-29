@@ -4,9 +4,14 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientNewOrEditCtrl', PatientNewOrEditCtrl);
 
-    PatientNewOrEditCtrl.$inject = ['$scope', '$stateParams', 'Patient', '$state', '$rootScope'];
+    PatientNewOrEditCtrl.$inject = ['$scope', '$stateParams', 'Patient', '$state', '$rootScope', 'Account'];
 
-    function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state, $rootScope) {
+    function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state, $rootScope, Account) {
+        if(!Account.isAuthenticated()) {
+          $state.go('login'); return;
+        }
+
+        var account = Account.getAuthenticatedAccount();
         //Intialize
         $scope.showAlert = false;
         $scope.genders = ["Male", "Female"];
@@ -27,7 +32,7 @@
             //Get Patient Details from server and populate patient object..
             $scope.myPromise = Patient.get({
                 user: $stateParams.patientId,
-                sessionId: $rootScope.sessionId,
+                sessionId: account.sessionId,
                 doctorId: false,
                 limit: 50,
                 columnsToGet: ""
@@ -47,14 +52,15 @@
             //A computed property!
             $scope.patient.isDependant = ($scope.patient.relation == '') ? "false" : "true";
             //Delete redundant properties
-            delete $scope.patient["_id"];
-            $scope.myPromise = Patient.upsert({
+            var params = {
                 user: $scope.patient.patientId,
-                sessionId: $rootScope.sessionId,
-                doctorId: $rootScope.userId,
+                sessionId: account.sessionId,
+                doctorId: account.userId,
                 patientId: $scope.patient.patientId,
                 userMap: $scope.patient
-            }, function (response) {
+            };
+            delete $scope.patient["_id"];
+            $scope.myPromise = Patient.upsert(params, function (response) {
                 $scope.showAlert = true;
                 //Show Proper Alert with option of going back.
                 if (angular.isUndefined(response)) {

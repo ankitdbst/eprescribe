@@ -14,7 +14,7 @@
         controller: 'PrescriptionListCtrl'
       })
       .state('PrescriptionNewOrEdit', {
-        url: '/prescriptions/edit/:pId',
+        url: '/prescriptions/:patientId/edit/:pId',
         templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
         controller: 'PrescriptionNewOrEditCtrl'
       })

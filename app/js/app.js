@@ -6,6 +6,7 @@ angular.module('ERemediumWebApp', [
     'ui.bootstrap',
     'ngResource',
     'ngMessages',
+    'ngCookies',
     'cgBusy',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',

@@ -4,9 +4,14 @@
     angular.module('ERemediumWebApp.prescriptions.controllers')
             .controller('PrescriptionListCtrl', PrescriptionListCtrl);
 
-    PrescriptionListCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'Prescription'];
+    PrescriptionListCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'Prescription', 'Account'];
 
-    function PrescriptionListCtrl($scope, $state, $stateParams, $rootScope, Prescription) {
+    function PrescriptionListCtrl($scope, $state, $stateParams, $rootScope, Prescription, Account) {
+        if(!Account.isAuthenticated()) {
+          $state.go('login'); return;
+        }
+        var account = Account.getAuthenticatedAccount();
+
         //Initialize
         var patientId = $stateParams.patientId;
         $scope.sortSearchResultsReverse = false;// set the default sort order 
@@ -22,9 +27,9 @@
 
         var params = {
           user: "sujeet",
-          sessionId: $rootScope.sessionId,
-          doctorId: $rootScope.userId,
-          ptientId: patientId,
+          sessionId: account.sessionId,
+          doctorId: account.userId,
+          patientId: patientId,
           limit: 10,
           columnsToGet: ""
         };

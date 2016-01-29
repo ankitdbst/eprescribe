@@ -4,9 +4,14 @@
   angular.module('ERemediumWebApp.prescriptions.controllers')
   .controller('PrescriptionOrderCtrl', PrescriptionOrderCtrl);
 
-  PrescriptionOrderCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'Prescription'];
+  PrescriptionOrderCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'Prescription', 'Account'];
 
-  function PrescriptionOrderCtrl($scope, $state, $stateParams, $rootScope, Prescription) {
+  function PrescriptionOrderCtrl($scope, $state, $stateParams, $rootScope, Prescription, Account) {
+      if(!Account.isAuthenticated()) {
+        $state.go('login'); return;
+      }
+      var account = Account.getAuthenticatedAccount();
+
 //    $scope.prescription = Prescription.get({patientId: })
     var pid = $stateParams.pId;
 
@@ -76,10 +81,9 @@
     function Order() {
       var params = {
           user: 'sujeet',
-          sessionId: $rootScope.sessionId,
-          pid: pid,
-          patientId: '2',
-          doctorId: '101'
+          sessionId: account.sessionId,
+          patientId: pid,
+          doctorId: account.userId
       };
 //      Prescription.order(params);
       $state.go('PrescriptionOrderStatus');

@@ -14,9 +14,9 @@
 
     angular.module('ERemediumWebApp.login.services', []);
 
-    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'Login', '$stateParams'];
+    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'Account', '$stateParams'];
 
-    function LoginCtrl($scope, $rootScope, $state, Login, $stateParams) {
+    function LoginCtrl($scope, $rootScope, $state, Account, $stateParams) {
         $rootScope.showMenu = false;
         $rootScope.pageHeader = "";
 
@@ -25,12 +25,15 @@
 
         function SignIn() {
             $scope.data = {};
-            //validate using username and password
-            $scope.myPromise = Login.validateCredentials({
+            var params = {
                 mobile: $scope.mobileNumber,// 7838352425
                 password: $scope.password, //123@ivp
                 deviceKey: "" //empty
-            }, function (response) {
+            };
+            //validate using username and password
+            $scope.myPromise = Account.login(params, loginHandler);
+
+            function loginHandler(response) {
                 $scope.data = response;
                 if (angular.isUndefined($scope.data) || $scope.data.respCode == 0)
                 {
@@ -38,18 +41,18 @@
                     $scope.alertMessage = "Invalid Credentials, Please try again!";
                 } else
                 {
-                    //Store sessionid etc in rootscope as its needed across pages!
-                    $rootScope.sessionId = $scope.data.sessionId;
-                    $rootScope.userId = $scope.data.userId;
-                    $rootScope.userType = $scope.data.userType;
-                    
-                    //start showing menu items 
-                    $rootScope.showMenu = true;
+//                    //Store sessionid etc in rootscope as its needed across pages!
+//                    $rootScope.sessionId = $scope.data.sessionId;
+//                    $rootScope.userId = $scope.data.userId;
+//                    $rootScope.userType = $scope.data.userType;
+//
+//                    //start showing menu items
+//                    $rootScope.showMenu = true;
 
                     //Navigate to First Page in menu
                     $state.go('PatientsList');
                 }
-            });
+            }
         }
     }
 })();

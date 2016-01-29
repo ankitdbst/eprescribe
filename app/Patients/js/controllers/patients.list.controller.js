@@ -4,9 +4,13 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientsListCtrl', PatientsListCtrl);
 
-    PatientsListCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope'];
+    PatientsListCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope', 'Account'];
 
-    function PatientsListCtrl($scope, Patient, $state, $rootScope) {
+    function PatientsListCtrl($scope, Patient, $state, $rootScope, Account) {
+        if(!Account.isAuthenticated()) {
+          $state.go('login'); return;
+        }
+        var account = Account.getAuthenticatedAccount();
 
         //Initialize
         $scope.sortType = ''; // set the default sort type
@@ -24,8 +28,8 @@
 
         $scope.patientList = Patient.query({
             user: "",
-            sessionId: "433781068949947", //$rootScope.sessionId,
-            doctorId: "101", //$rootScope.userId,
+            sessionId: account.sessionId, //$rootScope.sessionId,
+            doctorId: account.userId, //$rootScope.userId,
             limit: 50,
             columnsToGet: ""
         }, function (response) {

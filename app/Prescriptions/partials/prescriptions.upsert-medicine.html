@@ -43,8 +43,8 @@
         </div>
         <div class="form-group col-md-4">
           <label for="unit">Unit</label>
-          <select class="form-control" id="unit" name="unit" ng-model="medcine.dispenseUnit">
-            <option>Tablet/Capsule</option>
+          <select class="form-control" id="unit" name="unit" ng-model="medcine.dispenseUnit" ng->
+            <option selected="selected">Tablet/Capsule</option>
             <option>Strip</option>
             <option>Bottle</option>
           </select>
@@ -55,7 +55,7 @@
         <div class="form-group col-md-4">
           <label for="frequency">Frequency</label>
           <select class="form-control" id="frequency" name="frequency" ng-model="medcine.frequency.freq">
-            <option value="Daily">Daily</option>
+            <option value="Daily" selected="selected">Daily</option>
             <option value="Weekly">Weekly</option>
             <option value="Monthly">Monthly</option>
           </select>
@@ -96,7 +96,7 @@
         <div class="form-group col-md-4">
           <label for="dType">Dosage Unit</label>
           <select class="form-control" id="dType" name="dType" ng-model="medcine.frequency.dType">
-            <option>tablet or capsule</option>
+            <option selected="selected">tablet or capsule</option>
             <option>ml</option>
             <option>spoon</option>
           </select>
