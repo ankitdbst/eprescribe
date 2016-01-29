@@ -44,12 +44,10 @@
 
         //Functions
         function SavePatientProfile() {
-            alert($scope.patient.patientId);
-            alert($rootScope.sessionId);
-            alert($rootScope.userId);
             //A computed property!
             $scope.patient.isDependant = ($scope.patient.relation == '') ? "false" : "true";
-
+            //Delete redundant properties
+            delete $scope.patient["_id"];
             Patient.upsert({
                 user: $scope.patient.patientId,
                 sessionId: $rootScope.sessionId,
@@ -59,15 +57,14 @@
             }, function (response) {
                 $scope.showAlert = true;
                 //Show Proper Alert with option of going back.
-                if (angular.isUndefined(response) || response.result == 'Failure') {
+                if (angular.isUndefined(response)) {
                     $scope.alertMessage = "Error in saving, Please try again!";
                     $scope.alertClass = "alert-danger";
-                } else if (response.result == "Success") {
+                } else if (response.respCode == 1) {
                     $scope.alertMessage = "Patient Profile Saved Successfully!";
                     $scope.alertClass = "alert-success";
                 } else {
-                    alert(response.result);
-                    $scope.alertMessage = response.result;
+                    $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
                 }
             });
