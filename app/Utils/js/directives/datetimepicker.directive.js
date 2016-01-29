@@ -8,7 +8,10 @@
 
     function datetimepicker($rootScope) {
         function link(scope, element, attrs) {
-            element.find('.date').datetimepicker();
+            var options = {
+              useCurrent: false
+            };
+            element.find('.date').datetimepicker(options);
             element.find('input').attr('placeholder', attrs.placeholder);
 
             element.bind('dp.change', function (e) {
