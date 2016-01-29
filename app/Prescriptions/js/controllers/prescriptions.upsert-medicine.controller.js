@@ -70,6 +70,8 @@
         "limit": 5,
         "columnsToGet": ""
       };
+      $scope.myPromise = Prescription.searchMed(params).$promise;
+
       return Prescription.searchMed(params).$promise;
     }
 

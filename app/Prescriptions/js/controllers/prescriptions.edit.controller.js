@@ -18,6 +18,7 @@
                 sessionId: $rootScope.sessionId,
                 pid: pid
             });
+            $scope.myPromise = $scope.prescription.$promise;
             $scope.prescription.isUpdate = true; // for edit we change this to true
         } else {
             $rootScope.pageHeader = "Create Prescription";
@@ -46,7 +47,7 @@
                 prescription: $scope.prescription
             };
 
-            Prescription.upsert(params, function(response) {
+            $scope.myPromise = Prescription.upsert(params, function(response) {
               $state.go('PrescriptionDetail', {
                 id: response.pid
               });

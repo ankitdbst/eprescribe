@@ -24,6 +24,7 @@
     };
 
     $scope.prescription = Prescription.get(params);
+    $scope.myPromise = $scope.prescription.$promise;
     $scope.prescription.$promise.then(function(prescription) {
       if (angular.isUndefined($scope.prescription.patient.alternateAddresses)) {
         $scope.prescription.patient.alternateAddresses = [];

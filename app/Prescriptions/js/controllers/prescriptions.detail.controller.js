@@ -22,6 +22,7 @@
       };
 
       $scope.prescription = Prescription.get(params);
+      $scope.myPromise = $scope.prescription.$promise;
     }
 
 })();

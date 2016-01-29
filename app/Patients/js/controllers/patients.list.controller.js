@@ -22,7 +22,7 @@
         $scope.createPatientProfile = CreatePatientProfile;
 
 
-        Patient.query({
+        $scope.myPromise = Patient.query({
             user: "",
             sessionId: "433781068949947", //$rootScope.sessionId,
             doctorId: "101", //$rootScope.userId,
@@ -45,7 +45,7 @@
 
         function SearchByMobileNumber() {
 
-            Patient.searchByMobile({
+            $scope.myPromise = Patient.searchByMobile({
                 user: "",
                 sessionId: $rootScope.sessionId,
                 doctorId: false,

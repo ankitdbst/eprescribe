@@ -18,7 +18,7 @@
         
         $scope.taskList = new Array();
         $rootScope.pendingTasksCount = $scope.taskList.length;
-//        Task.query({
+//      $scope.myPromise = Task.query({
 //            user: "",
 //            sessionId: "433781068949947", //$rootScope.sessionId,
 //            doctorId: "101", //$rootScope.userId,

@@ -30,6 +30,7 @@
         };
 
         $scope.prescriptions = Prescription.list(params);
+        $scope.myPromise = $scope.prescriptions.$promise;
         $scope.prescriptions.$promise.then(function(prescriptions) {
           if (prescriptions.length > 0) {
             $scope.patientProfile = $scope.prescriptions[0].patient;

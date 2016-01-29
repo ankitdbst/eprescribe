@@ -6,6 +6,7 @@ angular.module('ERemediumWebApp', [
     'ui.bootstrap',
     'ngResource',
     'ngMessages',
+    'cgBusy',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',
     'ERemediumWebApp.patients',

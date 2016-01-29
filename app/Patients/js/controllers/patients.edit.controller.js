@@ -25,7 +25,7 @@
             $scope.patient.relation = "";
         } else {
             //Get Patient Details from server and populate patient object..
-            Patient.get({
+            $scope.myPromise = Patient.get({
                 user: $stateParams.patientId,
                 sessionId: $rootScope.sessionId,
                 doctorId: false,
@@ -48,7 +48,7 @@
             $scope.patient.isDependant = ($scope.patient.relation == '') ? "false" : "true";
             //Delete redundant properties
             delete $scope.patient["_id"];
-            Patient.upsert({
+            $scope.myPromise = Patient.upsert({
                 user: $scope.patient.patientId,
                 sessionId: $rootScope.sessionId,
                 doctorId: $rootScope.userId,

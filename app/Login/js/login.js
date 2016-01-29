@@ -26,7 +26,7 @@
         function SignIn() {
             $scope.data = {};
             //validate using username and password
-            Login.validateCredentials({
+            $scope.myPromise = Login.validateCredentials({
                 mobile: $scope.mobileNumber,// 7838352425
                 password: $scope.password, //123@ivp
                 deviceKey: "" //empty
