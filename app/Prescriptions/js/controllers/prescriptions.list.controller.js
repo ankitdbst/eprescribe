@@ -9,6 +9,8 @@
     function PrescriptionListCtrl($scope, $state, $stateParams, $rootScope, Prescription) {
         //Initialize
         var patientId = $stateParams.patientId;
+        $scope.sortSearchResultsReverse = false;// set the default sort order 
+        $scope.sortSearchResultsType = ''// set the default sort type
 
         if (angular.isUndefined(patientId) && patientId.length === 0) {
           $state.go('PatientsList');// there needs to be home

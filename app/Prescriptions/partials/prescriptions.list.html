@@ -1,48 +1,72 @@
 <!--show last 25 patient visit -->
 <h3>
-  <a ui-sref="PatientNewOrEdit({patientId: patientProfile.patientId})">{{patientProfile.firstName + " " + patientProfile.lastName}}</a>
-  <button type="button" class="btn btn-primary pull-right" ui-sref="PrescriptionNewOrEdit">+ Create New Prescription</button>
+    <a ui-sref="PatientNewOrEdit({patientId: patientProfile.patientId})">{{patientProfile.firstName + " " + patientProfile.lastName}}</a>
+    <button type="button" class="btn btn-primary pull-right" ui-sref="PrescriptionNewOrEdit">+ Create New Prescription</button>
 </h3>
 
 <hr>
 <table class="table table-hover table-condensed">
     <thead>
         <tr>
-            <th>Date</th>
-            <th>Patient Complaint</th>
-            <th>Diagnosis</th>
+            <th>
+                <a href="" ng-click="sortSearchResultsType = 'creationDate'; sortSearchResultsReverse = !sortSearchResultsReverse">
+                    Date
+                    <span ng-show="sortSearchResultsType == 'creationDate' && !sortSearchResultsReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortSearchResultsType == 'creationDate' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="" ng-click="sortSearchResultsType = 'patientComplaint'; sortSearchResultsReverse = !sortSearchResultsReverse">
+                    Patient Complaint
+                    <span ng-show="sortSearchResultsType == 'patientComplaint' && !sortSearchResultsReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortSearchResultsType == 'patientComplaint' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="" ng-click="sortSearchResultsType = 'diagnosis'; sortSearchResultsReverse = !sortSearchResultsReverse">
+                    Diagnosis
+                    <span ng-show="sortSearchResultsType == 'diagnosis' && !sortSearchResultsReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortSearchResultsType == 'diagnosis' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
             <th>Diseases</th>
             <th>Medicines</th>
-            <th>Next Visit</th>
+            <th>
+                <a href="" ng-click="sortSearchResultsType = 'nextVisit.date'; sortSearchResultsReverse = !sortSearchResultsReverse">
+                    Next Visit
+                    <span ng-show="sortSearchResultsType == 'nextVisit.date' && !sortSearchResultsReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortSearchResultsType == 'nextVisit.date' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
             <th>Order</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="prescription in prescriptions" class="eremedium-prescription-list">
-          <td>
-            <a uib-tooltip="View Prescription" ui-sref="PrescriptionDetail({ id: prescription.pid })">{{prescription.creationDate | date:'medium'}}</a></td>
-          <td>{{ prescription.patientComplaint }}</td>
-          <td>{{ prescription.diagnosis }}</td>
-          <td>
-            <ul class="eremedium-prescription-item-list">
-              <li ng-repeat="disease in prescription.diseases">
-                {{disease.disease}}
-              </li>
-            </ul>
-          </td>
-          <td>
-            <ul class="eremedium-prescription-item-list">
-              <li ng-repeat="medicine in prescription.medcines">
-                {{medicine.name}}
-              </li>
-            </ul>
-          </td>
-          <td>{{prescription.nextVisit.date | date:'medium'}}</td>
-          <td class="eremedium-order-rx">
-            <a ui-sref="PrescriptionOrder({ pId: prescription.pid })">
-              <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-            </a>
-          </td>
+        <tr ng-repeat="prescription in prescriptions | orderBy:sortSearchResultsType:sortSearchResultsReverse" class="eremedium-prescription-list">
+            <td>
+                <a uib-tooltip="View Prescription" ui-sref="PrescriptionDetail({ id: prescription.pid })">{{prescription.creationDate| date:'medium'}}</a></td>
+            <td>{{ prescription.patientComplaint}}</td>
+            <td>{{ prescription.diagnosis}}</td>
+            <td>
+                <ul class="eremedium-prescription-item-list">
+                    <li ng-repeat="disease in prescription.diseases">
+                        {{disease.disease}}
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul class="eremedium-prescription-item-list">
+                    <li ng-repeat="medicine in prescription.medcines">
+                        {{medicine.name}}
+                    </li>
+                </ul>
+            </td>
+            <td>{{prescription.nextVisit.date| date:'medium'}}</td>
+            <td class="eremedium-order-rx">
+                <a ui-sref="PrescriptionOrder({ pId: prescription.pid })">
+                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                </a>
+            </td>
         </tr>
     </tbody>
 </table>

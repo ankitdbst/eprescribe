@@ -9,6 +9,10 @@
     function PatientsListCtrl($scope, Patient, $state, $rootScope) {
 
         //Initialize
+        $scope.sortType = ''; // set the default sort type
+        $scope.sortReverse = false;  // set the default sort order
+        $scope.sortSearchResultsReverse = false;// set the default sort order for search results
+        $scope.sortSearchResultsType = ''// set the default sort type for search results
         $scope.showAlert = false;
         $scope.showSearchResults = false;
         $rootScope.pageHeader = "Patients";
