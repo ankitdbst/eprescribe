@@ -43,10 +43,8 @@
         </div>
         <div class="form-group col-md-4">
           <label for="unit">Unit</label>
-          <select class="form-control" id="unit" name="unit" ng-model="medcine.dispenseUnit" ng->
-            <option selected="selected">Tablet/Capsule</option>
-            <option>Strip</option>
-            <option>Bottle</option>
+          <select class="form-control" id="unit" name="unit" ng-model="medcine.dispenseUnit"
+                  ng-options="unit for unit in dispenseUnits">
           </select>
           <!--<input type="text" ng-model="medcine.pharmaDetails.unit" class="form-control" id="unit" placeholder="Unit" uib-typeahead="unit for unit in units | filter:$viewValue | limitTo:3" />-->
         </div>
@@ -54,10 +52,8 @@
       <div class="row">
         <div class="form-group col-md-4">
           <label for="frequency">Frequency</label>
-          <select class="form-control" id="frequency" name="frequency" ng-model="medcine.frequency.freq">
-            <option value="Daily" selected="selected">Daily</option>
-            <option value="Weekly">Weekly</option>
-            <option value="Monthly">Monthly</option>
+          <select class="form-control" id="frequency" name="frequency" ng-model="medcine.frequency.freq"
+                  ng-options="freq for freq in frequencies">
           </select>
           <!--<input type="text" name="frequency" ng-model="medcine.frequency.freq" class="form-control" id="frequency" placeholder="Frequency of the dosage" uib-typeahead="frequency for frequency in frequencies | filter:$viewValue | limitTo:3" required/>-->
           <!--<div class="help-block" ng-messages="formPrescriptionAddMedicine.frequency.$error" ng-if="formPrescriptionAddMedicine.frequency.$touched">-->
@@ -95,10 +91,8 @@
         </div>
         <div class="form-group col-md-4">
           <label for="dType">Dosage Unit</label>
-          <select class="form-control" id="dType" name="dType" ng-model="medcine.frequency.dType">
-            <option selected="selected">tablet or capsule</option>
-            <option>ml</option>
-            <option>spoon</option>
+          <select class="form-control" id="dType" name="dType" ng-model="medcine.frequency.dType"
+                  ng-options="unit for unit in dosageUnits">
           </select>
 
           <!--<input type="number" name="dosageQuantity" ng-model="medcine.frequency.dType" class="form-control" id="dType" placeholder="Quantity of the dosage" />-->

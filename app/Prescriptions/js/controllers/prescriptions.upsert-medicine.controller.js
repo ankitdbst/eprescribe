@@ -12,8 +12,9 @@
 
     function activate() {
       // Need to retrieve these from the server as well!
-//      $scope.frequencies = ['Daily', 'Weekly', 'Monthly'];
-//      $scope.quantities = ['1 tablet', '1 spoon', '5 ml'];
+      $scope.frequencies = ['Daily', 'Weekly', 'Monthly'];
+      $scope.dispenseUnits = ['Tablet/Capsule', 'Strip', 'Bottle'];
+      $scope.dosageUnits = ['tablet or capsule', 'ml', 'spoon'];
 //      $scope.medicines = ['Brufen', 'D-Cold', 'Paracetamol', 'Vicks', 'Crocin'];
 //      $scope.fComments = ['Every 2 hours',
 //                          'Every 8 hours',
@@ -47,6 +48,11 @@
       $scope.saveBtnName = "Update";
       operation = "update";
     } else {
+      $scope.medcine.frequency = {};
+      $scope.medcine.frequency.freq = $scope.frequencies[0];
+
+      $scope.medcine.dispenseUnit = $scope.dispenseUnits[0];
+      $scope.medcine.frequency.dType = $scope.dosageUnits[0];
       $scope.saveBtnName = "Add";
       $scope.reset = Reset;
     }
