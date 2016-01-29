@@ -14,11 +14,13 @@
             <th>Diseases</th>
             <th>Medicines</th>
             <th>Next Visit</th>
+            <th>Order</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="prescription in prescriptions" class="eremedium-prescription-list" uib-tooltip="View Prescription" ng-click="view(prescription.pid)">
-          <td>{{prescription.creationDate | date:'medium'}}</td>
+        <tr ng-repeat="prescription in prescriptions" class="eremedium-prescription-list">
+          <td>
+            <a uib-tooltip="View Prescription" ui-sref="PrescriptionDetail({ id: prescription.pid })">{{prescription.creationDate | date:'medium'}}</a></td>
           <td>{{ prescription.patientComplaint }}</td>
           <td>{{ prescription.diagnosis }}</td>
           <td>
@@ -36,6 +38,11 @@
             </ul>
           </td>
           <td>{{prescription.nextVisit.date | date:'medium'}}</td>
+          <td class="eremedium-order-rx">
+            <a ui-sref="PrescriptionOrder({ pId: prescription.pid })">
+              <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+            </a>
+          </td>
         </tr>
     </tbody>
 </table>

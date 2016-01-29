@@ -27,6 +27,12 @@
             $scope.prescription.isUpdate = false; // for edit we change this to true
             // Medications
             $scope.prescription.medcines = [];
+
+            var defaultDate = new Date();
+            // Add 7 days
+            defaultDate.setDate(defaultDate.getDate() + 7);
+            $scope.prescription.nextVisit = {};
+            $scope.prescription.nextVisit.date = moment(defaultDate).format("DD/MM/YYYY hh:mm A");
         }
 
         // Methods
@@ -39,11 +45,10 @@
                 sessionId: $rootScope.sessionId,
                 prescription: $scope.prescription
             };
-            $scope.prescription = Prescription.upsert(params);
 
-            $scope.prescription.$promise.then(function(prescription) {
+            Prescription.upsert(params, function(response) {
               $state.go('PrescriptionDetail', {
-                pId: prescription.pid
+                id: response.pid
               });
             });
         }
