@@ -37,18 +37,15 @@
       }
 
       function getAuthenticatedAccount() {
-          if (!$cookies.authenticatedAccount) {
-              return;
-          }
-          return JSON.parse($cookies.authenticatedAccount)
+          return $cookies.getObject('eremediumaccount');
       }
 
       function isAuthenticated() {
-          return !!$cookies.authenticatedAccount;
+          return !!$cookies.get('eremediumaccount');
       }
 
       function setAuthenticatedAccount(account) {
-          $cookies.authenticatedAccount = JSON.stringify(account);
+          $cookies.putObject('eremediumaccount', account);
       }
 
       return {
