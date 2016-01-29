@@ -19,7 +19,8 @@
     "fontawesome": "https://github.com/FortAwesome/Font-Awesome.git#~4.x.x",
     "angular-ui-router": "~0.2.15",
     "angular-resource": "~1.4.8",
-    "angular-busy": "~4.x.x"
+    "angular-busy": "~4.x.x",
+    "angular-cookies": "~1.4.9"
   },
   "resolutions": {
     "angular": "1.4.9"
