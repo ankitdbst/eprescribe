@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('ERemediumWebApp.prescriptions', [
+        'pw.canvas-painter',
         'ERemediumWebApp.prescriptions.routes',
         'ERemediumWebApp.prescriptions.controllers',
         'ERemediumWebApp.prescriptions.services',
