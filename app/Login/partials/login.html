@@ -66,6 +66,13 @@
                                     <button type="submit" ng-click="signIn()" class="btn btn-primary btn-block btn-lg" ng-disabled="formSignIn.$invalid">Sign In</button>
                                 </div>
                             </div>
+
+                            <p class="text-muted">
+                                <label>New to E-Remedium? 
+                                    <a href="" ng-click="toggleModal('false')">Register Now
+                                    </a>
+                                </label>
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -119,15 +126,20 @@
                             </div>
                             <!--SignUp Button-->
                             <div class="form-group">
+                                <p>
+                                    By signing up, I agree to
+                                    <a href="#" target="_blank" id="terms">Terms and Conditions</a>
+                                </p>
                                 <div>
                                     <button type="submit" class="btn btn-primary btn-block btn-lg">Yay! Sign me up</button>
                                 </div>
-                                <br>
-                                <p>
-                                    By signing up, I agree to
-                                    <a href="#" target="_blank" id="terms">Terms</a>
-                                </p>
                             </div>
+                            <p class="text-muted">
+                                <label>Already have an E-Remedium Account? 
+                                    <a href="" ng-click="toggleModal('true')">Login Now
+                                    </a>
+                                </label>
+                            </p>
                         </form>
                     </div>
                 </div>

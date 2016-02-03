@@ -18,25 +18,21 @@
 
     function LoginCtrl($scope, $rootScope, $state, Account, $stateParams) {
 
-        //Open respective model!
-        if ($stateParams.signIn == "true") {
-            $('#loginModal').modal('show');
-        } else {
-            $('#registerModal').modal('show');
-        }
-        
         initialize();
-
+        
         //Assign Functions..
-        $scope.signIn = SignIn;
+        $scope.signIn = signIn;
+        $scope.toggleModal = toggleModal;
+        
+        toggleModal($stateParams.signIn);
 
-        function SignIn() {
+        function signIn() {
             $scope.data = {};
-            
+
             var params = {
-                mobile: $scope.mobileNumber, 
-                password: $scope.password, 
-                deviceKey: "" 
+                mobile: $scope.mobileNumber,
+                password: $scope.password,
+                deviceKey: ""
             };
             //validate using username and password
             $scope.myPromise = Account.login(params, loginHandler);
@@ -73,6 +69,17 @@
             $rootScope.pageHeader = "";
             $scope.mobileNumber = 7838352425;
             $scope.password = "123@ivp";
+        }
+
+        function toggleModal(signIn) {
+            //Open respective model!
+            if (signIn == "true") {
+                $('#loginModal').modal('show');
+                $('#registerModal').modal('hide');
+            } else {
+                $('#registerModal').modal('show');
+                $('#loginModal').modal('hide');
+            }
         }
     }
 })();
