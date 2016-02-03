@@ -7,7 +7,7 @@
     '$urlRouterProvider',
 
     function ($urlRouterProvider) {
-      $urlRouterProvider.otherwise('/login');
+//      $urlRouterProvider.otherwise('/login');
     }
   ]);
 }) ();

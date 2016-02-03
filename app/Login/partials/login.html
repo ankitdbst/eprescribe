@@ -1,121 +1,138 @@
 <div cg-busy="myPromise"></div>
+<!-- Button trigger modal -->
 
-<ul class="nav nav-pills pull-right " role="tablist">
-    <li role="presentation" class="active">
-        <a href="#loginContent" id="loginTab" role="tab" data-toggle="pill">Login</a>
-    </li>
-    <li role="presentation">
-        <a href="#registerContent" id="registerTab" role="tab" data-toggle="pill">Register</a>
-    </li>
-</ul>
-
-<div class="tab-content" style="padding-top: 8%;">
-    <div role="tabpanel" class="tab-pane fade in active" id="loginContent">
-        <form name="formSignIn" class="form-horizontal col-sm-offset-4 col-sm-4" novalidate>
-            <div class="alert alert-danger" role="alert" ng-show="showAlert">
-                {{alertMessage}}
-            </div>
-
-            <!--Mobile Number Section-->
-            <div class="form-group" ng-class="{ 'has-error': formSignIn.inputMobileNumber.$touched && formSignIn.inputMobileNumber.$invalid }">
-
-                <div class="input-group">
-
-                    <i class="glyphicon-earphone glyphicon input-group-addon"></i>
-
-                    <input name="inputMobileNumber" type="number" class="form-control input-lg" 
-                           id="inputMobileNumber" placeholder="Mobile Number" ng-model="mobileNumber"
-                           ng-minlength="10" ng-maxlength="10" required/>
-
+<div id="loginContent">
+    <div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Login</h4>
                 </div>
-                <div class="help-block" ng-messages="formSignIn.inputMobileNumber.$error" ng-if="formSignIn.inputMobileNumber.$touched">
-                    <p ng-message="minlength">Please enter valid Mobile Number!</p>
-                    <p ng-message="maxlength">Please enter valid Mobile Number!</p>
-                    <p ng-message="required">Your Mobile Number is mandatory!</p>
-                </div>
-            </div>
-            <!--Password Section-->
-            <div class="form-group" ng-class="{ 'has-error': formSignIn.inputPassword.$touched && formSignIn.inputPassword.$invalid }">
-                <div class="input-group">
+                <div class="modal-body">
+                    <div class="row">
+                        <form name="formSignIn" class="form-horizontal col-sm-offset-2 col-sm-8" novalidate>
+                            <div class="alert alert-danger" role="alert" ng-show="showAlert">
+                                {{alertMessage}}
+                            </div>
 
-                    <i class="glyphicon-lock glyphicon input-group-addon"></i>
+                            <!--Mobile Number Section-->
+                            <div class="form-group" ng-class="{ 'has-error': formSignIn.inputMobileNumber.$touched && formSignIn.inputMobileNumber.$invalid }">
 
-                    <input name="inputPassword" type="password" class="form-control input-lg" 
-                           id="inputPassword" placeholder="Password" ng-model="password"
-                           required>
+                                <div class="input-group">
 
-                </div>
-                <div class="help-block" ng-messages="formSignIn.inputPassword.$error" ng-if="formSignIn.inputPassword.$touched">
-                    <p ng-message="required">Please enter Password!</p>
-                </div>
-            </div>
-            <!--Remember me/Forgot Password Section-->
-            <div class="form-group">
-                <div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Remember me
-                        </label>
-                        <a href="#/login" id="aforgotPassword" class="pull-right">Forgot your password?</a>
+                                    <i class="glyphicon-earphone glyphicon input-group-addon"></i>
+
+                                    <input name="inputMobileNumber" type="number" class="form-control input-lg" 
+                                           id="inputMobileNumber" placeholder="Mobile Number" ng-model="mobileNumber"
+                                           ng-minlength="10" ng-maxlength="10" required />
+
+                                </div>
+                                <div class="help-block" ng-messages="formSignIn.inputMobileNumber.$error" ng-if="formSignIn.inputMobileNumber.$touched">
+                                    <p ng-message="minlength">Please enter valid Mobile Number!</p>
+                                    <p ng-message="maxlength">Please enter valid Mobile Number!</p>
+                                    <p ng-message="required">Your Mobile Number is mandatory!</p>
+                                </div>
+                            </div>
+                            <!--Password Section-->
+                            <div class="form-group" ng-class="{ 'has-error': formSignIn.inputPassword.$touched && formSignIn.inputPassword.$invalid }">
+                                <div class="input-group">
+
+                                    <i class="glyphicon-lock glyphicon input-group-addon"></i>
+
+                                    <input name="inputPassword" type="password" class="form-control input-lg" 
+                                           id="inputPassword" placeholder="Password" ng-model="password"
+                                           required value="123@ivp">
+
+                                </div>
+                                <div class="help-block" ng-messages="formSignIn.inputPassword.$error" ng-if="formSignIn.inputPassword.$touched">
+                                    <p ng-message="required">Please enter Password!</p>
+                                </div>
+                            </div>
+                            <!--Remember me/Forgot Password Section-->
+                            <div class="form-group">
+                                <div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Remember me
+                                        </label>
+                                        <a href="#/login" id="aforgotPassword" class="pull-right">Forgot your password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Submit Button-->
+                            <div class="form-group">
+                                <div>
+                                    <button type="submit" ng-click="signIn()" class="btn btn-primary btn-block btn-lg" ng-disabled="formSignIn.$invalid">Sign In</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>
-            <!--Submit Button-->
-            <div class="form-group">
-                <div>
-                    <button type="submit" ng-click="signIn()" class="btn btn-primary btn-block btn-lg" ng-disabled="formSignIn.$invalid">Sign In</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div role="tabpanel" class="tab-pane fade" id="registerContent">
-        <form name="formRegister" class="form-horizontal col-sm-offset-4 col-sm-4" novalidate>
-
-            <p class="text-info lead">
-                Join growing network of Doctors!
-            </p>
-
-            <!--Mobile Number Section-->
-            <div class="form-group" ng-class="{ 'has-error': formRegister.inputRegisterMobileNumber.$touched && formRegister.inputRegisterMobileNumber.$invalid }">
-                <div class="input-group">
-                    <i class="glyphicon-earphone glyphicon input-group-addon"></i>
-                    <input name="inputRegisterMobileNumber" type="number" class="form-control input-lg" 
-                           id="inputRegisterMobileNumber" placeholder="Mobile Number" ng-model="registerMobileNumber"
-                           ng-minlength="10" ng-maxlength="10" required>
-                </div>
-                <div class="help-block" ng-messages="formRegister.inputRegisterMobileNumber.$error" ng-if="formRegister.inputRegisterMobileNumber.$touched">
-                    <p ng-message="minlength">Please enter valid Mobile Number!</p>
-                    <p ng-message="maxlength">Please enter valid Mobile Number!</p>
-                    <p ng-message="required">Your Mobile Number is mandatory!</p>
-                </div>
-            </div>
-
-            <!--Password Section-->
-            <div class="form-group" ng-class="{ 'has-error': formRegister.inputRegisterPassword.$touched && formRegister.inputRegisterPassword.$invalid }">
-                <div class="input-group">
-                    <i class="glyphicon-lock glyphicon input-group-addon"></i>
-                    <input name="inputRegisterPassword" type="password" class="form-control input-lg" 
-                           id="inputRegisterPassword" placeholder="Password (atleast 6 characters)" ng-model="registerPassword"
-                           required ng-minlength="6">
-                </div>
-                <div class="help-block" ng-messages="formRegister.inputRegisterPassword.$error" ng-if="formRegister.inputRegisterPassword.$touched">
-                    <p ng-message="required">Please enter Password!</p>
-                    <p ng-message="minlength">Please enter at least 6 characters!</p>
-                </div>
-            </div>
-            <!--SignUp Button-->
-            <div class="form-group">
-                <div>
-                    <button type="submit" class="btn btn-primary btn-block btn-lg">Yay! Sign me up</button>
-                </div>
-                <br>
-                <p>
-                    By signing up, I agree to
-                    <a href="#" target="_blank" id="terms">Terms</a>
-                </p>
-            </div>
-        </form>
-    </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
+<div id="registerContent">
+    <div class="modal fade" tabindex="-1" role="dialog" id="registerModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Register</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form name="formRegister" class="form-horizontal col-sm-offset-2 col-sm-8" novalidate>
 
+                            <p class="text-info lead">
+                                Join growing network of Doctors!
+                            </p>
+
+                            <!--Mobile Number Section-->
+                            <div class="form-group" ng-class="{ 'has-error': formRegister.inputRegisterMobileNumber.$touched && formRegister.inputRegisterMobileNumber.$invalid }">
+                                <div class="input-group">
+                                    <i class="glyphicon-earphone glyphicon input-group-addon"></i>
+                                    <input name="inputRegisterMobileNumber" type="number" class="form-control input-lg" 
+                                           id="inputRegisterMobileNumber" placeholder="Mobile Number" ng-model="registerMobileNumber"
+                                           ng-minlength="10" ng-maxlength="10" required>
+                                </div>
+                                <div class="help-block" ng-messages="formRegister.inputRegisterMobileNumber.$error" ng-if="formRegister.inputRegisterMobileNumber.$touched">
+                                    <p ng-message="minlength">Please enter valid Mobile Number!</p>
+                                    <p ng-message="maxlength">Please enter valid Mobile Number!</p>
+                                    <p ng-message="required">Your Mobile Number is mandatory!</p>
+                                </div>
+                            </div>
+
+                            <!--Password Section-->
+                            <div class="form-group" ng-class="{ 'has-error': formRegister.inputRegisterPassword.$touched && formRegister.inputRegisterPassword.$invalid }">
+                                <div class="input-group">
+                                    <i class="glyphicon-lock glyphicon input-group-addon"></i>
+                                    <input name="inputRegisterPassword" type="password" class="form-control input-lg" 
+                                           id="inputRegisterPassword" placeholder="Password (atleast 6 characters)" ng-model="registerPassword"
+                                           required ng-minlength="6">
+                                </div>
+                                <div class="help-block" ng-messages="formRegister.inputRegisterPassword.$error" ng-if="formRegister.inputRegisterPassword.$touched">
+                                    <p ng-message="required">Please enter Password!</p>
+                                    <p ng-message="minlength">Please enter at least 6 characters!</p>
+                                </div>
+                            </div>
+                            <!--SignUp Button-->
+                            <div class="form-group">
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg">Yay! Sign me up</button>
+                                </div>
+                                <br>
+                                <p>
+                                    By signing up, I agree to
+                                    <a href="#" target="_blank" id="terms">Terms</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
 

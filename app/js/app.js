@@ -19,22 +19,28 @@ angular.module('ERemediumWebApp', [
     'ERemediumWebApp.utils'
 ])
 
-.run(function ($rootScope) {
-    $rootScope.getFullName = function (inputPatientObject) {
+        .run(function ($rootScope, $location) {
+            $rootScope.getFullName = function (inputPatientObject) {
 //        alert(inputPatientObject.firstName);
-        return inputPatientObject.firstName + " " + inputPatientObject.midlleName + " " + inputPatientObject.lastName;
-    };
+                return inputPatientObject.firstName + " " + inputPatientObject.midlleName + " " + inputPatientObject.lastName;
+            };
 
-    $rootScope.getFullAddress = function (inputPatientObject) {
-        return inputPatientObject.address.addressLine1 + ', ' + inputPatientObject.address.addressLine2 + ', ' + inputPatientObject.address.city + ', ' + inputPatientObject.address.state + ', ' + inputPatientObject.address.pincode;
-    };
-});
+            $rootScope.getFullAddress = function (inputPatientObject) {
+                return inputPatientObject.address.addressLine1 + ', ' + inputPatientObject.address.addressLine2 + ', ' + inputPatientObject.address.city + ', ' + inputPatientObject.address.state + ', ' + inputPatientObject.address.pincode;
+            };
+
+            $rootScope.go = function (path) {
+                $location.path(path);
+            };
+
+        });
 
 //For correctly applying Active Class on Side Menu
 $(".sidebar-nav a").on("click", function () {
     $(".sidebar-nav").find(".active").removeClass("active");
     $(this).parent().addClass("active");
 });
+
 
 angular.module('ERemediumWebApp.config', []);
 angular.module('ERemediumWebApp.routes', []);

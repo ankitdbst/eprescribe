@@ -5,7 +5,7 @@
             .config(['$stateProvider', function ($stateProvider) {
                     $stateProvider
                             .state('login', {
-                                url: '/login',
+                                url: '/login/:signIn',
                                 templateUrl: 'Login/partials/login.html',
                                 controller: 'LoginCtrl'
                             });
@@ -17,18 +17,26 @@
     LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'Account', '$stateParams'];
 
     function LoginCtrl($scope, $rootScope, $state, Account, $stateParams) {
-        $rootScope.showMenu = false;
-        $rootScope.pageHeader = "";
 
+        //Open respective model!
+        if ($stateParams.signIn == "true") {
+            $('#loginModal').modal('show');
+        } else {
+            $('#registerModal').modal('show');
+        }
+        
+        initialize();
+
+        //Assign Functions..
         $scope.signIn = SignIn;
-        $scope.showAlert = false;
 
         function SignIn() {
             $scope.data = {};
+            
             var params = {
-                mobile: $scope.mobileNumber,// 7838352425
-                password: $scope.password, //123@ivp
-                deviceKey: "" //empty
+                mobile: $scope.mobileNumber, 
+                password: $scope.password, 
+                deviceKey: "" 
             };
             //validate using username and password
             $scope.myPromise = Account.login(params, loginHandler);
@@ -41,18 +49,30 @@
                     $scope.alertMessage = "Invalid Credentials, Please try again!";
                 } else
                 {
-//                    //Store sessionid etc in rootscope as its needed across pages!
-//                    $rootScope.sessionId = $scope.data.sessionId;
-//                    $rootScope.userId = $scope.data.userId;
-//                    $rootScope.userType = $scope.data.userType;
-//
-//                    //start showing menu items
-//                    $rootScope.showMenu = true;
-
+                    postLoginProcessing();
                     //Navigate to First Page in menu
                     $state.go('PatientsList');
                 }
             }
+        }
+
+        function postLoginProcessing() {
+            //start showing menu items
+            $rootScope.showMenu = true;
+            $('#loginModal').modal('hide');
+            $('#registerModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            $('body').removeClass('modal-open');
+            $('#wrapper').removeClass('hero-unit');
+        }
+
+        function initialize() {
+            $scope.showAlert = false;
+            $rootScope.showMenu = false;
+            $rootScope.pageHeader = "";
+            $scope.mobileNumber = 7838352425;
+            $scope.password = "123@ivp";
         }
     }
 })();
