@@ -38,20 +38,22 @@
                         </li>
                     </ul>
 
-                    <h3 class="text-muted">{{pageHeader}}
-                        <div class="pull-right header" ng-show="!showMenu">
-                            <a class="btn btn-link" ui-sref="login({signIn: true})" role="button">Login </a>|
-                            <a class="btn btn-link" ui-sref="login({signIn: false})" role="button">Register</a>
-                        </div>
-                        
-                        <span class="appicons" ng-show="showMenu">
-                            <a href="#/tasks" class="pull-right">
-                                <i class="fa fa-bell fa-1x"></i>
-                                <span class="badge alert-success">{{pendingTasksCount}}</span>
-                            </a>
-                        </span>
+                    <h3 class="text-muted" style="display: inline-block;">
+                        {{pageHeader}}
                     </h3>
-
+                    <span class="pull-right header" ng-show="!showMenu">
+                        <a class="btn btn-link" ui-sref="login({signIn: true})" role="button">Login </a>|
+                        <a class="btn btn-link" ui-sref="login({signIn: false})" role="button">Register</a>
+                    </span>
+                    <span class="appicons pull-right" ng-show="showMenu">
+                        <a href="#/tasks">
+                            <i class="fa fa-bell fa-2x"></i>
+                            <span class="badge alert-success">{{pendingTasksCount}}</span>
+                        </a>
+                        <a class="btn btn-link" role="button">
+                            <img ng-src="{{profileImageURL}}" class="img-circle" width="50" height="50">
+                        </a>
+                    </span>
                 </div>
             </nav>
 

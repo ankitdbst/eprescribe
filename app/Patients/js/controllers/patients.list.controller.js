@@ -7,29 +7,52 @@
     PatientsListCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope', 'Account'];
 
     function PatientsListCtrl($scope, Patient, $state, $rootScope, Account) {
-        if(!Account.isAuthenticated()) {
-          $state.go('login'); return;
+        if (!Account.isAuthenticated()) {
+            $state.go('login');
+            return;
         }
-        var account = Account.getAuthenticatedAccount();
+        $scope.account = Account.getAuthenticatedAccount();
 
         //Initialize
-        $scope.sortType = ''; // set the default sort type
-        $scope.sortReverse = false;  // set the default sort order
-        $scope.sortSearchResultsReverse = false;// set the default sort order for search results
-        $scope.sortSearchResultsType = ''// set the default sort type for search results
-        $scope.showAlert = false;
-        $scope.showSearchResults = false;
-        $rootScope.pageHeader = "Patients";
-        $scope.patient = {};
-        searchParameterReset();
-        $scope.searchByMobileNumber = SearchByMobileNumber;
-        $scope.createPatientProfile = CreatePatientProfile;
+        initialize();
+        
+        //GetDoctorProfile..
+        getDoctorProfile();
 
+        //Functions..
+        $scope.searchByMobileNumber = searchByMobileNumber;
+        $scope.createPatientProfile = createPatientProfile;
+
+        function initialize() {
+            $scope.sortType = ''; // set the default sort type
+            $scope.sortReverse = false;  // set the default sort order
+            $scope.sortSearchResultsReverse = false;// set the default sort order for search results
+            $scope.sortSearchResultsType = ''// set the default sort type for search results
+            $scope.showAlert = false;
+            $scope.showSearchResults = false;
+            $rootScope.pageHeader = "Patients";
+            $scope.patient = {};
+            $scope.patient.search = {mobilenumber: ''};
+        }
+        
+        function getDoctorProfile() {
+            //Get Patient Details from server and populate patient object..
+            $scope.myPromise = Patient.get({
+                user: $scope.account.userId,//DoctorId
+                sessionId: $scope.account.sessionId,
+                doctorId: false,
+                limit: 50,
+                columnsToGet: ""
+            }, function (response) {
+                $scope.doctor = response;
+                $rootScope.profileImageURL = "img/User.jpg";//$scope.doctor.profileImageURL;
+            });
+        }
 
         $scope.patientList = Patient.query({
             user: "",
-            sessionId: account.sessionId, //$rootScope.sessionId,
-            doctorId: account.userId, //$rootScope.userId,
+            sessionId: $scope.account.sessionId, 
+            doctorId: $scope.account.userId, 
             limit: 50,
             columnsToGet: ""
         }, function (response) {
@@ -40,16 +63,12 @@
         $scope.myPromise = $scope.patientList.$promise;
 
         //Functions
-        function CreatePatientProfile() {
+        function createPatientProfile() {
             $state.go('PatientNewOrEdit');
         }
 
-        function searchParameterReset() {
-            $scope.patient.search = {mobilenumber: ''};
-        }
 
-
-        function SearchByMobileNumber() {
+        function searchByMobileNumber() {
 
             $scope.searchPatientResults = Patient.searchByMobile({
                 user: "",

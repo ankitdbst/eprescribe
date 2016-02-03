@@ -1,5 +1,5 @@
 .logo {
-    height: 4.5em;
+    height: 4em;
 }
 
 .body {
@@ -71,7 +71,7 @@
 }
 
 .hero-unit {
-    background: url(../img/Doctor.jpg) no-repeat center center fixed; 
+    background: url(../img/DoctorIpad.jpg) no-repeat center center fixed; 
     min-height: 35em;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -87,8 +87,8 @@
     width:100%;
     padding-left:5%;
     padding-right:5%;
-    padding-top:1.5%;
-    padding-bottom:1.5%;
+    padding-top:1%;
+    padding-bottom:1%;
     background-color: #283c4a;
 }
 
@@ -147,7 +147,7 @@
     border-width: 1px;
     color: white;
     position:relative;
-    margin-bottom: 1%;
+    margin: 1%;
 }
 
 .header a {
