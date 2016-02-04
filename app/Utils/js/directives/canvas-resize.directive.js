@@ -15,6 +15,7 @@
           $(window).bind('resize', LoadCanvasFromImage);
 
           var pwCanvasMain = element.find('#pwCanvasMain').get(0);
+          var pwCanvasTmp = element.find('#pwCanvasTmp').get(0);
           var context = pwCanvasMain.getContext('2d');
 
           var imageObject = $('.img-diagnosis').get(0);

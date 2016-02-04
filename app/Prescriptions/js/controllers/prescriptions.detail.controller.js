@@ -10,23 +10,25 @@
        if(!Account.isAuthenticated()) {
           $state.go('login'); return;
         }
-        var account = Account.getAuthenticatedAccount();
+       var account = Account.getAuthenticatedAccount();
 
-       var pid = $stateParams.id;
+       var idx = $stateParams.index;
         //Initialize
         $rootScope.pageHeader = "Prescription Detail";
 //        var prescriptions = [{creationDate: new Date("2015/11/04 10:32:31"), _id: "568e1b8d220e878faf3311b3", pid: 5, pDate: new Date("2015/11/04 10:32:31"), diagnosis: "Lab report showed above diseases, patient brought in critical time", patientComplaint: "Patient complaied of chest pain from last 10 days", pTime: 103231, medcines: [{dispenseQty: 20, dispenseUnit: 'Strip', name: "paracetomal", frequency: {freq: 'Weekly', intakeTime: {morning: 1, noon: 0, night: 0}, daose: "5", dType:"tablet", comments: "After Food", intakeDays: ["Mon", "Tue"]}}], patient: {firstName: "Mohanish", lastName: "Singh", patientId: 1, mobile: 8860614611}, doctor: {firstName: 'Manoj', lastName: 'Saini', mobile: 8860614611}, diseases: [{disease: "Headache", reportDate: 20151031, daysFrom: 10}, {disease: "Anemia", reportDate: 20151031, daysFrom: 10}]}, {_id: "568e1b8d220e878faf3311b3", pid: 4, pDate: new Date("2015/11/04 10:32:31"), pTime: 103231, medcines: [{name: "paracetomal"}], diseases: [{disease: "Headache", reportDate: 20151031, daysFrom: 10}, {disease: "Anemia", reportDate: 20151031, daysFrom: 10}]}, {_id: "568e1b8d220e878faf3311b3", pid: 5, pDate: new Date("2015/11/04 10:32:31"), pTime: 103231, medcines: [{name: "paracetomal"}], diseases: [{disease: "Headache", reportDate: 20151031, daysFrom: 10}, {disease: "Anemia", reportDate: 20151031, daysFrom: 10}]}, {_id: "568e1b8d220e878faf3311b3", pid: 5, pDate: 20151104, pTime: 103231, medcines: [{name: "paracetomal"}], diseases: [{disease: "Headache", reportDate: 20151031, daysFrom: 10}, {disease: "Anemia", reportDate: 20151031, daysFrom: 10}]}];
 
 //        $scope.prescription = prescriptions[0];
 
+      $scope.prescription = $scope.$parent.prescriptions[idx];
       var params = {
           user: "sujeet",
           sessionId: account.sessionId,
-          pid: pid,
+          pid: $scope.prescription.pId,
           columnsToGet: ""
       };
 
-      $scope.prescription = Prescription.get(params);
+
+//      $scope.prescription = Prescription.get(params);
       $scope.myPromise = $scope.prescription.$promise;
     }
 

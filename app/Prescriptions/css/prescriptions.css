@@ -67,3 +67,12 @@
 .canvas-editable .rx-canvas {
   display: block;
 }
+
+.prescription-back {
+  width: 30px
+}
+
+.thumbnail-diagnosis {
+  width: 60%;
+  height: 60px;
+}

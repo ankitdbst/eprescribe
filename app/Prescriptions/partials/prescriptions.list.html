@@ -1,12 +1,4 @@
-<div cg-busy="myPromise"></div>
-<!--show last 25 patient visit -->
-<h3>
-    <a ui-sref="PatientNewOrEdit({patientId: patientProfile.patientId})">{{patientProfile.firstName + " " + patientProfile.lastName}}</a>
-    <button type="button" class="btn btn-primary pull-right" ng-click="open()">+ Create New Prescription</button>
-</h3>
-
-<hr>
-<table class="table table-hover table-condensed">
+<table class="table table-condensed">
     <thead>
         <tr>
             <th>
@@ -18,19 +10,18 @@
             </th>
             <th>
                 <a href="" ng-click="sortSearchResultsType = 'patientComplaint'; sortSearchResultsReverse = !sortSearchResultsReverse">
-                    Patient Complaint
+                    Diagnosis & Complaints
                     <span ng-show="sortSearchResultsType == 'patientComplaint' && !sortSearchResultsReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortSearchResultsType == 'patientComplaint' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
-            <th>
-                <a href="" ng-click="sortSearchResultsType = 'diagnosis'; sortSearchResultsReverse = !sortSearchResultsReverse">
-                    Diagnosis
-                    <span ng-show="sortSearchResultsType == 'diagnosis' && !sortSearchResultsReverse" class="fa fa-caret-down"></span>
-                    <span ng-show="sortSearchResultsType == 'diagnosis' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
-                </a>
-            </th>
-            <th>Diseases</th>
+            <!--<th>-->
+                <!--<a href="" ng-click="sortSearchResultsType = 'diagnosis'; sortSearchResultsReverse = !sortSearchResultsReverse">-->
+                    <!--Diagnosis-->
+                    <!--<span ng-show="sortSearchResultsType == 'diagnosis' && !sortSearchResultsReverse" class="fa fa-caret-down"></span>-->
+                    <!--<span ng-show="sortSearchResultsType == 'diagnosis' && sortSearchResultsReverse" class="fa fa-caret-up"></span>-->
+                <!--</a>-->
+            <!--</th>-->
             <th>Medicines</th>
             <th>
                 <a href="" ng-click="sortSearchResultsType = 'nextVisit.date'; sortSearchResultsReverse = !sortSearchResultsReverse">
@@ -39,35 +30,30 @@
                     <span ng-show="sortSearchResultsType == 'nextVisit.date' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
-            <th>Order</th>
+            <th>
+                <a href="" ng-click="sortSearchResultsType = 'nextVisit.date'; sortSearchResultsReverse = !sortSearchResultsReverse">
+                    Valid Upto
+                    <span ng-show="sortSearchResultsType == 'nextVisit.date' && !sortSearchResultsReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortSearchResultsType == 'nextVisit.date' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>Order Status</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="prescription in prescriptions | orderBy:sortSearchResultsType:sortSearchResultsReverse" class="eremedium-prescription-list">
+        <tr ng-repeat="prescription in prescriptions | orderBy:sortSearchResultsType:sortSearchResultsReverse"
+            class="eremedium-prescription-list" ng-click="view($index)">
+            <td>{{prescription.creationDate| date:'medium'}}</td>
+            <td><img class="thumbnail-diagnosis" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJhYTM3MTkxYSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmFhMzcxOTFhIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" class="img-responsive" alt="Responsive image"></td>
+            <!--<td>{{ prescription.patientComplaint}}</td>-->
+            <!--<td>{{ prescription.diagnosis}}</td>-->
             <td>
-                <a uib-tooltip="View Prescription" ui-sref="PrescriptionDetail({ id: prescription.pid })">{{prescription.creationDate| date:'medium'}}</a></td>
-            <td>{{ prescription.patientComplaint}}</td>
-            <td>{{ prescription.diagnosis}}</td>
-            <td>
-                <ul class="eremedium-prescription-item-list">
-                    <li ng-repeat="disease in prescription.diseases">
-                        {{disease.disease}}
-                    </li>
-                </ul>
-            </td>
-            <td>
-                <ul class="eremedium-prescription-item-list">
-                    <li ng-repeat="medicine in prescription.medcines">
-                        {{medicine.name}}
-                    </li>
-                </ul>
+                <span class="label label-danger" ng-repeat="medicine in prescription.medcines">{{medicine.name}}</span>
             </td>
             <td>{{prescription.nextVisit.date| date:'medium'}}</td>
-            <td class="eremedium-order-rx">
-                <a ui-sref="PrescriptionOrder({ pId: prescription.pid })">
-                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                </a>
-            </td>
+            <td>{{prescription.nextVisit.date| date:'medium'}}</td>
+            <td>Processing</td>
+
         </tr>
     </tbody>
 </table>

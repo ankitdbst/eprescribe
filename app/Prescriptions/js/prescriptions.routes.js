@@ -8,10 +8,14 @@
 
     function($stateProvider) {
       $stateProvider
-      .state('PrescriptionList', {
+      .state('Prescriptions', {
         url: '/prescriptions/:patientId',
-        templateUrl: 'Prescriptions/partials/prescriptions.list.html',
-        controller: 'PrescriptionListCtrl'
+        templateUrl: 'Prescriptions/partials/prescriptions.index.html',
+        controller: 'PrescriptionIndexCtrl'
+      })
+      .state('Prescriptions.List', {
+        url: '/list',
+        templateUrl: 'Prescriptions/partials/prescriptions.list.html'
       })
 //      .state('PrescriptionNewOrEdit', {
 //        url: '/prescriptions/:patientId/edit/:pId',
@@ -23,8 +27,8 @@
 //        templateUrl: 'Prescriptions/partials/prescriptions.upsert-medicine.html',
 //        controller: 'PrescriptionUpsertMedicineCtrl'
 //      })
-      .state('PrescriptionDetail', {
-        url: '/prescriptions/view/:id',
+      .state('Prescriptions.Detail', {
+        url: '/view/:index',
         templateUrl: 'Prescriptions/partials/prescriptions.detail.html',
         controller: 'PrescriptionDetailCtrl'
       })
