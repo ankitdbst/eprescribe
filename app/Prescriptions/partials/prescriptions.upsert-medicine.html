@@ -1,9 +1,14 @@
-<div cg-busy="myPromise"></div>
-<form name="formPrescriptionAddMedicine" class="panel-group" novalidate>
-  <div class="panel panel-primary">
-    <div class="panel-heading">Medicine Name</div>
-    <div class="panel-body">
+<navbar type="header">
+  <!--<li><a href="#"><span class="glyphicon glyphicon-minus"></span></a></li>-->
+  <!--<li><a href="#"><span class="glyphicon glyphicon-resize-small"></span></a></li>-->
+  <li><a ng-click="closeThisDialog()"><span class="glyphicon glyphicon-remove"></span></a></li>
+</navbar>
+<form name="formPrescriptionAddMedicine" class="panel-group upsert-medicine" novalidate>
+  <!--<div class="panel panel-primary">-->
+    <!--<div class="panel-heading">Medicine Name</div>-->
+    <!--<div class="panel-body">-->
       <div class="form-group" ng-class="{ 'has-error': formPrescriptionAddMedicine.medicineName.$touched && formPrescriptionAddMedicine.medicineName.$invalid }">
+        <!--<label for="medicineName">Medicine Name</label>-->
         <input type="text" name="medicineName" ng-model="medcine.name" class="form-control" id="medicineName"
                placeholder="Start typing the name of the medicine..." uib-typeahead="medicine.name for medicine in search($viewValue)"
                typeahead-loading="loadingLocations" typeahead-no-results="noResults" required/>
@@ -15,11 +20,11 @@
           <p ng-message="required">Medicine Name is mandatory!</p>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="panel panel-primary">
-    <div class="panel-heading">Medicine Details</div>
-    <div class="panel-body">
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="panel panel-primary">-->
+    <!--<div class="panel-heading">Medicine Details</div>-->
+    <!--<div class="panel-body">-->
       <!--<div class="row">-->
         <!--<div class="form-group col-md-6" ng-class="{ 'has-error': formPrescriptionAddMedicine.sDate.$touched && formPrescriptionAddMedicine.sDate.$invalid }">-->
           <!--<label for="sDate">Start Date*</label>-->
@@ -84,12 +89,12 @@
       <div class="form-group row">
         <div class="form-group col-md-4">
           <label for="dosageQuantiy">Dosage Quantity</label>
-          <input type="number" name="dosageQuantity" ng-model="medcine.frequency.daose" class="form-control" id="dosageQuantiy" placeholder="Quantity of the dosage" />
+          <input type="number" name="dosageQuantity" ng-model="medcine.frequency.daose" class="form-control" id="dosageQuantiy" placeholder="Quantity" />
           <!--<div class="help-block" ng-messages="formPrescriptionAddMedicine.dosageQuantity.$error" ng-if="formPrescriptionAddMedicine.dosageQuantity.$touched">-->
             <!--<p ng-message="required">Dosage Quantity is required!</p>-->
           <!--</div>-->
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
           <label for="dType">Dosage Unit</label>
           <select class="form-control" id="dType" name="dType" ng-model="medcine.frequency.dType"
                   ng-options="unit for unit in dosageUnits">
@@ -105,21 +110,21 @@
       <!--<div class="row">-->
       <div class="form-group">
         <label for="comments">Instructions</label>
-        <textarea class="form-control" ng-model="medcine.frequency.comments" rows="4" id="comments" placeholder="Instructions"></textarea>
+        <textarea class="form-control" ng-model="medcine.frequency.comments" rows="5" id="comments" placeholder="Instructions"></textarea>
         <!--<input type="text" ng-model="medcine.frequency.fComment" class="form-control" id="instructions" placeholder="Instructions..." uib-typeahead="fComment for fComment in fComments | filter:$viewValue | limitTo:3" />-->
       </div>
-      <div class="form-group">
-        <label for="note">Note to Pharmacy</label>
-        <textarea class="form-control" ng-model="medcine.pharmaDetails.note" rows="3" id="note" placeholder="Note to Pharmacy"></textarea>
-      </div>
+      <!--<div class="form-group">-->
+        <!--<label for="note">Note to Pharmacy</label>-->
+        <!--<textarea class="form-control" ng-model="medcine.pharmaDetails.note" rows="3" id="note" placeholder="Note to Pharmacy"></textarea>-->
+      <!--</div>-->
 
         <!--<div class="form-group col-md-6">-->
           <!--<label for="intakeComm">Intake Comment</label>-->
           <!--<input type="text" ng-model="medcine.frequency.intakeComm" class="form-control" id="intakeComm" placeholder="Comment for the Dosage Intake" uib-typeahead="intakeComm for intakeComm in intakeComms | filter:$viewValue | limitTo:3" />-->
         <!--</div>-->
       <!--</div>-->
-    </div>
-  </div>
+    <!--</div>-->
+  <!--</div>-->
   <!-- Pharma Details -->
   <!--<div class="panel panel-primary">-->
     <!--<div class="panel-heading">Pharmacy Details</div>-->
@@ -156,22 +161,44 @@
       <!--</div>-->
     <!--</div>-->
   <!--</div>-->
-  <div class="panel panel-info">
-    <div class="panel-heading">Other Details</div>
-    <div class="panel-body">
-      <div class="form-group">
-        <label for="associatedDiagnosis">Associated Diagnosis</label>
-        <textarea ng-model="medcine.associatedDiagnosis" class="form-control" id="associatedDiagnosis" placeholder="Associated Diagnosis" cols="2"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="medComment">Medication Comment</label>
-        <textarea ng-model="medcine.medComment" class="form-control" id="medComment" placeholder="Medication Comment" cols="2"></textarea>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="form-group">
-    <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescriptionAddMedicine.$invalid">+ {{saveBtnName}}</button>
-    <button type="button" class="btn btn-danger" ng-if="reset" ng-click="reset()">Reset</button>
-  </div>
+  <!--<div class="panel panel-info">-->
+    <!--<div class="panel-heading">Other Details</div>-->
+    <!--<div class="panel-body">-->
+      <!--<div class="form-group">-->
+        <!--<label for="associatedDiagnosis">Associated Diagnosis</label>-->
+        <!--<textarea ng-model="medcine.associatedDiagnosis" class="form-control" id="associatedDiagnosis" placeholder="Associated Diagnosis" cols="2"></textarea>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="medComment">Medication Comment</label>-->
+        <!--<textarea ng-model="medcine.medComment" class="form-control" id="medComment" placeholder="Medication Comment" cols="2"></textarea>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<hr>-->
+  <!--<div class="form-group">-->
+    <!--<button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescriptionAddMedicine.$invalid">+ {{saveBtnName}}</button>-->
+    <!--<button type="button" class="btn btn-danger" ng-if="reset" ng-click="reset()">Reset</button>-->
+  <!--</div>-->
 </form>
+<navbar type="footer">
+  <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+  <li class="navbar-li-custom">
+    <div>
+      <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescriptionAddMedicine.$invalid">+ {{saveBtnName}}</button>
+      <button type="button" class="btn btn-danger" ng-if="reset" ng-click="reset()">Reset</button>
+    </div>
+    <!--<button type="button" class="btn btn-primary" ng-click="save()" >Save</button></li>-->
+  <!--<li class="navbar-li-button"><button type="button" class="btn btn-primary" ng-click="savePrint()" ng-disabled="formPrescription.$invalid">Save & Print</button></li>-->
+  <!--<li><a href="#" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescription.$invalid">Save</a></li>-->
+  <!--<li><a href="#"-->
+            <!--ng-dialog="Prescriptions/partials/prescriptions.upsert-medicine.html"-->
+            <!--ng-dialog-controller="PrescriptionUpsertMedicineCtrl"-->
+            <!--ng-dialog-class="ngdialog-theme-default custom-width-2"><span class="glyphicon glyphicon-plus"></span> Add Medicine</a></li>-->
+  <!--<li><a href="#">Validity</a></li>-->
+  <!--<li>-->
+    <!--<button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescription.$invalid">Save</button>-->
+  <!--</li>-->
+  <!--<li>  <button type="button" class="btn btn-primary" ng-click="savePrint()" ng-disabled="formPrescription.$invalid">Save & Print</button>-->
+<!--</li>-->
+
+</navbar>

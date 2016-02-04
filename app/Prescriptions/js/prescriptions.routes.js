@@ -13,16 +13,16 @@
         templateUrl: 'Prescriptions/partials/prescriptions.list.html',
         controller: 'PrescriptionListCtrl'
       })
-      .state('PrescriptionNewOrEdit', {
-        url: '/prescriptions/:patientId/edit/:pId',
-        templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
-        controller: 'PrescriptionNewOrEditCtrl'
-      })
-      .state('PrescriptionNewOrEdit.UpsertMedicine', {
-        url: '/medicines/:mId',
-        templateUrl: 'Prescriptions/partials/prescriptions.upsert-medicine.html',
-        controller: 'PrescriptionUpsertMedicineCtrl'
-      })
+//      .state('PrescriptionNewOrEdit', {
+//        url: '/prescriptions/:patientId/edit/:pId',
+//        templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
+//        controller: 'PrescriptionNewOrEditCtrl'
+//      })
+//      .state('PrescriptionNewOrEdit.UpsertMedicine', {
+//        url: '/medicines/:mId',
+//        templateUrl: 'Prescriptions/partials/prescriptions.upsert-medicine.html',
+//        controller: 'PrescriptionUpsertMedicineCtrl'
+//      })
       .state('PrescriptionDetail', {
         url: '/prescriptions/view/:id',
         templateUrl: 'Prescriptions/partials/prescriptions.detail.html',

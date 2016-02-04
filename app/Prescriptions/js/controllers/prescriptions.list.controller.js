@@ -4,9 +4,9 @@
     angular.module('ERemediumWebApp.prescriptions.controllers')
             .controller('PrescriptionListCtrl', PrescriptionListCtrl);
 
-    PrescriptionListCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'Prescription', 'Account'];
+    PrescriptionListCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'Prescription', 'Account', 'ngDialog'];
 
-    function PrescriptionListCtrl($scope, $state, $stateParams, $rootScope, Prescription, Account) {
+    function PrescriptionListCtrl($scope, $state, $stateParams, $rootScope, Prescription, Account, ngDialog) {
         if(!Account.isAuthenticated()) {
           $state.go('login'); return;
         }
@@ -43,10 +43,23 @@
         });
 
         $scope.view = ViewPrescription;
+        $scope.open = Open;
 
         function ViewPrescription(pid) {
             $state.go('PrescriptionDetail', {
                 id: pid
+            });
+        }
+
+        function Open() {
+            ngDialog.open({
+              template: 'Prescriptions/partials/prescriptions.edit.html',
+              className: 'ngdialog-theme-default custom-width',
+              scope: $scope,
+              showClose: false,
+              closeByEscape: false,
+              closeByDocument: false,
+              controller: 'PrescriptionNewOrEditCtrl'
             });
         }
     }

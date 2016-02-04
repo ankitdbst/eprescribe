@@ -38,5 +38,32 @@
 }
 
 .create-prescriptions {
-  padding: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.navbar-nav .navbar-li-custom {
+    padding: 10px;
+}
+
+.upsert-medicine {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.img-diagnosis {
+  height: 400px;
+  width: 100%;
+}
+
+.rx-canvas {
+  display: none;
+}
+
+.canvas-editable .medicines-list { display: none; }
+.canvas-editable .prescription-other { display: none; }
+.canvas-editable .diagnosis { display: none; }
+
+.canvas-editable .rx-canvas {
+  display: block;
 }

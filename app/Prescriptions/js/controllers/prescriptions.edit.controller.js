@@ -4,9 +4,9 @@
     angular.module('ERemediumWebApp.prescriptions.controllers')
     .controller('PrescriptionNewOrEditCtrl', PrescriptionNewOrEditCtrl);
 
-    PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription', '$stateParams', '$state', '$rootScope', 'Account'];
+    PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription', '$stateParams', '$state', '$rootScope', 'Account', 'ngDialog'];
 
-    function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, $state, $rootScope, Account) {
+    function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, $state, $rootScope, Account, ngDialog) {
         //Intialize
         if(!Account.isAuthenticated()) {
           $state.go('login'); return;
@@ -16,9 +16,10 @@
         var pid = $stateParams.pId;
         var patientId = $stateParams.patientId;
 
+        $scope.dialogTitle = $scope.$parent.patientProfile.firstName + "'s Prescription";
+
         if (pid !== undefined && pid.length !== 0) {
             $rootScope.pageHeader = "Update Prescription";
-
             $scope.prescription = Prescription.get({
                 user: 'sujeet',
                 sessionId: account.sessionId,
@@ -28,6 +29,8 @@
             $scope.prescription.isUpdate = true; // for edit we change this to true
         } else {
             $rootScope.pageHeader = "Create Prescription";
+
+//            $scope.canvas-editable = false;
 
             $scope.prescription = new Prescription();
             $scope.prescription.patientId = patientId;
@@ -47,6 +50,12 @@
         // Methods
         $scope.save = UpsertPrescription;
         $scope.close = Close;
+        $scope.open = Open;
+        $scope.closeCanvas = CloseCanvas;
+
+        function CloseCanvas() {
+          $scope.canvasEditable = false;
+        }
 
         function UpsertPrescription() {
             var params = {
@@ -55,10 +64,25 @@
                 prescription: $scope.prescription
             };
 
+            $scope.$parent.prescriptions.push($scope.prescription);
+
             $scope.myPromise = Prescription.upsert(params, function(response) {
-              $state.go('PrescriptionDetail', {
-                id: response.pid
-              });
+                $scope.closeThisDialog();
+//              $state.go('PrescriptionDetail', {
+//                id: response.pid
+//              });
+            });
+        }
+
+        function Open() {
+            ngDialog.open({
+              template: 'Prescriptions/partials/prescriptions.upsert-medicine.html',
+              className: 'ngdialog-theme-default custom-width-2',
+              scope: $scope,
+              showClose: false,
+              closeByEscape: false,
+              closeByDocument: false,
+              controller: 'PrescriptionUpsertMedicineCtrl'
             });
         }
 

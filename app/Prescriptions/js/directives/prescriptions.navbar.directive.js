@@ -14,7 +14,10 @@
         var directive = {
             link: link,
             restrict: 'E',
-            templateUrl: 'Prescriptions/partials/prescriptions.navbar.html'
+            transclude: true,
+            templateUrl: function(element, attr) {
+              return 'Prescriptions/partials/prescriptions.' + attr.type + '.html';
+            }
         };
 
         return directive;
