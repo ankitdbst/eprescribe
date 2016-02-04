@@ -1,11 +1,5 @@
 <div cg-busy="myPromise"></div>
 <!--show last 25 patient visit -->
-<h3>
-    <a ui-sref="PatientNewOrEdit({patientId: patientProfile.patientId})">{{patientProfile.firstName + " " + patientProfile.lastName}}</a>
-    <button type="button" class="btn btn-primary pull-right" ui-sref="PrescriptionNewOrEdit({patientId: patientProfile.patientId, pId: ''})">+ Create New Prescription</button>
-</h3>
-
-<hr>
 <table class="table table-hover table-condensed">
     <thead>
         <tr>

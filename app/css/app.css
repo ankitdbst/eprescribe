@@ -154,10 +154,6 @@
     display: inline-block;
     margin: 0 1px;    
     color: white;
-    -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
-    -ms-transition: 0.5s;
-    -o-transition: 0.5s;
     transition: 0.5s;
     transform: scale(1);
 }
@@ -167,5 +163,38 @@
 }
 
 .table-vcenter td {
-   vertical-align: middle!important;
+    vertical-align: middle!important;
+}
+
+#divContent {
+    overflow:scroll;
+    height: 100%;
+}
+
+.affix {
+    color: white;
+    background-color: #283c4a;
+    border-color: rgba(255, 255, 255, 0.298039);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+
+.affix a {
+    /*display: inline-block;*/
+    /*margin: 0 1px;*/    
+    color: white;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    transform: scale(1);
+}
+
+.affix a:hover,a:focus {
+    transform: scale(1.1); 
+    color:#2a6496;
+    text-decoration:underline;
 }

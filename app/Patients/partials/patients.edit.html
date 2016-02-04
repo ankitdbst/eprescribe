@@ -1,196 +1,211 @@
 <div cg-busy="myPromise"></div>
+
 <form name="formPatientProfile" class="panel-group" novalidate>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <i class="fa fa-list-alt fa-1x"></i>
-                <a data-toggle="collapse" href="#divIdentifyingDetails">Identifying Details</a>
-            </h4>
-        </div>
-        <div id="divIdentifyingDetails" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientFirstName.$touched && formPatientProfile.patientFirstName.$invalid }">
-                    <label for="patientFirstName"> First Name*:</label>
-                    <input type="text" ng-model="patient.firstName" class="form-control" name="patientFirstName" id="patientFirstName" placeholder="First Name" required/>
-                    <div class="help-block" ng-messages="formPatientProfile.patientFirstName.$error" ng-if="formPatientProfile.patientFirstName.$touched">                    
-                        <p ng-message="required">Patient's First Name is mandatory!</p>
-                    </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientMiddleName"> Middle Name:</label>
-                    <input type="text" ng-model="patient.midlleName" class="form-control" id="patientMiddleName" name="patientMiddleName" placeholder="Middle Name (optional)" />
-                </div>
-                <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientLastName.$touched && formPatientProfile.patientLastName.$invalid }">
-                    <label for="patientLastName"> Last Name*:</label>
-                    <input type="text" ng-model="patient.lastName" class="form-control" name="patientLastName" id="patientLastName" placeholder="Last Name" required/>
-                    <div class="help-block" ng-messages="formPatientProfile.patientLastName.$error" ng-if="formPatientProfile.patientLastName.$touched">                    
-                        <p ng-message="required">Patient's Last Name is mandatory!</p>
-                    </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientDateOfBirth">Date of Birth*:</label>
-                    <datetimepicker name="patientDateOfBirth" id="patientDateOfBirth" ng-model="patient.dob" placeholder="Date of Birth"/>
-
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientGender">Gender*:</label>
-                    <select ng-model="patient.sex" ng-options="gender for gender in genders" class="form-control" id="patientGender"></select>
-                </div>
-                <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientMobileNumber.$touched && formPatientProfile.patientMobileNumber.$invalid }">
-                    <label for="patientMobileNumber">Mobile Number*:</label>
-                    <input type="number" string-to-number ng-model="patient.mobile" ng-disabled="patient.isUpdate" class="form-control" id="patientMobileNumber" name="patientMobileNumber" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" required/>
-                    <div class="help-block" ng-messages="formPatientProfile.patientMobileNumber.$error" ng-if="formPatientProfile.patientMobileNumber.$touched">                    
-                        <p ng-message="required">Mobile Number is mandatory!</p>
-                        <p ng-message="minlength">Please enter valid Mobile Number!</p>
-                        <p ng-message="maxlength">Please enter valid Mobile Number!</p>
-                    </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientRelationshipType">Relationship Type*:</label>
-                    <select ng-model="patient.relation" ng-options="relationshiptype for relationshiptype in relationshiptypes" class="form-control" name="patientRelationshipType" id="patientRelationshipType"></select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientLandlineNumber">Landline Number:</label>
-                    <input type="number" string-to-number ng-model="patient.landlineNumber" class="form-control" id="patientLandlineNumber" name="patientLandlineNumber" placeholder="Landline Number" />
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientEmailId">Email Id:</label>
-                    <input type="email" ng-model="patient.email" class="form-control" id="patientEmailId" placeholder="Email Id" />
-                </div>
-            </div>
-        </div>
+    <div class="col-md-11">
+        <button type="button" class="btn btn-success pull-right" style="display: block; margin-bottom: 1%" ui-sref="PrescriptionNewOrEdit({patientId: patient.patientId, pId: ''})">+ Create New Prescription</button>
     </div>
+    <div class="col-md-1">
+        <ul id="navPills" class="nav nav-pills nav-stacked affix">
+            <li class="active"><a href="#identifyingDetails" prevent-default="" scroll-to="identifyingDetails">Identifying Details</a></li>
+            <li class=""><a href="#primaryAddress" prevent-default="" scroll-to="primaryAddress">Primary Address</a></li>
+            <li class=""><a href="#history" prevent-default="" scroll-to="history">History</a></li>
+            <li class=""><a href="#allergies" prevent-default="" scroll-to="allergies">Allergies</a></li>
+            <li class=""><a href="#prescriptions" prevent-default="" scroll-to="prescriptions">Prescriptions</a></li>
+        </ul>
+    </div>
+    <div id="divContent" scroll-spy="" data-target="#navPills" class="col-md-11" data-scroll-offset="80">
+        <div class="panel panel-primary" id="identifyingDetails">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a data-toggle="collapse" href="#divIdentifyingDetails">Identifying Details</a>
+                </h4>
+            </div>
+            <div id="divIdentifyingDetails" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientFirstName.$touched && formPatientProfile.patientFirstName.$invalid }">
+                        <label for="patientFirstName"> First Name*:</label>
+                        <input type="text" ng-model="patient.firstName" class="form-control" name="patientFirstName" id="patientFirstName" placeholder="First Name" required/>
+                        <div class="help-block" ng-messages="formPatientProfile.patientFirstName.$error" ng-if="formPatientProfile.patientFirstName.$touched">                    
+                            <p ng-message="required">Patient's First Name is mandatory!</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientMiddleName"> Middle Name:</label>
+                        <input type="text" ng-model="patient.midlleName" class="form-control" id="patientMiddleName" name="patientMiddleName" placeholder="Middle Name (optional)" />
+                    </div>
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientLastName.$touched && formPatientProfile.patientLastName.$invalid }">
+                        <label for="patientLastName"> Last Name*:</label>
+                        <input type="text" ng-model="patient.lastName" class="form-control" name="patientLastName" id="patientLastName" placeholder="Last Name" required/>
+                        <div class="help-block" ng-messages="formPatientProfile.patientLastName.$error" ng-if="formPatientProfile.patientLastName.$touched">                    
+                            <p ng-message="required">Patient's Last Name is mandatory!</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientDateOfBirth">Date of Birth*:</label>
+                        <datetimepicker name="patientDateOfBirth" id="patientDateOfBirth" ng-model="patient.dob" placeholder="Date of Birth"/>
 
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <i class="fa fa-home fa-1x"></i>
-                <a data-toggle="collapse" href="#divPrimaryAddress">Primary Address</a>
-            </h4>
-        </div>
-        <div id="divPrimaryAddress" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientAddressLine1.$touched && formPatientProfile.patientAddressLine1.$invalid }">
-                    <label for="patientAddressLine1">Address Line 1*:</label>
-                    <textarea class="form-control" ng-model="patient.address.addressLine1" id="patientAddressLine1" name="patientAddressLine1" rows="1" placeholder="Address Line 1" required></textarea>
-                    <div class="help-block" ng-messages="formPatientProfile.patientAddressLine1.$error" ng-if="formPatientProfile.patientAddressLine1.$touched">                    
-                        <p ng-message="required">Address Line 1 is mandatory!</p>
                     </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientAddressLine2">Address Line 2:</label>
-                    <textarea class="form-control" ng-model="patient.address.addressLine2" id="patientAddressLine2" name="patientAddressLine2" rows="1" placeholder="Address Line 2"></textarea>
-                </div>
-                <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientCity.$touched && formPatientProfile.patientCity.$invalid }">
-                    <label for="patientCity">City*:</label>
-                    <input type="text" ng-model="patient.address.city" class="form-control" id="patientCity" name="patientCity" placeholder="City" required />
-                    <div class="help-block" ng-messages="formPatientProfile.patientCity.$error" ng-if="formPatientProfile.patientCity.$touched">                    
-                        <p ng-message="required">City is mandatory!</p>
+                    <div class="form-group col-md-4">
+                        <label for="patientGender">Gender*:</label>
+                        <select ng-model="patient.sex" ng-options="gender for gender in genders" class="form-control" id="patientGender"></select>
                     </div>
-                </div>
-                <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientState.$touched && formPatientProfile.patientState.$invalid }">
-                    <label for="patientState">State*:</label>
-                    <input type="text" ng-model="patient.address.state" class="form-control" id="patientState" name="patientState" placeholder="State" required />
-                    <div class="help-block" ng-messages="formPatientProfile.patientState.$error" ng-if="formPatientProfile.patientState.$touched">                    
-                        <p ng-message="required">State is mandatory!</p>
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientMobileNumber.$touched && formPatientProfile.patientMobileNumber.$invalid }">
+                        <label for="patientMobileNumber">Mobile Number*:</label>
+                        <input type="number" string-to-number ng-model="patient.mobile" ng-disabled="patient.isUpdate" class="form-control" id="patientMobileNumber" name="patientMobileNumber" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" required/>
+                        <div class="help-block" ng-messages="formPatientProfile.patientMobileNumber.$error" ng-if="formPatientProfile.patientMobileNumber.$touched">                    
+                            <p ng-message="required">Mobile Number is mandatory!</p>
+                            <p ng-message="minlength">Please enter valid Mobile Number!</p>
+                            <p ng-message="maxlength">Please enter valid Mobile Number!</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientPinCode.$touched && formPatientProfile.patientPinCode.$invalid }">
-                    <label for="patientPinCode">PinCode*:</label>
-                    <input type="text" ng-model="patient.address.pincode" class="form-control" id="patientPinCode" name="patientPinCode" placeholder="Pin Code" required />
-                    <div class="help-block" ng-messages="formPatientProfile.patientPinCode.$error" ng-if="formPatientProfile.patientPinCode.$touched">                    
-                        <p ng-message="required">Pin Code is mandatory!</p>
+                    <div class="form-group col-md-4">
+                        <label for="patientRelationshipType">Relationship Type*:</label>
+                        <select ng-model="patient.relation" ng-options="relationshiptype for relationshiptype in relationshiptypes" class="form-control" name="patientRelationshipType" id="patientRelationshipType"></select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientLandlineNumber">Landline Number:</label>
+                        <input type="number" string-to-number ng-model="patient.landlineNumber" class="form-control" id="patientLandlineNumber" name="patientLandlineNumber" placeholder="Landline Number" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientEmailId">Email Id:</label>
+                        <input type="email" ng-model="patient.email" class="form-control" id="patientEmailId" placeholder="Email Id" />
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <i class="fa fa-history fa-1x"></i>
-                <a data-toggle="collapse" href="#divHistory">History</a>
-            </h4>
-        </div>
-        <div id="divHistory" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="form-group col-md-4">
-                    <label for="patientMedicalHistory">Medical History:</label>
-                    <textarea class="form-control" ng-model="patient.history.medical" id="patientMedicalHistory" rows="1" placeholder="E.g. Scoliosis/Migraine headaches etc."></textarea>
+        <div class="panel panel-primary" id="primaryAddress">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-home fa-1x"></i>
+                    <a data-toggle="collapse" href="#divPrimaryAddress">Primary Address</a>
+                </h4>
+            </div>
+            <div id="divPrimaryAddress" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientAddressLine1.$touched && formPatientProfile.patientAddressLine1.$invalid }">
+                        <label for="patientAddressLine1">Address Line 1*:</label>
+                        <textarea class="form-control" ng-model="patient.address.addressLine1" id="patientAddressLine1" name="patientAddressLine1" rows="1" placeholder="Address Line 1" required></textarea>
+                        <div class="help-block" ng-messages="formPatientProfile.patientAddressLine1.$error" ng-if="formPatientProfile.patientAddressLine1.$touched">                    
+                            <p ng-message="required">Address Line 1 is mandatory!</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientAddressLine2">Address Line 2:</label>
+                        <textarea class="form-control" ng-model="patient.address.addressLine2" id="patientAddressLine2" name="patientAddressLine2" rows="1" placeholder="Address Line 2"></textarea>
+                    </div>
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientCity.$touched && formPatientProfile.patientCity.$invalid }">
+                        <label for="patientCity">City*:</label>
+                        <input type="text" ng-model="patient.address.city" class="form-control" id="patientCity" name="patientCity" placeholder="City" required />
+                        <div class="help-block" ng-messages="formPatientProfile.patientCity.$error" ng-if="formPatientProfile.patientCity.$touched">                    
+                            <p ng-message="required">City is mandatory!</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientState.$touched && formPatientProfile.patientState.$invalid }">
+                        <label for="patientState">State*:</label>
+                        <input type="text" ng-model="patient.address.state" class="form-control" id="patientState" name="patientState" placeholder="State" required />
+                        <div class="help-block" ng-messages="formPatientProfile.patientState.$error" ng-if="formPatientProfile.patientState.$touched">                    
+                            <p ng-message="required">State is mandatory!</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientPinCode.$touched && formPatientProfile.patientPinCode.$invalid }">
+                        <label for="patientPinCode">PinCode*:</label>
+                        <input type="text" ng-model="patient.address.pincode" class="form-control" id="patientPinCode" name="patientPinCode" placeholder="Pin Code" required />
+                        <div class="help-block" ng-messages="formPatientProfile.patientPinCode.$error" ng-if="formPatientProfile.patientPinCode.$touched">                    
+                            <p ng-message="required">Pin Code is mandatory!</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="patientSurgicalHistory">Surgical History:</label>
-                    <textarea class="form-control" ng-model="patient.history.surgical" id="patientSurgicalHistory" rows="1" placeholder="E.g. Multiple Knee Surgeries etc."></textarea>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientFamilyHistory">Family History:</label>
-                    <textarea class="form-control" ng-model="patient.history.family" id="patientFamilyHistory" rows="1" placeholder="E.g. No History of Diabetes etc."></textarea>
-                </div>   
-                <div class="form-group col-md-4">
-                    <label for="patientSmokingStatus"> Smoking Status:</label>
-                    <input type="text" ng-model="patient.history.smoking" class="form-control" id="patientSmokingStatus" placeholder="E.g. Former Smoker/No Tobacco use etc." />
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientAlcoholStatus">Alcohol Status:</label>
-                    <input type="text" ng-model="patient.history.alcohol" class="form-control" id="patientAlcoholStatus" placeholder="E.g. Rare Alchohol use/Alcoholic etc." />
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientOtherComments">Other Comments:</label>
-                    <textarea class="form-control" ng-model="patient.history.other" id="patientOtherComments" rows="1" placeholder="Other Comments"></textarea>
-                </div> 
             </div>
         </div>
-    </div>
 
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <i class="fa fa-ban fa-1x"></i>
-                <a data-toggle="collapse" href="#divAllergies">Allergies</a>
-            </h4>
-        </div>
-        <div id="divAllergies" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="form-group col-md-4">
-                    <label for="patientDrugAllergies">Drug Allergies:</label>
-                    <textarea class="form-control" ng-model="patient.alergy.drug" id="patientDrugAllergies" rows="1" placeholder="E.g. Penicillins etc."></textarea>
+        <div class="panel panel-info" id="history">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-history fa-1x"></i>
+                    <a data-toggle="collapse" href="#divHistory">History</a>
+                </h4>
+            </div>
+            <div id="divHistory" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="form-group col-md-4">
+                        <label for="patientMedicalHistory">Medical History:</label>
+                        <textarea class="form-control" ng-model="patient.history.medical" id="patientMedicalHistory" rows="1" placeholder="E.g. Scoliosis/Migraine headaches etc."></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientSurgicalHistory">Surgical History:</label>
+                        <textarea class="form-control" ng-model="patient.history.surgical" id="patientSurgicalHistory" rows="1" placeholder="E.g. Multiple Knee Surgeries etc."></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientFamilyHistory">Family History:</label>
+                        <textarea class="form-control" ng-model="patient.history.family" id="patientFamilyHistory" rows="1" placeholder="E.g. No History of Diabetes etc."></textarea>
+                    </div>   
+                    <div class="form-group col-md-4">
+                        <label for="patientSmokingStatus"> Smoking Status:</label>
+                        <input type="text" ng-model="patient.history.smoking" class="form-control" id="patientSmokingStatus" placeholder="E.g. Former Smoker/No Tobacco use etc." />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientAlcoholStatus">Alcohol Status:</label>
+                        <input type="text" ng-model="patient.history.alcohol" class="form-control" id="patientAlcoholStatus" placeholder="E.g. Rare Alchohol use/Alcoholic etc." />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientOtherComments">Other Comments:</label>
+                        <textarea class="form-control" ng-model="patient.history.other" id="patientOtherComments" rows="1" placeholder="Other Comments"></textarea>
+                    </div> 
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="patientFoodAllergies">Food Allergies:</label>
-                    <textarea class="form-control" ng-model="patient.alergy.food" id="patientFoodAllergies" rows="1" placeholder="E.g. No food allergies recorded etc."></textarea>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="patientEnvironmentalAllergies">Environmental Allergies:</label>
-                    <textarea class="form-control" ng-model="patient.alergy.env" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
-                </div>   
             </div>
         </div>
-    </div>
 
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <i class="fa fa-list-alt fa-1x"></i>
-                <a data-toggle="collapse" ui-sref="PrescriptionList({patientId: patient.patientId})" href="#divPrescriptions">Prescriptions</a>
-            </h4>
-        </div>
-        <div id="divPrescriptions" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div ui-view="view-PrescriptioList"></div>
+        <div class="panel panel-info" id="allergies">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-ban fa-1x"></i>
+                    <a data-toggle="collapse" href="#divAllergies">Allergies</a>
+                </h4>
+            </div>
+            <div id="divAllergies" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="form-group col-md-4">
+                        <label for="patientDrugAllergies">Drug Allergies:</label>
+                        <textarea class="form-control" ng-model="patient.alergy.drug" id="patientDrugAllergies" rows="1" placeholder="E.g. Penicillins etc."></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientFoodAllergies">Food Allergies:</label>
+                        <textarea class="form-control" ng-model="patient.alergy.food" id="patientFoodAllergies" rows="1" placeholder="E.g. No food allergies recorded etc."></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="patientEnvironmentalAllergies">Environmental Allergies:</label>
+                        <textarea class="form-control" ng-model="patient.alergy.env" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
+                    </div>   
+                </div>
             </div>
         </div>
-    </div>
 
-    <hr>
+        <div class="panel panel-info" id="prescriptions">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a data-toggle="collapse" ui-sref="PrescriptionList({patientId: patient.patientId})" href="#divPrescriptions">Prescriptions</a>
+                </h4>
+            </div>
+            <div id="divPrescriptions" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div ui-view="view-PrescriptioList"></div>
+                </div>
+            </div>
+        </div>
 
-    <div class="alert {{alertClass}}" role="alert" ng-show="showAlert">
-        {{alertMessage}}
-        <a href="#/patients" class="alert-link"> Go Back to Patients List.</a>
-    </div>
+        <hr>
 
-    <div class="row pull-right">
-        <button type="button" class="btn btn-primary" ng-click="savePatientProfile()" ng-disabled="formPatientProfile.$invalid">Save</button>
-        <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
+        <div class="alert {{alertClass}}" role="alert" ng-show="showAlert">
+            {{alertMessage}}
+            <a href="#/patients" class="alert-link"> Go Back to Patients List.</a>
+        </div>
+
+        <div class="row pull-right">
+            <button type="button" class="btn btn-primary" ng-click="savePatientProfile()" ng-disabled="formPatientProfile.$invalid">Save</button>
+            <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
+        </div>
     </div>
 </form>
