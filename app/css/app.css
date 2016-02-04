@@ -198,3 +198,9 @@
     color:#2a6496;
     text-decoration:underline;
 }
+
+.affix>li.active>a, affix>li.active>a:hover, affix>li.active>a:focus {
+    color: #fff;
+    background-color: #283c4a;
+    opacity: 0.4;
+}

@@ -1,19 +1,11 @@
 <div cg-busy="myPromise"></div>
 
-<form name="formPatientProfile" class="panel-group" novalidate>
+<form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
     <div class="col-md-11">
         <button type="button" class="btn btn-success pull-right" style="display: block; margin-bottom: 1%" ui-sref="PrescriptionNewOrEdit({patientId: patient.patientId, pId: ''})">+ Create New Prescription</button>
     </div>
-    <div class="col-md-1">
-        <ul id="navPills" class="nav nav-pills nav-stacked affix">
-            <li class="active"><a href="#identifyingDetails" prevent-default="" scroll-to="identifyingDetails">Identifying Details</a></li>
-            <li class=""><a href="#primaryAddress" prevent-default="" scroll-to="primaryAddress">Primary Address</a></li>
-            <li class=""><a href="#history" prevent-default="" scroll-to="history">History</a></li>
-            <li class=""><a href="#allergies" prevent-default="" scroll-to="allergies">Allergies</a></li>
-            <li class=""><a href="#prescriptions" prevent-default="" scroll-to="prescriptions">Prescriptions</a></li>
-        </ul>
-    </div>
-    <div id="divContent" scroll-spy="" data-target="#navPills" class="col-md-11" data-scroll-offset="80">
+
+    <div id="divContent" class="col-md-11">
         <div class="panel panel-primary" id="identifyingDetails">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -208,4 +200,15 @@
             <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
         </div>
     </div>
+
+    <div class="col-md-1">
+        <ul id="navPills" class="nav nav-pills nav-stacked affix">
+            <li spy="identifyingDetails"><a href="">Identifying Details</a></li>
+            <li spy="primaryAddress"><a href="">Primary Address</a></li>
+            <li spy="history"><a href="">History</a></li>
+            <li spy="allergies"><a href="">Allergies</a></li>
+            <li spy="prescriptions"><a href="">Prescriptions</a></li>
+        </ul>
+    </div>
+
 </form>
