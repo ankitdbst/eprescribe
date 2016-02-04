@@ -2,7 +2,7 @@
 <!-- Button trigger modal -->
 
 <div id="loginContent">
-    <div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="loginModal" ng-keydown="$event.which === 13 && signIn()">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -81,7 +81,7 @@
     </div><!-- /.modal -->
 </div>
 <div id="registerContent">
-    <div class="modal fade" tabindex="-1" role="dialog" id="registerModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="registerModal" ng-keydown="$event.which === 13">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">

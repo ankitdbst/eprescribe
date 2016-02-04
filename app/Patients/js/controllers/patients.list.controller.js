@@ -15,7 +15,7 @@
 
         //Initialize
         initialize();
-        
+
         //GetDoctorProfile..
         getDoctorProfile();
 
@@ -34,11 +34,11 @@
             $scope.patient = {};
             $scope.patient.search = {mobilenumber: ''};
         }
-        
+
         function getDoctorProfile() {
             //Get Patient Details from server and populate patient object..
             $scope.myPromise = Patient.get({
-                user: $scope.account.userId,//DoctorId
+                user: $scope.account.userId, //DoctorId
                 sessionId: $scope.account.sessionId,
                 doctorId: false,
                 limit: 50,
@@ -51,12 +51,15 @@
 
         $scope.patientList = Patient.query({
             user: "",
-            sessionId: $scope.account.sessionId, 
-            doctorId: $scope.account.userId, 
+            sessionId: $scope.account.sessionId,
+            doctorId: $scope.account.userId,
             limit: 50,
             columnsToGet: ""
         }, function (response) {
             $scope.patientList = response;
+            angular.forEach($scope.patientList, function (patient) {
+                patient.profileImageURL = "img/User1.jpg";//this should come from backend, TEMPORARY
+            });
         }
         );
 
@@ -87,6 +90,9 @@
                     $scope.showAlert = false;
                     $scope.showSearchResults = true;
                     $scope.searchPatientResults = response;
+                    angular.forEach($scope.searchPatientResults, function (patient) {
+                        patient.profileImageURL = "img/User1.jpg";//this should come from backend, TEMPORARY
+                    });
                 }
             }
             );

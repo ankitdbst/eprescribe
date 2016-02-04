@@ -21,7 +21,7 @@
         <div class="alert alert-danger" role="alert" ng-show="showAlert">
             {{alertMessage}}
         </div>
-        <table class="table table-hover table-condensed" ng-show="showSearchResults">
+        <table class="table table-hover table-condensed table-vcenter" ng-show="showSearchResults">
             <thead>
                 <tr>
                     <th>
@@ -82,10 +82,13 @@
                 <tr ng-repeat="patientObjSearch in searchPatientResults| orderBy:sortSearchResultsType:sortSearchResultsReverse"> 
                     <!-- Hyperlink to Profile Page using unique Patient Id -->
                     <td>
+                        <a href="#/patients/edit/{{patientObjSearch.patientId}}" class="btn btn-link" role="button">
+                            <img ng-src="{{patientObjSearch.profileImageURL}}" class="img-circle" width="40" height="40">
+                        </a>
                         <a href="#/patients/edit/{{patientObjSearch.patientId}}" uib-tooltip="View Patient Profile"> {{getFullName(patientObjSearch)}} </a>
                     </td>
                     <!-- End Hyperlink -->
-                    <td>{{patientObjSearch.dob | date:'MM/dd/yyyy'}}</td>
+                    <td>{{patientObjSearch.dob| date:'MM/dd/yyyy'}}</td>
                     <td>{{patientObjSearch.sex}}</td> 
                     <td>{{patientObjSearch.mobile}}</td> 
                     <td>{{patientObjSearch.email}}</td> 
@@ -105,7 +108,7 @@
         <div class="page-header text-muted">
             <h4> Your Recent Patients List:</h4>
         </div>
-        <table class="table table-hover table-condensed">
+        <table class="table table-hover table-condensed table-vcenter">
             <thead>
                 <tr>
                     <th>
@@ -163,13 +166,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="patientObj in patientList | orderBy:sortType:sortReverse"> 
+                <tr ng-repeat="patientObj in patientList| orderBy:sortType:sortReverse"> 
                     <!-- Hyperlink to Profile Page using unique Patient Id -->
                     <td>
+                        <a href="#/patients/edit/{{patientObj.patientId}}" class="btn btn-link" role="button">
+                            <img ng-src="{{patientObj.profileImageURL}}" class="img-circle" width="40" height="40">
+                        </a>
                         <a href="#/patients/edit/{{patientObj.patientId}}" uib-tooltip="View Patient Profile"> {{getFullName(patientObj)}} </a>
                     </td>
                     <!-- End Hyperlink -->
-                    <td>{{patientObj.dob | date:'MM/dd/yyyy'}}</td>
+                    <td>{{patientObj.dob| date:'MM/dd/yyyy'}}</td>
                     <td>{{patientObj.sex}}</td> 
                     <td>{{patientObj.mobile}}</td> 
                     <td>{{patientObj.email}}</td> 
