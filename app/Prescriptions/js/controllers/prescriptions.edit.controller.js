@@ -64,7 +64,7 @@
 
         function Close() {
             $state.go('PrescriptionList', {
-              patientId: prescription.patient.patientId
+              patientId: patientId
             });
         }
     }

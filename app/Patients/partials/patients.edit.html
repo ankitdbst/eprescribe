@@ -178,12 +178,12 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a data-toggle="collapse" ui-sref="PrescriptionList({patientId: patient.patientId})" href="#divPrescriptions">Prescriptions</a>
+                    <a data-toggle="collapse" ui-sref="PatientNewOrEdit.PrescriptionList({patientId: patient.patientId})" href="#divPrescriptions">Prescriptions</a>
                 </h4>
             </div>
-            <div id="divPrescriptions" class="panel-collapse collapse">
+            <div id="divPrescriptions" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    <div ui-view="view-PrescriptioList"></div>
+                    <div ui-view></div>
                 </div>
             </div>
         </div>
