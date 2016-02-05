@@ -19,7 +19,7 @@ angular.module('ERemediumWebApp', [
     'ERemediumWebApp.utils'
 ])
 
-        .run(function ($rootScope, $location) {
+        .run(function ($rootScope, $location, $state) {
             $rootScope.getFullName = function (inputPatientObject) {
 //        alert(inputPatientObject.firstName);
                 return inputPatientObject.firstName + " " + inputPatientObject.midlleName + " " + inputPatientObject.lastName;
@@ -32,6 +32,18 @@ angular.module('ERemediumWebApp', [
             $rootScope.go = function (path) {
                 $location.path(path);
             };
+
+            /*
+             For Auto Load a Nested View. Read More
+             http://stackoverflow.com/questions/26196906/ui-router-how-to-automatically-load-a-nested-view-within-the-parent-view-as-a-de
+             */
+            $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+                var aac;
+                if (aac = toState && toState.params && toState.params.autoActivateChild) {
+                    $state.go(aac);
+                }
+            });
+
 
         });
 
