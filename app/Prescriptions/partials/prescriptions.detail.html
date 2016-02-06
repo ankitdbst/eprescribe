@@ -1,4 +1,6 @@
 <div cg-busy="myPromise"></div>
+<button class="btn btn-default" uib-tooltip="Back to Prescriptions" ui-sref="PatientNewOrEdit.PrescriptionList"> <span class="glyphicon glyphicon-arrow-left prescription-back"></span> </button>
+<hr>
 <div>
   <h4>{{prescription.patient.firstName}} {{prescription.patient.lastName}}</h4>
   <div>+91 {{prescription.patient.mobile}}</div>
@@ -34,8 +36,9 @@
 <hr>
 <form name="formPrescriptionOrder" novalidate>
   <div class="form-group">
-      <button type="button" class="btn btn-primary" ui-sref="PrescriptionNewOrEdit({pId: prescription.pid})" ng-disabled="formPrescriptionOrder.$invalid">Edit</button>
-      <button type="button" class="btn btn-success" ui-sref="PrescriptionOrder({pId: prescription.pid})" ng-disabled="formPrescriptionOrder.$invalid">Place Order</button>
-      <button type="button" class="btn btn-default" ui-sref="PrescriptionList({patientId: prescription.patient.patientId})">Cancel</button>
+      <button type="button" class="btn btn-success" ui-sref="PrescriptionOrder({pId: prescription.pid})"
+              ng-disabled="formPrescriptionOrder.$invalid"><span class="glyphicon glyphicon-shopping-cart"></span> Place Order</button>
+      <button type="button" class="btn btn-default" ng-click="print()"><span class="glyphicon glyphicon-print"></span> Print</button>
+
   </div>
 </form>

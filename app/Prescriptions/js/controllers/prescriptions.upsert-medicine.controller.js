@@ -46,6 +46,7 @@
         $state.go('PrescriptionNewOrEdit');
       }
       $scope.saveBtnName = "Update";
+      $scope.dialogTitle = "Update Medicine";
       operation = "update";
     } else {
       $scope.medcine.frequency = {};
@@ -54,6 +55,7 @@
       $scope.medcine.dispenseUnit = $scope.dispenseUnits[0];
       $scope.medcine.frequency.dType = $scope.dosageUnits[0];
       $scope.saveBtnName = "Add";
+      $scope.dialogTitle = "Add Medicine";
       $scope.reset = Reset;
     }
 
@@ -85,7 +87,8 @@
       // Call Upsert API, not require right now
       if (operation === "save") {
         $scope.$parent.prescription.medcines.push($scope.medcine);
-        $scope.medcine = {};
+        $scope.closeThisDialog();
+//        $scope.medcine = {};
       }
     }
 

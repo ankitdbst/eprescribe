@@ -36,3 +36,76 @@
 
 .eremedium-order-placed {
 }
+
+.create-prescriptions {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.navbar-nav .navbar-li-custom {
+    padding: 10px;
+}
+
+.upsert-medicine {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.img-diagnosis {
+  height: 450px;
+  width: 100%;
+}
+
+.rx-canvas {
+  display: none;
+}
+
+.canvas-editable .medicines-list { display: none; }
+.canvas-editable .prescription-other { display: none; }
+.canvas-editable .diagnosis { display: none; }
+
+.canvas-editable .rx-canvas {
+  display: block;
+}
+
+.prescription-back {
+  width: 30px
+}
+
+.thumbnail-diagnosis {
+  width: 60%;
+  height: 60px;
+}
+
+.prescription-menu {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  padding-left:20px;
+  padding-right:20px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  z-index: 9999;
+}
+
+.prescription-header-navbar.navbar-default {
+  color: #fff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-color: #283c4a;
+}
+
+.prescription-header-navbar .navbar-brand{
+  color: inherit;
+}
+
+.prescription-footer-navbar.navbar-default {
+  background-color: #f5f5f5;
+  color: #fff;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.prescription-header-navbar .navbar-nav>li>a:hover {
+  color: #fff;
+}

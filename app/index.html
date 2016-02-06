@@ -15,50 +15,42 @@
         <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
         <link rel="stylesheet" href="css/app.css">
-        <link href="css/gotham-rounded-book.css" rel="stylesheet" type="text/css"/>
         <link href="css/simple-sidebar.css" rel="stylesheet" type="text/css"/>
         <link href="bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="bower_components/angular-busy/dist/angular-busy.min.css" rel="stylesheet" type="text/css"/>
         <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <!-- ng-dialog -->
+        <link href="bower_components/ng-dialog/css/ngDialog.min.css" rel="stylesheet" type="text/css"/>
+        <link href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css" rel="stylesheet" type="text/css"/>
+        <link href="bower_components/ng-dialog/css/ngDialog-custom-width.css" rel="stylesheet" type="text/css"/>
+
         <!-- Prescription CSS -->
         <link rel="stylesheet" href="Prescriptions/css/prescriptions.css" type="text/css"/>
     </head>
-    <body class="ng-cloak body" >
+    <body>
         <div>   
             <nav class="navbar navbar-default no-margin">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active" >
-                            <button class="navbar-toggle collapse in" style="border-color: transparent;color: white" data-toggle="collapse" id="menu-toggle-2"> 
-                                <i class="fa fa-bars fa-2x" ng-show="showMenu"></i>
-                            </button>
-                            <button style="padding: 0px;" ng-show="!showMenu" ng-click="go('#')"> 
+                            <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2" style="padding: 1px"> 
                                 <img src="img/logo.png" class="logo" alt="E-Remedium">
                             </button>
-
                         </li>
                     </ul>
 
-                    <h3 class="text-muted" style="display: inline-block;">
-                        {{pageHeader}}
-                    </h3>
-                    <span class="pull-right header" ng-show="!showMenu">
-                        <a class="btn btn-link" ui-sref="login({signIn: true})" role="button">Login </a>|
-                        <a class="btn btn-link" ui-sref="login({signIn: false})" role="button">Register</a>
-                    </span>
-                    <span class="appicons pull-right" ng-show="showMenu">
-                        <a href="#/tasks">
-                            <i class="fa fa-bell fa-2x"></i>
+                    <h3 class="text-success">{{pageHeader}}
+                        <a href="#/tasks" class="pull-right" ng-show="showMenu">
+                            <i class="fa fa-bell fa-1x"></i>
                             <span class="badge alert-success">{{pendingTasksCount}}</span>
                         </a>
-                        <a class="btn btn-link" role="button">
-                            <img ng-src="{{profileImageURL}}" class="img-circle" width="50" height="50">
-                        </a>
-                    </span>
+                    </h3>
+                    
                 </div>
             </nav>
 
-            <div id="wrapper" class="toggled-2 hero-unit">
+            <div id="wrapper" class="toggled-2">
 
                 <!-- Sidebar -->
                 <!-- Sidebar -->
@@ -83,7 +75,7 @@
                         </li>
                         <li>
                             <a href="#"> 
-                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-building fa-stack-1x "></i></span>Labs/Imaging
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-gear fa-stack-1x "></i></span>Settings
                             </a>
                         </li>
                     </ul>
@@ -100,18 +92,14 @@
             </div>
 
             <div class="footer">
-                <a class="bottomLinks" href="#">About</a>
-                <a class="bottomLinks" href="#">Careers</a>
-                <a class="bottomLinks" href="#">Contact Us</a>
-                <a class="bottomLinks" href="#">Privacy &amp; Terms</a>
-                <span class="appicons bottomLinks">
-                    Download Our App 
-
-                    <a href="#" class="fa fa-android fa-2x" target="_blank" title="ERemedium Android Application"></a>
-                    <a href="#" class="fa fa-apple fa-2x" target="_blank" title="ERemedium Apple Application"></a>
-                    <a href="#" class="fa fa-windows fa-2x" target="_blank" title="ERemedium Windows Application"></a>
-                </span>
-                <div class="bottomLinks pull-right"> © 2016, E-Remedium Pvt Ltd, India. All Rights Reserved. </div>
+                <hr>    
+                <div>
+                    <a class="bottomLinks" href="#">About</a>
+                    <a class="bottomLinks" href="#">Careers</a>
+                    <a class="bottomLinks" href="#">Contact Us</a>
+                    <a class="bottomLinks" href="#">Privacy &amp; Terms</a>
+                    <span class="bottomLinks pull-right"> © 2015-2016, E-Remedium Private Limited. All Rights Reserved. </span>
+                </div>
             </div>
 
             <!--ALL SCRIPTS SECTION-->
@@ -133,6 +121,8 @@
 
             <script src="bower_components/angular-busy/dist/angular-busy.min.js" type="text/javascript"></script>
             <script src="bower_components/angular-cookies/angular-cookies.min.js" type="text/javascript"></script>
+            <script src="bower_components/angular-canvas-painter/dist/angular-canvas-painter.min.js" type="text/javascript"></script>
+            <script src="bower_components/ng-dialog/js/ngDialog.min.js" type="text/javascript"></script>
 
             <script src="js/app.js"></script>
             <script src="js/app.config.js"></script>
@@ -163,6 +153,7 @@
             <!-- Prescriptions -->
             <script src="Prescriptions/js/prescriptions.module.js"></script>
             <script src="Prescriptions/js/prescriptions.routes.js"></script>
+            <!--<script src="Prescriptions/js/controllers/prescriptions.index.controller.js"></script>-->
             <script src="Prescriptions/js/controllers/prescriptions.list.controller.js"></script>
             <script src="Prescriptions/js/controllers/prescriptions.edit.controller.js"></script>
             <script src="Prescriptions/js/controllers/prescriptions.detail.controller.js"></script>
@@ -171,13 +162,13 @@
             <script src="Prescriptions/js/controllers/prescriptions.medicines.controller.js"></script>
             <script src="Prescriptions/js/services/prescriptions.service.js"></script>
             <script src="Prescriptions/js/directives/prescriptions.medicines.directive.js"></script>
+            <script src="Prescriptions/js/directives/prescriptions.navbar.directive.js"></script>
 
             <!-- Utils -->
             <script src="Utils/js/utils.module.js"></script>
             <script src="Utils/js/directives/datetimepicker.directive.js"></script>
             <script src="Utils/js/directives/stringtonumber.directive.js" type="text/javascript"></script>
-            <script src="Utils/js/directives/scrollspy.directive.js" type="text/javascript"></script>
-            <script src="Utils/js/directives/spy.directive.js" type="text/javascript"></script>
+            <script src="Utils/js/directives/canvas-resize.directive.js" type="text/javascript"></script>
             <script src="Utils/js/filters/datetime.filter.js"></script>
             <script src="Utils/js/sidebar_menu.js" type="text/javascript"></script>
             <script src="components/version/version.js"></script>

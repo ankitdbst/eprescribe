@@ -2,20 +2,11 @@
     'use strict';
 
     angular.module('ERemediumWebApp.prescriptions.controllers')
+            .controller('PrescriptionIndexCtrl', PrescriptionIndexCtrl);
 
-    .controller('PrescriptionListCtrl', PrescriptionListCtrl);
+    PrescriptionIndexCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'Prescription', 'Account', 'ngDialog'];
 
-    PrescriptionListCtrl.$inject = [
-      '$scope',
-      '$state',
-      '$stateParams',
-      '$rootScope',
-      'Prescription',
-      'Account',
-      'ngDialog'
-    ];
-
-    function PrescriptionListCtrl($scope, $state, $stateParams, $rootScope, Prescription, Account, ngDialog) {
+    function PrescriptionIndexCtrl($scope, $state, $stateParams, $rootScope, Prescription, Account, ngDialog) {
         if(!Account.isAuthenticated()) {
           $state.go('login'); return;
         }
@@ -53,12 +44,18 @@
 
         $scope.view = ViewPrescription;
         $scope.open = Open;
+        $scope.list = List;
 
         function ViewPrescription(idx) {
-            $state.go('PatientsNewOrEdit.PrescriptionDetail', {
-                prescriptionId: $scope.prescription.pid
+            $state.go('Prescriptions.Detail', {
+                index: idx
             });
             $scope.detailView = true;
+        }
+
+        function List() {
+            $state.go('Prescriptions.List');
+            $scope.detailView = false;
         }
 
         function Open() {
@@ -68,12 +65,12 @@
               scope: $scope,
               showClose: false,
               preCloseCallback: function(value) {
-                  if(value !== "state-saved") {
-                    if (confirm('Are you sure you want to close without saving your changes?')) {
-                        return true;
-                    }
+                  if(value == "minimize")
+                    return true;
+                  if (confirm('Are you sure you want to close without saving your changes?')) {
+                      return true;
                   }
-                  return true;
+                  return false;
               },
               closeByEscape: false,
               closeByDocument: false,

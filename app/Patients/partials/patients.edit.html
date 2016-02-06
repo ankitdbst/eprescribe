@@ -1,10 +1,6 @@
 <div cg-busy="myPromise"></div>
 
 <form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
-    <div class="col-md-11">
-        <button type="button" class="btn btn-success pull-right" style="display: block; margin-bottom: 1%" ui-sref="PrescriptionNewOrEdit({patientId: patient.patientId, pId: ''})">+ Create New Prescription</button>
-    </div>
-
     <div id="divContent" class="col-md-11">
         <div class="panel panel-primary" id="identifyingDetails">
             <div class="panel-heading">
@@ -188,17 +184,18 @@
             </div>
         </div>
 
-        <hr>
+        <!-- We should have the save implicit (on diry models) or have them for individual sections -->
+        <!--<hr>-->
 
-        <div class="alert {{alertClass}}" role="alert" ng-show="showAlert">
-            {{alertMessage}}
-            <a href="#/patients" class="alert-link"> Go Back to Patients List.</a>
-        </div>
+        <!--<div class="alert {{alertClass}}" role="alert" ng-show="showAlert">-->
+            <!--{{alertMessage}}-->
+            <!--<a href="#/patients" class="alert-link"> Go Back to Patients List.</a>-->
+        <!--</div>-->
 
-        <div class="row pull-right">
-            <button type="button" class="btn btn-primary" ng-click="savePatientProfile()" ng-disabled="formPatientProfile.$invalid">Save</button>
-            <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
-        </div>
+        <!--<div class="row pull-right">-->
+            <!--<button type="button" class="btn btn-primary" ng-click="savePatientProfile()" ng-disabled="formPatientProfile.$invalid">Save</button>-->
+            <!--<button type="button" class="btn btn-default" ng-click="close()">Cancel</button>-->
+        <!--</div>-->
     </div>
 
     <div class="col-md-1">

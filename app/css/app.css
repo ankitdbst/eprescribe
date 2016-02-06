@@ -62,10 +62,6 @@
     margin: 0;
 }
 
-.panel-group .panel {
-    overflow: inherit;
-}
-
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
@@ -167,7 +163,6 @@
 }
 
 #divContent {
-    overflow:scroll;
     height: 100%;
 }
 
