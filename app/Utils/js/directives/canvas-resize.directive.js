@@ -25,13 +25,19 @@
             if(editable == true) {
               LoadCanvasFromImage();
             } else {
-              PaintCanvasToImage();
+              if($(imageObject).attr('src') === "" && scope.prescription.imageSrc !== undefined) {
+                imageObject.src = scope.prescription.imageSrc;
+              } else {
+                PaintCanvasToImage();
+              }
+
             }
           }
 
           function PaintCanvasToImage() {
             var imageData = pwCanvasMain.toDataURL();
             imageObject.src = imageData;
+            scope.prescription.imageSrc = imageData;
           }
 
           function LoadCanvasFromImage() {

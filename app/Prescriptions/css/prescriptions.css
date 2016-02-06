@@ -76,3 +76,13 @@
   width: 60%;
   height: 60px;
 }
+
+.prescription-menu {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  padding-left:20px;
+  padding-right:20px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

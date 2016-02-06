@@ -1,8 +1,10 @@
-<div cg-busy="myPromise"></div>
+<div cg-busy="myPromise" ng-init="showMenu=false"></div>
+{{createView}}
+<button type="button" class="btn btn-primary prescription-menu" ng-if="showMenu" ng-click="open();">New Prescription</button>
 <!--show last 25 patient visit -->
 <h3 class="clearfix">
     <a ui-sref="PatientNewOrEdit({patientId: patientProfile.patientId})">{{patientProfile.firstName + " " + patientProfile.lastName}}</a>
-    <button type="button" class="btn btn-primary pull-right" ng-click="open()">+ Create New Prescription</button>
+    <button type="button" class="btn btn-primary pull-right" ng-if="!showMenu" ng-click="open();">+ Create New Prescription</button>
 </h3>
 <hr>
 <div class="clearfix">
@@ -18,7 +20,7 @@
       <!--</span>-->
     <!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
 
-  <div class="pull-right">
+  <div class="pull-right" ng-if="!detailView">
     <div class="btn-group" role="group">
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>

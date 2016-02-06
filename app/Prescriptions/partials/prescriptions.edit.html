@@ -1,7 +1,7 @@
 <navbar type="header">
-  <li><a href="#"><span class="glyphicon glyphicon-minus"></span></a></li>
+  <li><a ng-click="minimize();"><span class="glyphicon glyphicon-minus"></span></a></li>
   <!--<li><a href="#"><span class="glyphicon glyphicon-resize-small"></span></a></li>-->
-  <li><a ng-click="closeThisDialog()"><span class="glyphicon glyphicon-remove"></span></a></li>
+  <li><a ng-click="close()"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
 <div cg-busy="myPromise"></div>
 <div class="create-prescriptions" ng-init="canvasEditable=false;touched=false;">

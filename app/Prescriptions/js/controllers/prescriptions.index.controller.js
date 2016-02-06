@@ -64,6 +64,14 @@
               className: 'ngdialog-theme-default custom-width',
               scope: $scope,
               showClose: false,
+              preCloseCallback: function(value) {
+                  if(value == "minimize")
+                    return true;
+                  if (confirm('Are you sure you want to close without saving your changes?')) {
+                      return true;
+                  }
+                  return false;
+              },
               closeByEscape: false,
               closeByDocument: false,
               controller: 'PrescriptionNewOrEditCtrl'

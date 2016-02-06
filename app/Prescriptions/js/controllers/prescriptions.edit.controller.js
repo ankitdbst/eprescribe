@@ -31,7 +31,9 @@
             $rootScope.pageHeader = "Create Prescription";
 
 //            $scope.canvas-editable = false;
-
+            if($scope.$parent.prescriptionTmp !== undefined) {
+              $scope.prescription = $scope.$parent.prescriptionTmp;
+            } else {
             $scope.prescription = new Prescription();
             $scope.prescription.patientId = patientId;
             $scope.prescription.doctorId = account.userId;
@@ -45,6 +47,9 @@
             defaultDate.setDate(defaultDate.getDate() + 7);
             $scope.prescription.nextVisit = {};
             $scope.prescription.nextVisit.date = moment(defaultDate).format("DD/MM/YYYY hh:mm A");
+            }
+
+
         }
 
         // Methods
@@ -74,6 +79,8 @@
             });
         }
 
+        $scope.minimize = Minimize;
+
         function Open() {
             ngDialog.open({
               template: 'Prescriptions/partials/prescriptions.upsert-medicine.html',
@@ -87,9 +94,17 @@
         }
 
         function Close() {
-            $state.go('PrescriptionList', {
-              patientId: prescription.patient.patientId
-            });
+            $scope.$parent.showMenu = false;
+            $scope.closeThisDialog();
+//            $state.go('PrescriptionList', {
+//              patientId: prescription.patient.patientId
+//            });
+        }
+
+        function Minimize() {
+          $scope.$parent.showMenu = true;
+          $scope.$parent.prescriptionTmp = $scope.prescription;
+          $scope.closeThisDialog("minimize");
         }
     }
 })();
