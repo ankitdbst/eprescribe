@@ -73,9 +73,6 @@
                             <span ng-show="sortSearchResultsType == 'relation' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
                         </a>
                     </th> 
-                    <th>
-                        <span class="fa-lg" uib-tooltip="Click to view Prescriptions" tooltip-placement="top-right">&#8478;</span>
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -94,11 +91,6 @@
                     <td>{{patientObjSearch.email}}</td> 
                     <td>{{getFullAddress(patientObjSearch)}}</td> 
                     <td>{{patientObjSearch.relation}}</td> 
-                    <td> 
-                        <a href="#/prescriptions/{{patientObjSearch.patientId}}">
-                            <i class="fa fa-medkit fa-lg"></i>
-                        </a> 
-                    </td>
                 </tr>
             </tbody>
         </table>
