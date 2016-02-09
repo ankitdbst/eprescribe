@@ -31,6 +31,6 @@
       };
 
       $scope.prescriptions = Prescription.list(params);
-      $scope.myPromise = prescriptions.$promise;
+      $scope.myPromise = $scope.prescriptions.$promise;
     }
 })();

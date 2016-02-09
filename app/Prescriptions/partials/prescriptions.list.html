@@ -33,7 +33,6 @@
                     <span ng-show="sortSearchResultsType == 'nextVisit.date' && sortSearchResultsReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
-            <th>Order</th>
         </tr>
     </thead>
     <tbody>
@@ -57,11 +56,6 @@
                 </ul>
             </td>
             <td>{{prescription.nextVisit.date| date:'medium'}}</td>
-            <td class="eremedium-order-rx">
-                <a ui-sref="PrescriptionOrder({ pId: prescription.pid })">
-                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                </a>
-            </td>
         </tr>
     </tbody>
 </table>

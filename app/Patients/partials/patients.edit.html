@@ -1,7 +1,24 @@
 <div cg-busy="myPromise"></div>
 
 <form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
-    <div id="divContent" class="col-md-11">
+
+    <div class="col-md-10">
+        <!-- Split button -->
+        <div class="btn-group pull-right" style="display: block; margin-bottom: 1%">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Patient Actions <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+                <li><a href="#">Refer a Doctor</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Send E-Remedium App link</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="divContent" class="col-md-10">
+
         <div class="panel panel-primary" id="identifyingDetails">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -70,7 +87,7 @@
                     <a data-toggle="collapse" href="#divPrimaryAddress">Primary Address</a>
                 </h4>
             </div>
-            <div id="divPrimaryAddress" class="panel-collapse collapse in">
+            <div id="divPrimaryAddress" class="panel-collapse collapse">
                 <div class="panel-body">
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientAddressLine1.$touched && formPatientProfile.patientAddressLine1.$invalid }">
                         <label for="patientAddressLine1">Address Line 1*:</label>
@@ -115,7 +132,7 @@
                     <a data-toggle="collapse" href="#divHistory">History</a>
                 </h4>
             </div>
-            <div id="divHistory" class="panel-collapse collapse in">
+            <div id="divHistory" class="panel-collapse collapse">
                 <div class="panel-body">
                     <div class="form-group col-md-4">
                         <label for="patientMedicalHistory">Medical History:</label>
@@ -152,7 +169,7 @@
                     <a data-toggle="collapse" href="#divAllergies">Allergies</a>
                 </h4>
             </div>
-            <div id="divAllergies" class="panel-collapse collapse in">
+            <div id="divAllergies" class="panel-collapse collapse">
                 <div class="panel-body">
                     <div class="form-group col-md-4">
                         <label for="patientDrugAllergies">Drug Allergies:</label>
@@ -174,10 +191,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a id="aPrescriptionList" data-toggle="collapse" ui-sref="PatientNewOrEdit.PrescriptionList({patientId: patient.patientId})" href="#divPrescriptions">Prescriptions</a>
+                    <a id="aPrescriptionList" data-toggle="collapse" href="#divPrescriptions">Prescriptions</a>
                 </h4>
             </div>
-            <div id="divPrescriptions" class="panel-collapse collapse in">
+            <div id="divPrescriptions" class="panel-collapse collapse">
                 <div class="panel-body">
                     <div ui-view></div>
                 </div>
@@ -188,23 +205,29 @@
         <!--<hr>-->
 
         <!--<div class="alert {{alertClass}}" role="alert" ng-show="showAlert">-->
-            <!--{{alertMessage}}-->
-            <!--<a href="#/patients" class="alert-link"> Go Back to Patients List.</a>-->
+        <!--{{alertMessage}}-->
+        <!--<a href="#/patients" class="alert-link"> Go Back to Patients List.</a>-->
         <!--</div>-->
 
         <!--<div class="row pull-right">-->
-            <!--<button type="button" class="btn btn-primary" ng-click="savePatientProfile()" ng-disabled="formPatientProfile.$invalid">Save</button>-->
-            <!--<button type="button" class="btn btn-default" ng-click="close()">Cancel</button>-->
+        <!--<button type="button" class="btn btn-primary" ng-click="savePatientProfile()" ng-disabled="formPatientProfile.$invalid">Save</button>-->
+        <!--<button type="button" class="btn btn-default" ng-click="close()">Cancel</button>-->
         <!--</div>-->
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-2">
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
             <li spy="identifyingDetails"><a href="">Identifying Details</a></li>
             <li spy="primaryAddress"><a href="">Primary Address</a></li>
             <li spy="history"><a href="">History</a></li>
             <li spy="allergies"><a href="">Allergies</a></li>
+            <li spy="vitals"><a href="">Vitals</a></li>
+            <li spy="clinicalNotes"><a href="">Clinical Notes</a></li>
+            <li spy="documents"><a href="">Documents</a></li>
             <li spy="prescriptions"><a href="">Prescriptions</a></li>
+            <li spy="labOrderTracking"><a href="">Lab Order Tracking</a></li>
+            <li spy="pharmacyOrderTracking"><a href="">Pharmacy Order Tracking</a></li>
+            <li spy="messages"><a href="">Messages</a></li>
         </ul>
     </div>
 
