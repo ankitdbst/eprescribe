@@ -2,81 +2,81 @@
     'use strict';
 
     angular.module('ERemediumWebApp.prescriptions.controllers')
-            .controller('PrescriptionIndexCtrl', PrescriptionIndexCtrl);
+    .controller('PrescriptionIndexCtrl', PrescriptionIndexCtrl);
 
-    PrescriptionIndexCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'Prescription', 'Account', 'ngDialog'];
+    PrescriptionIndexCtrl.$inject = [
+      '$scope',
+      '$state',
+      'ngDialog',
+      'Prescription',
+      '$stateParams',
+      'Account'
+    ];
 
-    function PrescriptionIndexCtrl($scope, $state, $stateParams, $rootScope, Prescription, Account, ngDialog) {
-        if(!Account.isAuthenticated()) {
-          $state.go('login'); return;
-        }
-        var account = Account.getAuthenticatedAccount();
+    function PrescriptionIndexCtrl($scope, $state, ngDialog, Prescription, $stateParams, Account) {
+      var patientId = $stateParams.patientId;
+      var user = Account.getAuthenticatedAccount();
 
-        //Initialize
-        var patientId = $stateParams.patientId;
-        $scope.sortSearchResultsReverse = false;// set the default sort order
-        $scope.sortSearchResultsType = ''// set the default sort type
+      $scope.prescription = new Prescription();
+      Init();
 
-        if (angular.isUndefined(patientId) && patientId.length === 0) {
-          $state.go('PatientsList');// there needs to be home
-        }
+      $scope.prescriptions = [];
 
-        $rootScope.pageHeader = "Prescriptions";
-//        $scope.prescriptions = [{_id: "568e1b8d220e878faf3311b3", pid: 5, pDate: new Date("2015/11/04 10:32:31"), diagnosis: "Lab report showed above diseases, patient brought in critical time", patientComplaint: "Patient complaied of chest pain from last 10 days", pTime: 103231, medcines: [{name: "paracetomal"}], patient: {firstName: "Mohanish", lastName: "Singh", patientId: 1}, diseases: [{disease: "Headache", reportDate: 20151031, daysFrom: 10}, {disease: "Anemia", reportDate: 20151031, daysFrom: 10}]}, {_id: "568e1b8d220e878faf3311b3", pid: 4, pDate: new Date("2015/11/04 10:32:31"), pTime: 103231, medcines: [{name: "paracetomal"}], diseases: [{disease: "Headache", reportDate: 20151031, daysFrom: 10}, {disease: "Anemia", reportDate: 20151031, daysFrom: 10}]}, {_id: "568e1b8d220e878faf3311b3", pid: 5, pDate: new Date("2015/11/04 10:32:31"), pTime: 103231, medcines: [{name: "paracetomal"}], diseases: [{disease: "Headache", reportDate: 20151031, daysFrom: 10}, {disease: "Anemia", reportDate: 20151031, daysFrom: 10}]}, {_id: "568e1b8d220e878faf3311b3", pid: 5, pDate: 20151104, pTime: 103231, medcines: [{name: "paracetomal"}], diseases: [{disease: "Headache", reportDate: 20151031, daysFrom: 10}, {disease: "Anemia", reportDate: 20151031, daysFrom: 10}]}];
-        $scope.patientProfile = {};
+      $scope.create = CreatePrescription;
+      $scope.minimized = false;
 
-        var params = {
-          user: "sujeet",
-          sessionId: account.sessionId,
-          doctorId: account.userId,
-          patientId: patientId,
-          limit: 10,
-          columnsToGet: ""
+      function Init() {
+        $scope.prescription.patientId = patientId;
+        $scope.prescription.doctorId  = user.userId;
+        // Fill defaults from session object maybe
+        $scope.prescription.isUpdate = false; // for edit we change this to true
+        // Medications
+        $scope.prescription.medcines = [];
+
+        var defaultDate = new Date();
+        // Add 7 days
+        defaultDate.setDate(defaultDate.getDate() + 7);
+        $scope.prescription.nextVisit = {};
+        $scope.prescription.nextVisit.date = moment(defaultDate).format("DD/MM/YYYY hh:mm A");
+      }
+
+      function CreatePrescription() {
+        var callback = function(response) {
+          var state = response.state;
+          if (_.isEqual(state, "closed") &&
+              confirm('Are you sure you want to close without saving your changes?')) {
+              return true;
+          }
+          return _.isEqual(state, "saved") || _.isEqual(state, "minimized");
         };
 
-        $scope.prescriptions = Prescription.list(params);
-        $scope.myPromise = $scope.prescriptions.$promise;
-        $scope.prescriptions.$promise.then(function(prescriptions) {
-          if (prescriptions.length > 0) {
-            $scope.patientProfile = $scope.prescriptions[0].patient;
-          }
+        var prescriptionDialog = ngDialog.open({
+          template        : 'Prescriptions/partials/prescriptions.edit.html',
+          className       : 'ngdialog-theme-default custom-width',
+          scope           : $scope,
+          showClose       : false,
+          preCloseCallback: callback,
+          closeByEscape   : false,
+          closeByDocument : false,
+          controller      : 'PrescriptionNewOrEditCtrl'
         });
 
-        $scope.view = ViewPrescription;
-        $scope.open = Open;
-        $scope.list = List;
-
-        function ViewPrescription(idx) {
-            $state.go('Prescriptions.Detail', {
-                index: idx
+        prescriptionDialog.closePromise.then(function(data) {
+          var response = data.value;
+          if( _.isEqual(response.state, "saved") ) {
+            $state.go('PatientNewOrEdit.PrescriptionIndex.Detail', {
+              prescriptionId: response.data
             });
-            $scope.detailView = true;
-        }
-
-        function List() {
-            $state.go('Prescriptions.List');
-            $scope.detailView = false;
-        }
-
-        function Open() {
-            ngDialog.open({
-              template: 'Prescriptions/partials/prescriptions.edit.html',
-              className: 'ngdialog-theme-default custom-width',
-              scope: $scope,
-              showClose: false,
-              preCloseCallback: function(value) {
-                  if(value == "minimize")
-                    return true;
-                  if (confirm('Are you sure you want to close without saving your changes?')) {
-                      return true;
-                  }
-                  return false;
-              },
-              closeByEscape: false,
-              closeByDocument: false,
-              controller: 'PrescriptionNewOrEditCtrl'
-            });
-        }
+            $scope.minimized = false;
+          } else if( _.isEqual(response.state, "closed") ) {
+            $scope.prescription = {};
+            $scope.minimized = false;
+          } else {
+            // minimize
+            $scope.minimized = true;
+          }
+        });
+      }
     }
 
 })();

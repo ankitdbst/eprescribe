@@ -4,94 +4,73 @@
     angular.module('ERemediumWebApp.prescriptions.controllers')
     .controller('PrescriptionNewOrEditCtrl', PrescriptionNewOrEditCtrl);
 
-    PrescriptionNewOrEditCtrl.$inject = ['$scope', 'Prescription', '$stateParams', '$state', '$rootScope', 'Account', 'ngDialog'];
+    PrescriptionNewOrEditCtrl.$inject = [
+      '$scope',
+      'Prescription',
+      '$stateParams',
+      'Account',
+      'ngDialog'
+    ];
 
-    function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, $state, $rootScope, Account, ngDialog) {
-        if(!Account.isAuthenticated()) {
-          $state.go('login'); return;
-        }
+    function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, Account, ngDialog) {
+      var patientId = $stateParams.patientId;
+      var user = Account.getAuthenticatedAccount();
 
-        var account = Account.getAuthenticatedAccount();
-        var pid = $stateParams.pId;
-        var patientId = $stateParams.patientId;
+      $scope.prescription = $scope.$parent.prescription;
 
-        $scope.dialogTitle = $scope.$parent.patientProfile.firstName + "'s Prescription";
+      // Prescription
+      $scope.save = UpsertPrescription;
+      $scope.close = ClosePrescription;
+      $scope.minimize = Minimize;
 
-        if (pid !== undefined && pid.length !== 0) {
-            $rootScope.pageHeader = "Update Prescription";
-            $scope.prescription = Prescription.get({
-                user: 'sujeet',
-                sessionId: account.sessionId,
-                pid: pid
+      // Medicine
+      $scope.upsert = UpsertMedicine;
+
+      // Canvas | free write
+      $scope.closeCanvas = CloseCanvas;
+
+      function UpsertPrescription() {
+        var params = {
+          user        : user.mobile,
+          sessionId   : user.sessionId,
+          prescription: $scope.prescription
+        };
+
+        $scope.myPromise = Prescription.upsert(params, function(response) {
+          if( _.IsEqual(response.respCode, 1) ) {
+            $scope.closeThisDialog({
+              state: 'saved',
+              data: response.pid
             });
-            $scope.myPromise = $scope.prescription.$promise;
-            $scope.prescription.isUpdate = true; // for edit we change this to true
-        } else {
-            if($scope.$parent.prescriptionTmp !== undefined) {
-              $scope.prescription = $scope.$parent.prescriptionTmp;
-            } else {
-              $scope.prescription = new Prescription();
-              $scope.prescription.patientId = patientId;
-              $scope.prescription.doctorId = account.userId;
-              // Fill defaults from session object maybe
-              $scope.prescription.isUpdate = false; // for edit we change this to true
-              // Medications
-              $scope.prescription.medcines = [];
+          } else {
+            // Show Error
+            console.log(response);
+          }
+        });
+      }
 
-              var defaultDate = new Date();
-              // Add 7 days
-              defaultDate.setDate(defaultDate.getDate() + 7);
-              $scope.prescription.nextVisit = {};
-              $scope.prescription.nextVisit.date = moment(defaultDate).format("DD/MM/YYYY hh:mm A");
-            }
-        }
+      function UpsertMedicine() {
+        ngDialog.open({
+          template        : 'Prescriptions/partials/prescriptions.upsert-medicine.html',
+          className       : 'ngdialog-theme-default custom-width-2',
+          scope           : $scope,
+          showClose       : false,
+          closeByEscape   : false,
+          closeByDocument : false,
+          controller      : 'PrescriptionUpsertMedicineCtrl'
+        });
+      }
 
-        // Methods
-        $scope.save = UpsertPrescription;
-        $scope.close = Close;
-        $scope.open = Open;
-        $scope.closeCanvas = CloseCanvas;
+      function Minimize() {
+        $scope.closeThisDialog({ state: 'minimized' });
+      }
 
-        function CloseCanvas() {
-          $scope.canvasEditable = false;
-        }
+      function ClosePrescription() {
+        $scope.closeThisDialog({ state: 'closed' });
+      }
 
-        function UpsertPrescription() {
-            var params = {
-                user: 'sujeet',
-                sessionId: account.sessionId,
-                prescription: $scope.prescription
-            };
-
-            $scope.$parent.prescriptions.unshift($scope.prescription);
-            $scope.myPromise = Prescription.upsert(params, function(response) {
-                $scope.closeThisDialog("state-saved");
-            });
-        }
-
-        $scope.minimize = Minimize;
-
-        function Open() {
-            ngDialog.open({
-              template: 'Prescriptions/partials/prescriptions.upsert-medicine.html',
-              className: 'ngdialog-theme-default custom-width-2',
-              scope: $scope,
-              showClose: false,
-              closeByEscape: false,
-              closeByDocument: false,
-              controller: 'PrescriptionUpsertMedicineCtrl'
-            });
-        }
-
-        function Close() {
-            $scope.$parent.showMenu = false;
-            $scope.closeThisDialog("state-dirty");
-        }
-
-        function Minimize() {
-          $scope.$parent.showMenu = true;
-          $scope.$parent.prescriptionTmp = $scope.prescription;
-          $scope.closeThisDialog("state-saved");
-        }
+      function CloseCanvas() {
+        $scope.canvasEditable = false;
+      }
     }
 })();

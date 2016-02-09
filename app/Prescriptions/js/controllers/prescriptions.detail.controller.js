@@ -4,24 +4,26 @@
     angular.module('ERemediumWebApp.prescriptions.controllers')
     .controller('PrescriptionDetailCtrl', PrescriptionDetailCtrl);
 
-    PrescriptionDetailCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'Prescription', 'Account'];
+    PrescriptionDetailCtrl.$inject = [
+      '$scope',
+      '$stateParams',
+      'Prescription',
+      'Account'
+    ];
 
-    function PrescriptionDetailCtrl($scope, $state, $stateParams, $rootScope, Prescription, Account) {
-      if(!Account.isAuthenticated()) {
-        $state.go('login'); return;
-      }
-      var account = Account.getAuthenticatedAccount();
+    function PrescriptionDetailCtrl($scope, $stateParams, Prescription, Account) {
+      var user = Account.getAuthenticatedAccount();
 
+      $scope.$parent.detailView = true;
       var pid = $stateParams.prescriptionId;
       var params = {
-          user: "sujeet",
-          sessionId: account.sessionId,
-          pid: pid,
-          columnsToGet: ""
+        user        : user.mobile,
+        sessionId   : user.sessionId,
+        pid         : pid,
+        columnsToGet: ""
       };
 
       $scope.prescription = Prescription.get(params);
       $scope.myPromise = $scope.prescription.$promise;
     }
-
 })();
