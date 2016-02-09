@@ -17,7 +17,7 @@
       var patientId = $stateParams.patientId;
       var user = Account.getAuthenticatedAccount();
 
-      $scope.prescription = new Prescription();
+      $scope.prescription = new Prescription;
       Init();
 
       $scope.prescriptions = [];
@@ -69,7 +69,8 @@
             });
             $scope.minimized = false;
           } else if( _.isEqual(response.state, "closed") ) {
-            $scope.prescription = {};
+            $scope.prescription = new Prescription;
+            Init();
             $scope.minimized = false;
           } else {
             // minimize

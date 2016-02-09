@@ -37,7 +37,7 @@
         };
 
         $scope.myPromise = Prescription.upsert(params, function(response) {
-          if( _.IsEqual(response.respCode, 1) ) {
+          if( _.isEqual(response.respCode, 1) ) {
             $scope.closeThisDialog({
               state: 'saved',
               data: response.pid
