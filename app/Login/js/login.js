@@ -19,11 +19,11 @@
     function LoginCtrl($scope, $rootScope, $state, Account, $stateParams) {
 
         initialize();
-        
+
         //Assign Functions..
         $scope.signIn = signIn;
         $scope.toggleModal = toggleModal;
-        
+
         toggleModal($stateParams.signIn);
 
         function signIn() {
@@ -61,6 +61,23 @@
             $('.modal-backdrop').remove();
             $('body').removeClass('modal-open');
             $('#wrapper').removeClass('hero-unit');
+            getPendingTasks();
+        }
+
+        function getPendingTasks() {
+            $scope.taskList = new Array();
+            $rootScope.pendingTasksCount = $scope.taskList.length;
+            //Get it from Backend!
+            //      $scope.myPromise = Task.query({
+            //            user: "",
+            //            sessionId: "433781068949947", //$rootScope.sessionId,
+            //            doctorId: "101", //$rootScope.userId,
+            //            limit: 50,
+            //            columnsToGet: ""
+            //        }, function (response) {
+            //            $scope.patientList = response;
+            //        }
+            //        );
         }
 
         function initialize() {
