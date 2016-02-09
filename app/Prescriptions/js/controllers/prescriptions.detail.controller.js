@@ -14,7 +14,6 @@
     function PrescriptionDetailCtrl($scope, $stateParams, Prescription, Account) {
       var user = Account.getAuthenticatedAccount();
 
-      $scope.$parent.detailView = true;
       var pid = $stateParams.prescriptionId;
       var params = {
         user        : user.mobile,
@@ -23,6 +22,7 @@
         columnsToGet: ""
       };
 
+      $scope.$parent.detailView = pid;
       $scope.prescription = Prescription.get(params);
       $scope.myPromise = $scope.prescription.$promise;
     }

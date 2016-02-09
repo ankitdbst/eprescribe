@@ -15,7 +15,7 @@
       var user = Account.getAuthenticatedAccount();
       var patientId = $stateParams.patientId;
 
-      $scope.$parent.detailView = false;
+      $scope.$parent.detailView = null;
       $scope.prescriptions = $scope.$parent.prescriptions;
 
       $scope.sortSearchResultsReverse = false;// set the default sort order

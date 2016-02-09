@@ -50,7 +50,7 @@
       }
 
       function UpsertMedicine() {
-        ngDialog.open({
+        var dialog = ngDialog.open({
           template        : 'Prescriptions/partials/prescriptions.upsert-medicine.html',
           className       : 'ngdialog-theme-default custom-width-2',
           scope           : $scope,

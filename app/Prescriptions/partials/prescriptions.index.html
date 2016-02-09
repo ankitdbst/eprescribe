@@ -16,8 +16,8 @@
       </div>
     </div>
     <div class="form-group pull-right" ng-if="!minimized">
-      <button type="button" class="btn btn-default" ng-if="detailView" ng-click="clone();" uib-tooltip="Clone this prescription to create new">
-        <span class="glyphicon glyphicon-file"></span> Clone this Prescription
+      <button type="button" class="btn btn-default" ng-if="detailView" ng-click="clone(detailView);" uib-tooltip="Clone this prescription to create new">
+        <span class="glyphicon glyphicon-file"></span> Clone Prescription
       </button>
       <button type="button" class="btn btn-primary" ng-click="create();">
         <span class="glyphicon glyphicon-edit"></span> Create New Prescription

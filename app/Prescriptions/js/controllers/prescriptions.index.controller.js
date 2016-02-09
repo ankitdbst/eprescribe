@@ -23,6 +23,7 @@
       $scope.prescriptions = [];
 
       $scope.create = CreatePrescription;
+      $scope.clone = ClonePrescription;
       $scope.minimized = false;
 
       function Init() {
@@ -76,6 +77,23 @@
             // minimize
             $scope.minimized = true;
           }
+        });
+      }
+
+      function ClonePrescription(pid) {
+        if( _.isUndefined(pid) )
+          pid = $stateParams.prescriptionId;
+
+        var params = {
+          user        : user.mobile,
+          sessionId   : user.sessionId,
+          pid         : pid,
+          columnsToGet: ""
+        };
+
+        $scope.prescription = Prescription.get(params);
+        $scope.prescription.$promise.then(function(response) {
+          CreatePrescription();
         });
       }
     }
