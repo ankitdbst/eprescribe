@@ -6,33 +6,28 @@
 <div class="create-prescriptions" ng-init="canvasEditable=false;touched=false;">
   <form name="formPrescription" class="panel-group" novalidate ng-class="{'canvas-editable': canvasEditable}">
     <div class="diagnosis">
-      <div ng-class="{'bg-diagnosis': !touched}">
+      <div ng-class="{'bg-diagnosis': !touched}" ng-show="canvasEnabled">
         <img class="img-diagnosis img-thumbnail" src="" ng-click="canvasEditable=true;touched=true;" uib-tooltip="Click to free write" tooltip-placement="top-left"/>
       </div>
     </div>
-    <div pw-canvas options="{height: 620, color: '#000', undo: false, lineWidth: 1}" canvas-resize class="rx-canvas"></div>
+    <div pw-canvas options="{height: 620, color: '#000', undo: false, lineWidth: 1}" canvas-resize class="rx-canvas" ng-if="canvasEnabled"></div>
 
-    <!--<div class="panel panel-primary">-->
-      <!--<div class="panel-heading">Complaint & Diagnosis</div>-->
-      <!--<div class="panel-body">-->
-        <!--<div pw-canvas options="{color: '#000'}" canvas-resize></div>-->
-        <!--&lt;!&ndash;<div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">&ndash;&gt;-->
-          <!--&lt;!&ndash;<label for="patientComplaint">Patient Complaint*</label>&ndash;&gt;-->
-          <!--&lt;!&ndash;<textarea class="form-control" name="patientComplaint" ng-model="prescription.patientComplaint" id="patientComplaint" rows="3" placeholder="Patient Complaint" required></textarea>&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="help-block" ng-messages="formPrescription.patientComplaint.$error" ng-if="formPrescription.patientComplaint.$touched">&ndash;&gt;-->
-              <!--&lt;!&ndash;<p ng-message="required">Patient Complaint is mandatory!</p>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;<div class="form-group" ng-class="{ 'has-error': formPrescription.diagnosis.$touched && formPrescription.diagnosis.$invalid }">&ndash;&gt;-->
-          <!--&lt;!&ndash;<label for="diagnosis">Diagnosis*</label>&ndash;&gt;-->
-          <!--&lt;!&ndash;<textarea class="form-control" name="diagnosis" ng-model="prescription.diagnosis" id="diagnosis" rows="4" placeholder="Diagnosis" required></textarea>&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="help-block" ng-messages="formPrescription.diagnosis.$error" ng-if="formPrescription.diagnosis.$touched">&ndash;&gt;-->
-              <!--&lt;!&ndash;<p ng-message="required">Patient Diagnosis is mandatory!</p>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--</div>-->
-    <!--</div>-->
-    <br>
+    <div ng-if="!canvasEnabled">
+      <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">
+        <label for="patientComplaint">Patient Complaint*</label>
+        <textarea class="form-control" name="patientComplaint" ng-model="prescription.patientComplaint" id="patientComplaint" rows="3" placeholder="Patient Complaint" required></textarea>
+        <div class="help-block" ng-messages="formPrescription.patientComplaint.$error" ng-if="formPrescription.patientComplaint.$touched">
+            <p ng-message="required">Patient Complaint is mandatory!</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': formPrescription.diagnosis.$touched && formPrescription.diagnosis.$invalid }">
+        <label for="diagnosis">Diagnosis*</label>
+        <textarea class="form-control" name="diagnosis" ng-model="prescription.diagnosis" id="diagnosis" rows="4" placeholder="Diagnosis" required></textarea>
+        <div class="help-block" ng-messages="formPrescription.diagnosis.$error" ng-if="formPrescription.diagnosis.$touched">
+            <p ng-message="required">Patient Diagnosis is mandatory!</p>
+        </div>
+      </div>
+    </div>
     <div class="medicines-list">
       <h4>Rx</h4>
       <hr>

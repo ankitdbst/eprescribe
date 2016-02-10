@@ -17,6 +17,8 @@
       var user = Account.getAuthenticatedAccount();
 
       $scope.prescription = $scope.$parent.prescription;
+      $scope.dialogTitle = "New Prescription";
+      $scope.canvasEnabled = user.settings.canvasEnabled;
 
       // Prescription
       $scope.save = UpsertPrescription;

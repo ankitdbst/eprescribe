@@ -18,6 +18,7 @@
       $scope.$parent.detailView = null;
       $scope.prescriptions = $scope.$parent.prescriptions;
 
+      $scope.canvasEnabled = user.settings.canvasEnabled;
       $scope.sortSearchResultsReverse = false;// set the default sort order
       $scope.sortSearchResultsType = ''// set the default sort type
 
@@ -32,5 +33,11 @@
 
       $scope.prescriptions = Prescription.list(params);
       $scope.myPromise = $scope.prescriptions.$promise;
+      $scope.delete = Delete;
+
+      function Delete(index) {
+        $scope.prescriptions.splice(index, 1);
+        // No prescription delete API as yet. But we need to call here.
+      }
     }
 })();
