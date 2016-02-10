@@ -109,3 +109,11 @@
 .prescription-header-navbar .navbar-nav>li>a:hover {
   color: #fff;
 }
+
+.canvas-new-page {
+  position: absolute;
+  right: 20px;
+  bottom: 80px;
+  font-size: 20px;
+  z-index: 999;
+}

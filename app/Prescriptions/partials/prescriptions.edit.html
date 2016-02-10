@@ -10,7 +10,8 @@
         <img class="img-diagnosis img-thumbnail" src="" ng-click="canvasEditable=true;touched=true;" uib-tooltip="Click to free write" tooltip-placement="top-left"/>
       </div>
     </div>
-    <div pw-canvas options="{height: 620, color: '#000', undo: false, lineWidth: 1}" canvas-resize class="rx-canvas" ng-if="canvasEnabled"></div>
+    <div pw-canvas options="{height: 620, color: '#000', undo: false, lineWidth: 1}" canvas-resize class="rx-canvas" ng-if="canvasEnabled">
+    </div>
 
     <div ng-if="!canvasEnabled">
       <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">
@@ -47,6 +48,7 @@
   </form>
 </div>
 
+<button class="btn btn-danger canvas-new-page" ng-if="canvasEditable" uib-tooltip="Add new page"><span class="glyphicon glyphicon-plus-sign"></span></button>
 <navbar type="footer">
   <li class="navbar-li-custom">
     <div>
