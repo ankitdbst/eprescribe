@@ -25,6 +25,11 @@
                             method: 'POST',
                             url: 'http://52.74.177.118/ERService/userservice/GetUsersForDoctor',
                             isArray: true
+                        },
+                        getVitals: {
+                            method: 'POST',
+                            url: 'http://52.74.177.118/ERService/userservice/GetVitalsForPatient',
+                            isArray: true
                         }
                     };
 
