@@ -87,7 +87,7 @@
                     <a data-toggle="collapse" href="#divPrimaryAddress">Primary Address</a>
                 </h4>
             </div>
-            <div id="divPrimaryAddress" class="panel-collapse collapse">
+            <div id="divPrimaryAddress" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientAddressLine1.$touched && formPatientProfile.patientAddressLine1.$invalid }">
                         <label for="patientAddressLine1">Address Line 1*:</label>
@@ -132,7 +132,7 @@
                     <a data-toggle="collapse" href="#divHistory">History</a>
                 </h4>
             </div>
-            <div id="divHistory" class="panel-collapse collapse">
+            <div id="divHistory" class="panel-collapse collapse" ng-class="{ in: historyVisible }">
                 <div class="panel-body">
                     <div class="form-group col-md-4">
                         <label for="patientMedicalHistory">Medical History:</label>
@@ -169,7 +169,7 @@
                     <a data-toggle="collapse" href="#divAllergies">Allergies</a>
                 </h4>
             </div>
-            <div id="divAllergies" class="panel-collapse collapse">
+            <div id="divAllergies" class="panel-collapse collapse" ng-class="{ in: allergiesVisible }">
                 <div class="panel-body">
                     <div class="form-group col-md-4">
                         <label for="patientDrugAllergies">Drug Allergies:</label>
@@ -187,6 +187,48 @@
             </div>
         </div>
 
+        <div class="panel panel-info" id="vitals">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a data-toggle="collapse" href="#divVitals">Vitals</a>
+                </h4>
+            </div>
+            <div id="divVitals" class="panel-collapse collapse" ng-class="{ in: vitalsVisible }">
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-info" id="clinicalNotes">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a data-toggle="collapse" href="#divClinicalNotes">Clinical Notes</a>
+                </h4>
+            </div>
+            <div id="divClinicalNotes" class="panel-collapse collapse" ng-class="{ in: clinicalNotesVisible }">
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-info" id="documents">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a data-toggle="collapse" href="#divDocuments">Documents</a>
+                </h4>
+            </div>
+            <div id="divDocuments" class="panel-collapse collapse" ng-class="{ in: documentsVisible }">
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+        
         <div class="panel panel-info" id="prescriptions">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -194,9 +236,51 @@
                     <a id="aPrescriptionList" data-toggle="collapse" href="#divPrescriptions">Prescriptions</a>
                 </h4>
             </div>
-            <div id="divPrescriptions" class="panel-collapse collapse">
+            <div id="divPrescriptions" class="panel-collapse collapse" ng-class="{ in: prescriptionsVisible }">
                 <div class="panel-body">
                     <div ui-view></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-info" id="labOrderTracking">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a data-toggle="collapse" href="#divLabOrderTracking">Lab Order Tracking</a>
+                </h4>
+            </div>
+            <div id="divLabOrderTracking" class="panel-collapse collapse" ng-class="{ in: labOrderTrackingVisible }">
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-info" id="pharmacyOrderTracking">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a data-toggle="collapse" href="#divPharmacyOrderTracking">Pharmacy Order Tracking</a>
+                </h4>
+            </div>
+            <div id="divPharmacyOrderTracking" class="panel-collapse collapse" ng-class="{ in: pharmacyOrderTrackingVisible }">
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-info" id="messages">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a data-toggle="collapse" href="#divMessages">Messages</a>
+                </h4>
+            </div>
+            <div id="divMessages" class="panel-collapse collapse" ng-class="{ in: messagesVisible }">
+                <div class="panel-body">
+                    
                 </div>
             </div>
         </div>
@@ -217,17 +301,17 @@
 
     <div class="col-md-2">
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
-            <li spy="identifyingDetails"><a href="">Identifying Details</a></li>
-            <li spy="primaryAddress"><a href="">Primary Address</a></li>
-            <li spy="history"><a href="">History</a></li>
-            <li spy="allergies"><a href="">Allergies</a></li>
-            <li spy="vitals"><a href="">Vitals</a></li>
-            <li spy="clinicalNotes"><a href="">Clinical Notes</a></li>
-            <li spy="documents"><a href="">Documents</a></li>
-            <li spy="prescriptions"><a href="">Prescriptions</a></li>
-            <li spy="labOrderTracking"><a href="">Lab Order Tracking</a></li>
-            <li spy="pharmacyOrderTracking"><a href="">Pharmacy Order Tracking</a></li>
-            <li spy="messages"><a href="">Messages</a></li>
+            <li spy="identifyingDetails"><a href="" ng-click="identifyingDetailsVisible = true">Identifying Details</a></li>
+            <li spy="primaryAddress"><a href="" ng-click="primaryAddressVisible = true">Primary Address</a></li>
+            <li spy="history"><a href="" ng-click="historyVisible = true">History</a></li>
+            <li spy="allergies"><a href="" ng-click="allergiesVisible = true">Allergies</a></li>
+            <li spy="vitals"><a href="" ng-click="vitalsVisible = true">Vitals</a></li>
+            <li spy="clinicalNotes"><a href="" ng-click="clinicalNotesVisible = true">Clinical Notes</a></li>
+            <li spy="documents"><a href="" ng-click="documentsVisible = true">Documents</a></li>
+            <li spy="prescriptions"><a href="" ng-click="prescriptionsVisible = true">Prescriptions</a></li>
+            <li spy="labOrderTracking"><a href="" ng-click="labOrderTrackingVisible = true">Lab Order Tracking</a></li>
+            <li spy="pharmacyOrderTracking"><a href="" ng-click="pharmacyOrderTrackingVisible = true">Pharmacy Order Tracking</a></li>
+            <li spy="messages"><a href="" ng-click="messagesVisible = true">Messages</a></li>
         </ul>
     </div>
 
