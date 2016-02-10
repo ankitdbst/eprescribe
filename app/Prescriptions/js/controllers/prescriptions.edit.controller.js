@@ -17,6 +17,8 @@
       var user = Account.getAuthenticatedAccount();
 
       $scope.prescription = $scope.$parent.prescription;
+      $scope.dialogTitle = "New Prescription";
+      $scope.canvasEnabled = user.settings.canvasEnabled;
 
       // Prescription
       $scope.save = UpsertPrescription;
@@ -24,7 +26,7 @@
       $scope.minimize = Minimize;
 
       // Medicine
-      $scope.upsert = UpsertMedicine;
+      $scope.upsertMed = UpsertMedicine;
 
       // Canvas | free write
       $scope.closeCanvas = CloseCanvas;
@@ -49,8 +51,10 @@
         });
       }
 
-      function UpsertMedicine() {
-        var dialog = ngDialog.open({
+      function UpsertMedicine(index) {
+        $scope.medcine = _.isUndefined(index) ? {} : _.clone($scope.prescription.medcines[index]);
+
+        var upsertMedDialog = ngDialog.open({
           template        : 'Prescriptions/partials/prescriptions.upsert-medicine.html',
           className       : 'ngdialog-theme-default custom-width-2',
           scope           : $scope,
@@ -58,6 +62,14 @@
           closeByEscape   : false,
           closeByDocument : false,
           controller      : 'PrescriptionUpsertMedicineCtrl'
+        });
+
+        upsertMedDialog.closePromise.then(function(data) {
+          if( data.value == "Add" ) {
+            $scope.prescription.medcines.push($scope.medcine);
+          } else if( data.value == "Update" ) {
+            $scope.prescription.medcines[index] = $scope.medcine;
+          }
         });
       }
 

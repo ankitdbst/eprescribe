@@ -2,6 +2,9 @@
   width: inherit;
   padding: 0;
   background-color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .ngdialog.ngdialog-theme-default.custom-width-2 .ngdialog-content {
@@ -10,6 +13,9 @@
   height: initial;
   padding: 0;
   background-color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .ngdialog.ngdialog-theme-default {

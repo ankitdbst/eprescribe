@@ -28,6 +28,9 @@
                 delete response[key];
               }
             });
+            account.settings = {
+              canvasEnabled: true
+            }; // This needs to be sent from the API
             setAuthenticatedAccount(account);
           }
           if(angular.isDefined(loginHandler)) {

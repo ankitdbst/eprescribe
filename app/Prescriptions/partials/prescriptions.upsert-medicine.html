@@ -1,5 +1,5 @@
 <navbar type="header">
-  <li><a ng-click="closeThisDialog()"><span class="glyphicon glyphicon-remove"></span></a></li>
+  <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
 <form name="formPrescriptionAddMedicine" class="panel-group upsert-medicine" novalidate>
   <div class="form-group" ng-class="{ 'has-error': formPrescriptionAddMedicine.medicineName.$touched && formPrescriptionAddMedicine.medicineName.$invalid }">
@@ -24,7 +24,6 @@
       <select class="form-control" id="unit" name="unit" ng-model="medcine.dispenseUnit"
               ng-options="unit for unit in dispenseUnits">
       </select>
-      <!--<input type="text" ng-model="medcine.pharmaDetails.unit" class="form-control" id="unit" placeholder="Unit" uib-typeahead="unit for unit in units | filter:$viewValue | limitTo:3" />-->
     </div>
   </div>
   <div class="row">
@@ -70,14 +69,11 @@
     <div class="form-group">
       <label for="comments">Instructions</label>
       <textarea class="form-control" ng-model="medcine.frequency.comments" rows="5" id="comments" placeholder="Instructions"></textarea>
-      <!--<input type="text" ng-model="medcine.frequency.fComment" class="form-control" id="instructions" placeholder="Instructions..." uib-typeahead="fComment for fComment in fComments | filter:$viewValue | limitTo:3" />-->
     </div>
 </form>
 <navbar type="footer">
-  <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
   <li class="navbar-li-custom">
     <div>
-      <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="formPrescriptionAddMedicine.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
-      <button type="button" class="btn btn-danger" ng-if="reset" ng-click="reset()"><span class="glyphicon glyphicon-restart"></span>Reset</button>
+      <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
     </div>
 </navbar>
