@@ -16,9 +16,7 @@
         }
 
         function EditMedicine(index) {
-          $state.go('PrescriptionNewOrEdit.UpsertMedicine', {
-            mId: index
-          });
+          $scope.upsertMed(index);
         }
     }
 

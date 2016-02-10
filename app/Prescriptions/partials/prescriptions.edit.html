@@ -55,6 +55,6 @@
         <button type="button" class="btn btn-primary" ng-if="!canvasEditable" ng-click="save()"
                 ng-disabled="formPrescription.$invalid">Save</button>
     </div>
-  <li ng-if="!canvasEditable"><a ng-click="open()"><span class="glyphicon glyphicon-plus"></span> Add Medicine</a></li>
+  <li ng-if="!canvasEditable"><a ng-click="upsertMed()"><span class="glyphicon glyphicon-plus"></span> Add Medicine</a></li>
   <li ng-if="!canvasEditable"><a href="#"><span class="glyphicon glyphicon-plus"></span> Advises (Lab Tests)</a></li>
 </navbar>
