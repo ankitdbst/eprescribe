@@ -62,6 +62,22 @@
             $('body').removeClass('modal-open');
             $('#wrapper').removeClass('hero-unit');
             getPendingTasks();
+            getPendingMessages();
+        }
+
+        function getPendingMessages() {
+            $scope.messagesList = new Array();
+            $rootScope.pendingMessagesCount = $scope.messagesList.length;
+            //Get it from Backend!
+            //      $scope.myPromise = Message.query({
+            //            user: "",
+            //            sessionId: "433781068949947", //$rootScope.sessionId,
+            //            doctorId: "101", //$rootScope.userId,
+            //            limit: 50,
+            //            columnsToGet: ""
+            //        }, function (response) {
+            //        }
+            //        );
         }
 
         function getPendingTasks() {
@@ -75,7 +91,6 @@
             //            limit: 50,
             //            columnsToGet: ""
             //        }, function (response) {
-            //            $scope.patientList = response;
             //        }
             //        );
         }

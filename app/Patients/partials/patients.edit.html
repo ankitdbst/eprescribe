@@ -23,10 +23,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a data-toggle="collapse" href="#divIdentifyingDetails">Identifying Details</a>
+                    <a ng-click="isIdentifyingDetailsCollapsed = !isIdentifyingDetailsCollapsed" href="">Identifying Details</a>
                 </h4>
             </div>
-            <div id="divIdentifyingDetails" class="panel-collapse collapse in">
+            <div id="divIdentifyingDetails" uib-collapse="isIdentifyingDetailsCollapsed">
                 <div class="panel-body">
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientFirstName.$touched && formPatientProfile.patientFirstName.$invalid }">
                         <label for="patientFirstName"> First Name*:</label>
@@ -84,10 +84,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-home fa-1x"></i>
-                    <a data-toggle="collapse" href="#divPrimaryAddress">Primary Address</a>
+                    <a ng-click="isPrimaryAddressCollapsed = !isPrimaryAddressCollapsed" href="">Primary Address</a>
                 </h4>
             </div>
-            <div id="divPrimaryAddress" class="panel-collapse collapse in">
+            <div id="divPrimaryAddress" uib-collapse="!isPrimaryAddressCollapsed">
                 <div class="panel-body">
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientAddressLine1.$touched && formPatientProfile.patientAddressLine1.$invalid }">
                         <label for="patientAddressLine1">Address Line 1*:</label>
@@ -129,10 +129,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-history fa-1x"></i>
-                    <a data-toggle="collapse" href="#divHistory">History</a>
+                    <a ng-click="isHistoryCollapsed = !isHistoryCollapsed" href="">History</a>
                 </h4>
             </div>
-            <div id="divHistory" class="panel-collapse collapse" ng-class="{ in: historyVisible }">
+            <div id="divHistory" uib-collapse="!isHistoryCollapsed">
                 <div class="panel-body">
                     <div class="form-group col-md-4">
                         <label for="patientMedicalHistory">Medical History:</label>
@@ -166,10 +166,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-ban fa-1x"></i>
-                    <a data-toggle="collapse" href="#divAllergies">Allergies</a>
+                    <a ng-click="isAllergiesCollapsed = !isAllergiesCollapsed" href="">Allergies</a>
                 </h4>
             </div>
-            <div id="divAllergies" class="panel-collapse collapse" ng-class="{ in: allergiesVisible }">
+            <div id="divAllergies" uib-collapse="!isAllergiesCollapsed">
                 <div class="panel-body">
                     <div class="form-group col-md-4">
                         <label for="patientDrugAllergies">Drug Allergies:</label>
@@ -191,10 +191,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a data-toggle="collapse" href="#divVitals">Vitals</a>
+                    <a ng-click="isVitalsCollapsed = !isVitalsCollapsed" href="">Vitals</a>
                 </h4>
             </div>
-            <div id="divVitals" class="panel-collapse collapse" ng-class="{ in: vitalsVisible }">
+            <div id="divVitals" uib-collapse="!isVitalsCollapsed">
                 <div class="panel-body">
                     
                 </div>
@@ -205,10 +205,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a data-toggle="collapse" href="#divClinicalNotes">Clinical Notes</a>
+                    <a ng-click="isClinicalNotesCollapsed = !isClinicalNotesCollapsed" href="">Clinical Notes</a>
                 </h4>
             </div>
-            <div id="divClinicalNotes" class="panel-collapse collapse" ng-class="{ in: clinicalNotesVisible }">
+            <div id="divClinicalNotes" uib-collapse="!isClinicalNotesCollapsed">
                 <div class="panel-body">
                     
                 </div>
@@ -219,10 +219,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a data-toggle="collapse" href="#divDocuments">Documents</a>
+                    <a ng-click="isDocumentsCollapsed = !isDocumentsCollapsed" href="">Documents</a>
                 </h4>
             </div>
-            <div id="divDocuments" class="panel-collapse collapse" ng-class="{ in: documentsVisible }">
+            <div id="divDocuments" uib-collapse="!isDocumentsCollapsed">
                 <div class="panel-body">
                     
                 </div>
@@ -233,10 +233,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a id="aPrescriptionList" data-toggle="collapse" href="#divPrescriptions">Prescriptions</a>
+                    <a id="aPrescriptionList" ng-click="isPrescriptionsCollapsed = !isPrescriptionsCollapsed" href="">Prescriptions</a>
                 </h4>
             </div>
-            <div id="divPrescriptions" class="panel-collapse collapse" ng-class="{ in: prescriptionsVisible }">
+            <div id="divPrescriptions" uib-collapse="!isPrescriptionsCollapsed">
                 <div class="panel-body">
                     <div ui-view></div>
                 </div>
@@ -247,10 +247,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a data-toggle="collapse" href="#divLabOrderTracking">Lab Order Tracking</a>
+                    <a ng-click="isLabOrderTrackingCollapsed = !isLabOrderTrackingCollapsed" href="">Lab Order Tracking</a>
                 </h4>
             </div>
-            <div id="divLabOrderTracking" class="panel-collapse collapse" ng-class="{ in: labOrderTrackingVisible }">
+            <div id="divLabOrderTracking" uib-collapse="!isLabOrderTrackingCollapsed">
                 <div class="panel-body">
                     
                 </div>
@@ -261,10 +261,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a data-toggle="collapse" href="#divPharmacyOrderTracking">Pharmacy Order Tracking</a>
+                    <a ng-click="isPharmacyOrderTrackingCollapsed = !isPharmacyOrderTrackingCollapsed" href="">Pharmacy Order Tracking</a>
                 </h4>
             </div>
-            <div id="divPharmacyOrderTracking" class="panel-collapse collapse" ng-class="{ in: pharmacyOrderTrackingVisible }">
+            <div id="divPharmacyOrderTracking" uib-collapse="!isPharmacyOrderTrackingCollapsed">
                 <div class="panel-body">
                     
                 </div>
@@ -275,10 +275,10 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
-                    <a data-toggle="collapse" href="#divMessages">Messages</a>
+                    <a ng-click="isMessagesCollapsed = !isMessagesCollapsed" href="">Messages</a>
                 </h4>
             </div>
-            <div id="divMessages" class="panel-collapse collapse" ng-class="{ in: messagesVisible }">
+            <div id="divMessages" uib-collapse="!isMessagesCollapsed">
                 <div class="panel-body">
                     
                 </div>
@@ -301,17 +301,17 @@
 
     <div class="col-md-2">
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
-            <li spy="identifyingDetails"><a href="" ng-click="identifyingDetailsVisible = true">Identifying Details</a></li>
-            <li spy="primaryAddress"><a href="" ng-click="primaryAddressVisible = true">Primary Address</a></li>
-            <li spy="history"><a href="" ng-click="historyVisible = true">History</a></li>
-            <li spy="allergies"><a href="" ng-click="allergiesVisible = true">Allergies</a></li>
-            <li spy="vitals"><a href="" ng-click="vitalsVisible = true">Vitals</a></li>
-            <li spy="clinicalNotes"><a href="" ng-click="clinicalNotesVisible = true">Clinical Notes</a></li>
-            <li spy="documents"><a href="" ng-click="documentsVisible = true">Documents</a></li>
-            <li spy="prescriptions"><a href="" ng-click="prescriptionsVisible = true">Prescriptions</a></li>
-            <li spy="labOrderTracking"><a href="" ng-click="labOrderTrackingVisible = true">Lab Order Tracking</a></li>
-            <li spy="pharmacyOrderTracking"><a href="" ng-click="pharmacyOrderTrackingVisible = true">Pharmacy Order Tracking</a></li>
-            <li spy="messages"><a href="" ng-click="messagesVisible = true">Messages</a></li>
+            <li spy="identifyingDetails"><a href="" ng-click="isIdentifyingDetailsCollapsed = !isIdentifyingDetailsCollapsed">Identifying Details</a></li>
+            <li spy="primaryAddress"><a href="" ng-click="isPrimaryAddressCollapsed = !isPrimaryAddressCollapsed">Primary Address</a></li>
+            <li spy="history"><a href="" ng-click="isHistoryCollapsed = !isHistoryCollapsed">History</a></li>
+            <li spy="allergies"><a href="" ng-click="isAllergiesCollapsed = !isAllergiesCollapsed">Allergies</a></li>
+            <li spy="vitals"><a href="" ng-click="isVitalsCollapsed = !isVitalsCollapsed">Vitals</a></li>
+            <li spy="clinicalNotes"><a href="" ng-click="isClinicalNotesCollapsed = !isClinicalNotesCollapsed">Clinical Notes</a></li>
+            <li spy="documents"><a href=""  ng-click="isDocumentsCollapsed = !isDocumentsCollapsed">Documents</a></li>
+            <li spy="prescriptions"><a href="" ng-click="isPrescriptionsCollapsed = !isPrescriptionsCollapsed">Prescriptions</a></li>
+            <li spy="labOrderTracking"><a href="" ng-click="isLabOrderTrackingCollapsed = !isLabOrderTrackingCollapsed">Lab Order Tracking</a></li>
+            <li spy="pharmacyOrderTracking"><a href="" ng-click="isPharmacyOrderTrackingCollapsed = !isPharmacyOrderTrackingCollapsed">Pharmacy Order Tracking</a></li>
+            <li spy="messages"><a href="" ng-click="isMessagesCollapsed = !isMessagesCollapsed">Messages</a></li>
         </ul>
     </div>
 
