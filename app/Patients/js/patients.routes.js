@@ -20,6 +20,10 @@
           autoActivateChild: 'PatientNewOrEdit.PrescriptionIndex'
         }
       })
+      .state('PatientNewOrEdit.Vitals', {
+        templateUrl: 'Patients/partials/patients.vitals.html',
+        controller: 'PatientsVitalsCtrl'
+      })
       .state('PatientNewOrEdit.PrescriptionIndex', {
         url: '/prescriptions',
         templateUrl: 'Prescriptions/partials/prescriptions.index.html',
