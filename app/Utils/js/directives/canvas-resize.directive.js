@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('ERemediumWebApp.utils.directives').
-            directive('canvasResize', canvasResize);
+    directive('canvasResize', canvasResize);
 
     canvasResize.$inject = ['$rootScope'];
 
