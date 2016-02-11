@@ -121,3 +121,46 @@
 .refills {
   margin-top: 30px;
 }
+
+@media screen {
+    #printSection {
+        display: none;
+    }
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #container:not(#printSection) {
+      display: none;
+    }
+
+    #printSection, #printSection * {
+        visibility: visible;
+    }
+
+    #printSection {
+        position:absolute;
+        left:0;
+        top:0;
+        width: 100%;
+        font-size: 11px;
+        margin-top: 200px;
+        margin-bottom: 20px;
+    }
+}
+
+@page {
+  size:auto;
+  margin: 5mm;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}

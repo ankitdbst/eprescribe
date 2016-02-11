@@ -13,6 +13,7 @@
 
     function PrescriptionDetailCtrl($scope, $stateParams, Prescription, Account) {
       var user = Account.getAuthenticatedAccount();
+      $scope.canvasEnabled = !user.settings.canvasEnabled;
 
       var pid = $stateParams.prescriptionId;
       var params = {
