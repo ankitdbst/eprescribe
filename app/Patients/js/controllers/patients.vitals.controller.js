@@ -17,24 +17,27 @@
         //Initialize
         initialize();
 
-        $scope.patientList = Patient.query({
-            user: "",
-            sessionId: $scope.account.sessionId,
-            doctorId: $scope.account.userId,
-            limit: 50,
-            columnsToGet: ""
-        }, function (response) {
-            $scope.patientList = response;
-            angular.forEach($scope.patientList, function (patient) {
-                patient.profileImageURL = "img/User1.jpg";//this should come from backend, TEMPORARY
-            });
-        }
-        );
+//        $scope.vitalList = Patient.getVitals({
+//            user: "",
+//            sessionId: $scope.account.sessionId,
+//            doctorId: $scope.account.userId,
+//            limit: 50,
+//            columnsToGet: ""
+//        }, function (response) {
+//            $scope.vitalList = response;
+//        }
+//        );
+//      $scope.myPromise = $scope.patientList.$promise;
 
-        $scope.myPromise = $scope.patientList.$promise;
+        $scope.vitalList = [{datetime: new Date(), temperature: "94 Armpit", pulse: 82, respiratoryrate: "-", bp: "124/82 Sitting", weight: "79"},
+            {datetime: new Date(), temperature: "88 Armpit", pulse: 88, respiratoryrate: "-", bp: "126/78 Sitting", weight: "69"},
+            {datetime: new Date(), temperature: "98 Armpit", pulse: 79, respiratoryrate: "-", bp: "130/88 Sitting", weight: "84"}
+        ];
+
+
 
         $scope.delete = Delete;
-        
+
         //Functions
         function createNewVitals() {
             //TODO
@@ -43,13 +46,6 @@
         function initialize() {
             $scope.sortType = ''; // set the default sort type
             $scope.sortReverse = false;  // set the default sort order
-            $scope.sortSearchResultsReverse = false;// set the default sort order for search results
-            $scope.sortSearchResultsType = ''// set the default sort type for search results
-            $scope.showAlert = false;
-            $scope.showSearchResults = false;
-            $rootScope.pageHeader = "Patients";
-            $scope.patient = {};
-            $scope.patient.search = {mobilenumber: ''};
         }
 
         function Delete(index) {
