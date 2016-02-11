@@ -4,19 +4,18 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientNewOrEditCtrl', PatientNewOrEditCtrl);
 
-    PatientNewOrEditCtrl.$inject = ['$scope', '$stateParams', 'Patient', '$state', '$rootScope', 'Account'];
+    PatientNewOrEditCtrl.$inject = ['$scope', '$stateParams', 'Patient', '$state', '$rootScope', 'Account', 'ngDialog'];
 
-    function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state, $rootScope, Account) {
-        if(!Account.isAuthenticated()) {
-          $state.go('login'); return;
+    function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state, $rootScope, Account, ngDialog) {
+        if (!Account.isAuthenticated()) {
+            $state.go('login');
+            return;
         }
 
         var account = Account.getAuthenticatedAccount();
-        //Intialize
-        $scope.showAlert = false;
-        $scope.genders = ["Male", "Female"];
-        $scope.relationshiptypes = ["", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister", "Others"];
-        $rootScope.pageHeader = "Patient Profile";
+
+        Initialize();
+
 
         if ($stateParams.patientId == '') {
             //A new patient profile is being created!
@@ -43,11 +42,19 @@
         }
 
 
-        //Functions..
+
         $scope.savePatientProfile = SavePatientProfile;
         $scope.close = Close;
+        
 
         //Functions
+        function Initialize() {
+            $scope.showAlert = false;
+            $scope.genders = ["Male", "Female"];
+            $scope.relationshiptypes = ["", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister", "Others"];
+            $rootScope.pageHeader = "Patient Profile";
+        }
+
         function SavePatientProfile() {
             //A computed property!
             $scope.patient.isDependant = ($scope.patient.relation == '') ? "false" : "true";

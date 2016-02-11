@@ -1,0 +1,34 @@
+<navbar type="header">
+    <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
+</navbar>
+<form name="formPatientUpsertVital" class="panel-group upsert-medicine" novalidate autocomplete="off">
+
+    <div class="form-group">
+        <label for="inputTemperature">Temp (&#8457;)</label>
+        <input type="text" ng-model="vital.temperature" class="form-control" id="inputTemperature" placeholder="Temperature in Farenheit.."/>
+    </div>
+    <div class="form-group">
+        <label for="inputPulse">Pulse (bpm)</label>
+        <input type="text" ng-model="vital.pulse" class="form-control" id="inputPulse" placeholder="Pulse in bpm.."/>
+    </div>
+    <div class="form-group">
+        <label for="inputRespiratoryRate">RR (breaths/min)</label>
+        <input type="text" ng-model="vital.respiratoryrate" class="form-control" id="inputRespiratoryRate" placeholder="RR in breaths/min.."/>
+    </div>
+    <div class="form-group">
+        <label for="inputBp">SYS/DIA (mmhg)</label>
+        <input type="text" ng-model="vital.bp" class="form-control" id="inputBp" placeholder="SYS/DIA in mmhg.."/>
+    </div>
+    <div class="form-group">
+        <label for="inputWeight">Weight (Kg)</label>
+        <input type="text" ng-model="vital.weight" class="form-control" id="inputWeight" placeholder="Weight in Kg.."/>
+    </div>
+
+</form>
+<navbar type="footer">
+    <li class="navbar-li-custom">
+        <div>
+            <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">Save</button>
+            <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Close</button>
+        </div>
+</navbar>

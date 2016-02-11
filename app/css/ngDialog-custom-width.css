@@ -21,3 +21,16 @@
 .ngdialog.ngdialog-theme-default {
   padding: 10px;
 }
+
+
+.ngdialog.ngdialog-theme-default.custom-width-1 .ngdialog-content {
+  width: 600px;
+  margin-top: 80px;
+  height: initial;
+  padding: 0;
+  background-color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+

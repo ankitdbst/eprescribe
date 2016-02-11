@@ -4,9 +4,9 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientsVitalsCtrl', PatientsVitalsCtrl);
 
-    PatientsVitalsCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope', 'Account'];
+    PatientsVitalsCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope', 'Account', 'ngDialog'];
 
-    function PatientsVitalsCtrl($scope, Patient, $state, $rootScope, Account) {
+    function PatientsVitalsCtrl($scope, Patient, $state, $rootScope, Account, ngDialog) {
         if (!Account.isAuthenticated()) {
             $state.go('login');
             return;
@@ -37,11 +37,7 @@
 
 
         $scope.delete = Delete;
-
-        //Functions
-        function createNewVitals() {
-            //TODO
-        }
+        $scope.upsertVitals = UpsertVitals;
 
         function initialize() {
             $scope.sortType = ''; // set the default sort type
@@ -51,6 +47,32 @@
         function Delete(index) {
             $scope.vitalList.splice(index, 1);
             // No vital delete API as yet. But we need to call here.
+        }
+
+        function UpsertVitals(index) {
+            $scope.vital = _.isUndefined(index) ? {} : _.clone($scope.vitalList[index]);
+
+            var upsertVitalDialog = ngDialog.open({
+                template: 'Patients/partials/patients.upsert-vital.html',
+                className: 'ngdialog-theme-default custom-width-1',
+                scope: $scope,
+                showClose: false,
+                closeByEscape: false,
+                closeByDocument: false,
+                controller: 'PatientUpsertVitalCtrl'
+            });
+
+            upsertVitalDialog.closePromise.then(function (data) {
+                //Add a timestamp
+                $scope.vital.datetime = new Date();
+                if (data.value == "Add") {
+                    $scope.vitalList.push($scope.vital);
+                    //TODO: Call API
+                } else if (data.value == "Update") {
+                    $scope.vitalList[index] = $scope.vital;
+                    //TODO: Call API
+                }
+            });
         }
     }
 })();

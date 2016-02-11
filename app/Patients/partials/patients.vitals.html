@@ -1,82 +1,81 @@
 <div cg-busy="myPromise"></div>
-<div class="row">
-    <div class="form-group pull-right">
-        <button type="button" class="btn btn-primary" ng-click="add();">
-            <span class="glyphicon glyphicon-edit"></span> Add
-        </button>
-    </div>
-    <table class="table table-hover">
-        <thead>
-            <tr>                 
-                <th>
-                    <a href="" ng-click="sortType = 'datetime'; sortReverse = !sortReverse">
-                        DateTime
-                        <span ng-show="sortType == 'datetime' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'datetime' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th> 
-                <th>
-                    <a href="" ng-click="sortType = 'temperature'; sortReverse = !sortReverse">
-                        Temp (&#8457;)
-                        <span ng-show="sortType == 'temperature' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'temperature' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th> 
-                <th>
-                    <a href="" ng-click="sortType = 'pulse'; sortReverse = !sortReverse">
-                        Pulse (bpm)
-                        <span ng-show="sortType == 'pulse' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'pulse' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th> 
-                <th>
-                    <a href="" ng-click="sortType = 'respiratoryrate'; sortReverse = !sortReverse">
-                        RR (breaths/min)
-                        <span ng-show="sortType == 'respiratoryrate' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'respiratoryrate' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th> 
-                <th>
-                    <a href="" ng-click="sortType = 'bp'; sortReverse = !sortReverse">
-                        SYS/DIA (mmhg)
-                        <span ng-show="sortType == 'bp' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'bp' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th> 
-                <th>
-                    <a href="" ng-click="sortType = 'weight'; sortReverse = !sortReverse">
-                        Weight (Kg)
-                        <span ng-show="sortType == 'weight' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'weight' && sortReverse" class="fa fa-caret-up"></span>
-                    </a>
-                </th>                   
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="vitalObj in vitalList| orderBy:sortType:sortReverse"> 
-                <td>{{vitalObj.datetime| date:'short'}}</td>
-                <td>{{vitalObj.temperature}}</td> 
-                <td>{{vitalObj.pulse}}</td> 
-                <td>{{vitalObj.respiratoryrate}}</td> 
-                <td>{{vitalObj.bp}}</td> 
-                <td>{{vitalObj.weight}}</td>
-                <td>
-                    <ul class="list-inline list-unstyled">
-                        <li>
-                            <a ng-click="">
-                                <span class="glyphicon glyphicon-pencil">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a ng-click="delete($index)">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"> 
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+
+<div class="form-group pull-right">
+    <button type="button" class="btn btn-primary" ng-click="upsertVitals()">
+        <span class="glyphicon glyphicon-edit"></span> Add
+    </button>
 </div>
+<table class="table table-hover">
+    <thead>
+        <tr>                 
+            <th>
+                <a href="" ng-click="sortType = 'datetime'; sortReverse = !sortReverse">
+                    DateTime
+                    <span ng-show="sortType == 'datetime' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'datetime' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> 
+            <th>    
+                <a href="" ng-click="sortType = 'temperature'; sortReverse = !sortReverse">
+                    Temp (&#8457;)
+                    <span ng-show="sortType == 'temperature' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'temperature' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> 
+            <th>
+                <a href="" ng-click="sortType = 'pulse'; sortReverse = !sortReverse">
+                    Pulse (bpm)
+                    <span ng-show="sortType == 'pulse' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'pulse' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> 
+            <th>
+                <a href="" ng-click="sortType = 'respiratoryrate'; sortReverse = !sortReverse">
+                    RR (breaths/min)
+                    <span ng-show="sortType == 'respiratoryrate' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'respiratoryrate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> 
+            <th>
+                <a href="" ng-click="sortType = 'bp'; sortReverse = !sortReverse">
+                    SYS/DIA (mmhg)
+                    <span ng-show="sortType == 'bp' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'bp' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> 
+            <th>
+                <a href="" ng-click="sortType = 'weight'; sortReverse = !sortReverse">
+                    Weight (Kg)
+                    <span ng-show="sortType == 'weight' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'weight' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>                   
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="vitalObj in vitalList| orderBy:sortType:sortReverse"> 
+            <td>{{vitalObj.datetime| date:'short'}}</td>
+            <td>{{vitalObj.temperature}}</td> 
+            <td>{{vitalObj.pulse}}</td> 
+            <td>{{vitalObj.respiratoryrate}}</td> 
+            <td>{{vitalObj.bp}}</td> 
+            <td>{{vitalObj.weight}}</td>
+            <td>
+                <ul class="list-inline list-unstyled">
+                    <li>
+                        <a ng-click="upsertVitals($index)">
+                            <span class="glyphicon glyphicon-pencil">
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="delete($index)">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"> 
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>

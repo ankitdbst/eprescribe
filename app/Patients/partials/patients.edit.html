@@ -16,7 +16,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div id="divContent" class="col-md-10">
 
         <div class="panel panel-primary" id="identifyingDetails">
@@ -190,8 +190,16 @@
         <div class="panel panel-info" id="vitals">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-list-alt fa-1x"></i>
+                    <i class="fa fa-stethoscope fa-1x"></i>
                     <a ng-click="isVitalsCollapsed = !isVitalsCollapsed" href="">Vitals</a>
+                    
+                    <a href="" class="pull-right">
+                        <span class="fa-stack">
+                            <i class="fa fa-circle-thin fa-stack-2x"></i>
+                            <i class="fa fa-area-chart fa-stack-1x"></i>
+                        </span>
+                    </a>
+
                 </h4>
             </div>
             <div id="divVitals" uib-collapse="!isVitalsCollapsed">
@@ -200,35 +208,35 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-info" id="clinicalNotes">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-list-alt fa-1x"></i>
+                    <i class="fa fa-sticky-note fa-1x"></i>
                     <a ng-click="isClinicalNotesCollapsed = !isClinicalNotesCollapsed" href="">Clinical Notes</a>
                 </h4>
             </div>
             <div id="divClinicalNotes" uib-collapse="!isClinicalNotesCollapsed">
                 <div class="panel-body">
-                    
+
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-info" id="documents">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-list-alt fa-1x"></i>
+                    <i class="fa fa-file fa-1x"></i>
                     <a ng-click="isDocumentsCollapsed = !isDocumentsCollapsed" href="">Documents</a>
                 </h4>
             </div>
             <div id="divDocuments" uib-collapse="!isDocumentsCollapsed">
                 <div class="panel-body">
-                    
+
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-info" id="prescriptions">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -242,45 +250,45 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-info" id="labOrderTracking">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-list-alt fa-1x"></i>
+                    <i class="fa fa-building fa-1x"></i>
                     <a ng-click="isLabOrderTrackingCollapsed = !isLabOrderTrackingCollapsed" href="">Lab Order Tracking</a>
                 </h4>
             </div>
             <div id="divLabOrderTracking" uib-collapse="!isLabOrderTrackingCollapsed">
                 <div class="panel-body">
-                    
+
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-info" id="pharmacyOrderTracking">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-list-alt fa-1x"></i>
+                    <i class="fa fa-medkit fa-1x"></i>
                     <a ng-click="isPharmacyOrderTrackingCollapsed = !isPharmacyOrderTrackingCollapsed" href="">Pharmacy Order Tracking</a>
                 </h4>
             </div>
             <div id="divPharmacyOrderTracking" uib-collapse="!isPharmacyOrderTrackingCollapsed">
                 <div class="panel-body">
-                    
+
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-info" id="messages">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-list-alt fa-1x"></i>
+                    <i class="fa fa-envelope fa-1x"></i>
                     <a ng-click="isMessagesCollapsed = !isMessagesCollapsed" href="">Messages</a>
                 </h4>
             </div>
             <div id="divMessages" uib-collapse="!isMessagesCollapsed">
                 <div class="panel-body">
-                    
+
                 </div>
             </div>
         </div>
