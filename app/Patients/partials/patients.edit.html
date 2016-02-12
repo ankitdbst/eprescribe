@@ -3,20 +3,42 @@
 <form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
 
     <div class="col-md-10">
-        <!-- Split button -->
-        <div class="btn-group pull-right" style="display: block; margin-bottom: 1%">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Patient Actions <span class="caret"></span>
-            </button>
+        <h3>
+            <a href="" class="btn btn-link" role="button">
+                <img ng-src="{{patient.profileImageURL}}" alt="Add Photo" class="img-circle" width="60" height="60">
+            </a>
+            <span class="label label-warning" ng-show="patient.isUpdate">
+                {{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} years
+            </span>
+            <div class="btn-group pull-right" style="margin-top: 2%">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Patient Actions <span class="caret"></span>
+                </button>
 
-            <ul class="dropdown-menu">
-                <li><a href="#">Refer a Doctor</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Send E-Remedium App link</a></li>
-            </ul>
-        </div>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Refer a Doctor</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Send E-Remedium App link</a></li>
+                    <li><a href="#">Print Patient Form</a></li>
+                </ul>
+            </div>
+        </h3>
     </div>
-
+    <div class="col-md-2" style="margin-top: 3%">
+        <ul id="navPills" class="nav nav-pills nav-stacked affix">
+            <li spy="identifyingDetails"><a href="" ng-click="isIdentifyingDetailsCollapsed = false">Identifying Details</a></li>
+            <li spy="primaryAddress"><a href="" ng-click="isPrimaryAddressCollapsed = true">Primary Address</a></li>
+            <li spy="history"><a href="" ng-click="isHistoryCollapsed = true">History</a></li>
+            <li spy="allergies"><a href="" ng-click="isAllergiesCollapsed = true">Allergies</a></li>
+            <li spy="vitals"><a href="" ng-click="isVitalsCollapsed = true">Vitals</a></li>
+            <li spy="clinicalNotes"><a href="" ng-click="isClinicalNotesCollapsed = true">Clinical Notes</a></li>
+            <li spy="documents"><a href=""  ng-click="isDocumentsCollapsed = true">Documents</a></li>
+            <li spy="prescriptions"><a href="" ng-click="isPrescriptionsCollapsed = true">Prescriptions</a></li>
+            <li spy="labOrderTracking"><a href="" ng-click="isLabOrderTrackingCollapsed = true">Lab Order Tracking</a></li>
+            <li spy="pharmacyOrderTracking"><a href="" ng-click="isPharmacyOrderTrackingCollapsed = true">Pharmacy Order Tracking</a></li>
+            <li spy="messages"><a href="" ng-click="isMessagesCollapsed = true">Messages</a></li>
+        </ul>
+    </div>
     <div id="divContent" class="col-md-10">
 
         <div class="panel panel-info" id="identifyingDetails">
@@ -348,20 +370,6 @@
         <!--</div>-->
     </div>
 
-    <div class="col-md-2">
-        <ul id="navPills" class="nav nav-pills nav-stacked affix">
-            <li spy="identifyingDetails"><a href="" ng-click="isIdentifyingDetailsCollapsed = !isIdentifyingDetailsCollapsed">Identifying Details</a></li>
-            <li spy="primaryAddress"><a href="" ng-click="isPrimaryAddressCollapsed = !isPrimaryAddressCollapsed">Primary Address</a></li>
-            <li spy="history"><a href="" ng-click="isHistoryCollapsed = !isHistoryCollapsed">History</a></li>
-            <li spy="allergies"><a href="" ng-click="isAllergiesCollapsed = !isAllergiesCollapsed">Allergies</a></li>
-            <li spy="vitals"><a href="" ng-click="isVitalsCollapsed = !isVitalsCollapsed">Vitals</a></li>
-            <li spy="clinicalNotes"><a href="" ng-click="isClinicalNotesCollapsed = !isClinicalNotesCollapsed">Clinical Notes</a></li>
-            <li spy="documents"><a href=""  ng-click="isDocumentsCollapsed = !isDocumentsCollapsed">Documents</a></li>
-            <li spy="prescriptions"><a href="" ng-click="isPrescriptionsCollapsed = !isPrescriptionsCollapsed">Prescriptions</a></li>
-            <li spy="labOrderTracking"><a href="" ng-click="isLabOrderTrackingCollapsed = !isLabOrderTrackingCollapsed">Lab Order Tracking</a></li>
-            <li spy="pharmacyOrderTracking"><a href="" ng-click="isPharmacyOrderTrackingCollapsed = !isPharmacyOrderTrackingCollapsed">Pharmacy Order Tracking</a></li>
-            <li spy="messages"><a href="" ng-click="isMessagesCollapsed = !isMessagesCollapsed">Messages</a></li>
-        </ul>
-    </div>
+
 
 </form>

@@ -38,6 +38,7 @@
             }, function (response) {
                 $scope.patient = response;
                 $scope.patient.isUpdate = true;
+                $scope.patient.profileImageURL = "img/User1.jpg"; //This should come from backend!
             });
         }
 

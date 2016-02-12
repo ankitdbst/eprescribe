@@ -22,11 +22,16 @@ angular.module('ERemediumWebApp', [
 
         .run(function ($rootScope, $location, $state) {
             $rootScope.getFullName = function (inputPatientObject) {
-//        alert(inputPatientObject.firstName);
+                if (angular.isUndefined(inputPatientObject)) {
+                    return;
+                }
                 return inputPatientObject.firstName + " " + inputPatientObject.midlleName + " " + inputPatientObject.lastName;
             };
 
             $rootScope.getFullAddress = function (inputPatientObject) {
+                if (angular.isUndefined(inputPatientObject)) {
+                    return;
+                }
                 return inputPatientObject.address.addressLine1 + ', ' + inputPatientObject.address.addressLine2 + ', ' + inputPatientObject.address.city + ', ' + inputPatientObject.address.state + ', ' + inputPatientObject.address.pincode;
             };
 
