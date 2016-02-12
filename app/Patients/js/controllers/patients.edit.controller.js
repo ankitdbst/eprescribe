@@ -51,8 +51,9 @@
         function Initialize() {
             $scope.showAlert = false;
             $scope.genders = ["Male", "Female"];
-            $scope.relationshiptypes = ["", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister", "Others"];
+            $scope.relationshiptypes = ["None", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister", "Others"];
             $rootScope.pageHeader = "Patient Profile";
+            $scope.bloodgroups = ["None", "A+", "A-", "A Unknown", "B+", "B-", "B Unknown", "AB+", "AB-", "AB Unknown", "O+", "O-", "O Unknown"];
         }
 
         function SavePatientProfile() {
