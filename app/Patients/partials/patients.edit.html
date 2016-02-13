@@ -4,23 +4,37 @@
 
     <div class="col-md-10">
         <h3>
-            <a href="" class="btn btn-link" role="button">
-                <img ng-src="{{patient.profileImageURL}}" alt="Add Photo" class="img-circle" width="60" height="60">
-            </a>
-            <span class="label label-warning" ng-show="patient.isUpdate">
-                {{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} years
-            </span>
-            <div class="btn-group pull-right" style="margin-top: 2%">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Patient Actions <span class="caret"></span>
-                </button>
+            <div flow-init="" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
+                <a href="" class="btn btn-link" role="button" ng-show="$flow.files.length">
+                    <img ng-src="{{patient.profileImageURL}}" alt="Add Photo" >
+                    <img flow-img="$flow.files[0]" class="img-circle" width="60" height="60">
+                </a>
 
-                <ul class="dropdown-menu">
-                    <li><a href="#">Refer a Doctor</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Send E-Remedium App link</a></li>
-                    <li><a href="#">Print Patient Form</a></li>
-                </ul>
+                <span class="btn btn-default" ng-show="!$flow.files.length" flow-btn="">
+                    Select Profile Image
+                    <input type="file" style="visibility: hidden; position: absolute;">
+                </span>
+                <span class="btn btn-primary ng-hide" ng-show="$flow.files.length" flow-btn="">
+                    Change Profile Image
+                    <input type="file" style="visibility: hidden; position: absolute;">
+                </span>           
+
+                <span class="label label-warning" ng-show="patient.isUpdate">
+                    {{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} years
+                </span>
+
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Patient Actions <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Refer a Doctor</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Send E-Remedium App link</a></li>
+                        <li><a href="#">Print Patient Form</a></li>
+                    </ul>
+                </div>
             </div>
         </h3>
     </div>

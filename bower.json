@@ -23,7 +23,8 @@
     "angular-cookies": "~1.4.9",
     "angular-canvas-painter": "~0.5.3",
     "ng-dialog": "~0.5.6",
-    "lodash": "~4.3.0"
+    "lodash": "~4.3.0",
+    "ng-flow": "~2"
   },
   "resolutions": {
     "angular": "1.4.9"

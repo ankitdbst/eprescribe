@@ -9,6 +9,7 @@ angular.module('ERemediumWebApp', [
     'ngDialog',
     'ngCookies',
     'cgBusy',
+    'flow',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',
     'ERemediumWebApp.patients',
