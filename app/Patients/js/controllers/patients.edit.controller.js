@@ -46,7 +46,13 @@
 
         $scope.savePatientProfile = SavePatientProfile;
         $scope.close = Close;
+
+        $scope.uploader = {};
         
+        $scope.handleUpload = function ($files, $event, $flow) {
+            alert('Uploaded..');
+            $scope.uploader.flow.upload();//TODO Post Image..
+        };
 
         //Functions
         function Initialize() {
