@@ -93,7 +93,7 @@
                     </div>
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientMobileNumber.$touched && formPatientProfile.patientMobileNumber.$invalid }">
                         <label for="patientMobileNumber">Mobile Number*:</label>
-                        <input type="number" string-to-number ng-model="patient.mobile" ng-disabled="patient.isUpdate" class="form-control" id="patientMobileNumber" name="patientMobileNumber" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" required/>
+                        <input type="number" min="0" string-to-number ng-model="patient.mobile" ng-disabled="patient.isUpdate" class="form-control" id="patientMobileNumber" name="patientMobileNumber" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" required/>
                         <div class="help-block" ng-messages="formPatientProfile.patientMobileNumber.$error" ng-if="formPatientProfile.patientMobileNumber.$touched">                    
                             <p ng-message="required">Mobile Number is mandatory!</p>
                             <p ng-message="minlength">Please enter valid Mobile Number!</p>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientAlternateMobileNumber.$touched && formPatientProfile.patientAlternateMobileNumber.$invalid }">
                         <label for="patientAlternateMobileNumber">Alternate Mobile Number:</label>
-                        <input type="number" string-to-number ng-model="patient.alternateMobileNumber" class="form-control" id="patientAlternateMobileNumber" name="patientAlternateMobileNumber" placeholder="Alternate Mobile Number" ng-minlength="10" ng-maxlength="10"/>
+                        <input type="number" min="0" string-to-number ng-model="patient.alternateMobileNumber" class="form-control" id="patientAlternateMobileNumber" name="patientAlternateMobileNumber" placeholder="Alternate Mobile Number" ng-minlength="10" ng-maxlength="10"/>
                         <div class="help-block" ng-messages="formPatientProfile.patientAlternateMobileNumber.$error" ng-if="formPatientProfile.patientAlternateMobileNumber.$touched">                    
                             <p ng-message="minlength">Please enter valid Mobile Number!</p>
                             <p ng-message="maxlength">Please enter valid Mobile Number!</p>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patientLandlineNumber">Landline Number:</label>
-                        <input type="number" string-to-number ng-model="patient.landlineNumber" class="form-control" id="patientLandlineNumber" name="patientLandlineNumber" placeholder="Landline Number" />
+                        <input type="number" min="0" string-to-number ng-model="patient.landlineNumber" class="form-control" id="patientLandlineNumber" name="patientLandlineNumber" placeholder="Landline Number" />
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patientRelationshipType">Relationship Type*:</label>
@@ -165,7 +165,7 @@
                     </div>
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientPinCode.$touched && formPatientProfile.patientPinCode.$invalid }">
                         <label for="patientPinCode">PinCode*:</label>
-                        <input type="number" ng-model="patient.address.pincode" class="form-control" id="patientPinCode" name="patientPinCode" placeholder="Pin Code" required />
+                        <input type="number" string-to-number min="0" ng-model="patient.address.pincode" class="form-control" id="patientPinCode" name="patientPinCode" placeholder="Pin Code" required />
                         <div class="help-block" ng-messages="formPatientProfile.patientPinCode.$error" ng-if="formPatientProfile.patientPinCode.$touched">                    
                             <p ng-message="required">Pin Code is mandatory!</p>
                         </div>

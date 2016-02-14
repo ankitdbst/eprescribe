@@ -23,7 +23,7 @@
 
                                     <i class="glyphicon-earphone glyphicon input-group-addon"></i>
 
-                                    <input name="inputMobileNumber" type="number" class="form-control input-lg" 
+                                    <input name="inputMobileNumber" type="number" min="0" class="form-control input-lg" 
                                            id="inputMobileNumber" placeholder="Mobile Number" ng-model="mobileNumber"
                                            ng-minlength="10" ng-maxlength="10" required />
 
@@ -100,7 +100,7 @@
                             <div class="form-group" ng-class="{ 'has-error': formRegister.inputRegisterMobileNumber.$touched && formRegister.inputRegisterMobileNumber.$invalid }">
                                 <div class="input-group">
                                     <i class="glyphicon-earphone glyphicon input-group-addon"></i>
-                                    <input name="inputRegisterMobileNumber" type="number" class="form-control input-lg" 
+                                    <input name="inputRegisterMobileNumber" type="number" min="0" class="form-control input-lg" 
                                            id="inputRegisterMobileNumber" placeholder="Mobile Number" ng-model="registerMobileNumber"
                                            ng-minlength="10" ng-maxlength="10" required>
                                 </div>

@@ -28,7 +28,7 @@
     </div>
     <div class="form-group col-md-3">
       <label for="refills">Refills</label>
-      <input type="number" class="form-control" ng-model="medcine.pharmaDetails.refills" ng-init="medcine.pharmaDetails.refills=0" id="refills">
+      <input type="number" min="0" class="form-control" ng-model="medcine.pharmaDetails.refills" ng-init="medcine.pharmaDetails.refills=0" id="refills">
     </div>
     <div class="form-group col-md-3 refills">
       <label for="refillAsNeeded">
@@ -68,7 +68,7 @@
     <div class="form-group row">
       <div class="form-group col-md-4">
         <label for="dosageQuantiy">Dosage Quantity</label>
-        <input type="number" name="dosageQuantity" ng-model="medcine.frequency.daose" ng-init="medcine.frequency.daose=1" class="form-control" id="dosageQuantiy" placeholder="Quantity" />
+        <input type="number" min="0" name="dosageQuantity" ng-model="medcine.frequency.daose" ng-init="medcine.frequency.daose=1" class="form-control" id="dosageQuantiy" placeholder="Quantity" />
       </div>
       <div class="form-group col-md-6">
         <label for="dType">Dosage Unit</label>
