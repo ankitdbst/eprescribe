@@ -1,91 +1,84 @@
 <navbar type="header">
-  <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
+    <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
 <form name="formPrescriptionAddMedicine" class="panel-group upsert-medicine" novalidate autocomplete="off">
-  <div class="form-group" ng-class="{ 'has-error': formPrescriptionAddMedicine.medicineName.$touched && formPrescriptionAddMedicine.medicineName.$invalid }">
-    <input type="text" name="medicineName" ng-model="medcine.name" class="form-control" id="medicineName"
-           placeholder="Start typing the name of the medicine..." uib-typeahead="medicine.name for medicine in search($viewValue)"
-           typeahead-loading="loadingLocations" typeahead-no-results="noResults" required/>
-    <br>
-    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-    <div ng-show="noResults">
-      <i class="glyphicon glyphicon-remove"></i> No Results Found
+    <div class="form-group" ng-class="{ 'has-error': formPrescriptionAddMedicine.medicineName.$touched && formPrescriptionAddMedicine.medicineName.$invalid }">
+        <input type="text" name="medicineName" ng-model="medcine.name" class="form-control" id="medicineName"
+               placeholder="Start typing the name of the medicine..." uib-typeahead="medicine.name for medicine in search($viewValue)"
+               typeahead-loading="loadingLocations" typeahead-no-results="noResults" required/>
+        <br>
+        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+        <div ng-show="noResults">
+            <i class="glyphicon glyphicon-remove"></i> No Results Found
+        </div>
+        <div class="help-block" ng-messages="formPrescriptionAddMedicine.medicineName.$error" ng-if="formPrescriptionAddMedicine.medicineName.$touched">
+            <p ng-message="required">Medicine Name is mandatory!</p>
+        </div>
     </div>
-    <div class="help-block" ng-messages="formPrescriptionAddMedicine.medicineName.$error" ng-if="formPrescriptionAddMedicine.medicineName.$touched">
-      <p ng-message="required">Medicine Name is mandatory!</p>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="frequency">Frequency</label>
+            <select class="form-control" id="frequency" name="frequency" ng-model="medcine.frequency.freq"
+                    ng-options="freq for freq in frequencies">
+            </select>
+        </div>
+        <div class="form-group col-md-4" ng-if="medcine.frequency.freq == 'Weekly'">
+            <label for="intakeDays">Intake Days</label>
+            <select multiple class="form-control" id="intakeDays" name="frequency" ng-model="medcine.frequency.intakeDays">
+                <option value="Mon">Mon</option>
+                <option value="Tue">Tue</option>
+                <option value="Wed">Wed</option>
+                <option value="Thur">Thur</option>
+                <option value="Fri">Fri</option>
+                <option value="Sat">Sat</option>
+                <option value="Sun">Sun</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="intakeTime">Intake Time</label>
+            <select multiple class="form-control" id="intakeTime" name="intakeTime" ng-model="medcine.frequency.intakeTime">
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Night</option>
+            </select>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-3">
-      <label for="dQuantity">Dispense Quantity</label>
-      <input type="text" ng-model="medcine.dispenseQty" class="form-control" id="dQuantity" placeholder="Dispense Quantity"/>
-    </div>
-    <div class="form-group col-md-3">
-      <label for="unit">Unit</label>
-      <select class="form-control" id="unit" name="unit" ng-model="medcine.dispenseUnit"
-              ng-options="unit for unit in dispenseUnits">
-      </select>
-    </div>
-    <div class="form-group col-md-3">
-      <label for="refills">Refills</label>
-      <input type="number" min="0" class="form-control" ng-model="medcine.pharmaDetails.refills" ng-init="medcine.pharmaDetails.refills=0" id="refills">
-    </div>
-    <div class="form-group col-md-3 refills">
-      <label for="refillAsNeeded">
-          <input type="checkbox" ng-model="medcine.pharmaDetails.refillAsNeeded" id="refillAsNeeded">
-          Refill as needed
-      </label>
-    </div>
-  </div>
-  <div class="row">
-      <div class="form-group col-md-4">
-        <label for="frequency">Frequency</label>
-        <select class="form-control" id="frequency" name="frequency" ng-model="medcine.frequency.freq"
-                ng-options="freq for freq in frequencies">
-        </select>
-      </div>
-      <div class="form-group col-md-4" ng-if="medcine.frequency.freq == 'Weekly'">
-        <label for="intakeDays">Intake Days</label>
-        <select multiple class="form-control" id="intakeDays" name="frequency" ng-model="medcine.frequency.intakeDays">
-          <option value="Mon">Mon</option>
-          <option value="Tue">Tue</option>
-          <option value="Wed">Wed</option>
-          <option value="Thur">Thur</option>
-          <option value="Fri">Fri</option>
-          <option value="Sat">Sat</option>
-          <option value="Sun">Sun</option>
-        </select>
-      </div>
-      <div class="form-group col-md-4">
-        <label for="intakeTime">Intake Time</label>
-        <select multiple class="form-control" id="intakeTime" name="intakeTime" ng-model="medcine.frequency.intakeTime">
-          <option>Morning</option>
-          <option>Afternoon</option>
-          <option>Night</option>
-        </select>
-      </div>
-    </div>
+    
     <div class="form-group row">
-      <div class="form-group col-md-4">
-        <label for="dosageQuantiy">Dosage Quantity</label>
-        <input type="number" min="0" name="dosageQuantity" ng-model="medcine.frequency.daose" ng-init="medcine.frequency.daose=1" class="form-control" id="dosageQuantiy" placeholder="Quantity" />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="dType">Dosage Unit</label>
-        <select class="form-control" id="dType" name="dType" ng-model="medcine.frequency.dType"
-                ng-options="unit for unit in dosageUnits">
-        </select>
-      </div>
+        <div class="form-group col-md-4">
+            <label for="dosageQuantiy">Dosage Quantity</label>
+            <input type="number" min="0" name="dosageQuantity" ng-model="medcine.frequency.daose" ng-init="medcine.frequency.daose = 1" class="form-control" id="dosageQuantiy" placeholder="Quantity" />
+        </div>
+        <div class="form-group col-md-4">
+            <label for="dType">Dosage Unit</label>
+            <select class="form-control" id="dType" name="dType" ng-model="medcine.frequency.dType"
+                    ng-options="unit for unit in dosageUnits">
+            </select>
+        </div>
+    </div>
+    
+    <div class="row">    
+        <div class="form-group col-md-4">
+            <label for="refills">Refills</label>
+            <input type="number" min="0" class="form-control" ng-model="medcine.pharmaDetails.refills" ng-disabled="medcine.pharmaDetails.refillAsNeeded" ng-init="medcine.pharmaDetails.refills = 0" id="refills">
+        </div>
+        <div class="form-group col-md-4 refills">
+            <label for="refillAsNeeded">
+                <input type="checkbox" ng-model="medcine.pharmaDetails.refillAsNeeded" ng-change="medcine.pharmaDetails.refills = medcine.pharmaDetails.refillAsNeeded ? 0 : medcine.pharmaDetails.refills" id="refillAsNeeded">
+                Refill as needed
+            </label>
+        </div>
     </div>
     <div class="form-group">
-      <label for="comments">Instructions</label>
-      <textarea class="form-control" ng-model="medcine.frequency.comments" rows="5" id="comments" placeholder="Instructions"></textarea>
+        <label for="comments">Instructions</label>
+        <textarea class="form-control" ng-model="medcine.frequency.comments" rows="5" id="comments" placeholder="Instructions"></textarea>
     </div>
 </form>
 <navbar type="footer">
-  <li class="navbar-li-custom">
-    <div>
-      <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">Save</button>
-      <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Close</button>
-    </div>
+    <li class="navbar-li-custom">
+        <div>
+            <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">Save</button>
+            <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Close</button>
+        </div>
 </navbar>

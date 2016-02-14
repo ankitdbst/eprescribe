@@ -9,11 +9,6 @@
   function PrescriptionUpsertMedicineCtrl($scope, $stateParams, $state, Prescription, Account) {
     var user = Account.getAuthenticatedAccount();
 
-    var unitsMap = {
-      Tablet: 'tablet',
-      Bottle: 'ml',
-      Injection: 'mg'
-    };
 
     $scope.frequencies = ['Daily', 'Weekly', 'Monthly'];
     $scope.dispenseUnits = ['Tablet', 'Bottle', 'Injection'];
@@ -25,15 +20,10 @@
 
     $scope.medcine.frequency = $scope.medcine.frequency || {};
     $scope.medcine.frequency.freq = $scope.medcine.frequency.freq || $scope.frequencies[0];
-    $scope.medcine.dispenseUnit = $scope.medcine.dispenseUnit || $scope.dispenseUnits[0];
     $scope.medcine.frequency.dType = $scope.medcine.frequency.dType || $scope.dosageUnits[0];
 
     $scope.search = SearchMedicine;
 
-    $scope.$watch('medcine.dispenseUnit', function(newValue) {
-      if( _.isUndefined(newValue) ) return;
-      $scope.medcine.frequency.dType = unitsMap[newValue];
-    });
 
     function SearchMedicine(searchText) {
       var params = {
