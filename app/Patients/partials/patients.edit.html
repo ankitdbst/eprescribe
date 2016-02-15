@@ -31,15 +31,16 @@
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
             <li spy="identifyingDetails"><a href="" ng-click="isIdentifyingDetailsCollapsed = false">Identifying Details</a></li>
             <li spy="primaryAddress"><a href="" ng-click="isPrimaryAddressCollapsed = true">Primary Address</a></li>
-            <li spy="history"><a href="" ng-click="isHistoryCollapsed = true">History</a></li>
-            <li spy="allergies"><a href="" ng-click="isAllergiesCollapsed = true">Allergies</a></li>
-            <li spy="vitals"><a href="" ng-click="isVitalsCollapsed = true">Vitals</a></li>
-            <li spy="clinicalNotes"><a href="" ng-click="isClinicalNotesCollapsed = true">Clinical Notes</a></li>
-            <li spy="documents"><a href=""  ng-click="isDocumentsCollapsed = true">Documents</a></li>
-            <li spy="prescriptions"><a href="" ng-click="isPrescriptionsCollapsed = true">Prescriptions</a></li>
-            <li spy="labOrderTracking"><a href="" ng-click="isLabOrderTrackingCollapsed = true">Lab Order Tracking</a></li>
-            <li spy="pharmacyOrderTracking"><a href="" ng-click="isPharmacyOrderTrackingCollapsed = true">Pharmacy Order Tracking</a></li>
-            <li spy="messages"><a href="" ng-click="isMessagesCollapsed = true">Messages</a></li>
+            <li spy="prescriptions"><a href="" ng-click="isPrescriptionsCollapsed = false">Prescriptions</a></li>
+            <li spy="history"><a href="" ng-click="isHistoryVisible = true; isHistoryCollapsed = true">History</a></li>
+            <li spy="allergies"><a href="" ng-click="isAllergiesVisible = true; isAllergiesCollapsed = true">Allergies</a></li>
+            <li spy="vitals"><a href="" ng-click="isVitalsVisible = true; isVitalsCollapsed = true">Vitals</a></li>
+            <li spy="clinicalNotes"><a href="" ng-click="isClinicalNotesVisible = true; isClinicalNotesCollapsed = true">Clinical Notes</a></li>
+            <li spy="documents"><a href=""  ng-click="isDocumentsVisible = true; isDocumentsCollapsed = true">Documents</a></li>
+            
+            <li spy="labOrderTracking"><a href="" ng-click="isLabOrderTrackingVisible = true; isLabOrderTrackingCollapsed = true">Lab Order Tracking</a></li>
+            <li spy="pharmacyOrderTracking"><a href="" ng-click="isPharmacyOrderTrackingVisible = true; isPharmacyOrderTrackingCollapsed = true">Pharmacy Order Tracking</a></li>
+            <li spy="messages"><a href="" ng-click="isMessagesVisible = true; isMessagesCollapsed = true">Messages</a></li>
         </ul>
     </div>
     <div id="divContent" class="col-md-10">
@@ -173,8 +174,22 @@
                 </div>
             </div>
         </div>
+        
+        <div class="panel panel-info" id="prescriptions">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a id="aPrescriptionList" ng-click="isPrescriptionsCollapsed = !isPrescriptionsCollapsed" href="">Prescriptions</a>
+                </h4>
+            </div>
+            <div id="divPrescriptions" uib-collapse="isPrescriptionsCollapsed">
+                <div class="panel-body">
+                    <div ui-view></div>
+                </div>
+            </div>
+        </div>
 
-        <div class="panel panel-info" id="history">
+        <div class="panel panel-info" id="history" ng-show="isHistoryVisible">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-history fa-1x"></i>
@@ -216,7 +231,7 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="allergies">
+        <div class="panel panel-info" id="allergies" ng-show="isAllergiesVisible">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-ban fa-1x"></i>
@@ -246,7 +261,7 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="vitals">
+        <div class="panel panel-info" id="vitals" ng-show="isVitalsVisible">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-stethoscope fa-1x"></i>
@@ -265,7 +280,7 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="clinicalNotes">
+        <div class="panel panel-info" id="clinicalNotes" ng-show="isClinicalNotesVisible">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-sticky-note fa-1x"></i>
@@ -279,7 +294,7 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="documents">
+        <div class="panel panel-info" id="documents" ng-show="isDocumentsVisible">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-file fa-1x"></i>
@@ -293,21 +308,7 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="prescriptions">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-list-alt fa-1x"></i>
-                    <a id="aPrescriptionList" ng-click="isPrescriptionsCollapsed = !isPrescriptionsCollapsed" href="">Prescriptions</a>
-                </h4>
-            </div>
-            <div id="divPrescriptions" uib-collapse="!isPrescriptionsCollapsed">
-                <div class="panel-body">
-                    <div ui-view></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-info" id="labOrderTracking">
+        <div class="panel panel-info" id="labOrderTracking" ng-show="isLabOrderTrackingVisible">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-building fa-1x"></i>
@@ -326,7 +327,7 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="pharmacyOrderTracking">
+        <div class="panel panel-info" id="pharmacyOrderTracking" ng-show="isPharmacyOrderTrackingVisible">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-medkit fa-1x"></i>
@@ -345,7 +346,7 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="messages">
+        <div class="panel panel-info" id="messages" ng-show="isMessagesVisible">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <i class="fa fa-envelope fa-1x"></i>
@@ -372,7 +373,4 @@
         <!--<button type="button" class="btn btn-default" ng-click="close()">Cancel</button>-->
         <!--</div>-->
     </div>
-
-
-
 </form>
