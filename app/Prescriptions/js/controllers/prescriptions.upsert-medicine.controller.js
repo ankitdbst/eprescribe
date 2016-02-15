@@ -9,9 +9,18 @@
   function PrescriptionUpsertMedicineCtrl($scope, $stateParams, $state, Prescription, Account) {
     var user = Account.getAuthenticatedAccount();
 
-    $scope.frequencies = ['Daily', 'Weekly', 'Monthly'];
+    $scope.frequencies = ['Daily', 'Weekly', 'Monthly', 'Custom'];
     $scope.dispenseUnits = ['Tablet', 'Bottle', 'Injection'];
     $scope.dosageUnits = ['tablet', 'ml', 'mg'];
+    $scope.instructions = [
+      'Before Meal',
+      'After Meal',
+      'After Bowls',
+      'Before Bowls',
+      'Empty Stomach'
+    ];
+    $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+    $scope.times = ['Morning', 'Afternoon', 'Night'];
 
     $scope.saveBtnName = _.isEmpty($scope.medcine) ? 'Add' : 'Update';
     $scope.dialogTitle = $scope.saveBtnName + " Medicine";

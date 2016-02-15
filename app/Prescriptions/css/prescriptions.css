@@ -164,3 +164,7 @@
 .inline-block {
   display: inline-block;
 }
+
+.intake:first-child {
+  margin-top: 0px;
+}
