@@ -9,21 +9,24 @@
   function PrescriptionUpsertMedicineCtrl($scope, $stateParams, $state, Prescription, Account) {
     var user = Account.getAuthenticatedAccount();
 
-
     $scope.frequencies = ['Daily', 'Weekly', 'Monthly'];
     $scope.dispenseUnits = ['Tablet', 'Bottle', 'Injection'];
     $scope.dosageUnits = ['tablet', 'ml', 'mg'];
 
-    $scope.medcine = $scope.$parent.medcine;
     $scope.saveBtnName = _.isEmpty($scope.medcine) ? 'Add' : 'Update';
     $scope.dialogTitle = $scope.saveBtnName + " Medicine";
 
-    $scope.medcine.frequency = $scope.medcine.frequency || {};
-    $scope.medcine.frequency.freq = $scope.medcine.frequency.freq || $scope.frequencies[0];
-    $scope.medcine.frequency.dType = $scope.medcine.frequency.dType || $scope.dosageUnits[0];
+    Init();
+
+    function Init() {
+      $scope.medcine = $scope.$parent.medcine;
+      $scope.medcine.frequency = $scope.medcine.frequency || {};
+      $scope.medcine.frequency.freq = $scope.medcine.frequency.freq || $scope.frequencies[0];
+      $scope.medcine.frequency.dType = $scope.medcine.frequency.dType || $scope.dosageUnits[0];
+    }
 
     $scope.search = SearchMedicine;
-
+    $scope.next = AddNext;
 
     function SearchMedicine(searchText) {
       var params = {
@@ -36,6 +39,12 @@
       };
       $scope.myPromise = Prescription.searchMed(params).$promise;
       return Prescription.searchMed(params).$promise;
+    }
+
+    function AddNext() {
+      $scope.$parent.prescription.medcines.push($scope.medcine);
+      $scope.$parent.medcine = {};
+      Init();
     }
   }
 
