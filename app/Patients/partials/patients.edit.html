@@ -203,28 +203,35 @@
                 <div class="panel-body">
                     <div class="form-group col-md-4">
                         <label for="patientMedicalHistory">Medical History:</label>
-                        <textarea class="form-control" ng-model="patient.history.medical" id="patientMedicalHistory" rows="1" placeholder="E.g. Scoliosis/Migraine headaches etc."></textarea>
+                        <textarea class="form-control" ng-change="historyChanged=true" ng-model="patient.history.medical" id="patientMedicalHistory" rows="1" placeholder="E.g. Scoliosis/Migraine headaches etc."></textarea>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patientSurgicalHistory">Surgical History:</label>
-                        <textarea class="form-control" ng-model="patient.history.surgical" id="patientSurgicalHistory" rows="1" placeholder="E.g. Multiple Knee Surgeries etc."></textarea>
+                        <textarea class="form-control" ng-change="historyChanged=true" ng-model="patient.history.surgical" id="patientSurgicalHistory" rows="1" placeholder="E.g. Multiple Knee Surgeries etc."></textarea>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patientFamilyHistory">Family History:</label>
-                        <textarea class="form-control" ng-model="patient.history.family" id="patientFamilyHistory" rows="1" placeholder="E.g. No History of Diabetes etc."></textarea>
+                        <textarea class="form-control" ng-change="historyChanged=true" ng-model="patient.history.family" id="patientFamilyHistory" rows="1" placeholder="E.g. No History of Diabetes etc."></textarea>
                     </div>   
                     <div class="form-group col-md-4">
                         <label for="patientSmokingStatus"> Smoking Status:</label>
-                        <input type="text" ng-model="patient.history.smoking" class="form-control" id="patientSmokingStatus" placeholder="E.g. Former Smoker/No Tobacco use etc." />
+                        <input type="text" ng-change="historyChanged=true" ng-model="patient.history.smoking" class="form-control" id="patientSmokingStatus" placeholder="E.g. Former Smoker/No Tobacco use etc." />
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patientAlcoholStatus">Alcohol Status:</label>
-                        <input type="text" ng-model="patient.history.alcohol" class="form-control" id="patientAlcoholStatus" placeholder="E.g. Rare Alchohol use/Alcoholic etc." />
+                        <input type="text" ng-change="historyChanged=true" ng-model="patient.history.alcohol" class="form-control" id="patientAlcoholStatus" placeholder="E.g. Rare Alchohol use/Alcoholic etc." />
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patientOtherComments">Other Comments:</label>
-                        <textarea class="form-control" ng-model="patient.history.other" id="patientOtherComments" rows="1" placeholder="Other Comments"></textarea>
+                        <textarea class="form-control" ng-change="historyChanged=true" ng-model="patient.history.other" id="patientOtherComments" rows="1" placeholder="Other Comments"></textarea>
                     </div> 
+                    <div class="form-group col-md-12">
+                        <div class="pull-right">
+                            <button class="btn btn-primary" type="button" ng-click="savePatientProfile()" ng-show="historyChanged">
+                                <i class="fa fa-floppy-o"></i> Save
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -245,16 +252,23 @@
                 <div class="panel-body">
                     <div class="form-group col-md-4">
                         <label for="patientDrugAllergies">Drug Allergies:</label>
-                        <textarea class="form-control" ng-model="patient.alergy.drug" id="patientDrugAllergies" rows="1" placeholder="E.g. Penicillins etc."></textarea>
+                        <textarea class="form-control" ng-change="allergiesChanged=true" ng-model="patient.alergy.drug" id="patientDrugAllergies" rows="1" placeholder="E.g. Penicillins etc."></textarea>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patientFoodAllergies">Food Allergies:</label>
-                        <textarea class="form-control" ng-model="patient.alergy.food" id="patientFoodAllergies" rows="1" placeholder="E.g. No food allergies recorded etc."></textarea>
+                        <textarea class="form-control" ng-change="allergiesChanged=true" ng-model="patient.alergy.food" id="patientFoodAllergies" rows="1" placeholder="E.g. No food allergies recorded etc."></textarea>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patientEnvironmentalAllergies">Environmental Allergies:</label>
-                        <textarea class="form-control" ng-model="patient.alergy.env" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
+                        <textarea class="form-control" ng-change="allergiesChanged=true" ng-model="patient.alergy.env" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
                     </div>   
+                    <div class="form-group col-md-12">
+                        <div class="pull-right">
+                            <button class="btn btn-primary" type="button" ng-click="savePatientProfile()" ng-show="allergiesChanged">
+                                <i class="fa fa-floppy-o"></i> Save
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
