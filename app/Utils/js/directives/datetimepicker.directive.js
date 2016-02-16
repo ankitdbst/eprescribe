@@ -13,6 +13,7 @@
             };
             element.find('.date').datetimepicker(options);
             element.find('input').attr('placeholder', attrs.placeholder);
+            element.find('input').attr('ng-change', attrs.ngChange);
 
             element.bind('dp.change', function (e) {
                 scope.ngModel = e.date;
