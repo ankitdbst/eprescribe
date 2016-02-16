@@ -1,43 +1,47 @@
 <div cg-busy="myPromise"></div>
 <div id="prescriptionDetail">
-  <div>
-    <h4>{{getFullName(prescription.patient)}}, {{prescription.patient.sex}}, {{prescription.patient.age.year}} years</h4>
-    <div>+91 {{prescription.patient.mobile}}</div>
-  </div>
-  <hr>
-  <div>
-    <h4>By <strong>Dr: {{prescription.doctor.firstName}} {{prescription.doctor.lastName}}</strong></h4>
-    <div>+91 {{prescription.doctor.mobile}}</div>
-  </div>
-  <hr>
-  <div ng-if="!canvasEnabled">
     <div>
-      <label><strong>Complaints: </strong></label>
-      <div class="inline">{{ prescription.patientComplaint }}</div>
+        <h4>{{getFullName(prescription.patient)}}, {{prescription.patient.sex}}, {{prescription.patient.age.year}} years</h4>
+        <div>+91 {{prescription.patient.mobile}}</div>
     </div>
-    <br>
+    <hr>
     <div>
-      <label><strong>Diagnosis: </strong></label>
-      <div class="inline">{{ prescription.diagnosis }}</div>
+        <h4>By <strong>Dr: {{prescription.doctor.firstName}} {{prescription.doctor.lastName}}</strong></h4>
+        <div>+91 {{prescription.doctor.mobile}}</div>
     </div>
-  </div>
-  <div ng-if="canvasEnabled">
-    <label>Complaints & Diagnosis: </label>
-    <img ng-src="{{prescription.imageSrc}}" />
-  </div>
-  <hr>
-  <div>
-    <span class="pull-left h3"> &#8478; </span>
-    <span class="pull-right h5 eremedium-prescription-date">{{prescription.creationDate | date:'medium'}}</span>
-  </div>
-  <medicines class="clearfix"></medicines>
+    <hr>
+    <div ng-if="!canvasEnabled">
+        <div>
+            <label><strong>Complaints: </strong></label>
+            <div class="inline">{{ prescription.patientComplaint}}</div>
+        </div>
+        <br>
+        <div>
+            <label><strong>Diagnosis: </strong></label>
+            <div class="inline">{{ prescription.diagnosis}}</div>
+        </div>
+    </div>
+    <div ng-if="canvasEnabled">
+        <label>Complaints & Diagnosis: </label>
+        <img ng-src="{{prescription.imageSrc}}" />
+    </div>
+    <hr>
+    <div>
+        <span class="pull-left h3"> &#8478; </span>
+        <span class="pull-right h5 eremedium-prescription-date">{{prescription.creationDate| date:'medium'}}</span>
+    </div>
+    <medicines class="clearfix"></medicines>
 </div>
 <hr>
 <form name="formPrescriptionOrder" novalidate>
-  <div class="form-group">
-      <button type="button" class="btn btn-success" ui-sref="PrescriptionOrder({pId: prescription.pid})"
-              ng-disabled="formPrescriptionOrder.$invalid"><span class="glyphicon glyphicon-shopping-cart"></span> Place Order</button>
-      <button type="button" class="btn btn-default" ng-print print-element-id="prescriptionDetail"><span class="glyphicon glyphicon-print"></span> Print</button>
+    <div class="form-group">
+        <button type="button" class="btn btn-success" ui-sref="PrescriptionOrder({pId: prescription.pid})"
+                ng-disabled="formPrescriptionOrder.$invalid">
+            <span class="glyphicon glyphicon-shopping-cart"></span> Place Order
+        </button>
+        <button type="button" class="btn btn-default" ng-print print-element-id="prescriptionDetail">
+            <span class="glyphicon glyphicon-print"></span> Print
+        </button>
 
-  </div>
+    </div>
 </form>

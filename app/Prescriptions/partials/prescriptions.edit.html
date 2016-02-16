@@ -45,14 +45,22 @@
   </form>
 </div>
 
-<button class="btn btn-danger canvas-new-page" ng-if="canvasEditable" uib-tooltip="Add new page"><span class="glyphicon glyphicon-plus-sign"></span></button>
+<button class="btn btn-danger canvas-new-page" ng-if="canvasEditable" uib-tooltip="Add new page">
+    <i class="fa fa-plus"></i>
+</button>
 <navbar type="footer">
   <li class="navbar-li-custom">
     <div>
-        <button type="button" class="btn btn-primary" ng-if="canvasEditable" ng-click="closeCanvas()" > <span class="glyphicon glyphicon-ok"> </span></button>
-        <button type="button" class="btn btn-danger" ng-if="canvasEditable" ng-click="closeCanvas()" > <span class="glyphicon glyphicon-remove"> </span></button>
+        <button type="button" class="btn btn-primary" ng-if="canvasEditable" ng-click="closeCanvas()" > 
+            <span class="glyphicon glyphicon-ok"> </span>
+        </button>
+        <button type="button" class="btn btn-danger" ng-if="canvasEditable" ng-click="closeCanvas()" > 
+            <span class="glyphicon glyphicon-remove"> </span>
+        </button>
         <button type="button" class="btn btn-primary" ng-if="!canvasEditable" ng-click="save()"
-                ng-disabled="formPrescription.$invalid">Save</button>
+                ng-disabled="formPrescription.$invalid">
+            <i class="fa fa-floppy-o"></i> Save
+        </button>
     </div>
   <li ng-if="!canvasEditable"><a ng-click="upsertMed()"><span class="glyphicon glyphicon-plus"></span> Add Medicine</a></li>
   <li ng-if="!canvasEditable"><a href="#"><span class="glyphicon glyphicon-plus"></span> Advises (Lab Tests)</a></li>
