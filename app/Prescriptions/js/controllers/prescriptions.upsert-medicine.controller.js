@@ -22,6 +22,16 @@
     $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     $scope.times = ['Morning', 'Afternoon', 'Night'];
 
+    $scope.favorites = [
+      'Crocin',
+      'Glycomed',
+      'Disprin',
+      'Combiflam',
+      'Asprin',
+      'Zandu Bam',
+      'Digene'
+    ];
+
     $scope.saveBtnName = _.isEmpty($scope.medcine) ? 'Add' : 'Update';
     $scope.dialogTitle = $scope.saveBtnName + " Medicine";
 
