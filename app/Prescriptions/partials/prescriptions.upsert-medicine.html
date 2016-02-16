@@ -3,9 +3,16 @@
 </navbar>
 <form name="formPrescriptionAddMedicine" class="panel-group upsert-medicine" novalidate autocomplete="off">
     <div class="form-group" ng-class="{ 'has-error': formPrescriptionAddMedicine.medicineName.$touched && formPrescriptionAddMedicine.medicineName.$invalid }">
-        <input type="text" name="medicineName" ng-model="medcine.name" class="form-control" id="medicineName"
-               placeholder="Start typing the name of the medicine..." uib-typeahead="medicine.name for medicine in search($viewValue)"
-               typeahead-loading="loadingLocations" typeahead-no-results="noResults" required/>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <a ng-click="collapsed=!collapsed" uib-tooltip="Toggle Favorites" tooltip-placement="top-right">
+                    <i class="fa fa-heart fa-1x"></i>
+                </a>
+            </div>
+            <input type="text" name="medicineName" ng-model="medcine.name" class="form-control" id="medicineName"
+                   placeholder="Start typing the name of the medicine..." uib-typeahead="medicine.name for medicine in search($viewValue)"
+                   typeahead-loading="loadingLocations" typeahead-no-results="noResults" required/>
+        </div>
         <br>
         <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
         <div ng-show="noResults">
@@ -37,15 +44,6 @@
                   </label>
                 </div>
             </div>
-            <!--<select multiple class="form-control" id="intakeDays" name="frequency" ng-model="medcine.frequency.intakeDays">-->
-                <!--<option value="Mon">Mon</option>-->
-                <!--<option value="Tue">Tue</option>-->
-                <!--<option value="Wed">Wed</option>-->
-                <!--<option value="Thur">Thur</option>-->
-                <!--<option value="Fri">Fri</option>-->
-                <!--<option value="Sat">Sat</option>-->
-                <!--<option value="Sun">Sun</option>-->
-            <!--</select>-->
         </div>
         <div class="form-group col-md-2" ng-if="medcine.frequency.freq !== 'Custom'">
             <label for="intakeTime">Intake Time</label>
@@ -57,11 +55,6 @@
                   </label>
                 </div>
             </div>
-            <!--<select multiple class="form-control" id="intakeTime" name="intakeTime" ng-model="medcine.frequency.intakeTime">-->
-                <!--<option>Morning</option>-->
-                <!--<option>Afternoon</option>-->
-                <!--<option>Night</option>-->
-            <!--</select>-->
         </div>
         <div class="form-group col-md-4" ng-if="medcine.frequency.freq !== 'Custom'">
             <label for="intakeInst">Intake Instruction</label>
@@ -115,4 +108,36 @@
             <button type="button" class="btn btn-default" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">Save & Close</button>
             <!--<button type="button" class="btn btn-default" ng-click="closeThisDialog()">Close</button>-->
         </div>
+    </li>
 </navbar>
+
+<div class="side-menu" ng-init="collapsed=true;">
+    <div class="panel panel-info favorites animate-show" ng-show="!collapsed" >
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <i class="fa fa-heart fa-1x"></i>
+                 Favorites
+            </h4>
+        </div>
+        <div>
+            <div class="panel-body">
+                <input type="text" class="form-control" id="searchFav" ng-model="searchText" placeholder="Search your favorites here..."/>
+                <br>
+                <div class="fav-results">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr ng-repeat="favorite in favorites | filter: searchText">
+                                <td>{{favorite}}</td>
+                                <td>
+                                    <a ng-click="medcine.name=favorite;" uib-tooltip="Click to add" tooltip-placement="top-right">
+                                        <i class="fa fa-caret-right fa-1x"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

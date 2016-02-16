@@ -168,3 +168,19 @@
 .intake:first-child {
   margin-top: 0px;
 }
+
+.favorites {
+  position: absolute;
+  left: -303px;
+  top: 52px;
+  width: 300px;
+  background: white;
+  min-height: 543px;
+}
+
+.side-menu button {
+  position: absolute;
+  left: -40px;
+  top: 52px;
+  background: white;
+}
