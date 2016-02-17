@@ -63,13 +63,18 @@
                             <!--Submit Button-->
                             <div class="form-group">
                                 <div>
-                                    <button type="submit" ng-click="signIn()" class="btn btn-primary btn-block btn-lg" ng-disabled="formSignIn.$invalid">Sign In</button>
+
+                                    <button type="submit" ng-click="signIn()" class="btn btn-primary btn-block btn-lg" ng-disabled="formSignIn.$invalid">
+                                        <i class="fa fa-sign-in"></i>
+                                        Sign In
+                                    </button>
                                 </div>
                             </div>
 
                             <p class="text-muted">
                                 <label>New to E-Remedium? 
-                                    <a href="" ng-click="toggleModal('false')">Register Now
+                                    <a href="" ng-click="toggleModal('false')">
+                                        Register Now
                                     </a>
                                 </label>
                             </p>

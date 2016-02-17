@@ -63,7 +63,7 @@
             $scope.bloodgroups = ["None", "A+", "A-", "A Unknown", "B+", "B-", "B Unknown", "AB+", "AB-", "AB Unknown", "O+", "O-", "O Unknown"];
         }
 
-        function SavePatientProfile() {
+        function SavePatientProfile(section) {
             //A computed property!
             $scope.patient.isDependant = ($scope.patient.relation == '') ? "false" : "true";
             //Delete redundant properties
@@ -77,12 +77,13 @@
             delete $scope.patient["_id"];
             $scope.myPromise = Patient.upsert(params, function (response) {
                 $scope.showAlert = true;
+                $scope.section = section;
                 //Show Proper Alert with option of going back.
                 if (angular.isUndefined(response)) {
-                    $scope.alertMessage = "Error in saving, Please try again!";
+                    $scope.alertMessage = "Error in saving Patient's " & section & ", Please try again!";
                     $scope.alertClass = "alert-danger";
                 } else if (response.respCode == 1) {
-                    $scope.alertMessage = "Patient Profile Saved Successfully!";
+                    $scope.alertMessage = "Patient's " & section & " Saved Successfully!";
                     $scope.alertClass = "alert-success";
                 } else {
                     $scope.alertMessage = response.response;

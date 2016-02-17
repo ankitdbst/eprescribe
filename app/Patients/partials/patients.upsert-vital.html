@@ -28,7 +28,12 @@
 <navbar type="footer">
     <li class="navbar-li-custom">
         <div>
-            <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">Save</button>
-            <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">
+                <i class="fa fa-floppy-o"></i>     Save
+            </button>
+            <button type="button" class="btn btn-default" ng-click="closeThisDialog()">
+                <i class="fa fa-times"></i>
+                Close
+            </button>
         </div>
 </navbar>

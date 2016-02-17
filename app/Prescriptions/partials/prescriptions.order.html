@@ -38,8 +38,12 @@
   </div>
   <hr>
   <div class="form-group">
-    <button type="button" class="btn btn-primary" ng-click="order()" ng-disabled="formPrescriptionOrder.$invalid">Confirm Order</button>
-    <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="order()" ng-disabled="formPrescriptionOrder.$invalid">
+        <i class="fa fa-thumbs-up"></i> Confirm Order
+    </button>
+    <button type="button" class="btn btn-default" ng-click="close()">
+        <i class="fa fa-times"></i> Cancel
+    </button>
   </div>
 </form>
 <div ui-view></div>
