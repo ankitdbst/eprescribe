@@ -13,7 +13,7 @@
         }
 
         angular.forEach(data, function(value, key) {
-          if (key.startsWith('$') || key == '_id') { // Backend service fails if we have these params in the request
+          if (key.startsWith('$') || key === '_id') { // Backend service fails if we have these params in the request
             delete data[key];
           }
         });

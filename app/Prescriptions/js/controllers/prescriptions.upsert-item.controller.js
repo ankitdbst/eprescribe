@@ -2,13 +2,13 @@
   'use strict';
 
   angular.module('ERemediumWebApp.prescriptions.controllers')
-  .controller('PrescriptionUpsertMedicineCtrl', PrescriptionUpsertMedicineCtrl);
+  .controller('PrescriptionUpsertItemCtrl', PrescriptionUpsertItemCtrl);
 
-  PrescriptionUpsertMedicineCtrl.$inject = ['$scope', '$stateParams', '$state', 'Prescription', 'Account'];
+  PrescriptionUpsertItemCtrl.$inject = ['$scope', '$stateParams', '$state', 'Prescription', 'Account'];
 
-  function PrescriptionUpsertMedicineCtrl($scope, $stateParams, $state, Prescription, Account) {
+  function PrescriptionUpsertItemCtrl($scope, $stateParams, $state, Prescription, Account) {
     var user = Account.getAuthenticatedAccount();
-
+    // Move to constants
     $scope.frequencies = ['Daily', 'Weekly', 'Monthly', 'Custom'];
     $scope.dispenseUnits = ['Tablet', 'Bottle', 'Injection'];
     $scope.dosageUnits = ['tablet', 'ml', 'mg'];
@@ -43,16 +43,33 @@
       'Digene'
     ];
 
-    $scope.saveBtnName = _.isEmpty($scope.medcine) ? 'Add' : 'Update';
-    $scope.dialogTitle = $scope.saveBtnName + " Medicine";
+    $scope.advises = [
+      'Absolute Eosinophil Count',
+      'ACTH Stimulation Test',
+      'Alpha Fetoprotien (Adult)',
+      'Amlicor MTB Test',
+      'Anti-LA Antibody',
+      'Anti-Double Stranded DNA AntiBody'
+    ];
+
+    var itemStr = $scope.$parent.itemStr;
+    var itemsStr = $scope.$parent.itemsStr;
+
+    $scope.saveBtnName = _.isEmpty($scope[itemStr]) ? 'Add' : 'Update';
+    // Limitation as the API has a mis-spelled medicine (else we can directly capitalize the first letter)
+    $scope.dialogTitle = $scope.saveBtnName + ' ' + (( itemStr === 'medcine' ) ? 'Medicine' : 'Advise');
 
     Init();
 
     function Init() {
-      $scope.medcine = $scope.$parent.medcine;
-      $scope.medcine.frequency = $scope.medcine.frequency || {};
-      $scope.medcine.frequency.freq = $scope.medcine.frequency.freq || $scope.frequencies[0];
-      $scope.medcine.frequency.dType = $scope.medcine.frequency.dType || $scope.dosageUnits[0];
+      $scope[itemStr] = $scope.$parent[itemStr];
+      if( itemStr === 'medcine' ) {
+        $scope.medcine.frequency = $scope.medcine.frequency || {};
+        $scope.medcine.frequency.freq = $scope.medcine.frequency.freq || $scope.frequencies[0];
+        $scope.medcine.frequency.dType = $scope.medcine.frequency.dType || $scope.dosageUnits[0];
+      } else if ( itemStr === 'advise' ) {
+        // To fill defaults
+      }
     }
 
     $scope.search = SearchMedicine;
@@ -72,8 +89,8 @@
     }
 
     function AddNext() {
-      $scope.$parent.prescription.medcines.push($scope.medcine);
-      $scope.$parent.medcine = {};
+      $scope.$parent.prescription[itemsStr].push($scope[itemStr]);
+      $scope.$parent[itemStr] = {};
       Init();
     }
   }

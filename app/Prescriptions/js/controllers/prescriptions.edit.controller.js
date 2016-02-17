@@ -25,8 +25,8 @@
       $scope.close = ClosePrescription;
       $scope.minimize = Minimize;
 
-      // Medicine
-      $scope.upsertMed = UpsertMedicine;
+      // Medicine/Advises
+      $scope.upsertItem = UpsertItem;
 
       // Canvas | free write
       $scope.closeCanvas = CloseCanvas;
@@ -51,24 +51,31 @@
         });
       }
 
-      function UpsertMedicine(index) {
-        $scope.medcine = _.isUndefined(index) ? {} : _.clone($scope.prescription.medcines[index]);
+      function UpsertItem(item, index) {
+        var itemStr, itemsStr;
+        $scope.itemStr = itemStr = item;
+        $scope.itemsStr = itemsStr = item + 's';
 
-        var upsertMedDialog = ngDialog.open({
-          template        : 'Prescriptions/partials/prescriptions.upsert-medicine.html',
+        $scope[itemStr] = {};
+        $scope.editMode = !_.isUndefined(index);
+        if( $scope.editMode )
+          angular.copy($scope.prescription[itemsStr][index], $scope[itemStr]);
+
+        var upsertDialog = ngDialog.open({
+          template        : 'Prescriptions/partials/prescriptions.upsert-' + itemStr + '.html',
           className       : 'ngdialog-theme-default custom-width-2',
           scope           : $scope,
           showClose       : false,
           closeByEscape   : false,
           closeByDocument : false,
-          controller      : 'PrescriptionUpsertMedicineCtrl'
+          controller      : 'PrescriptionUpsertItemCtrl'
         });
 
-        upsertMedDialog.closePromise.then(function(data) {
+        upsertDialog.closePromise.then(function(data) {
           if( data.value == "Add" ) {
-            $scope.prescription.medcines.push($scope.medcine);
+            $scope.prescription[itemsStr].push($scope[itemStr]);
           } else if( data.value == "Update" ) {
-            $scope.prescription.medcines[index] = $scope.medcine;
+            $scope.prescription[itemsStr][index] = $scope[itemStr];
           }
         });
       }

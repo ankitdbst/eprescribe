@@ -30,7 +30,12 @@
         <span class="pull-left h3"> &#8478; </span>
         <span class="pull-right h5 eremedium-prescription-date">{{prescription.creationDate| date:'medium'}}</span>
     </div>
-    <medicines class="clearfix"></medicines>
+    <items class="clearfix" type="medcine" prescription="prescription"></items>
+    <hr>
+    <div>
+        <span class="h4"> Adv </span>
+    </div>
+    <items class="clearfix" type="advise" prescription="prescription"></items>
 </div>
 <hr>
 <form name="formPrescriptionOrder" novalidate>

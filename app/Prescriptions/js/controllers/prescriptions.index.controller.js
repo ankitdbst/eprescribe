@@ -33,6 +33,7 @@
         $scope.prescription.isUpdate = false; // for edit we change this to true
         // Medications
         $scope.prescription.medcines = [];
+        $scope.prescription.advises = [];
 
         var defaultDate = new Date();
         // Add 7 days
@@ -93,6 +94,8 @@
 
         $scope.prescription = Prescription.get(params);
         $scope.prescription.$promise.then(function(response) {
+          delete $scope.prescription.pid; // We do not want to send the pid;
+          delete $scope.prescription._id;
           CreatePrescription();
         });
       }

@@ -1,7 +1,7 @@
 <navbar type="header">
     <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
-<form name="formPrescriptionAddMedicine" class="panel-group upsert-medicine" novalidate autocomplete="off">
+<form name="formPrescriptionAddMedicine" class="panel-group upsert-item" novalidate autocomplete="off">
     <div class="form-group" ng-class="{ 'has-error': formPrescriptionAddMedicine.medicineName.$touched && formPrescriptionAddMedicine.medicineName.$invalid }">
         <div class="input-group">
             <div class="input-group-addon">
@@ -79,7 +79,6 @@
             <input type="number" min="0" name="intakeDays" ng-model="medcine.frequency.intakeDuration"
                    ng-init="medcine.frequency.intakeDuration = 1" class="form-control" id="intakeDuration" placeholder="" />
         </div>
-
     </div>
     
     <div class="row">    
@@ -103,7 +102,7 @@
 <navbar type="footer">
     <li class="navbar-li-custom">
         <div>
-            <button type="button" class="btn btn-primary" ng-click="next()" ng-disabled="formPrescriptionAddMedicine.$invalid">
+            <button type="button" class="btn btn-primary" ng-if="!editMode" ng-click="next()" ng-disabled="formPrescriptionAddMedicine.$invalid">
                 <span class="glyphicon glyphicon-plus"></span> Add Next</button>
             <button type="button" class="btn btn-default" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">
                 <i class="fa fa-floppy-o"></i> Save & Close
