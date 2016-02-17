@@ -13,11 +13,22 @@
     $scope.dispenseUnits = ['Tablet', 'Bottle', 'Injection'];
     $scope.dosageUnits = ['tablet', 'ml', 'mg'];
     $scope.instructions = [
-      'Before Meal',
-      'After Meal',
-      'After Bowls',
-      'Before Bowls',
-      'Empty Stomach'
+      'After Breakfast',
+      'After Defecation',
+      'After Dinner',
+      'After Lunch',
+      'After Meals',
+      'At Bed Time',
+      'Before Breakfast',
+      'Before Dinner',
+      'Before Lunch',
+      'Before Meals',
+      'In Between Food',
+      'On Empty Stomach',
+      'With Hot Water',
+      'With Milk',
+      'With Warm Water',
+      'With Water'
     ];
     $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     $scope.times = ['Morning', 'Afternoon', 'Night'];

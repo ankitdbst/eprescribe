@@ -59,7 +59,7 @@
         <div class="form-group col-md-4" ng-if="medcine.frequency.freq !== 'Custom'">
             <label for="intakeInst">Intake Instruction</label>
             <input type="text" name="medicineName" ng-model="medcine.frequency.intakeInst" class="form-control" id="intakeInst"
-               placeholder="How to take?" uib-typeahead="instruction for instruction in instructions"/>
+               placeholder="How to take?" uib-typeahead="instruction for instruction in instructions | filter:$viewValue | limitTo:5"/>
         </div>
     </div>
     
