@@ -184,3 +184,17 @@
   top: 52px;
   background: white;
 }
+
+.eremedium-frequency-intake div{
+  display: inline;
+}
+
+.eremedium-frequency-intake div:first-child:before {
+    content: "";
+    padding: 0px;
+}
+
+.eremedium-frequency-intake div:before {
+    content: "•";
+    padding: 5px;
+}

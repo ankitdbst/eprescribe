@@ -2,42 +2,42 @@
 <table class="table table-striped" ng-show="prescription.medcines.length" print-table="medicines">
   <thead>
     <th>#</th>
-    <th>Medicine Name</th>
+    <th>Medicine</th>
+    <th>Strength</th>
     <th>Frequency</th>
-    <th>Intake Dosage</th>
-    <th ng-if="!editable">Intake Time</th>
     <th>Instructions</th>
-    <th ng-if="editable">Actions</th>
+    <th>Refill</th>
+    <th ng-if="editable"></th>
   </thead>
   <tbody>
     <tr ng-repeat="medicine in prescription.medcines">
       <td>{{ $index+1 }}</td>
-      <td>
-        <div>{{ medicine.name }}</div>
-        <div>{{ medicine.dispenseQty }} {{ medicine.dispenseUnit}}</div>
-      </td>
-      <td>
-        <div>{{ medicine.frequency.freq }}</div>
-        <div>{{ medicine.frequency.intakeDays }}</div>
-      </td>
+      <td>{{ medicine.name }}</td>
       <td>{{ medicine.frequency.daose }} {{ medicine.frequency.dType }}</td>
-      <td ng-if="!editable">
-        <div class="row eremedium-frequenct-intake-time">
-          <div class="col-md-4 col-sm-4">{{medicine.frequency.intakeTime.morning}}</div>
-          <div class="col-md-4 col-sm-4">{{medicine.frequency.intakeTime.noon}}</div>
-          <div class="col-md-4 col-sm-4">{{medicine.frequency.intakeTime.night}}</div>
+      <td>
+        <div ng-if="medicine.frequency.freq !== 'Custom'">
+          <div ng-if="medicine.frequency.freq === 'Daily'"><strong>{{ medicine.frequency.freq }}</strong></div>
+          <div class="eremedium-frequency-intake">
+            <div ng-repeat="day in days" ng-if="medicine.frequency.intakeDays[day]"><strong>{{day}}</strong></div>
+          </div>
+          <div class="eremedium-frequency-intake">
+            <div ng-repeat="time in times" ng-if="medicine.frequency.intakeTime[time]">{{time}}</div>
+          </div>
         </div>
-        <div class="row eremedium-frequenct-intake-time">
-          <div class="col-md-4 col-sm-4">Morning</div>
-          <div class="col-md-4 col-sm-4">Afternoon</div>
-          <div class="col-md-4 col-sm-4">Night</div>
+        <div>
+          {{medicine.frequency.customIntake}}
         </div>
       </td>
-      <td>{{ medicine.frequency.comments }}</td>
+      <td>
+        <div>{{ medicine.frequency.intakeDuration}} day(s)</div>
+        <div>{{ medicine.frequency.intakeInst }}</div>
+        <div>{{ medicine.frequency.comments }}</div>
+      </td>
+      <td>{{ medicine.pharmaDetails.refillAsNeeded ? "As needed" : medicine.pharmaDetails.refills }}</td>
       <td ng-if="editable">
         <ul class="list-inline list-unstyled">
-          <li><a ng-click="edit($index)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
-          <li><a ng-click="delete($index)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></li>
+          <li><a ng-click="edit($index)" uib-tooltip="Edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+          <li><a ng-click="delete($index)" uib-tooltip="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></li>
         </ul>
       </td>
     </tr>

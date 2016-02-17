@@ -11,6 +11,9 @@
         $scope.edit = EditMedicine;
         $scope.delete = Delete;
 
+        $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+        $scope.times = ['Morning', 'Afternoon', 'Night'];
+
         function Delete(index) {
           $scope.prescription.medcines.splice(index, 1);
         }
