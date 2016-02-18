@@ -1,4 +1,9 @@
 <div cg-busy="myPromise"></div>
-<h2 class="text-success"><span class="glyphicon glyphicon-ok eremedium-order-placed" aria-hidden="true"></span> Order successfully placed!</h2>
-<a ui-sref="PatientsList">Go back to Patients Page</a>
-<!-- TODO: Go back to Prescriptions Page for selected patient -->
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Order Status</div>
+  <div class="panel-body">
+    <h4 class="text-success"><span class="glyphicon glyphicon-ok eremedium-order-placed" aria-hidden="true"></span> Order successfully placed!</h4>
+    <a ui-sref="PatientNewOrEdit({patientId: patientId})">Go back to Patient's Profile</a>
+  </div>
+</div>

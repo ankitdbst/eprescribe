@@ -9,18 +9,19 @@
     function($stateProvider) {
       $stateProvider
       .state('PrescriptionOrder', {
-        url: '/prescriptions/order/:pId',
+        url: '/patients/:patientId/prescriptions/order/:prescriptionId',
         templateUrl: 'Prescriptions/partials/prescriptions.order.html',
         controller: 'PrescriptionOrderCtrl'
       })
-      .state('PrescriptionOrderStatus', {
-        url: '/prescriptions/order/status/:pId',
-        templateUrl: 'Prescriptions/partials/prescriptions.order-status.html'
-      })
       .state('PrescriptionOrder.PatientNewOrEditAddress', {
-        url: '',
+        url: '/new-address',
         templateUrl: 'Patients/partials/patients.edit-address.html',
         controller: 'PatientNewOrEditAddressCtrl'
+      })
+      .state('PrescriptionOrderStatus', {
+        url: '/patients/:patientId/prescriptions/order/status/:prescriptionId',
+        templateUrl: 'Prescriptions/partials/prescriptions.order-status.html',
+        controller: 'PrescriptionOrderStatusCtrl'
       });
     }
   ]);

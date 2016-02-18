@@ -212,3 +212,7 @@
 .animate-show.ng-hide {
   opacity: 0;
 }
+
+.panel-group .panel {
+  overflow: inherit;
+}

@@ -40,7 +40,7 @@
 <hr>
 <form name="formPrescriptionOrder" novalidate>
     <div class="form-group">
-        <button type="button" class="btn btn-success" ui-sref="PrescriptionOrder({pId: prescription.pid})"
+        <button type="button" class="btn btn-success" ui-sref="PrescriptionOrder({patientId: prescription.patient.patientId, prescriptionId: prescription.pid})"
                 ng-disabled="formPrescriptionOrder.$invalid">
             <span class="glyphicon glyphicon-shopping-cart"></span> Place Order
         </button>

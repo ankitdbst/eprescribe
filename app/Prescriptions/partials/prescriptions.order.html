@@ -1,15 +1,25 @@
 <div cg-busy="myPromise"></div>
-<form name="formPrescriptionOrder" class="panel-group" novalidate>
+<form name="formPrescriptionOrder" class="panel-group" novalidate autocomplete="off">
   <div class="panel panel-primary">
     <div class="panel-heading">Select pharmacy</div>
     <div class="panel-body">
       <div class="form-group clearfix">
-        <div class="form-group col-md-4" ng-class="{ 'has-error': formPrescriptionOrder.pharmacy.$touched && formPrescriptionOrder.pharmacy.$invalid }">
-          <label for="frequency">Pharmacy*</label>
-          <input type="text" name="pharmacy" ng-model="order.pharmacy" class="form-control" id="pharmacy" placeholder="Select the pharmacy to order from" uib-typeahead="pharmacy for pharmacy in pharmacies | filter:$viewValue | limitTo:5" typeahead-editable="false" required/>
-          <div class="help-block" ng-messages="formPrescriptionOrder.pharmacy.$error" ng-if="formPrescriptionOrder.pharmacy.$touched">
-            <p ng-message="required">Pharmacy needs to be selected!</p>
-          </div>
+        <div class="form-group col-md-4">
+          <label for="pharmacy">Pharmacy</label>
+          <input type="text" name="pharmacy" ng-model="order.pharmacy" class="form-control" id="pharmacy" placeholder="Select the pharmacy to order from"
+                 uib-typeahead="pharmacy for pharmacy in pharmacies | filter:$viewValue | limitTo:5" typeahead-editable="false" required/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Select Lab</div>
+    <div class="panel-body">
+      <div class="form-group clearfix">
+        <div class="form-group col-md-4">
+          <label for="lab">Lab</label>
+          <input type="text" name="lab" ng-model="order.lab" class="form-control" id="lab" placeholder="Select the lab to perform test"
+                 uib-typeahead="lab for lab in labs | filter:$viewValue | limitTo:5" typeahead-editable="false" required/>
         </div>
       </div>
     </div>
@@ -36,9 +46,13 @@
       </div>
     </div>
   </div>
-  <hr>
+  <br>
   <div class="form-group">
-    <button type="button" class="btn btn-primary" ng-click="order()" ng-disabled="formPrescriptionOrder.$invalid">
+    <div class="error-summary alert alert-danger" ng-show="(formPrescriptionOrder.pharmacy.$touched && formPrescriptionOrder.lab.$touched) &&
+                                              (formPrescriptionOrder.pharmacy.$error.required && formPrescriptionOrder.lab.$error.required)">
+      <p>Please select either Lab or Pharmacy (or both)!</p>
+    </div>
+    <button type="button" class="btn btn-primary" ng-click="order()" ng-disabled="formPrescriptionOrder.pharmacy.$error.required && formPrescriptionOrder.lab.$error.required">
         <i class="fa fa-thumbs-up"></i> Confirm Order
     </button>
     <button type="button" class="btn btn-default" ng-click="close()">
