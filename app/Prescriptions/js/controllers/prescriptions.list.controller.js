@@ -22,12 +22,13 @@
       $scope.sortSearchResultsReverse = false;// set the default sort order
       $scope.sortSearchResultsType = ''// set the default sort type
 
+      $scope.doctorName = user.name || "Manoj Saini"; // Should come from session
       var params = {
         user        : user.mobile,
         sessionId   : user.sessionId,
         doctorId    : user.userId,
         patientId   : patientId,
-        limit       : 10,
+        limit       : 100,
         columnsToGet: ""
       };
 
