@@ -21,6 +21,10 @@
                                     'vitals@PatientNewOrEdit': {
                                         templateUrl: 'Patients/partials/patients.vitals.html',
                                         controller: 'PatientsVitalsCtrl'
+                                    },
+                                    'clinicalNotes@PatientNewOrEdit': {
+                                        templateUrl: 'Patients/partials/patients.clinical-notes.html',
+                                        controller: 'PatientsClinicalNotesCtrl'
                                     }
                                 },
                                 params: {

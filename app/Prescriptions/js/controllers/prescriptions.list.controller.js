@@ -28,7 +28,7 @@
         sessionId   : user.sessionId,
         doctorId    : user.userId,
         patientId   : patientId,
-        limit       : 100,
+        limit       : 10,
         columnsToGet: ""
       };
 

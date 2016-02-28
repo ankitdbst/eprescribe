@@ -1,0 +1,31 @@
+<navbar type="header">
+    <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
+</navbar>
+<form name="formPatientUpsertClinicalNotes" class="panel-group eremedium-dialog" novalidate autocomplete="off">
+    <resizable-canvas options="{height: 320, color: '#000', undo: false, lineWidth: 1, customCanvasId: 'clinicalNotes'}"
+                      ng-if="canvasEnabled" ng-model="clinicalNotes.imgNote">
+    </resizable-canvas>
+    <div ng-if="!canvasEnabled">
+      <div class="form-group"  ng-class="{ 'has-error': formPatientUpsertClinicalNotes.clinicalNotes.$touched &&
+       formPatientUpsertClinicalNotes.clinicalNotes.$invalid }">
+        <label for="clinicalNotes">Clinical Notes*</label>
+        <textarea class="form-control" name="clinicalNotes" ng-model="clinicalNotes.note" id="clinicalNotes" rows="3"
+                  placeholder="Clinical Notes" required></textarea>
+        <div class="help-block" ng-messages="formPatientUpsertClinicalNotes.clinicalNotes.$error" ng-if="formPatientUpsertClinicalNotes.clinicalNotes.$touched">
+            <p ng-message="required">Clinical Notes is mandatory!</p>
+        </div>
+      </div>
+    </div>
+</form>
+<navbar type="footer">
+    <li class="navbar-li-custom">
+        <div>
+            <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">
+                <i class="fa fa-floppy-o"></i>     Save
+            </button>
+            <button type="button" class="btn btn-default" ng-click="closeThisDialog()">
+                <i class="fa fa-times"></i>
+                Close
+            </button>
+        </div>
+</navbar>

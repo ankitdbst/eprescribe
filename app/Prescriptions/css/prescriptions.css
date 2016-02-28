@@ -37,7 +37,7 @@
 .eremedium-order-placed {
 }
 
-.create-prescriptions {
+.eremedium-dialog {
   padding-left: 1em;
   padding-right: 1em;
 }
@@ -46,17 +46,12 @@
     padding: 10px;
 }
 
-.upsert-item {
-  padding-left: 1em;
-  padding-right: 1em;
-}
-
 .img-diagnosis {
   height: 450px;
   width: 100%;
 }
 
-.rx-canvas {
+.img-canvas {
   display: none;
 }
 

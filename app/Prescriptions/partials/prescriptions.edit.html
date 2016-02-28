@@ -1,17 +1,13 @@
 <navbar type="header">
-  <li ng-if="!canvasEditable"><a ng-click="minimize();"><span class="glyphicon glyphicon-minus"></span></a></li>
-  <li ng-if="!canvasEditable"><a ng-click="close()"><span class="glyphicon glyphicon-remove"></span></a></li>
+  <li><a ng-click="minimize();"><span class="glyphicon glyphicon-minus"></span></a></li>
+  <li><a ng-click="close()"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
 <div cg-busy="myPromise"></div>
-<div class="create-prescriptions" ng-init="canvasEditable=false;touched=false;">
-  <form name="formPrescription" class="panel-group" novalidate ng-class="{'canvas-editable': canvasEditable}">
-    <div class="diagnosis">
-      <div ng-class="{'bg-diagnosis': !touched}" ng-show="canvasEnabled">
-        <img class="img-diagnosis img-thumbnail" src="" ng-click="canvasEditable=true;touched=true;" uib-tooltip="Click to free write" tooltip-placement="top-left"/>
-      </div>
-    </div>
-    <div pw-canvas options="{height: 620, color: '#000', undo: false, lineWidth: 1}" canvas-resize class="rx-canvas" ng-if="canvasEnabled">
-    </div>
+<div class="eremedium-dialog">
+  <form name="formPrescription" class="panel-group" novalidate>
+    <resizable-canvas options="{height: 450, color: '#000', undo: false, lineWidth: 1, customCanvasId: 'prescriptionDiagnosis'}"
+                      ng-if="canvasEnabled" ng-model="prescription.imgDiagnosis">
+    </resizable-canvas>
 
     <div ng-if="!canvasEnabled">
       <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">
@@ -48,24 +44,14 @@
 
   </form>
 </div>
-
-<button class="btn btn-danger canvas-new-page" ng-if="canvasEditable" uib-tooltip="Add new page">
-    <i class="fa fa-plus"></i>
-</button>
 <navbar type="footer">
   <li class="navbar-li-custom">
     <div>
-        <button type="button" class="btn btn-primary" ng-if="canvasEditable" ng-click="closeCanvas()" > 
-            <span class="glyphicon glyphicon-ok"> </span>
-        </button>
-        <button type="button" class="btn btn-danger" ng-if="canvasEditable" ng-click="closeCanvas()" > 
-            <span class="glyphicon glyphicon-remove"> </span>
-        </button>
         <button type="button" class="btn btn-primary" ng-if="!canvasEditable" ng-click="save()"
                 ng-disabled="formPrescription.$invalid">
             <i class="fa fa-floppy-o"></i> Save
         </button>
     </div>
-  <li ng-if="!canvasEditable"><a ng-click="upsertItem('medcine')"><span class="glyphicon glyphicon-plus"></span> Add Medicine</a></li>
-  <li ng-if="!canvasEditable"><a ng-click="upsertItem('advise')"><span class="glyphicon glyphicon-plus"></span> Advises (Lab Tests)</a></li>
+  <li><a ng-click="upsertItem('medcine')"><span class="glyphicon glyphicon-plus"></span> Add Medicine</a></li>
+  <li><a ng-click="upsertItem('advise')"><span class="glyphicon glyphicon-plus"></span> Advises (Lab Tests)</a></li>
 </navbar>
