@@ -5,10 +5,8 @@
 <div cg-busy="myPromise"></div>
 <div class="eremedium-dialog">
   <form name="formPrescription" class="panel-group" novalidate>
-    <resizable-canvas options="{height: 450, color: '#000', undo: false, lineWidth: 1, customCanvasId: 'prescriptionDiagnosis'}"
-                      ng-if="canvasEnabled" ng-model="prescription.imgDiagnosis">
+    <resizable-canvas default-size="1" default-color="#000" height="450" ng-if="canvasEnabled" ng-model="clinicalNotes.imgNote">
     </resizable-canvas>
-
     <div ng-if="!canvasEnabled">
       <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">
         <label for="patientComplaint">Patient Complaint*</label>

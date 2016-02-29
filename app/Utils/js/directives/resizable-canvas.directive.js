@@ -8,30 +8,38 @@
 
     function resizableCanvas($rootScope) {
         function link(scope, element, attrs) {
-            var options;
-            eval("options="+attrs.options);
+            var canvas = element.find('canvas').get(0);
 
             var listener = scope.$watch(function() {
-                var pwCanvasMain = element.find('#'+options.customCanvasId)
-                if (!pwCanvasMain) return // check if its undefined
-                // continue to manipulate children elements...
-                Init();
+              Init();
             });
 
             function Init() {
               listener();
-              var pwCanvasMain = element.find('#'+options.customCanvasId).get(0);
-              var pwCanvasTmp = element.find('#'+options.customCanvasId+'Tmp').get(0);
+              var options = {};
+              if( !_.isUndefined(attrs.defaultSize) ) {
+                options.defaultSize = attrs.defaultSize;
+              }
 
+              if( !_.isUndefined(attrs.defaultColor) ) {
+                options.defaultColor = attrs.defaultColor;
+              }
+
+              scope.height = attrs.height;
+              scope.width = attrs.width;
+
+              console.log('Options: ', options);
+
+              $(canvas).sketch(options);
               var imageObject = element.find('img').get(0);
 
               LoadCanvasFromImage();
               $(window).bind('resize', LoadCanvasFromImage);
-              $(window).bind('mouseup', PaintCanvasToImage);
+              $(canvas).bind('touchend mouseup', PaintCanvasToImage);
 
               function PaintCanvasToImage() {
                 console.log('Watch called');
-                var imageData = pwCanvasMain.toDataURL();
+                var imageData = canvas.toDataURL();
                 imageObject.src = imageData;
                 scope.$apply(function() {
                   scope.ngModel = imageData;
@@ -39,17 +47,16 @@
               }
 
               function LoadCanvasFromImage() {
-                var context = pwCanvasMain.getContext('2d');
-                context.clearRect(0, 0, pwCanvasMain.width, pwCanvasMain.height);
-                pwCanvasMain.width = element.parent().width();
-                pwCanvasTmp.width = element.parent().width();
+                var context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                canvas.width = element.parent().width();
                 imageObject.src = scope.ngModel;
                 context.drawImage(imageObject, 0, 0);
               }
 
               scope.$on('$destroy', function() {
                 $(window).unbind('resize', LoadCanvasFromImage);
-                $(window).unbind('mouseup', PaintCanvasToImage);
+                $(window).unbind('touchend mouseup', PaintCanvasToImage);
                 console.log('Unbinded resize, mouseup handlers from canvas');
               });
             }
@@ -59,8 +66,7 @@
             link: link,
             restrict: 'E',
             scope: {
-              ngModel: '=',
-              options: '='
+              ngModel: '='
             },
             templateUrl: 'Utils/partials/resizable-canvas.html'
         };
