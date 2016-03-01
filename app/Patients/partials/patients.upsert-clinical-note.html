@@ -2,8 +2,7 @@
     <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
 <form name="formPatientUpsertClinicalNotes" class="panel-group eremedium-dialog" novalidate autocomplete="off">
-    <resizable-canvas default-size="1" default-color="#000" height="320" ng-if="canvasEnabled" ng-model="clinicalNotes.imgNote">
-    </resizable-canvas>
+    <canvas height="320" width="600" ng-model="clinicalNotes.imgNote" my-canvas default-size="1" default-color="#000"  ng-if="canvasEnabled" />
     <div ng-if="!canvasEnabled">
       <div class="form-group"  ng-class="{ 'has-error': formPatientUpsertClinicalNotes.clinicalNotes.$touched &&
        formPatientUpsertClinicalNotes.clinicalNotes.$invalid }">
