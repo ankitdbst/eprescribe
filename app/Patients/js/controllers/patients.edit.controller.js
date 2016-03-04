@@ -7,10 +7,10 @@
     PatientNewOrEditCtrl.$inject = ['$scope', '$stateParams', 'Patient', '$state', '$rootScope', 'Account', 'ngDialog'];
 
     function PatientNewOrEditCtrl($scope, $stateParams, Patient, $state, $rootScope, Account, ngDialog) {
-        if (!Account.isAuthenticated()) {
-            $state.go('login');
-            return;
-        }
+//        if (!Account.isAuthenticated()) {
+//            $state.go('login');
+//            return;
+//        }
 
         var account = Account.getAuthenticatedAccount();
 
