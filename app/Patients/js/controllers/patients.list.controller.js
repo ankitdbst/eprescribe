@@ -7,10 +7,10 @@
     PatientsListCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope', 'Account'];
 
     function PatientsListCtrl($scope, Patient, $state, $rootScope, Account) {
-        if (!Account.isAuthenticated()) {
-            $state.go('login');
-            return;
-        }
+//        if (!Account.isAuthenticated()) {
+//            $state.go('login');
+//            return;
+//        }
         $scope.account = Account.getAuthenticatedAccount();
 
         //Initialize
