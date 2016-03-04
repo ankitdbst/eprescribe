@@ -8,6 +8,7 @@ angular.module('ERemediumWebApp', [
     'ngMessages',
     'ngDialog',
     'ngCookies',
+    'ngTouch',
     'cgBusy',
     'flow',
     'ERemediumWebApp.config',
