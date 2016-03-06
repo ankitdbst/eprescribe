@@ -1,10 +1,9 @@
 <navbar type="header">
-    <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
+    <li><a ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
 <form name="formPatientUpsertClinicalNotes" class="panel-group eremedium-dialog" novalidate autocomplete="off">
-    <resizable-canvas options="{height: 320, color: '#000', undo: false, lineWidth: 1, customCanvasId: 'clinicalNotes'}"
-                      ng-if="canvasEnabled" ng-model="clinicalNotes.imgNote">
-    </resizable-canvas>
+    <div pw-canvas class="rx-canvas"
+         options="{height: 320, width: 570, color: '#000', undo: false, lineWidth: 3, customCanvasId: 'clinicalNotes'}"></div>
     <div ng-if="!canvasEnabled">
       <div class="form-group"  ng-class="{ 'has-error': formPatientUpsertClinicalNotes.clinicalNotes.$touched &&
        formPatientUpsertClinicalNotes.clinicalNotes.$invalid }">
@@ -20,10 +19,10 @@
 <navbar type="footer">
     <li class="navbar-li-custom">
         <div>
-            <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">
+            <button type="button" class="btn btn-primary" ng-click="ok()" ng-disabled="formPrescriptionAddMedicine.$invalid">
                 <i class="fa fa-floppy-o"></i>     Save
             </button>
-            <button type="button" class="btn btn-default" ng-click="closeThisDialog()">
+            <button type="button" class="btn btn-default" ng-click="cancel()">
                 <i class="fa fa-times"></i>
                 Close
             </button>

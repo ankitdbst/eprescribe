@@ -10,76 +10,9 @@
                     <h4 class="modal-title">Login</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <form name="formSignIn" class="form-horizontal col-sm-offset-2 col-sm-8" novalidate>
-                            <div class="alert alert-danger" role="alert" ng-show="showAlert">
-                                {{alertMessage}}
-                            </div>
+                <div pw-canvas class="rx-canvas"
+         options="{height: 320, width: 600, color: '#000', undo: false, lineWidth: 3, customCanvasId: 'clinicalNotes'}"></div>
 
-                            <!--Mobile Number Section-->
-                            <div class="form-group" ng-class="{ 'has-error': formSignIn.inputMobileNumber.$touched && formSignIn.inputMobileNumber.$invalid }">
-
-                                <div class="input-group">
-
-                                    <i class="glyphicon-earphone glyphicon input-group-addon"></i>
-
-                                    <input name="inputMobileNumber" type="number" min="0" class="form-control input-lg" 
-                                           id="inputMobileNumber" placeholder="Mobile Number" ng-model="mobileNumber"
-                                           ng-minlength="10" ng-maxlength="10" required />
-
-                                </div>
-                                <div class="help-block" ng-messages="formSignIn.inputMobileNumber.$error" ng-if="formSignIn.inputMobileNumber.$touched">
-                                    <p ng-message="minlength">Please enter valid Mobile Number!</p>
-                                    <p ng-message="maxlength">Please enter valid Mobile Number!</p>
-                                    <p ng-message="required">Your Mobile Number is mandatory!</p>
-                                </div>
-                            </div>
-                            <!--Password Section-->
-                            <div class="form-group" ng-class="{ 'has-error': formSignIn.inputPassword.$touched && formSignIn.inputPassword.$invalid }">
-                                <div class="input-group">
-
-                                    <i class="glyphicon-lock glyphicon input-group-addon"></i>
-
-                                    <input name="inputPassword" type="password" class="form-control input-lg" 
-                                           id="inputPassword" placeholder="Password" ng-model="password"
-                                           required value="123@ivp">
-
-                                </div>
-                                <div class="help-block" ng-messages="formSignIn.inputPassword.$error" ng-if="formSignIn.inputPassword.$touched">
-                                    <p ng-message="required">Please enter Password!</p>
-                                </div>
-                            </div>
-                            <!--Remember me/Forgot Password Section-->
-                            <div class="form-group">
-                                <div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Remember me
-                                        </label>
-                                        <a href="#/login" id="aforgotPassword" class="pull-right">Forgot your password?</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Submit Button-->
-                            <div class="form-group">
-                                <div>
-
-                                    <button type="submit" ng-click="signIn()" class="btn btn-primary btn-block btn-lg" ng-disabled="formSignIn.$invalid">
-                                        <i class="fa fa-sign-in"></i>
-                                        Sign In
-                                    </button>
-                                </div>
-                            </div>
-
-                            <p class="text-muted">
-                                <label>New to E-Remedium? 
-                                    <a href="" ng-click="toggleModal('false')">
-                                        Register Now
-                                    </a>
-                                </label>
-                            </p>
-                        </form>
-                    </div>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

@@ -4,9 +4,9 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientsClinicalNotesCtrl', PatientsClinicalNotesCtrl);
 
-    PatientsClinicalNotesCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope', 'Account', 'ngDialog'];
+    PatientsClinicalNotesCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope', 'Account', '$uibModal'];
 
-    function PatientsClinicalNotesCtrl($scope, Patient, $state, $rootScope, Account, ngDialog) {
+    function PatientsClinicalNotesCtrl($scope, Patient, $state, $rootScope, Account, $uibModal) {
         if (!Account.isAuthenticated()) {
             $state.go('login');
             return;
@@ -47,27 +47,39 @@
         function UpsertClinicalNotes(index) {
             $scope.clinicalNotes = _.isUndefined(index) ? {} : _.clone($scope.clinicalNotesList[index]);
 
-            var upsertNoteDialog = ngDialog.open({
-                template: 'Patients/partials/patients.upsert-clinical-note.html',
-                className: 'ngdialog-theme-default custom-width-1',
-                scope: $scope,
-                showClose: false,
-                closeByEscape: false,
-                closeByDocument: false,
-                controller: 'PatientUpsertClinicalNotesCtrl'
+            var upsertNoteDialog = $uibModal.open({
+              templateUrl: 'Patients/partials/patients.upsert-clinical-note.html',
+              controller: 'PatientUpsertClinicalNotesCtrl',
+              backdrop: true,
+              scope: $scope,
+              keyboard: false
             });
 
-            upsertNoteDialog.closePromise.then(function (data) {
+//            var upsertNoteDialog = ngDialog.open({
+//                template: 'Patients/partials/patients.upsert-clinical-note.html',
+//                className: 'ngdialog-theme-default custom-width-1',
+//                scope: $scope,
+//                showClose: false,
+//                closeByEscape: false,
+//                closeByDocument: false,
+//                controller: 'PatientUpsertClinicalNotesCtrl'
+//            });
+
+//            upsertNoteDialog.closePromise.then();
+//            upsertNoteDialog.closed.then(OnClose);
+            upsertNoteDialog.result.then(OnClose);
+
+            function OnClose(op) {
                 //Add a timestamp
                 $scope.clinicalNotes.datetime = new Date();
-                if (data.value == "Add") {
+                if (op == "Add") {
                     $scope.clinicalNotesList.push($scope.clinicalNotes);
                     //TODO: Call API
-                } else if (data.value == "Update") {
+                } else if (op == "Update") {
                     $scope.clinicalNotesList[index] = $scope.clinicalNotes;
                     //TODO: Call API
                 }
-            });
+            }
         }
     }
 })();
