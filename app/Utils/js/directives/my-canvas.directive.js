@@ -9,29 +9,23 @@
     function myCanvas($rootScope) {
         function link(scope, element, attrs) {
             var canvas = element.get(0);
-            scope.height = attrs.height;
-            scope.width = attrs.width;
+            var options = {
+              minWidth: 0.5,
+              maxWidth: 2,
+              penColor: '#000',
+              onEnd: ToImage
+            };
+            var signaturePad = new SignaturePad(canvas, options);
 
-            var options = {};
-            if( !_.isUndefined(attrs.defaultSize) ) {
-              options.defaultSize = attrs.defaultSize;
-            }
+            FromImage();
 
-            if( !_.isUndefined(attrs.defaultColor) ) {
-              options.defaultColor = attrs.defaultColor;
-            }
-
-            LoadCanvasFromImage();
-            element.sketch(options);
-            element.bind('touchend mouseup', PaintCanvasToImage);
-
-            function PaintCanvasToImage() {
+            function ToImage() {
               scope.$apply(function() {
-                scope.ngModel = canvas.toDataURL();
+                scope.ngModel = signaturePad.toDataURL();
               });
             }
 
-            function LoadCanvasFromImage() {
+            function FromImage() {
               var image = document.createElement('img');
               image.src = scope.ngModel;
 
@@ -39,11 +33,6 @@
               context.clearRect(0, 0, canvas.width, canvas.height);
               context.drawImage(image, 0, 0);
             }
-
-            scope.$on('$destroy', function() {
-              $(window).unbind('touchend mouseup', PaintCanvasToImage);
-              console.log('Unbinded resize, mouseup handlers from canvas');
-            });
         }
 
         var directive = {
