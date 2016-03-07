@@ -1,36 +1,32 @@
 .ngdialog.ngdialog-theme-default.custom-width .ngdialog-content {
-  width: inherit;
-  padding: 0;
+  width: 100%;
   background-color: #fff;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  padding: 0 0 30px 0;
 }
 
 .ngdialog.ngdialog-theme-default.custom-width-2 .ngdialog-content {
-  width: 800px;
-  margin-top: 80px;
-  height: initial;
-  padding: 0;
+  width: 100%;
   background-color: #fff;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  padding: 0 0 45px 0;
 }
 
 .ngdialog.ngdialog-theme-default {
   padding: 10px;
 }
 
-
 .ngdialog.ngdialog-theme-default.custom-width-1 .ngdialog-content {
   width: 600px;
-  margin-top: 80px;
   height: initial;
   padding: 0;
   background-color: #fff;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  padding: 0 0 45px 0;
 }
-

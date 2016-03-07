@@ -40,6 +40,13 @@
 .eremedium-dialog {
   padding-left: 1em;
   padding-right: 1em;
+  margin-bottom: 25px;
+}
+
+.eremedium-dialog canvas {
+  border: 1px solid #f4f4f4;
+  width: 100%;
+  height: 100%;
 }
 
 .navbar-nav .navbar-li-custom {
@@ -99,6 +106,10 @@
   color: #fff;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .prescription-header-navbar .navbar-nav>li>a:hover {
