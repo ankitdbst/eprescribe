@@ -59,7 +59,6 @@
             $('#registerModal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
-            $('body').removeClass('modal-open');
             $('#wrapper').removeClass('hero-unit');
             getPendingTasks();
             getPendingMessages();

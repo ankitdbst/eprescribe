@@ -11,6 +11,11 @@
                                 templateUrl: 'Patients/partials/patients.list.html',
                                 controller: 'PatientsListCtrl'
                             })
+                            .state('PatientVerifyOTP', {
+                                url: '/patients/verifyotp/:patientId',
+                                templateUrl: 'Patients/partials/patients.verify-otp.html',
+                                controller: 'PatientsVerifyOTPCtrl'
+                            })
                             .state('PatientNewOrEdit', {
                                 url: '/patients/edit/:patientId',
                                 views: {

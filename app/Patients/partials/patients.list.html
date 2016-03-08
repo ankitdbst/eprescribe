@@ -168,12 +168,12 @@
                     <tr ng-repeat="patientObj in patientList| orderBy:sortType:sortReverse"> 
                         <!-- Hyperlink to Profile Page using unique Patient Id -->
                         <td>
-                            <a href="#/patients/edit/{{patientObj.patientId}}" class="btn btn-link" role="button">
+                            <a href="#" ng-click="openPatientProfile(patientObj)" class="btn btn-link" role="button">
                                 <img ng-src="{{patientObj.profileImageURL}}" class="img-circle" width="40" height="40">
                             </a>
                         </td>
                         <td>
-                            <a href="#/patients/edit/{{patientObj.patientId}}"> {{getFullName(patientObj)}} </a>
+                            <a href="" ng-click="openPatientProfile(patientObj)"> {{getFullName(patientObj)}} </a>
                         </td>
                         <!-- End Hyperlink -->
                         <td>{{patientObj.dob| date:'MM/dd/yyyy'}}</td>

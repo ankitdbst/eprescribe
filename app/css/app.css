@@ -220,3 +220,7 @@ body {
 .panel-group .panel {
     overflow: inherit;
 }
+
+.modal-dialog {
+    margin-top: 100px;
+}

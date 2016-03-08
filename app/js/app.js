@@ -63,7 +63,9 @@ $(".sidebar-nav a").on("click", function () {
 
 //Lock orientation!!
 angular.element(document).ready(function () {
-    screen.orientation.lock("“landscape-primary");
+    screen.orientation.lock('portrait').catch(function () {
+        // whatever
+    });
 });
 
 

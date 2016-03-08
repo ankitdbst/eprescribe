@@ -4,9 +4,9 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientsListCtrl', PatientsListCtrl);
 
-    PatientsListCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope', 'Account'];
+    PatientsListCtrl.$inject = ['$scope', 'Patient', '$state', '$rootScope', 'Account', '$stateParams'];
 
-    function PatientsListCtrl($scope, Patient, $state, $rootScope, Account) {
+    function PatientsListCtrl($scope, Patient, $state, $rootScope, Account, $stateParams) {
         if (!Account.isAuthenticated()) {
             $state.go('login');
             return;
@@ -22,6 +22,7 @@
         //Functions..
         $scope.searchByMobileNumber = searchByMobileNumber;
         $scope.createPatientProfile = createPatientProfile;
+        $scope.openPatientProfile = openPatientProfile;
 
         function initialize() {
             $scope.sortType = ''; // set the default sort type
@@ -70,7 +71,6 @@
             $state.go('PatientNewOrEdit');
         }
 
-
         function searchByMobileNumber() {
 
             $scope.searchPatientResults = Patient.searchByMobile({
@@ -98,6 +98,14 @@
             );
 
             $scope.myPromise = $scope.searchPatientResults.$promise;
+        }
+        
+        function openPatientProfile(patient) {
+            if(patient.isAccessbile) {
+                $state.go('PatientNewOrEdit', { patientId: patient.patientId })
+            } else {
+                $state.go('PatientVerifyOTP', { patientId: patient.patientId })
+            }
         }
     }
 })();
