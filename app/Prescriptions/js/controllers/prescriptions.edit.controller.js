@@ -51,6 +51,9 @@
         });
       }
 
+      $scope.prescription['medcines'].push({});
+      $scope.prescription['advises'].push({});
+
       function UpsertItem(item, index) {
         var itemStr, itemsStr;
         $scope.itemStr = itemStr = item;

@@ -216,3 +216,7 @@
 .panel-group .panel {
   overflow: inherit;
 }
+
+.input-group--autocomplete {
+  width: 100%;
+}
