@@ -95,7 +95,7 @@
 .bottomLinks {
     font-size:13px;
     font-weight:300;
-    padding: 5px;
+    padding: 2px;
     color: white;
     transition: 0.5s;
     transform: scale(1);
@@ -106,7 +106,7 @@
 }
 
 .appicons {
-    margin-left: 140px;
+    /* margin-left: 2%; */
     text-align: center;
 }
 
@@ -202,17 +202,17 @@
 }
 
 .animate-show {
-  opacity: 1;
+    opacity: 1;
 }
 
 .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
-  transition: all linear 0.8s;
+    transition: all linear 0.8s;
 }
 
 .animate-show.ng-hide {
-  opacity: 0;
+    opacity: 0;
 }
 
 .panel-group .panel {
-  overflow: inherit;
+    overflow: inherit;
 }
