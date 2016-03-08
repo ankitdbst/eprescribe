@@ -221,6 +221,6 @@ body {
     overflow: inherit;
 }
 
-.modal-dialog {
-    margin-top: 100px;
+.input-group--autocomplete {
+  width: 100%;
 }
