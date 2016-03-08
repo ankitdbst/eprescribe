@@ -61,6 +61,12 @@ $(".sidebar-nav a").on("click", function () {
     $(this).parent().addClass("active");
 });
 
+//Lock orientation!!
+angular.element(document).ready(function () {
+    screen.orientation.lock("“landscape-primary");
+});
+
+
 
 angular.module('ERemediumWebApp.config', []);
 angular.module('ERemediumWebApp.routes', []);
