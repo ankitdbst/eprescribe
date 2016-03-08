@@ -1,11 +1,15 @@
+html {
+    height: 100%
+}
+
+body {
+    font-family: GothamRounded-Book;
+    min-height: 100%;
+}
+
 .logo {
     height: 4em;
 }
-
-.body {
-    font-family: GothamRounded-Book;
-}
-
 
 /* Typeahead */
 .twitter-typeahead{
@@ -67,8 +71,8 @@
 }
 
 .hero-unit {
-    background: url(../img/DoctorIpad.jpg) no-repeat center center fixed; 
-    min-height: 35em;
+    background: url(../img/DoctorIpad.jpg) no-repeat center center fixed;
+    min-height: 81vh;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
