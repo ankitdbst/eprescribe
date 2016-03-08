@@ -34,7 +34,7 @@
     <tbody>
         <tr ng-repeat="prescription in prescriptions| orderBy:sortSearchResultsType:sortSearchResultsReverse" class="eremedium-prescription-list">
             <td>
-                <a uib-tooltip="View Prescription" ui-sref="PatientNewOrEdit.PrescriptionIndex.Detail({ prescriptionId: prescription.pid })">{{prescription.creationDate| date:'medium'}}</a></td>
+                <a ui-sref="PatientNewOrEdit.PrescriptionIndex.Detail({ prescriptionId: prescription.pid })">{{prescription.creationDate| date:'medium'}}</a></td>
             <td ng-if="!canvasEnabled">{{ prescription.patientComplaint}}</td>
             <td ng-if="!canvasEnabled">{{ prescription.diagnosis}}</td>
             <td>
@@ -53,7 +53,7 @@
             </td>
             <td>{{doctorName}}</td>
             <td >
-                <a ng-click="$parent.clone(prescription.pid)" uib-tooltip="Clone Prescription">
+                <a ng-click="$parent.clone(prescription.pid)">
                     <i class="fa fa-clone fa-1x"></i>
                 </a>
             </td>

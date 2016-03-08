@@ -4,7 +4,7 @@
 <h3 class="clearfix">
     <div class="pull-left">
       <div ng-if="detailView">
-        <button class="btn btn-default" uib-tooltip="Back to Prescriptions" ui-sref="PatientNewOrEdit.PrescriptionIndex">
+        <button class="btn btn-default" ui-sref="PatientNewOrEdit.PrescriptionIndex">
           <span class="glyphicon glyphicon-arrow-left prescription-back"></span>
         </button>
       </div>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="form-group pull-right" ng-if="!minimized">
-      <button type="button" class="btn btn-default" ng-if="detailView" ng-click="clone(detailView);" uib-tooltip="Clone this prescription to create new">
+      <button type="button" class="btn btn-default" ng-if="detailView" ng-click="clone(detailView);">
         <i class="fa fa-clone fa-1x"></i> Clone Prescription
       </button>
       <button type="button" class="btn btn-primary" ng-click="create();">

@@ -1,9 +1,12 @@
+<ul class="breadcrumb">
+    <li><a href="#/patients">Home</a></li>
+    <li><a href="#/patients/edit/{{patientId}}">Patient Profile</a></li>
+    <li class="active">Order Status</li>
+</ul>
 <div cg-busy="myPromise"></div>
 
 <div class="panel panel-primary">
-  <div class="panel-heading">Order Status</div>
   <div class="panel-body">
     <h4 class="text-success"><span class="glyphicon glyphicon-ok eremedium-order-placed" aria-hidden="true"></span> Order successfully placed!</h4>
-    <a ui-sref="PatientNewOrEdit({patientId: patientId})">Go back to Patient's Profile</a>
   </div>
 </div>

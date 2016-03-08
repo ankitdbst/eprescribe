@@ -1,5 +1,8 @@
 <div cg-busy="myPromise"></div>
-
+<ul class="breadcrumb">
+    <li><a href="#/patients">Home</a></li>
+    <li class="active">Patient Profile</li>
+</ul>
 <form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
     <div class="col-md-10">
         <h3 style="margin-top: 0%">
@@ -49,7 +52,7 @@
                     <i class="fa fa-list-alt fa-1x"></i>
                     <a ng-click="isIdentifyingDetailsCollapsed = !isIdentifyingDetailsCollapsed" href="">Identifying Details*</a>
                     <span class="pull-right">
-                        <a href="" uib-tooltip="View Audit Trail" tooltip-placement="top-right">
+                        <a href="">
                             <i class="fa fa-road text-success"></i>
                         </a>
                     </span>
@@ -193,7 +196,7 @@
                     <i class="fa fa-history fa-1x"></i>
                     <a ng-click="isHistoryCollapsed = !isHistoryCollapsed" href="">History</a>
                     <span class="pull-right">
-                        <a href="" uib-tooltip="View Audit Trail" tooltip-placement="top-right">
+                        <a href="">
                             <i class="fa fa-road text-success"></i>
                         </a>
                     </span>
@@ -225,7 +228,7 @@
                         <label for="patientOtherComments">Other Comments:</label>
                         <textarea class="form-control" ng-change="historyChanged = true" ng-model="patient.history.other" id="patientOtherComments" rows="1" placeholder="Other Comments"></textarea>
                     </div> 
-                    
+
                     <div class="form-group">
                         <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert && section == 'history'" role="alert" style="margin-bottom: 0%">
                             <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
@@ -247,7 +250,7 @@
                     <i class="fa fa-ban fa-1x"></i>
                     <a ng-click="isAllergiesCollapsed = !isAllergiesCollapsed" href="">Allergies</a>
                     <span class="pull-right">
-                        <a href="" uib-tooltip="View Audit Trail" tooltip-placement="top-right">
+                        <a href="">
                             <i class="fa fa-road text-success"></i>
                         </a>
                     </span>
@@ -267,7 +270,7 @@
                         <label for="patientEnvironmentalAllergies">Environmental Allergies:</label>
                         <textarea class="form-control" ng-change="allergiesChanged = true" ng-model="patient.alergy.env" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
                     </div>   
-                     <div class="form-group">
+                    <div class="form-group">
                         <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert && section == 'allergies'" role="alert" style="margin-bottom: 0%">
                             <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
                             {{alertMessage}} 
@@ -277,7 +280,7 @@
                                 <i class="fa fa-floppy-o"></i> Save
                             </button>
                         </div>
-                     </div>                  
+                    </div>                  
                 </div>
             </div>
         </div>
@@ -288,7 +291,7 @@
                     <i class="fa fa-stethoscope fa-1x"></i>
                     <a ng-click="isVitalsCollapsed = !isVitalsCollapsed" href="">Vitals</a>
                     <span class="pull-right">
-                        <a href="" uib-tooltip="View Chart" tooltip-placement="top-right">
+                        <a href="">
                             <i class="fa fa-area-chart text-success"></i>
                         </a>
                     </span>
@@ -335,7 +338,7 @@
                     <i class="fa fa-building fa-1x"></i>
                     <a ng-click="isLabOrderTrackingCollapsed = !isLabOrderTrackingCollapsed" href="">Lab Order Tracking</a>
                     <span class="pull-right">
-                        <a href="" uib-tooltip="View Chart" tooltip-placement="top-right">
+                        <a href="">
                             <i class="fa fa-area-chart text-success"></i>
                         </a>
                     </span>
@@ -354,7 +357,7 @@
                     <i class="fa fa-medkit fa-1x"></i>
                     <a ng-click="isPharmacyOrderTrackingCollapsed = !isPharmacyOrderTrackingCollapsed" href="">Pharmacy Order Tracking</a>
                     <span class="pull-right">
-                        <a href="" uib-tooltip="View Chart" tooltip-placement="top-right">
+                        <a href="" >
                             <i class="fa fa-area-chart text-success"></i>
                         </a>
                     </span>
