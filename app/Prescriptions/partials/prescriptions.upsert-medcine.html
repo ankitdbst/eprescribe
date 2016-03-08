@@ -5,7 +5,7 @@
     <div class="form-group" ng-class="{ 'has-error': formPrescriptionAddMedicine.medicineName.$touched && formPrescriptionAddMedicine.medicineName.$invalid }">
         <div class="input-group">
             <div class="input-group-addon">
-                <a ng-click="collapsed=!collapsed" uib-tooltip="Toggle Favorites" tooltip-placement="top-right">
+                <a ng-click="collapsed=!collapsed">
                     <i class="fa fa-heart fa-1x"></i>
                 </a>
             </div>
@@ -130,7 +130,7 @@
                             <tr ng-repeat="favorite in favorites | filter: searchText">
                                 <td>{{favorite}}</td>
                                 <td>
-                                    <a ng-click="medcine.name=favorite;" uib-tooltip="Click to add" tooltip-placement="top-right">
+                                    <a ng-click="medcine.name=favorite;">
                                         <i class="fa fa-caret-right fa-1x"></i>
                                     </a>
                                 </td>

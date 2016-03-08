@@ -25,7 +25,7 @@
             <tr ng-repeat="taskObj in taskList| filter: inputSearch | orderBy:dateadded"> 
                 <td>{{taskObj.type}}</td>
                 <td>
-                    <a href="#/patients/edit/{{taskObj.patient.patientId}}" uib-tooltip="View Patient Profile"> {{$rootScope.getFullName(taskObj.patient)}} </a>
+                    <a href="#/patients/edit/{{taskObj.patient.patientId}}"> {{$rootScope.getFullName(taskObj.patient)}} </a>
                 </td>
                 <td>{{taskObj.patient.mobile}}</td> 
                 <td>{{$rootScope.getFullAddress(taskObj.patient)}}</td> 
