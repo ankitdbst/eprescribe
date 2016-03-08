@@ -224,3 +224,7 @@ body {
 .input-group--autocomplete {
   width: 100%;
 }
+
+.modal-dialog {
+    margin-top: 100px;
+}
