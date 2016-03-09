@@ -45,9 +45,10 @@
 
 
         $scope.savePatientProfile = SavePatientProfile;
+        $scope.getAllPrescriptionsAccess = GetAllPrescriptionsAccess;
 
         $scope.uploader = {};
-        
+
         $scope.handleUpload = function ($files, $event, $flow) {
             alert('Uploaded..');
             $scope.uploader.flow.upload();//TODO Post Image..
@@ -89,6 +90,11 @@
                     $scope.alertClass = "alert-danger";
                 }
             });
+        }
+
+        function GetAllPrescriptionsAccess() {
+            //Open Verify OTP pageÏ
+            $state.go('PatientVerifyOTP', {patientId: $scope.patient.patientId})
         }
     }
 })();

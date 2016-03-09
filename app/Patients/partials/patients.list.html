@@ -83,13 +83,13 @@
                 <tbody>
                     <tr ng-repeat="patientObjSearch in searchPatientResults| orderBy:sortSearchResultsType:sortSearchResultsReverse"> 
                         <!-- Hyperlink to Profile Page using unique Patient Id -->
-                        <td>
-                            <a href="#/patients/edit/{{patientObjSearch.patientId}}" class="btn btn-link" role="button">
+                         <td>
+                            <a href="#" ng-click="openPatientProfile(patientObjSearch)" class="btn btn-link" role="button">
                                 <img ng-src="{{patientObjSearch.profileImageURL}}" class="img-circle" width="40" height="40">
                             </a>
                         </td>
                         <td>
-                            <a href="#/patients/edit/{{patientObjSearch.patientId}}"> {{getFullName(patientObjSearch)}} </a>
+                            <a href="" ng-click="openPatientProfile(patientObjSearch)"> {{getFullName(patientObjSearch)}} </a>
                         </td>
                         <!-- End Hyperlink -->
                         <td>{{patientObjSearch.dob| date:'MM/dd/yyyy'}}</td>

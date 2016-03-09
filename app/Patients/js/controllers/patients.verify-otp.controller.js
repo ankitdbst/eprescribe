@@ -28,8 +28,10 @@
         function verifyOTP() {
             //TODO: make a service call, if successfull navigate to patient profile else remain on same page..
             postProcessing();
-            $state.go('PatientNewOrEdit');
-            $state.go('PatientNewOrEdit', { patientId: $stateParams.patientId })
+            $state.go('PatientNewOrEdit', { patientId: $stateParams.patientId });
+            //When successfully verified, this should be set at back end
+            //patient.isNew = false;
+            //patient.hasAllPrescriptionsAccess = true;
         }
         
         function close(){
