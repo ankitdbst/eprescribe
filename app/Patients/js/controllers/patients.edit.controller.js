@@ -45,7 +45,6 @@
 
 
         $scope.savePatientProfile = SavePatientProfile;
-        $scope.close = Close;
 
         $scope.uploader = {};
         
@@ -91,10 +90,5 @@
                 }
             });
         }
-
-        function Close() {
-            $state.go('PatientsList');
-        }
     }
-
 })();
