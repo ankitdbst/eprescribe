@@ -15,8 +15,7 @@
         </div>
         <div ng-if="editable">
           <input type="text" ng-change="add()" ng-model="advise.name" class="form-control"
-                 placeholder="Start typing the name of the test..." uib-typeahead="advise for advise in advises | filter:$viewValue | limitTo: 5"
-                     typeahead-loading="loadingLocations" typeahead-no-results="noResults"/>
+                 placeholder="Start typing the name of the test..." uib-typeahead="advise for advise in advises | filter:$viewValue | limitTo: 5"/>
           <!--<br>-->
           <!--<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>-->
           <!--<div ng-show="noResults">-->
