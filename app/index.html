@@ -88,24 +88,24 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#"> 
+                            <a href="#/messages"> 
                                 <span class="fa-stack fa-lg pull-left">
                                     <i class="fa fa-envelope fa-stack-1x "></i>
                                 </span>Messages<span class="badge">{{pendingMessagesCount}}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#/reportinganalytics">
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-area-chart fa-stack-1x "></i></span>Reporting & Analytics
                             </a>
                         </li>
                         <li>
-                            <a href="#"> 
+                            <a href="#/labs"> 
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-building fa-stack-1x "></i></span>Labs/Imaging
                             </a>
                         </li>
                         <li>
-                            <a href="#"> 
+                            <a href="#/pharmacy"> 
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-medkit fa-stack-1x "></i></span>Pharmacy
                             </a>
                         </li>
@@ -163,12 +163,11 @@
             <script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js" type="text/javascript"></script>
             <script src="bower_components/angular-touch/angular-touch.js"></script>
 
-            
+
             <script src="js/app.js"></script>
             <script src="js/app.config.js"></script>
             <script src="js/app.router.js"></script>
 
-            <script src="ReportingAnalytics/reportinganalytics.js"></script>
             <script src="Doctor_Settings/doctor_settings.js"></script>
 
             <!-- Login -->
@@ -207,7 +206,26 @@
             <script src="Prescriptions/js/services/prescriptions.service.js"></script>
             <script src="Prescriptions/js/directives/prescriptions.items.directive.js"></script>
             <script src="Prescriptions/js/directives/prescriptions.navbar.directive.js"></script>
-
+            <!-- Reporting Analytics -->
+            <script src="ReportingAnalytics/js/reportinganalytics.module.js" type="text/javascript"></script>
+            <script src="ReportingAnalytics/js/reportinganalytics.routes.js" type="text/javascript"></script>
+            <script src="ReportingAnalytics/js/controllers/reportinganalytics.index.controller.js" type="text/javascript"></script>
+            <script src="ReportingAnalytics/js/services/reportinganalytics.service.js" type="text/javascript"></script>
+            <!-- Pharmacy -->
+            <script src="Pharmacy/js/pharmacy.module.js" type="text/javascript"></script>
+            <script src="Pharmacy/js/pharmacy.routes.js" type="text/javascript"></script>
+            <script src="Pharmacy/js/controllers/pharmacy.index.controller.js" type="text/javascript"></script>
+            <script src="Pharmacy/js/services/pharmacy.service.js" type="text/javascript"></script>
+            <!-- Messages -->
+            <script src="Messages/js/messages.module.js" type="text/javascript"></script>
+            <script src="Messages/js/messages.routes.js" type="text/javascript"></script>
+            <script src="Messages/js/controllers/messages.index.controller.js" type="text/javascript"></script>
+            <script src="Messages/js/services/messages.service.js" type="text/javascript"></script>
+            <!-- Labs -->
+            <script src="Labs/js/labs.module.js" type="text/javascript"></script>
+            <script src="Labs/js/labs.routes.js" type="text/javascript"></script>
+            <script src="Labs/js/controllers/labs.index.controller.js" type="text/javascript"></script>
+            <script src="Labs/js/services/labs.service.js" type="text/javascript"></script>
             <!-- Utils -->
             <script src="Utils/js/utils.module.js"></script>
             <script src="Utils/js/directives/datetimepicker.directive.js"></script>

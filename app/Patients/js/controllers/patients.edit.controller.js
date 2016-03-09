@@ -27,6 +27,9 @@
             $scope.patient.isUpdate = false;
             $scope.patient.sex = "Male";//set default value..
             $scope.patient.relation = "";
+            $scope.patient.hasAllPrescriptionsAccess = false; //When creating a new patient, it should NOT have default access to ALL prescriptions
+            $scope.patient.isNew = false; //It would be existing patient for doctor who is creating profile.
+            $scope.patient.userType = "patient";
         } else {
             //Get Patient Details from server and populate patient object..
             $scope.myPromise = Patient.get({

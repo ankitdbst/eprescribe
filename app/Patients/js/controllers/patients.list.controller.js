@@ -76,7 +76,7 @@
             $scope.searchPatientResults = Patient.searchByMobile({
                 user: "",
                 sessionId: $scope.account.sessionId,
-                doctorId: false,
+                doctorId: $scope.account.userId,
                 mobile: $scope.patient.search.mobilenumber,
                 columnsToGet: ""
             }, function (response) {
