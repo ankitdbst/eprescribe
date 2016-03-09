@@ -4,6 +4,12 @@
             .controller('TasksListCtrl', TasksListCtrl);
     TasksListCtrl.$inject = ['$scope', 'Task', '$state', '$rootScope'];
     function TasksListCtrl($scope, Task, $state, $rootScope) {
+        if (!Account.isAuthenticated()) {
+            $state.go('login', {signIn: true});
+            return;
+        }
+        $scope.account = Account.getAuthenticatedAccount();
+
         //Initialize
         $rootScope.pageHeader = "Tasks";
         $scope.buttonText = function (taskObjType) {

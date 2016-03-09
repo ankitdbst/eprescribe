@@ -2,11 +2,15 @@
     'use strict';
 
     angular.module('ERemediumWebApp.prescriptions.controllers')
-    .controller('PrescriptionOrderCtrl', PrescriptionOrderCtrl);
+            .controller('PrescriptionOrderCtrl', PrescriptionOrderCtrl);
 
     PrescriptionOrderCtrl.$inject = ['$scope', '$state', '$stateParams', 'Prescription', 'Account'];
 
     function PrescriptionOrderCtrl($scope, $state, $stateParams, Prescription, Account) {
+        if (!Account.isAuthenticated()) {
+            $state.go('login', {signIn: true});
+            return;
+        }
         var user = Account.getAuthenticatedAccount();
         var patientId = $stateParams.patientId;
         var prescriptionId = $stateParams.prescriptionId;
@@ -54,13 +58,13 @@
                 doctorId: user.userId
             };
             $state.go('PrescriptionOrderStatus', {
-              patientId: patientId,
-              prescriptionId: prescriptionId
+                patientId: patientId,
+                prescriptionId: prescriptionId
             });
         }
 
         function Close() {
-            $state.go('PatientNewOrEdit', { patientId: patientId });
+            $state.go('PatientNewOrEdit', {patientId: patientId});
         }
     }
 

@@ -8,7 +8,7 @@
 
     function ReportingAnalyticsIndexCtrl($scope, ReportingAnalytics, $state, $rootScope, Account, $stateParams) {
         if (!Account.isAuthenticated()) {
-            $state.go('login');
+            $state.go('login', {signIn: true});
             return;
         }
         $scope.account = Account.getAuthenticatedAccount();
