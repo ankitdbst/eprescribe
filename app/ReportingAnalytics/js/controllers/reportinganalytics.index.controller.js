@@ -18,7 +18,7 @@
 
 
         function initialize() {
-            $rootScope.pageHeader = "Reporting Analytics";
+            $rootScope.pageHeader = "Reporting & Analytics";
         }
     }
 })();

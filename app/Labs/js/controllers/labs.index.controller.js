@@ -18,7 +18,7 @@
 
 
         function initialize() {
-            $rootScope.pageHeader = "Lab Orders/Results";
+            $rootScope.pageHeader = "Lab & Imaging";
         }
     }
 })();

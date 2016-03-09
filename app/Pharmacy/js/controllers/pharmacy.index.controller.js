@@ -18,7 +18,7 @@
 
 
         function initialize() {
-            $rootScope.pageHeader = "Pharmacy Orders";
+            $rootScope.pageHeader = "Pharmacy";
         }
     }
 })();
