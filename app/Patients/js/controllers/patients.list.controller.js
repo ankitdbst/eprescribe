@@ -76,7 +76,7 @@
             $scope.searchPatientResults = Patient.searchByMobile({
                 user: "",
                 sessionId: $scope.account.sessionId,
-                doctorId: false,
+                doctorId: $scope.account.userId,
                 mobile: $scope.patient.search.mobilenumber,
                 columnsToGet: ""
             }, function (response) {
@@ -92,6 +92,10 @@
                     $scope.searchPatientResults = response;
                     angular.forEach($scope.searchPatientResults, function (patient) {
                         patient.profileImageURL = "img/User1.jpg";//this should come from backend, TEMPORARY
+                        //TODO:DUMMY for TESTING, REMOVE LATER
+                        if (patient.firstName == "Rohit") {
+                            patient.isNew = true;
+                        }
                     });
                 }
             }
@@ -99,12 +103,13 @@
 
             $scope.myPromise = $scope.searchPatientResults.$promise;
         }
-        
+
         function openPatientProfile(patient) {
-            if(patient.isAccessbile) {
-                $state.go('PatientNewOrEdit', { patientId: patient.patientId })
+            //If Patient is new for logged in doctor show OTP else directly go to patient profile
+            if (!patient.isNew) {
+                $state.go('PatientNewOrEdit', {patientId: patient.patientId})
             } else {
-                $state.go('PatientVerifyOTP', { patientId: patient.patientId })
+                $state.go('PatientVerifyOTP', {patientId: patient.patientId})
             }
         }
     }

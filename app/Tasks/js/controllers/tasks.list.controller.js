@@ -15,7 +15,6 @@
                 return "Take Action";
             }
         }
-        
 
 
         //Functions

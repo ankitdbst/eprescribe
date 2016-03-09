@@ -181,6 +181,11 @@
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
                     <a id="aPrescriptionList" ng-click="isPrescriptionsCollapsed = !isPrescriptionsCollapsed" href="">Prescriptions</a>
+                     <span class="pull-right" ng-show="!patient.hasAllPrescriptionsAccess">
+                         <a href="" ng-click="getAllPrescriptionsAccess()">
+                            <i class="fa fa-eye text-success"></i>
+                        </a>
+                    </span>
                 </h4>
             </div>
             <div id="divPrescriptions" uib-collapse="isPrescriptionsCollapsed">
