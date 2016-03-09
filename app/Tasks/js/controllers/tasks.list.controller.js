@@ -2,8 +2,8 @@
     'use strict';
     angular.module('ERemediumWebApp.tasks.controllers')
             .controller('TasksListCtrl', TasksListCtrl);
-    TasksListCtrl.$inject = ['$scope', 'Task', '$state', '$rootScope'];
-    function TasksListCtrl($scope, Task, $state, $rootScope) {
+    TasksListCtrl.$inject = ['$scope', 'Task', '$state', '$rootScope', 'Account'];
+    function TasksListCtrl($scope, Task, $state, $rootScope, Account) {
         if (!Account.isAuthenticated()) {
             $state.go('login', {signIn: true});
             return;

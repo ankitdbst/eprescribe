@@ -4,9 +4,9 @@
     angular.module('ERemediumWebApp.prescriptions.controllers')
             .controller('PrescriptionItemsCtrl', PrescriptionItemsCtrl);
 
-    PrescriptionItemsCtrl.$inject = ['$scope', 'Prescription', 'Account'];
+    PrescriptionItemsCtrl.$inject = ['$scope', 'Prescription', 'Account', '$state'];
 
-    function PrescriptionItemsCtrl($scope, Prescription, Account) {
+    function PrescriptionItemsCtrl($scope, Prescription, Account, $state) {
         if (!Account.isAuthenticated()) {
             $state.go('login', {signIn: true});
             return;

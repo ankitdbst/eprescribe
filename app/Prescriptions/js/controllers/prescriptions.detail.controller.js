@@ -8,10 +8,11 @@
         '$scope',
         '$stateParams',
         'Prescription',
-        'Account'
+        'Account',
+        '$state'
     ];
 
-    function PrescriptionDetailCtrl($scope, $stateParams, Prescription, Account) {
+    function PrescriptionDetailCtrl($scope, $stateParams, Prescription, Account, $state) {
         if (!Account.isAuthenticated()) {
             $state.go('login', {signIn: true});
             return;

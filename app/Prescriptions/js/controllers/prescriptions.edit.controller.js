@@ -9,10 +9,11 @@
         'Prescription',
         '$stateParams',
         'Account',
-        'ngDialog'
+        'ngDialog',
+        '$state'
     ];
 
-    function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, Account, ngDialog) {
+    function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, Account, ngDialog, $state) {
         if (!Account.isAuthenticated()) {
             $state.go('login', {signIn: true});
             return;
