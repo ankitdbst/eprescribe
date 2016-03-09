@@ -59,8 +59,13 @@
         });
       }
 
-      $scope.prescription['medcines'].push({});
-      $scope.prescription['advises'].push({});
+      ['medcines', 'advises'].forEach(function(itemsStr) {
+        var len = $scope.prescription[itemsStr].length;
+        if( len == 0 || (!_.isEmpty($scope.prescription[itemsStr][len-1]) &&
+            Object.keys($scope.prescription[itemsStr][len-1]).length !== 1) ) {
+          $scope.prescription[itemsStr].push({});
+        }
+      });
 
       function UpsertItem(item, index) {
         var itemStr, itemsStr;
