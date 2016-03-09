@@ -78,7 +78,7 @@
         ];
 
         $scope.delete = Delete;
-        $scope.add = _.once(AddItem);
+        $scope.add = AddItem;
         $scope.search = SearchMedicine;
 
         // Move to constants service
@@ -87,7 +87,11 @@
 
         function AddItem() {
           var itemsStr = $scope.type + 's';
-          $scope.prescription[itemsStr].push({});
+          var len = $scope.prescription[itemsStr].length;
+          if( !_.isEmpty($scope.prescription[itemsStr][len-1]) &&
+              Object.keys($scope.prescription[itemsStr][len-1]).length !== 1 ) {
+            $scope.prescription[itemsStr].push({});
+          }
         }
 
         function SearchMedicine(searchText) {

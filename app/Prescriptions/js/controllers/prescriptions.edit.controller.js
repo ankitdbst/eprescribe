@@ -38,6 +38,14 @@
           prescription: $scope.prescription
         };
 
+        ['medcines', 'advises'].forEach(function(itemStr) {
+          var len = $scope.prescription[itemStr].length;
+          if(_.isEmpty($scope.prescription[itemStr][len-1]) ||
+             Object.keys($scope.prescription[itemStr][len-1]).length == 1) {
+              $scope.prescription[itemStr].pop();
+          }
+        });
+
         $scope.myPromise = Prescription.upsert(params, function(response) {
           if( _.isEqual(response.respCode, 1) ) {
             $scope.closeThisDialog({

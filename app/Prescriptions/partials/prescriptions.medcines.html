@@ -24,7 +24,7 @@
                         <i class="fa fa-heart fa-1x"></i>
                     </a>
                 </span>
-                <input type="text" ng-change="add('medcines')" ng-model="medcine.name" class=" form-control"
+                <input type="text" ng-change="add('medcines')" ng-model="medicine.name" class=" form-control"
                        placeholder="Medicine name..." uib-typeahead="medicine.name for medicine in search($viewValue)"
                        typeahead-loading="loadingLocations" typeahead-no-results="noResults"/>
             </div>
@@ -45,7 +45,7 @@
           {{ medicine.frequency.dosage }}
         </div>
         <div ng-if="editable">
-            <select class="form-control" ng-model="medcine.frequency.dosage"
+            <select class="form-control" ng-model="medicine.frequency.dosage"
                     ng-options="dosage for dosage in dosages">
             </select>
         </div>
@@ -55,7 +55,7 @@
           {{medicine.frequency.intakeInst}}
         </div>
         <div ng-if="editable">
-            <input type="text" ng-model="medcine.frequency.intakeInst" class="form-control"
+            <input type="text" ng-model="medicine.frequency.intakeInst" class="form-control"
                    placeholder="How to take?" uib-typeahead="instruction for instruction in instructions | filter:$viewValue | limitTo:5"/>
         </div>
       </td>
@@ -64,7 +64,7 @@
           {{ medicine.frequency.duration }}
         </div>
         <div ng-if="editable">
-          <input type="number" min="1" max="100" ng-model="medcine.frequency.duration" class="form-control" placeholder="Duration"/>
+          <input type="number" min="1" max="100" ng-model="medicine.frequency.duration" class="form-control" placeholder="Duration"/>
         </div>
       </td>
       <td colspan="3">
@@ -72,7 +72,7 @@
           {{ medicine.frequency.freq }}
         </div>
         <div ng-if="editable">
-            <select class="form-control" ng-model="medcine.frequency.freq"
+            <select class="form-control" ng-model="medicine.frequency.freq"
                     ng-options="freq for freq in frequencies">
             </select>
         </div>
@@ -82,8 +82,8 @@
           {{ medicine.pharmaDetails.refillAsNeeded ? "As needed" : medicine.pharmaDetails.refills }}
         </div>
         <div ng-if="editable">
-          <input type="checkbox" ng-model="medcine.pharmaDetails.refillAsNeeded"
-                 ng-change="medcine.pharmaDetails.refills = medcine.pharmaDetails.refillAsNeeded ? 0 : medcine.pharmaDetails.refills">
+          <input type="checkbox" ng-model="medicine.pharmaDetails.refillAsNeeded"
+                 ng-change="medicine.pharmaDetails.refills = medicine.pharmaDetails.refillAsNeeded ? 0 : medicine.pharmaDetails.refills">
         </div>
       </td>
       <td ng-if="editable" colspan="1">
