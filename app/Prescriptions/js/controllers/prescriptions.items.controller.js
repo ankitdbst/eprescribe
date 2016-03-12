@@ -15,7 +15,6 @@
         var user = Account.getAuthenticatedAccount();
 
         //Initialize
-        $scope.frequencies = ['Hours', 'Daily', 'Weekly', 'Monthly'];
         $scope.dispenseUnits = ['Tablet', 'Bottle', 'Injection'];
         $scope.dosageUnits = ['tablet', 'ml', 'mg'];
         $scope.instructions = [
