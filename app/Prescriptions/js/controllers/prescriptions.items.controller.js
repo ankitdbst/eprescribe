@@ -19,6 +19,7 @@
         $scope.dispenseUnits = ['Tablet', 'Bottle', 'Injection'];
         $scope.dosageUnits = ['tablet', 'ml', 'mg'];
         $scope.instructions = [
+            'SOS',
             'After Breakfast',
             'After Defecation',
             'After Dinner',
