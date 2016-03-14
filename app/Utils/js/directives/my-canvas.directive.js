@@ -13,7 +13,7 @@
             paper.setup(canvas);
             var tool = new paper.Tool();
 
-            tool.minDistance = 1;
+            tool.minDistance = 5;
             tool.maxDistance = 45;
 
             var path;
@@ -23,11 +23,13 @@
               path.fillColor = 'black';
               path.fillCap = 'round'
               path.add(event.point);
+              var dot = new paper.Path.Circle(event.point, 1.5);
+              dot.fillColor = 'black';
             }
 
             tool.onMouseDrag = function(event) {
               var step = event.delta.divide(2);
-              var fillWidth = 2;
+              var fillWidth = 1.5;
 
               //var alpha = 1/step.length;
               var lineWidth = fillWidth/step.length;
