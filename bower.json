@@ -27,7 +27,8 @@
     "ng-flow": "~2",
     "angular-touch": "^1.5.0",
     "signature_pad": "~1.5.3",
-    "es6-shim": "~0.35.0"
+    "es6-shim": "~0.35.0",
+    "paper": "~0.9.25"
   },
   "resolutions": {
     "angular": "1.5.0"

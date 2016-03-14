@@ -10,48 +10,58 @@
         function link(scope, element, attrs) {
             var canvas = element.get(0);
 
-            if( attrs.fullScreen )
-              canvas.height = window.innerHeight;
+            paper.setup(canvas);
+            var tool = new paper.Tool();
 
-            // Adjust canvas coordinate space taking into account pixel ratio,
-            // to make it look crisp on mobile devices.
-            // This also causes canvas to be cleared.
-            function resizeCanvas() {
-                // When zoomed out to less than 100%, for some very strange reason,
-                // some browsers report devicePixelRatio as less than 1
-                // and only part of the canvas is cleared then.
-                var ratio =  Math.max(window.devicePixelRatio || 1, 1);
-                canvas.width = canvas.offsetWidth * ratio;
-                canvas.height = canvas.offsetHeight * ratio;
-                console.log("Ratio: ", ratio);
-                FromImage();
-                canvas.getContext("2d").scale(ratio, ratio);
+            tool.minDistance = 1;
+            tool.maxDistance = 45;
+
+            var path;
+
+            tool.onMouseDown = function(event) {
+              path = new paper.Path();
+              path.fillColor = 'black';
+              path.fillCap = 'round'
+              path.add(event.point);
             }
 
-            window.onresize = resizeCanvas;
-            resizeCanvas();
+            tool.onMouseDrag = function(event) {
+              var step = event.delta.divide(2);
+              var fillWidth = 2;
 
-            var options = {
-              minWidth: 0.5,
-              maxWidth: 2,
-              penColor: '#000',
-              onEnd: ToImage
-            };
-            var signaturePad = new SignaturePad(canvas, options);
+              //var alpha = 1/step.length;
+              var lineWidth = fillWidth/step.length;
+              //console.log('Event.Length: ', step.length);
+              //console.log('Alpha: ', alpha);
 
-            function ToImage() {
-              scope.$apply(function() {
-                scope.ngModel = signaturePad.toDataURL();
-              });
+              var len = step.length;
+              //console.log('Step Before:', step.length);
+
+              var alpha = 1;
+              var velocity = alpha*((2*len)/tool.maxDistance);
+              console.log('scalar: ', (fillWidth - velocity));
+              step = step.multiply((fillWidth - velocity)/len);
+              //console.log('Step After:', step.length);
+
+              console.log('step before: ', step.angle);
+              step.angle += 90;
+              console.log('step after: ', step.angle);
+
+              //console.log('Step length: ', step.length);
+
+              console.log('\n');
+              var top = event.middlePoint.add(step);
+              var bottom = event.middlePoint.subtract(step);
+
+              path.add(top);
+              path.insert(0, bottom);
+              path.smooth();
             }
 
-            function FromImage() {
-              var image = document.createElement('img');
-              image.src = scope.ngModel;
-
-              var context = canvas.getContext('2d');
-              context.clearRect(0, 0, canvas.width, canvas.height);
-              context.drawImage(image, 0, 0);
+            tool.onMouseUp = function(event) {
+              path.add(event.point);
+              path.closed = true;
+              path.smooth();
             }
         }
 
