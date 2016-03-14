@@ -13,7 +13,7 @@
             paper.setup(canvas);
             var tool = new paper.Tool();
 
-            tool.minDistance = 2;
+            tool.minDistance = 1;
             tool.maxDistance = 45;
 
             var path;
