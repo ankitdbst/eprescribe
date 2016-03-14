@@ -13,7 +13,7 @@
             paper.setup(canvas);
             var tool = new paper.Tool();
 
-            tool.minDistance = 0;
+            tool.minDistance = 5;
             tool.maxDistance = 45;
 
             var path;
@@ -57,13 +57,13 @@
 
               path.add(top);
               path.insert(0, bottom);
-              path.smooth();
+              path.smooth({type: 'catmull-rom'});
             }
 
             tool.onMouseUp = function(event) {
               path.add(event.point);
               path.closed = true;
-              path.smooth();
+              path.smooth({type: 'catmull-rom'});
             }
         }
 
