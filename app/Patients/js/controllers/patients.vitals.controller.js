@@ -8,7 +8,7 @@
 
     function PatientsVitalsCtrl($scope, Patient, $state, $rootScope, Account, ngDialog) {
         if (!Account.isAuthenticated()) {
-            $state.go('login');
+            $state.go('login', {signIn: true});
             return;
         }
 

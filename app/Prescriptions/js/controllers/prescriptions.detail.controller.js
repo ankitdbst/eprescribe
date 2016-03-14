@@ -2,29 +2,35 @@
     'use strict';
 
     angular.module('ERemediumWebApp.prescriptions.controllers')
-    .controller('PrescriptionDetailCtrl', PrescriptionDetailCtrl);
+            .controller('PrescriptionDetailCtrl', PrescriptionDetailCtrl);
 
     PrescriptionDetailCtrl.$inject = [
-      '$scope',
-      '$stateParams',
-      'Prescription',
-      'Account'
+        '$scope',
+        '$stateParams',
+        'Prescription',
+        'Account',
+        '$state'
     ];
 
-    function PrescriptionDetailCtrl($scope, $stateParams, Prescription, Account) {
-      var user = Account.getAuthenticatedAccount();
-      $scope.canvasEnabled = !user.settings.canvasEnabled;
+    function PrescriptionDetailCtrl($scope, $stateParams, Prescription, Account, $state) {
+        if (!Account.isAuthenticated()) {
+            $state.go('login', {signIn: true});
+            return;
+        }
 
-      var pid = $stateParams.prescriptionId;
-      var params = {
-        user        : user.mobile,
-        sessionId   : user.sessionId,
-        pid         : pid,
-        columnsToGet: ""
-      };
+        var user = Account.getAuthenticatedAccount();
+        $scope.canvasEnabled = !user.settings.canvasEnabled;
 
-      $scope.$parent.detailView = pid;
-      $scope.prescription = Prescription.get(params);
-      $scope.myPromise = $scope.prescription.$promise;
+        var pid = $stateParams.prescriptionId;
+        var params = {
+            user: user.mobile,
+            sessionId: user.sessionId,
+            pid: pid,
+            columnsToGet: ""
+        };
+
+        $scope.$parent.detailView = pid;
+        $scope.prescription = Prescription.get(params);
+        $scope.myPromise = $scope.prescription.$promise;
     }
 })();

@@ -2,43 +2,49 @@
     'use strict';
 
     angular.module('ERemediumWebApp.prescriptions.controllers')
-    .controller('PrescriptionListCtrl', PrescriptionListCtrl);
+            .controller('PrescriptionListCtrl', PrescriptionListCtrl);
 
     PrescriptionListCtrl.$inject = [
-      '$scope',
-      '$stateParams',
-      'Prescription',
-      'Account'
+        '$scope',
+        '$stateParams',
+        'Prescription',
+        'Account',
+        '$state'
     ];
 
-    function PrescriptionListCtrl($scope, $stateParams, Prescription, Account) {
-      var user = Account.getAuthenticatedAccount();
-      var patientId = $stateParams.patientId;
+    function PrescriptionListCtrl($scope, $stateParams, Prescription, Account, $state) {
+        if (!Account.isAuthenticated()) {
+            $state.go('login', {signIn: true});
+            return;
+        }
 
-      $scope.$parent.detailView = null;
-      $scope.prescriptions = $scope.$parent.prescriptions;
+        var user = Account.getAuthenticatedAccount();
+        var patientId = $stateParams.patientId;
 
-      $scope.canvasEnabled = user.settings.canvasEnabled;
-      $scope.sortSearchResultsReverse = false;// set the default sort order
-      $scope.sortSearchResultsType = ''// set the default sort type
+        $scope.$parent.detailView = null;
+        $scope.prescriptions = $scope.$parent.prescriptions;
 
-      $scope.doctorName = user.name || "Manoj Saini"; // Should come from session
-      var params = {
-        user        : user.mobile,
-        sessionId   : user.sessionId,
-        doctorId    : user.userId,
-        patientId   : patientId,
-        limit       : 10,
-        columnsToGet: ""
-      };
+        $scope.canvasEnabled = user.settings.canvasEnabled;
+        $scope.sortSearchResultsReverse = false;// set the default sort order
+        $scope.sortSearchResultsType = ''// set the default sort type
 
-      $scope.prescriptions = Prescription.list(params);
-      $scope.myPromise = $scope.prescriptions.$promise;
-      $scope.delete = Delete;
+        $scope.doctorName = user.name || "Manoj Saini"; // Should come from session
+        var params = {
+            user: user.mobile,
+            sessionId: user.sessionId,
+            doctorId: user.userId,
+            patientId: patientId,
+            limit: 10,
+            columnsToGet: ""
+        };
 
-      function Delete(index) {
-        $scope.prescriptions.splice(index, 1);
-        // No prescription delete API as yet. But we need to call here.
-      }
+        $scope.prescriptions = Prescription.list(params);
+        $scope.myPromise = $scope.prescriptions.$promise;
+        $scope.delete = Delete;
+
+        function Delete(index) {
+            $scope.prescriptions.splice(index, 1);
+            // No prescription delete API as yet. But we need to call here.
+        }
     }
 })();
