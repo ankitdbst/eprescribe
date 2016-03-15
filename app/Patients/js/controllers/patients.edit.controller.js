@@ -35,7 +35,7 @@
             $scope.myPromise = Patient.get({
                 user: $stateParams.patientId,
                 sessionId: account.sessionId,
-                doctorId: false,
+                doctorId: account.userId,
                 limit: 50,
                 columnsToGet: ""
             }, function (response) {
