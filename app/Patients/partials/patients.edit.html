@@ -1,35 +1,36 @@
 <div cg-busy="myPromise"></div>
-<ul class="breadcrumb">
-    <li><a href="#/patients">Home</a></li>
-    <li class="active">Patient Profile</li>
-</ul>
-<form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
-    <div class="col-md-10">
-        <h3 style="margin-top: 0%">
-            <div flow-init="{singleFile:true}" flow-files-submitted='handleUpload($files, $event, $flow)' flow-name="uploader.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
-                <span class="btn btn-link" flow-btn="">
-                    <img flow-img="$flow.files[0]" ng-src="{{patient.profileImageURL}}" class="img-circle" alt="Add Photo"  width="60" height="60">
-                    <input type="file" style="visibility: hidden; position: absolute;">
-                </span>
-                <span class="label label-warning" ng-show="patient.isUpdate">
-                    {{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} years
-                </span>
-                <span class="btn-group pull-right" style="margin-top: 3%">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-list"></i>
-                        Patient Actions <span class="caret"></span>
-                    </button>
 
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Refer a Doctor</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Send E-Remedium App link</a></li>
-                        <li><a href="#">Print Patient Form</a></li>
-                    </ul>
-                </span>
-            </div>
-        </h3>
-    </div>
+<div class="col-md-10">
+    <ul class="breadcrumb">
+        <li><a href="#/patients">Home</a></li>
+        <li class="active">Patient Profile</li>
+    </ul>
+    <h3 style="margin-top: 0%">
+        <div flow-init="{singleFile:true}" flow-files-submitted='handleUpload($files, $event, $flow)' flow-name="uploader.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
+            <span class="btn btn-link" flow-btn="">
+                <img flow-img="$flow.files[0]" ng-src="{{patient.profileImageURL}}" class="img-circle" alt="Add Photo"  width="60" height="60">
+                <input type="file" style="visibility: hidden; position: absolute;">
+            </span>
+            <span class="label label-warning" ng-show="patient.isUpdate">
+                {{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} years
+            </span>
+            <span class="btn-group pull-right" style="margin-top: 3%">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-list"></i>
+                    Patient Actions <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu">
+                    <li><a href="#">Refer a Doctor</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Send E-Remedium App link</a></li>
+                    <li><a href="#">Print Patient Form</a></li>
+                </ul>
+            </span>
+        </div>
+    </h3>
+</div>
+<form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
     <div class="col-md-2" style="margin-top: 2%">
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
             <li spy="identifyingDetails"><a href="" ng-click="isIdentifyingDetailsCollapsed = false">Identifying Details</a></li>
@@ -181,8 +182,8 @@
                 <h4 class="panel-title">
                     <i class="fa fa-list-alt fa-1x"></i>
                     <a id="aPrescriptionList" ng-click="isPrescriptionsCollapsed = !isPrescriptionsCollapsed" href="">Prescriptions</a>
-                     <span class="pull-right" ng-show="!patient.hasAllPrescriptionsAccess">
-                         <a href="" ng-click="getAllPrescriptionsAccess()">
+                    <span class="pull-right" ng-show="!patient.hasAllPrescriptionsAccess">
+                        <a href="" ng-click="getAllPrescriptionsAccess()">
                             <i class="fa fa-eye text-success"></i>
                         </a>
                     </span>

@@ -65,9 +65,24 @@ $(".sidebar-nav a").on("click", function () {
 });
 
 //Lock orientation!!
-angular.element(document).ready(function () {
+angular.element(document).ready(function ($) {
     screen.orientation.lock('portrait').catch(function () {
         // whatever
+    });
+
+    // Fixa navbar ao ultrapassa-lo
+    var navbar = $(".navbar-main"),
+            distance = navbar.offset().top,
+            $window = $(window);
+
+    $window.scroll(function () {
+        if ($window.scrollTop() >= distance) {
+            navbar.removeClass('navbar-fixed-top').addClass('navbar-fixed-top');
+            $("body").css("padding-top", "5%");
+        } else {
+            navbar.removeClass('navbar-fixed-top');
+            $("body").css("padding-top", "0px");
+        }
     });
 });
 

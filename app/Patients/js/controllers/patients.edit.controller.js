@@ -41,7 +41,8 @@
             }, function (response) {
                 $scope.patient = response;
                 $scope.patient.isUpdate = true;
-                $scope.patient.profileImageURL = "img/User1.jpg"; //This should come from backend!
+                //TODO: dummy for now, profileimage should come from backend..
+                $scope.patient.profileImageURL = "img/User1.jpg"; //
             });
         }
 

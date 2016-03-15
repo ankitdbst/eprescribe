@@ -41,7 +41,7 @@
             $scope.myPromise = Patient.get({
                 user: $scope.account.userId, //DoctorId
                 sessionId: $scope.account.sessionId,
-                doctorId: false,
+                doctorId: $scope.account.userId,
                 limit: 50,
                 columnsToGet: ""
             }, function (response) {
@@ -59,7 +59,8 @@
         }, function (response) {
             $scope.patientList = response;
             angular.forEach($scope.patientList, function (patient) {
-                patient.profileImageURL = "img/User1.jpg";//this should come from backend, TEMPORARY
+                //TODO come from backend
+                patient.profileImageURL = "img/User1.jpg";
             });
         }
         );
@@ -78,6 +79,7 @@
                 sessionId: $scope.account.sessionId,
                 doctorId: $scope.account.userId,
                 mobile: $scope.patient.search.mobilenumber,
+                limit: 50,
                 columnsToGet: ""
             }, function (response) {
                 if (angular.isUndefined(response) || response == '')
