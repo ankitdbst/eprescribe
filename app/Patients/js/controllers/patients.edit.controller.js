@@ -33,7 +33,7 @@
         } else {
             //Get Patient Details from server and populate patient object..
             $scope.myPromise = Patient.get({
-                user: $stateParams.patientId,
+                user: account.userId,
                 sessionId: account.sessionId,
                 doctorId: account.userId,
                 limit: 50,
@@ -72,7 +72,7 @@
             $scope.patient.isDependant = ($scope.patient.relation == '') ? "false" : "true";
             //Delete redundant properties
             var params = {
-                user: $scope.patient.patientId,
+                user: account.userId,
                 sessionId: account.sessionId,
                 doctorId: account.userId,
                 patientId: $scope.patient.patientId,

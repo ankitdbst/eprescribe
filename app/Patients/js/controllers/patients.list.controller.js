@@ -51,7 +51,7 @@
         }
 
         $scope.patientList = Patient.query({
-            user: "",
+            user: $scope.account.userId,
             sessionId: $scope.account.sessionId,
             doctorId: $scope.account.userId,
             limit: 50,
@@ -75,7 +75,7 @@
         function searchByMobileNumber() {
 
             $scope.searchPatientResults = Patient.searchByMobile({
-                user: "",
+                user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
                 doctorId: $scope.account.userId,
                 mobile: $scope.patient.search.mobilenumber,
