@@ -7,10 +7,37 @@
     myCanvas.$inject = ['$rootScope'];
 
     function myCanvas($rootScope) {
-        function link(scope, element, attrs) {
-            var canvas = element.get(0);
+        function link(scope, elm, attrs) {
+            //create canvas and context
+            var canvas = document.createElement('canvas');
+            canvas.id = 'canvas';
+            canvas.setAttribute('resize', '');
+            var canvasTmp = document.createElement('canvas');
+            canvasTmp.id = 'canvasTmp';
+            canvasTmp.setAttribute('resize', '');
+            angular.element(canvasTmp).css({
+              position: 'absolute',
+              top: 0,
+              left: 0
+            });
+            elm.find('div').append(canvas);
+            elm.find('div').append(canvasTmp);
+            var ctx = canvas.getContext('2d');
+            var ctxTmp = canvasTmp.getContext('2d');
 
-            paper.setup(canvas);
+            //set canvas size
+//            canvas.width = canvasTmp.width = 600;
+//            canvas.height = canvasTmp.height = 400;
+
+            paper.setup(canvasTmp);
+            canvas.width = canvasTmp.width;
+            canvas.height = canvasTmp.height;
+
+            paper.onResize = function(event) {
+              canvas.width = canvasTmp.width;
+              canvas.height = canvasTmp.height;
+            }
+
             var tool = new paper.Tool();
 
             tool.minDistance = 0;
@@ -63,18 +90,23 @@
             tool.onMouseUp = function(event) {
               path.add(event.point);
               path.closed = true;
-              path.smooth({type: 'catmull-rom'});
-              path.rasterize();
-              path.visible = false;
+
+              ctx.drawImage(canvasTmp, 0, 0, canvas.width, canvas.height);
+              paper.project.clear();
+
+//              path.smooth({type: 'catmull-rom'});
+//              path.rasterize();
+//              path.visible = false;
             }
         }
 
         var directive = {
             link: link,
-            restrict: 'A',
+            restrict: 'AE',
             scope: {
               ngModel: '='
-            }
+            },
+            template: '<div class="myCanvasPaint" style="position:relative"></div>'
         };
 
         return directive;
