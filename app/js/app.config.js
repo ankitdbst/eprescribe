@@ -16,6 +16,9 @@
           if (key.startsWith('$') || key === '_id') { // Backend service fails if we have these params in the request
             delete data[key];
           }
+          if(!angular.isUndefined(value) && value["$cgBusyFulfilled"]) {
+              delete value["$cgBusyFulfilled"];
+          }
         });
         return data;
       }

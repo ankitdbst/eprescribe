@@ -84,10 +84,10 @@
                 $scope.section = section;
                 //Show Proper Alert with option of going back.
                 if (angular.isUndefined(response)) {
-                    $scope.alertMessage = "Error in saving Patient's " & section & ", Please try again!";
+                    $scope.alertMessage = "Error in saving Patient's " + section + ", Please try again!";
                     $scope.alertClass = "alert-danger";
                 } else if (response.respCode == 1) {
-                    $scope.alertMessage = "Patient's " & section & " Saved Successfully!";
+                    $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
                 } else {
                     $scope.alertMessage = response.response;
