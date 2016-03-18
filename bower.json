@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "~1.4.0",
+    "angular": "~1.5.1",
     "jquery": "~2.1.1",
     "bootstrap": "~3.1.1",
     "angular-loader": "~1.4.0",
@@ -28,9 +28,10 @@
     "angular-touch": "^1.5.0",
     "signature_pad": "~1.5.3",
     "es6-shim": "~0.35.0",
-    "paper": "~0.9.25"
+    "paper": "~0.9.25",
+    "angular-resizable": "~1.2.x"
   },
   "resolutions": {
-    "angular": "1.5.0"
+    "angular": "~1.5.1"
   }
 }

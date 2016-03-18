@@ -11,6 +11,7 @@ angular.module('ERemediumWebApp', [
     'ngTouch',
     'cgBusy',
     'flow',
+    'angularResizable',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',
     'ERemediumWebApp.patients',
