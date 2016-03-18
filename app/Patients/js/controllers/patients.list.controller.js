@@ -39,10 +39,10 @@
         function getDoctorProfile() {
             //Get Patient Details from server and populate patient object..
             $scope.myPromise = Patient.get({
-                user: $scope.account.userId, //DoctorId
+                user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
-                doctorId: $scope.account.userId,
-                limit: 50,
+                isDoctor: true,
+                mobile: "",
                 columnsToGet: ""
             }, function (response) {
                 $scope.doctor = response;

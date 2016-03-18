@@ -26,17 +26,17 @@
             $scope.patient.address = {};
             $scope.patient.isUpdate = false;
             $scope.patient.sex = "Male";//set default value..
-            $scope.patient.relation = "";
+            $scope.patient.relation = "None";
             $scope.patient.hasAllPrescriptionsAccess = false; //When creating a new patient, it should NOT have default access to ALL prescriptions
             $scope.patient.isNew = false; //It would be existing patient for doctor who is creating profile.
             $scope.patient.userType = "patient";
         } else {
             //Get Patient Details from server and populate patient object..
             $scope.myPromise = Patient.get({
-                user: account.userId,
+                user: $stateParams.patientId,
                 sessionId: account.sessionId,
-                doctorId: account.userId,
-                limit: 50,
+                isDoctor: false,
+                mobile: "",
                 columnsToGet: ""
             }, function (response) {
                 $scope.patient = response;
@@ -69,7 +69,7 @@
 
         function SavePatientProfile(section) {
             //A computed property!
-            $scope.patient.isDependant = ($scope.patient.relation == '') ? "false" : "true";
+            $scope.patient.isDependant = ($scope.patient.relation == 'None') ? "false" : "true";
             //Delete redundant properties
             var params = {
                 user: account.userId,
