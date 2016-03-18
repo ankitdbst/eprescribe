@@ -24,12 +24,16 @@
             $scope.patient.history = {};
             $scope.patient.alergy = {};
             $scope.patient.address = {};
+            $scope.patient.age = {};
             $scope.patient.isUpdate = false;
             $scope.patient.sex = "Male";//set default value..
             $scope.patient.relation = "None";
+            $scope.patient.bloodgroup = "None";
             $scope.patient.hasAllPrescriptionsAccess = false; //When creating a new patient, it should NOT have default access to ALL prescriptions
-            $scope.patient.isNew = false; //It would be existing patient for doctor who is creating profile.
-            $scope.patient.userType = "patient";
+            $scope.patient.password = "";
+            $scope.patient.parentId = "";
+            $scope.patient.dependants = [];
+            $scope.patient.status = "WaitingOTP";
         } else {
             //Get Patient Details from server and populate patient object..
             $scope.myPromise = Patient.get({
@@ -45,7 +49,6 @@
                 $scope.patient.profileImageURL = "img/User1.jpg"; //
             });
         }
-
 
 
         $scope.savePatientProfile = SavePatientProfile;
@@ -68,9 +71,17 @@
         }
 
         function SavePatientProfile(section) {
-            //A computed property!
+            //Common settings for a patient
+            $scope.patient.userType = "patient";
+            /*
+             * Whether Doctor is creating a profile, or opening an existing profile with or without OTP
+             * isNew would be false as doctor already has access for the profile.
+             */
+            $scope.patient.isNew = false;
+            //Computed properties
+            $scope.patient.age.year = $rootScope.getAge($scope.patient.dob);
             $scope.patient.isDependant = ($scope.patient.relation == 'None') ? "false" : "true";
-            //Delete redundant properties
+            //Setup parameters.
             var params = {
                 user: account.userId,
                 sessionId: account.sessionId,
@@ -78,6 +89,7 @@
                 patientId: $scope.patient.patientId,
                 userMap: $scope.patient
             };
+            //Delete redundant properties
             delete $scope.patient["_id"];
             $scope.myPromise = Patient.upsert(params, function (response) {
                 $scope.showAlert = true;
@@ -89,6 +101,8 @@
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
+                    //If all goes good, rebind the data..
+                    $scope.patient = response.patient;
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";

@@ -34,7 +34,7 @@
     <tbody>
         <tr ng-repeat="prescription in prescriptions| orderBy:sortSearchResultsType:sortSearchResultsReverse" class="eremedium-prescription-list">
             <td>
-                <a ui-sref="PatientNewOrEdit.PrescriptionIndex.Detail({ prescriptionId: prescription.pid })">{{prescription.creationDate| date:'medium'}}</a></td>
+                <a ui-sref="PatientNewOrEdit.PrescriptionIndex.Detail({ prescriptionId: prescription.pid })">{{prescription.creationDate| date:'short'}}</a></td>
             <td ng-if="!canvasEnabled">{{ prescription.patientComplaint}}</td>
             <td ng-if="!canvasEnabled">{{ prescription.diagnosis}}</td>
             <td>

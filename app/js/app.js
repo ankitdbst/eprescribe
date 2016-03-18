@@ -41,6 +41,17 @@ angular.module('ERemediumWebApp', [
                 return inputPatientObject.address.addressLine1 + ', ' + inputPatientObject.address.addressLine2 + ', ' + inputPatientObject.address.city + ', ' + inputPatientObject.address.state + ', ' + inputPatientObject.address.pincode;
             };
 
+            $rootScope.getAge = function (dateString) {
+                var today = new Date();
+                var birthDate = new Date(dateString);
+                var age = today.getFullYear() - birthDate.getFullYear();
+                var m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            }
+
             $rootScope.go = function (path) {
                 $location.path(path);
             };
@@ -67,7 +78,7 @@ $(".sidebar-nav a").on("click", function () {
 
 //Lock orientation!!
 angular.element(document).ready(function ($) {
-    screen.orientation.lock('portrait').catch(function () {
+    screen.orientation.lock('landscape-primary').catch(function () {
         // whatever
     });
 
@@ -96,7 +107,7 @@ angular.element(document).ready(function ($) {
             scrollTop: 0                       // Scroll to top of body
         }, 500);
     });
-    
+
     $('#menu-toggle-2').click(function () {      // When arrow is clicked
         $('body,html').animate({
             scrollTop: 0                       // Scroll to top of body

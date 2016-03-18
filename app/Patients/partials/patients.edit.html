@@ -18,7 +18,7 @@
                 {{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)
                 <div ng-show="patient.history.medical">History of {{patient.history.medical}} </div>
             </span>
-            <span class="btn-group col-md-1" style="margin-top: 2%; margin-left:5%">
+            <span class="btn-group col-md-1" style="margin-top: 2%; margin-left:5%" ng-show="patient.isUpdate">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-list"></i>
                     Patient Actions <span class="caret"></span>
@@ -102,7 +102,7 @@
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientMobileNumber.$touched && formPatientProfile.patientMobileNumber.$invalid }">
                         <label for="patientMobileNumber">Mobile Number*:</label>
                         <input type="number" min="0" ng-change="identifyingDetailsChanged = true" string-to-number ng-model="patient.mobile" ng-disabled="patient.isUpdate" class="form-control" id="patientMobileNumber" name="patientMobileNumber" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" required/>
-                        <div class="help-block" ng-messages="formPatientProfile.patientMobileNumber.$error" ng-if="formPatientProfile.patientMobileNumber.$touched">                    
+                        <div class="help-block" ng-messages="formPatientProfile.patientMobileNumber.$error" ng-if="formPatientProfile.patientMobileNumber.$touched">
                             <p ng-message="required">Mobile Number is mandatory!</p>
                             <p ng-message="minlength">Please enter valid Mobile Number!</p>
                             <p ng-message="maxlength">Please enter valid Mobile Number!</p>
