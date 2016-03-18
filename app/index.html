@@ -31,8 +31,11 @@
         <link rel="stylesheet" href="Prescriptions/css/prescriptions.css" type="text/css"/>
     </head>
     <body class="ng-cloak" >
+
         <div id="container">
-            <nav class="navbar navbar-default no-margin">
+
+
+            <nav class="navbar navbar-default no-margin navbar-main">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active" >
@@ -49,10 +52,12 @@
                     <h3 class="text-muted" style="display: inline-block;">
                         {{pageHeader}}
                     </h3>
+
                     <span class="pull-right header" ng-show="!showMenu">
                         <a class="btn btn-link" ui-sref="login({signIn: true})" role="button">Login </a>|
                         <a class="btn btn-link" ui-sref="login({signIn: false})" role="button">Register</a>
                     </span>
+
                     <span class="appicons pull-right" ng-show="showMenu">
                         <a href="#/tasks">
                             <i class="fa fa-envelope fa-2x"></i>
@@ -70,7 +75,6 @@
             </nav>
 
             <div id="wrapper" class="toggled-2 hero-unit">
-
                 <!-- Sidebar -->
                 <!-- Sidebar -->
                 <div id="sidebar-wrapper" ng-show="showMenu">
@@ -116,6 +120,10 @@
                 <!-- Page Content -->
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
+                        <!-- Return to Top -->
+                        <a href="javascript:" class="bg-info well-sm" id="return-to-top">
+                            <i class="glyphicon glyphicon-chevron-up"></i> Back to Top
+                        </a>
                         <div ui-view></div>
                     </div>
                 </div>

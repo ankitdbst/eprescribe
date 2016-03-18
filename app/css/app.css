@@ -228,3 +228,12 @@ body {
 .modal-dialog {
     margin-top: 100px;
 }
+
+#return-to-top {
+    position: fixed;
+    bottom: 10%;
+    left: 5%;
+    display: block;
+    display: none;
+    z-index: 1
+}

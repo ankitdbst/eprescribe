@@ -33,15 +33,16 @@
         } else {
             //Get Patient Details from server and populate patient object..
             $scope.myPromise = Patient.get({
-                user: $stateParams.patientId,
+                user: account.userId,
                 sessionId: account.sessionId,
-                doctorId: false,
+                doctorId: account.userId,
                 limit: 50,
                 columnsToGet: ""
             }, function (response) {
                 $scope.patient = response;
                 $scope.patient.isUpdate = true;
-                $scope.patient.profileImageURL = "img/User1.jpg"; //This should come from backend!
+                //TODO: dummy for now, profileimage should come from backend..
+                $scope.patient.profileImageURL = "img/User1.jpg"; //
             });
         }
 
@@ -71,7 +72,7 @@
             $scope.patient.isDependant = ($scope.patient.relation == '') ? "false" : "true";
             //Delete redundant properties
             var params = {
-                user: $scope.patient.patientId,
+                user: account.userId,
                 sessionId: account.sessionId,
                 doctorId: account.userId,
                 patientId: $scope.patient.patientId,
@@ -83,10 +84,10 @@
                 $scope.section = section;
                 //Show Proper Alert with option of going back.
                 if (angular.isUndefined(response)) {
-                    $scope.alertMessage = "Error in saving Patient's " & section & ", Please try again!";
+                    $scope.alertMessage = "Error in saving Patient's " + section + ", Please try again!";
                     $scope.alertClass = "alert-danger";
                 } else if (response.respCode == 1) {
-                    $scope.alertMessage = "Patient's " & section & " Saved Successfully!";
+                    $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
                 } else {
                     $scope.alertMessage = response.response;
