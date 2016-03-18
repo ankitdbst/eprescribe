@@ -14,9 +14,9 @@
                 <img flow-img="$flow.files[0]" ng-src="{{patient.profileImageURL}}" class="img-circle" alt="Add Photo"  width="60" height="60">
                 <input type="file" style="visibility: hidden; position: absolute;">
             </span>
-            <span class="text text-info col-md-8" style="margin-top: 2%" ng-show="patient.isUpdate">
+            <span class="text text-warning col-md-8" style="margin-top: 2%" ng-show="patient.isUpdate">
                 {{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)
-                <span ng-show="patient.history.medical">, History of {{patient.history.medical}} </span>
+                <div ng-show="patient.history.medical">History of {{patient.history.medical}} </div>
             </span>
             <span class="btn-group col-md-1" style="margin-top: 2%; margin-left:5%">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
