@@ -14,10 +14,11 @@
                 <img flow-img="$flow.files[0]" ng-src="{{patient.profileImageURL}}" class="img-circle" alt="Add Photo"  width="60" height="60">
                 <input type="file" style="visibility: hidden; position: absolute;">
             </span>
-            <span class="text text-warning col-md-8" style="margin-top: 2%" ng-show="patient.isUpdate">
-                {{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)
-                <div ng-show="patient.history.medical">History of {{patient.history.medical}} </div>
-            </span>
+            <blockquote class="col-md-8 text text-warning"  ng-show="patient.isUpdate">
+                <p>{{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)</p>
+                <footer ng-show="patient.history.medical">Medical History of {{patient.history.medical}} </footer>
+                <footer ng-show="!patient.history.medical">No Medical History </footer>
+            </blockquote>
             <span class="btn-group col-md-1" style="margin-top: 2%; margin-left:5%" ng-show="patient.isUpdate">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-list"></i>

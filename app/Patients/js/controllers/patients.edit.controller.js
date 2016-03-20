@@ -80,7 +80,6 @@
                 userMap: $scope.patient
             };
             //Delete redundant properties
-            delete $scope.patient["_id"];
             $scope.myPromise = Patient.upsert(params, function (response) {
                 $scope.showAlert = true;
                 $scope.section = section;
