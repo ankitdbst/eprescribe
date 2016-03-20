@@ -14,10 +14,11 @@
                 <img flow-img="$flow.files[0]" ng-src="{{patient.profileImageURL}}" class="img-circle" alt="Add Photo"  width="60" height="60">
                 <input type="file" style="visibility: hidden; position: absolute;">
             </span>
-            <span class="text text-warning col-md-8" style="margin-top: 2%" ng-show="patient.isUpdate">
-                {{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)
-                <div ng-show="patient.history.medical">History of {{patient.history.medical}} </div>
-            </span>
+            <blockquote class="col-md-8 text text-warning"  ng-show="patient.isUpdate">
+                <p>{{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)</p>
+                <footer ng-show="patient.history.medical">Medical History of {{patient.history.medical}} </footer>
+                <footer ng-show="!patient.history.medical">No Medical History </footer>
+            </blockquote>
             <span class="btn-group col-md-1" style="margin-top: 2%; margin-left:5%" ng-show="patient.isUpdate">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-list"></i>
@@ -246,7 +247,7 @@
                             {{alertMessage}} 
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-primary" type="button" ng-click="savePatientProfile('history')" ng-show="historyChanged">
+                            <button class="btn btn-primary" type="button" ng-click="savePatientPeripheralDetails('history', 'userHistory')" ng-show="historyChanged">
                                 <i class="fa fa-floppy-o"></i> Save
                             </button>
                         </div>
@@ -279,7 +280,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="patientEnvironmentalAllergies">Environmental Allergies:</label>
-                        <textarea class="form-control" ng-change="allergiesChanged = true" ng-model="patient.alergy.env" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
+                        <textarea class="form-control" ng-change="allergiesChanged = true" ng-model="patient.alergy.enviromental" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
                     </div>   
                     <div class="form-group">
                         <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert && section == 'allergies'" role="alert" style="margin-bottom: 0%">
@@ -287,7 +288,7 @@
                             {{alertMessage}} 
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-primary" type="button" ng-click="savePatientProfile('allergies')" ng-show="allergiesChanged">
+                            <button class="btn btn-primary" type="button" ng-click="savePatientPeripheralDetails('allergies', 'userAllergy')" ng-show="allergiesChanged">
                                 <i class="fa fa-floppy-o"></i> Save
                             </button>
                         </div>
