@@ -38,6 +38,22 @@
               canvas.height = canvasTmp.height;
             }
 
+            LoadImage();
+
+            function SaveImage() {
+              scope.$apply(function() {
+                scope.ngModel = canvas.toDataURL();
+              });
+            }
+
+            function LoadImage() {
+              var image = document.createElement('img');
+              image.src = scope.ngModel;
+
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              ctx.drawImage(image, 0, 0);
+            }
+
             var tool = new paper.Tool();
 
             tool.minDistance = 0;
@@ -93,7 +109,7 @@
 
               ctx.drawImage(canvasTmp, 0, 0, canvas.width, canvas.height);
               paper.project.clear();
-
+              SaveImage();
 //              path.smooth({type: 'catmull-rom'});
 //              path.rasterize();
 //              path.visible = false;
