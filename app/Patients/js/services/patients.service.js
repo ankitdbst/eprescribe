@@ -11,6 +11,10 @@
                             method: 'POST',
                             url: 'http://52.74.177.118/ERService/userservice/UpsertUser'
                         },
+                        upsertPeripheralDetails: {
+                            method: 'POST',
+                            url: 'http://52.74.177.118/ERService/userservice/InsertUserHistory'
+                        },
                         searchByMobile: {
                             method: 'POST',
                             url: 'http://52.74.177.118/ERService/userservice/GetUserByMobile',
@@ -26,9 +30,9 @@
                             url: 'http://52.74.177.118/ERService/userservice/GetUsersForDoctor',
                             isArray: true
                         },
-                        getVitals: {
+                        getPeripheralDetails: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetVitalsForPatient',
+                            url: 'http://52.74.177.118/ERService/userservice/GetUserHistory',
                             isArray: true
                         }
                     };

@@ -4,13 +4,24 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientUpsertVitalCtrl', PatientUpsertVitalCtrl);
 
-    PatientUpsertVitalCtrl.$inject = ['$scope', '$stateParams', '$state', 'Patient', 'Account'];
+    PatientUpsertVitalCtrl.$inject = ['$scope', '$stateParams', 'Patient', '$state', '$rootScope', 'Account', 'ngDialog'];
 
-    function PatientUpsertVitalCtrl($scope, $stateParams, $state, Patient, Account) {
-        var user = Account.getAuthenticatedAccount();
+    function PatientUpsertVitalCtrl($scope, $stateParams, Patient, $state, $rootScope, Account, ngDialog) {
+        if (!Account.isAuthenticated()) {
+            $state.go('login', {signIn: true});
+            return;
+        }
 
-        $scope.vital = $scope.$parent.vital;
-        $scope.saveBtnName = _.isEmpty($scope.vital) ? 'Add' : 'Update';
-        $scope.dialogTitle = $scope.saveBtnName + " Vital";
+        var account = Account.getAuthenticatedAccount();
+
+        Initialize();
+        
+        function Initialize() {
+            $scope.vital = $scope.$parent.vital;
+            $scope.saveBtnName = _.isEmpty($scope.vital) ? 'Add' : 'Update';
+            $scope.dialogTitle = $scope.saveBtnName + " Vital";
+        }
+
+        
     }
 })();
