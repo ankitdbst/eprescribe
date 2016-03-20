@@ -34,6 +34,11 @@
                             method: 'POST',
                             url: 'http://52.74.177.118/ERService/userservice/GetUserHistory',
                             isArray: true
+                        },
+                        getPeripheralDetailsById: {
+                            method: 'POST',
+                            url: 'http://52.74.177.118/ERService/userservice/GetUserHistoryById',
+                            isArray: true
                         }
                     };
 

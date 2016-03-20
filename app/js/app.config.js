@@ -7,7 +7,7 @@
                 '$httpProvider',
                 function ($httpProvider) {
                     function transformRequest(data) {
-                        if (data == undefined) {
+                        if (angular.isUndefined(data)) {
                             return data;
                         }
 

@@ -7,11 +7,20 @@
     PatientUpsertClinicalNotesCtrl.$inject = ['$scope', '$stateParams', '$state', 'Patient', 'Account'];
 
     function PatientUpsertClinicalNotesCtrl($scope, $stateParams, $state, Patient, Account) {
-        var user = Account.getAuthenticatedAccount();
-        $scope.canvasEnabled = user.settings.canvasEnabled;
+        if (!Account.isAuthenticated()) {
+            $state.go('login', {signIn: true});
+            return;
+        }
 
-        $scope.clinicalNotes = $scope.$parent.clinicalNotes;
-        $scope.saveBtnName = _.isEmpty($scope.clinicalNotes) ? 'Add' : 'Update';
-        $scope.dialogTitle = $scope.saveBtnName + " Clinical Notes";
+        var account = Account.getAuthenticatedAccount();
+
+        Initialize();
+
+        function Initialize() {
+            $scope.canvasEnabled = true; //TODO: user.settings.canvasEnabled;
+            $scope.clinicalNote = $scope.$parent.clinicalNote;
+            $scope.saveBtnName = _.isEmpty($scope.clinicalNote) ? 'Add' : 'Update';
+            $scope.dialogTitle = $scope.saveBtnName + " Clinical Note";
+        }
     }
 })();
