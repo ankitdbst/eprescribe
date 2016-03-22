@@ -207,6 +207,7 @@
 .palm-rejection--wrapper {
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   background-color: ghostwhite;
   z-index: 999999;

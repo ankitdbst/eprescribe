@@ -29,6 +29,7 @@
 //            canvas.width = canvasTmp.width = 600;
 //            canvas.height = canvasTmp.height = 400;
 
+            paper.remove();
             paper.setup(canvasTmp);
             canvas.width = canvasTmp.width;
             canvas.height = canvasTmp.height;
@@ -47,9 +48,11 @@
             }
 
             function LoadImage() {
+              if(_.isEmpty(scope.ngModel)) {
+                return;
+              }
               var image = document.createElement('img');
               image.src = scope.ngModel;
-
               ctx.clearRect(0, 0, canvas.width, canvas.height);
               ctx.drawImage(image, 0, 0);
             }
@@ -108,6 +111,7 @@
               path.closed = true;
 
               ctx.drawImage(canvasTmp, 0, 0, canvas.width, canvas.height);
+//              canvasTmp.clearRect(0, 0, canvasTmp.width, canvasTmp.height);
               paper.project.clear();
               SaveImage();
 //              path.smooth({type: 'catmull-rom'});
