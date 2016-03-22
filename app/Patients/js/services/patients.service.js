@@ -38,7 +38,21 @@
                         getPeripheralDetailsById: {
                             method: 'POST',
                             url: 'http://52.74.177.118/ERService/userservice/GetUserHistoryById',
+                            isArray: false
+                        },
+                        getDocuments: {
+                            method: 'POST',
+                            url: 'http://52.74.177.118/ERService/userservice/GetUserDocument',
                             isArray: true
+                        },
+                        upsertDocument: {
+                            method: 'POST',
+                            url: 'http://52.74.177.118/ERService/userservice/InsertUserDocument'
+                        },
+                        getDocumentById: {
+                            method: 'POST',
+                            url: 'http://52.74.177.118/ERService/userservice/GetUserDocumentById',
+                            isArray: false
                         }
                     };
 

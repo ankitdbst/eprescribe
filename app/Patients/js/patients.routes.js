@@ -30,6 +30,10 @@
                                     'clinicalNotes@PatientNewOrEdit': {
                                         templateUrl: 'Patients/partials/patients.clinical-notes.html',
                                         controller: 'PatientsClinicalNotesCtrl'
+                                    },
+                                    'documents@PatientNewOrEdit': {
+                                        templateUrl: 'Patients/partials/patients.documents.html',
+                                        controller: 'PatientsDocumentsCtrl'
                                     }
                                 },
                                 params: {
