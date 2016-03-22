@@ -27,53 +27,53 @@
         }
 
         function UpsertDocuments(index) {
-            $scope.clinicalNote = _.isUndefined(index) ? {} : _.clone($scope.clinicalNotesList[index]);
-            $scope.clinicalNote.date = new Date();
+            $scope.document = _.isUndefined(index) ? {} : _.clone($scope.documentsList[index]);
+            $scope.document.date = new Date();
             $scope.readOnly = false;//Show Save button as its editable view
-            var upsertNoteDialog = ngDialog.open({
-                template: 'Patients/partials/patients.upsert-clinical-note.html',
+            var upsertDocumentDialog = ngDialog.open({
+                template: 'Patients/partials/patients.upsert-document.html',
                 className: 'ngdialog-theme-default custom-width-1',
                 scope: $scope,
                 showClose: false,
                 closeByEscape: false,
                 closeByDocument: false,
-                controller: 'PatientUpsertClinicalNotesCtrl'
+                controller: 'PatientUpsertDocumentsCtrl'
             });
 //
-            upsertNoteDialog.closePromise.then(function (data) {
+            upsertDocumentDialog.closePromise.then(function (data) {
                 if (data.value == "Add" || data.value == "Update") {
                     //Save the data..
-                    SavePatientPeripheralDetails('ClinicalNote', "userClinicalNote");
+                    SaveDocument('Document', "userDcoument");
                 }
             });
         }
 
-        function OpenDocument(noteObj) {
+        function OpenDocument(documentObj) {
             //Get Patient Details from server and populate patient object..
-            Patient.getPeripheralDetailsById({
+            Patient.getDocumentById({
                 user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
                 doctorId: $scope.account.userId,
                 patientId: $stateParams.patientId,
-                detailType: 'userClinicalNote',
-                did: noteObj.did,
+                detailType: 'userDcoument',
+                did: documentObj.did,
                 columnsToGet: ""
             }, function (response) {
-                $scope.clinicalNote = response;
+                $scope.document = response;
             });
             $scope.readOnly = true;//Do Not Save button as its read only view
             ngDialog.open({
-                template: 'Patients/partials/patients.upsert-clinical-note.html',
+                template: 'Patients/partials/patients.upsert-document.html',
                 className: 'ngdialog-theme-default custom-width-1',
                 scope: $scope,
                 showClose: false,
                 closeByEscape: false,
                 closeByDocument: false,
-                controller: 'PatientUpsertClinicalNotesCtrl'
+                controller: 'PatientUpsertDocumentsCtrl'
             });
         }
 
-        function SavePatientPeripheralDetails(section, detailType) {
+        function SaveDocument(section, detailType) {
             if (angular.isUndefined($scope.patient.patientId)) {
                 //if patient has not been created yet, then show an alert..
                 $scope.showAlert = true;
@@ -89,10 +89,10 @@
                 doctorId: $scope.account.userId,
                 patientId: $scope.patient.patientId,
                 detailType: detailType,
-                userDetail: $scope.clinicalNote
+                userDocument: $scope.document
             };
 
-            $scope.myPromise = Patient.upsertPeripheralDetails(params, function (response) {
+            $scope.myPromise = Patient.upsertDocument(params, function (response) {
                 $scope.showAlert = true;
                 $scope.section = section;
                 //Show Proper Alert with option of going back.
@@ -102,8 +102,8 @@
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
-                    //Refresh the Clinical Notes section from backend only when success is there..
-                    GetClinicalNotes();
+                    //Refresh the Documents section from backend only when success is there..
+                    GetDocuments();
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";

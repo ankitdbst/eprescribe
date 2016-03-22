@@ -45,7 +45,7 @@
     <tbody>
         <tr ng-repeat="documentObj in documentsList | orderBy:sortType:sortReverse">
             <td>
-                <a href="" ng-click="openClinicalNote(documentObj)"> {{documentObj.date| date:'short'}} </a>
+                <a href="" ng-click="openDocument(documentObj)"> {{documentObj.date| date:'short'}} </a>
             </td>
             <td>{{documentObj.did}}</td>
             <td>{{documentObj.tag}}</td>
