@@ -1,15 +1,15 @@
 <navbar type="header">
     <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
-<form name="formPatientUpsertClinicalNotes" class="panel-group eremedium-dialog" novalidate autocomplete="off">
-    <canvas height="320" width="570" ng-model="clinicalNotes.imgNote" my-canvas ng-if="canvasEnabled" />
+<form name="formPatientUpsertClinicalNote" class="panel-group eremedium-dialog" novalidate autocomplete="off">
+    <canvas height="320" width="570" ng-model="clinicalNote.img" my-canvas ng-if="canvasEnabled" />
     <div ng-if="!canvasEnabled">
-      <div class="form-group"  ng-class="{ 'has-error': formPatientUpsertClinicalNotes.clinicalNotes.$touched &&
-       formPatientUpsertClinicalNotes.clinicalNotes.$invalid }">
-        <label for="clinicalNotes">Clinical Notes*</label>
-        <textarea class="form-control" name="clinicalNotes" ng-model="clinicalNotes.note" id="clinicalNotes" rows="3"
+      <div class="form-group"  ng-class="{ 'has-error': formPatientUpsertClinicalNote.clinicalNote.$touched &&
+       formPatientUpsertClinicalNote.clinicalNote.$invalid }">
+        <label for="clinicalNote">Clinical Notes*</label>
+        <textarea class="form-control" name="clinicalNote" ng-model="clinicalNote.img" id="clinicalNote" rows="3"
                   placeholder="Clinical Notes" required></textarea>
-        <div class="help-block" ng-messages="formPatientUpsertClinicalNotes.clinicalNotes.$error" ng-if="formPatientUpsertClinicalNotes.clinicalNotes.$touched">
+        <div class="help-block" ng-messages="formPatientUpsertClinicalNote.clinicalNote.$error" ng-if="formPatientUpsertClinicalNote.clinicalNote.$touched">
             <p ng-message="required">Clinical Notes is mandatory!</p>
         </div>
       </div>
@@ -18,7 +18,7 @@
 <navbar type="footer">
     <li class="navbar-li-custom">
         <div>
-            <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-disabled="formPrescriptionAddMedicine.$invalid">
+            <button type="button" class="btn btn-primary" ng-click="closeThisDialog(saveBtnName)" ng-show="!readOnly" ng-disabled="formPatientUpsertClinicalNote.$invalid">
                 <i class="fa fa-floppy-o"></i>     Save
             </button>
             <button type="button" class="btn btn-default" ng-click="closeThisDialog()">

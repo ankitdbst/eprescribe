@@ -5,7 +5,7 @@
         <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
         {{alertMessage}} 
     </div>
-    <button type="button" class="btn btn-primary pull-right" ng-click="upsertClinicalNotes()">
+    <button type="button" class="btn btn-primary pull-right" ng-click="upsertDocuments()">
         <i class="fa fa-plus"></i> Add
     </button>
 </div>
@@ -26,14 +26,30 @@
                     <span ng-show="sortType == 'did' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th> 
+             <th>
+                <a href="" ng-click="sortType = 'tag'; sortReverse = !sortReverse">
+                    Tag
+                    <span ng-show="sortType == 'tag' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'tag' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> 
+             <th>
+                <a href="" ng-click="sortType = 'documentName'; sortReverse = !sortReverse">
+                    Name
+                    <span ng-show="sortType == 'documentName' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'documentName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> 
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="noteObj in clinicalNotesList| orderBy:sortType:sortReverse">
+        <tr ng-repeat="documentObj in documentsList | orderBy:sortType:sortReverse">
             <td>
-                <a href="" ng-click="openClinicalNote(noteObj)"> {{noteObj.date| date:'short'}} </a>
+                <a href="" ng-click="openDocument(documentObj)"> {{documentObj.date| date:'short'}} </a>
             </td>
-            <td>{{noteObj.did}}</td>
+            <td>{{documentObj.did}}</td>
+            <td>{{documentObj.tag}}</td>
+            <td>{{documentObj.documentName}}</td>
         </tr>
     </tbody>
 </table>
