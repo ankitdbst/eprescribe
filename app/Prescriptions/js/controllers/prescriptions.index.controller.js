@@ -69,6 +69,7 @@
             });
 
             prescriptionDialog.closePromise.then(function (data) {
+                $('body').removeClass('stop-scrolling')
                 var response = data.value;
                 if (_.isEqual(response.state, "saved")) {
                     $state.go('PatientNewOrEdit.PrescriptionIndex.Detail', {

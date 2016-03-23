@@ -18,6 +18,7 @@
             $state.go('login', {signIn: true});
             return;
         }
+        $('body').addClass('stop-scrolling');
 
         var patientId = $stateParams.patientId;
         var user = Account.getAuthenticatedAccount();

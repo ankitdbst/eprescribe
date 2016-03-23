@@ -237,3 +237,8 @@ body {
     display: none;
     z-index: 1
 }
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
