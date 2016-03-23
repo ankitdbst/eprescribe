@@ -58,10 +58,6 @@
             columnsToGet: ""
         }, function (response) {
             $scope.patientList = response;
-            angular.forEach($scope.patientList, function (patient) {
-                //TODO come from backend
-                patient.profileImageURL = "img/User1.jpg";
-            });
         }
         );
 
@@ -92,13 +88,6 @@
                     $scope.showAlert = false;
                     $scope.showSearchResults = true;
                     $scope.searchPatientResults = response;
-                    angular.forEach($scope.searchPatientResults, function (patient) {
-                        patient.profileImageURL = "img/User1.jpg";//this should come from backend, TEMPORARY
-                        //TODO:DUMMY for TESTING, REMOVE LATER
-                        if (patient.firstName == "Rohit") {
-                            patient.isNew = true;
-                        }
-                    });
                 }
             }
             );
