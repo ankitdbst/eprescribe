@@ -60,16 +60,16 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.clinicalNote = response;
-            });
-            $scope.readOnly = true;//Do Not Save button as its read only view
-            ngDialog.open({
-                template: 'Patients/partials/patients.upsert-clinical-note.html',
-                className: 'ngdialog-theme-default custom-width-1',
-                scope: $scope,
-                showClose: false,
-                closeByEscape: false,
-                closeByDocument: false,
-                controller: 'PatientUpsertClinicalNotesCtrl'
+                $scope.readOnly = true;//Do Not Save button as its read only view
+                ngDialog.open({
+                    template: 'Patients/partials/patients.upsert-clinical-note.html',
+                    className: 'ngdialog-theme-default custom-width-1',
+                    scope: $scope,
+                    showClose: false,
+                    closeByEscape: false,
+                    closeByDocument: false,
+                    controller: 'PatientUpsertClinicalNotesCtrl'
+                });
             });
         }
 

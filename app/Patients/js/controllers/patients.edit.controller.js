@@ -52,7 +52,7 @@
                 fileReader.onload = function (event) {
                     var uri = event.target.result;
                     $scope.patient.profileImageURL = uri;
-                    SavePhoto("Photo")
+                    SavePhoto("Photo");
                 };
                 fileReader.readAsDataURL(flowFile.file);
             });

@@ -18,8 +18,22 @@
 
         function Initialize() {
             $scope.document = $scope.$parent.document;
-            $scope.saveBtnName = _.isEmpty($scope.document) ? 'Add' : 'Update';
+            $scope.saveBtnName = $scope.readonly ? 'View' : 'Add';
             $scope.dialogTitle = $scope.saveBtnName + " Document";
         }
+
+        $scope.uploader = {};
+
+        $scope.handleUpload = function ($files, $event, $flow) {
+            angular.forEach($flow.files, function (flowFile, i) {
+                var fileReader = new FileReader();
+                fileReader.onload = function (event) {
+                    var uri = event.target.result;
+                    $scope.document.img = uri;
+                };
+                $scope.document.documentName = flowFile.name;
+                fileReader.readAsDataURL(flowFile.file);
+            });
+        };
     }
 })();
