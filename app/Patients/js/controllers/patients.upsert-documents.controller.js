@@ -18,7 +18,7 @@
 
         function Initialize() {
             $scope.document = $scope.$parent.document;
-            $scope.saveBtnName = $scope.readonly ? 'View' : 'Add';
+            $scope.saveBtnName = $scope.readOnly ? 'View' : 'Add';
             $scope.dialogTitle = $scope.saveBtnName + " Document";
         }
 

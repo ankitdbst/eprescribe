@@ -27,7 +27,7 @@
         }
 
         function UpsertClinicalNotes(index) {
-            $scope.clinicalNote = _.isUndefined(index) ? {} : _.clone($scope.clinicalNotesList[index]);
+            $scope.clinicalNote = {};
             $scope.clinicalNote.date = new Date();
             $scope.readOnly = false;//Show Save button as its editable view
             var upsertNoteDialog = ngDialog.open({
@@ -41,7 +41,7 @@
             });
 //
             upsertNoteDialog.closePromise.then(function (data) {
-                if (data.value == "Add" || data.value == "Update") {
+                if (data.value == "Add" || data.value == "View") {
                     //Save the data..
                     SavePatientPeripheralDetails('ClinicalNote', "userClinicalNote");
                 }

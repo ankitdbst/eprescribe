@@ -3,11 +3,12 @@
 </navbar>
 <form name="formPatientUpsertDocument" class="panel-group eremedium-dialog" novalidate autocomplete="off">
     <div class="form-group ng-scope" ng-class="{ 'has-error': formPatientUpsertDocument.documentName.$touched && formPatientUpsertDocument.documentName.$invalid }" flow-init="{singleFile:true}" flow-files-submitted='handleUpload($files, $event, $flow)' flow-name="uploader.flow" >
-        <span class="btn btn-default" flow-btn="">Add Document
+        <span class="btn btn-default" flow-btn="" ng-show="!readOnly">Add Document
             <input type="file" multiple="multiple" style="visibility: hidden; position: absolute;">
         </span>
         <input type="text" ng-model="document.documentName" class="form-control" name="documentName" id="documentName" ng-show="false" required/>
-        <span class="label label-info form-control">{{document.documentName}}</span>
+        <span class="label label-info form-control" ng-show="!readOnly">{{document.documentName}}</span>
+        <a ng-href="data:application/octet-stream;{{document.img}}" ng-show="readOnly" download="{{document.documentName}}"> {{document.documentName}}</a>
 
         <div class="help-block" ng-messages="formPatientUpsertDocument.documentName.$error" ng-if="formPatientUpsertDocument.documentName.$touched">                    
             <p ng-message="required">Document is mandatory!</p>
