@@ -178,7 +178,7 @@
                             {{alertMessage}} 
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-primary" type="button" ng-click="savePatientProfile('identifyingDetails')" ng-show="identifyingDetailsChanged">
+                            <button class="btn btn-primary" type="button" ng-click="savePatientProfile('identifyingDetails')" ng-show="identifyingDetailsChanged" ng-disabled="formPatientProfile.$invalid">
                                 <i class="fa fa-floppy-o"></i> Save
                             </button>
                         </div>

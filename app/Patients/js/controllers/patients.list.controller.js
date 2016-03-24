@@ -46,7 +46,6 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.doctor = response;
-                $rootScope.profileImageURL = "img/User.jpg";//$scope.doctor.profileImageURL;
             });
         }
 
