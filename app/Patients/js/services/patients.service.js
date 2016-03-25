@@ -53,6 +53,16 @@
                             method: 'POST',
                             url: 'http://52.74.177.118/ERService/userservice/GetUserDocumentById',
                             isArray: false
+                        },
+                        generateOTP: {
+                            method: 'POST',
+                            url: 'http://52.74.177.118/ERService/communicationservice/GenerateOTP',
+                            isArray: false
+                        },
+                        verifyOTP: {
+                            method: 'POST',
+                            url: 'http://52.74.177.118/ERService/communicationservice/VerifyOTP',
+                            isArray: false
                         }
                     };
 
