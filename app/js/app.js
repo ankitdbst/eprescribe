@@ -11,6 +11,7 @@ angular.module('ERemediumWebApp', [
     'ngTouch',
     'cgBusy',
     'flow',
+    'pw.canvas-painter',
     'angularResizable',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',
