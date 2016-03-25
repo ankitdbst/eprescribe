@@ -12,9 +12,9 @@
 
       function SaveAddress() {
         $scope.$parent.addresses.push($scope.address);
-        // save to backednd
-
+        // TODO: save to backednd
         $scope.address = {};
+        $state.go('PrescriptionOrder', null, { reload: false });
       }
     }
 

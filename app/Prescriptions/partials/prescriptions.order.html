@@ -12,7 +12,7 @@
                 <div class="form-group col-md-4">
                     <label for="pharmacy">Pharmacy</label>
                     <select class="form-control" 
-                            ng-options="pharmacy.pharmaName for pharmacy in pharmacies" id="pharmacy"  name="pharmacy" ng-model="order.pharmacy">
+                            ng-options="pharmacy.pharmaName for pharmacy in pharmacies" id="pharmacy"  name="pharmacy" ng-model="order.pharmacy" required>
                         <option value="">None</option>
                     </select>
                 </div>
