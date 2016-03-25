@@ -41,13 +41,12 @@
                 <hr>
                 <div class="radio col-md-3 eremedium-delivery-address" ng-repeat="address in addresses">
                     <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked />
-                        <div>
-                            <div><strong>{{prescription.patient.firstName + " " + prescription.patient.lastName}}</strong></div>
-                            <div>{{address.line1}}</div>
-                            <div>{{address.line2}}</div>
-                            <div>{{address.city}}, {{address.state}} {{address.pincode}}</div>
-                        </div>
+                        <input type="radio" name="optionsRadios" id="optionsRadios" ng-value="address" ng-model="order.address">
+                        <address>
+                            <strong>{{prescription.patient.firstName + " " + prescription.patient.lastName}}</strong><br>
+                            {{address.addressLine1}}, {{address.addressLine2}}<br>
+                            {{address.city}}, {{address.state}}, {{address.pincode}}
+                        </address>
                     </label>
                 </div>
             </div>
@@ -65,6 +64,10 @@
         <button type="button" class="btn btn-default" ng-click="close()">
             <i class="fa fa-times"></i> Cancel
         </button>
+        <div class="alert {{alertClass}}  fade in" ng-show="showAlert" role="alert">
+            <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+            {{alertMessage}} 
+        </div>
     </div>
 </form>
 <div ui-view></div>

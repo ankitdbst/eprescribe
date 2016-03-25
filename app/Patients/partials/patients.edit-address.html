@@ -4,16 +4,16 @@
   <div class="panel panel-primary">
       <div class="panel-heading">Add a new address</div>
       <div class="panel-body">
-          <div class="form-group col-md-4" ng-class="{ 'has-error': formNewOrEditAddress.line1.$touched && formNewOrEditAddress.line1.$invalid }">
-              <label for="line1">Address Line 1*:</label>
-              <textarea class="form-control" ng-model="address.line1" id="line1" name="line1" rows="1" placeholder="Address Line 1" required></textarea>
-              <div class="help-block" ng-messages="formNewOrEditAddress.line1.$error" ng-if="formNewOrEditAddress.line1.$touched">                    
+          <div class="form-group col-md-4" ng-class="{ 'has-error': formNewOrEditAddress.patientAddressLine1.$touched && formNewOrEditAddress.patientAddressLine1.$invalid }">
+              <label for="patientAddressLine1">Address Line 1*:</label>
+              <textarea class="form-control" ng-model="address.addressLine1" id="patientAddressLine1" name="patientAddressLine1" rows="1" placeholder="Address Line 1" required></textarea>
+              <div class="help-block" ng-messages="formNewOrEditAddress.patientAddressLine1.$error" ng-if="formNewOrEditAddress.patientAddressLine1.$touched">                    
                      <p ng-message="required">Address Line 1 is mandatory!</p>
               </div>
           </div>
           <div class="form-group col-md-4">
-              <label for="line2">Address Line 2:</label>
-              <textarea class="form-control" ng-model="address.line2" id="line2" name="line2" rows="1" placeholder="Address Line 2"></textarea>
+              <label for="patientAddressLine2">Address Line 2:</label>
+              <textarea class="form-control" ng-model="address.addressLine2" id="patientAddressLine2" name="patientAddressLine2" rows="1" placeholder="Address Line 2"></textarea>
           </div>
           <div class="form-group col-md-4" ng-class="{ 'has-error': formNewOrEditAddress.city.$touched && formNewOrEditAddress.city.$invalid }">
               <label for="city">City*:</label>
