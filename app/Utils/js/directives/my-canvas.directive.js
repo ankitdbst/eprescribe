@@ -71,6 +71,7 @@
               path.add(event.point);
               var dot = new paper.Path.Circle(event.point, 1.5);
               dot.fillColor = 'black';
+              console.log(event);
             }
 
             tool.onMouseDrag = function(event) {

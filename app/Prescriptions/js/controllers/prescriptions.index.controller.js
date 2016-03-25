@@ -6,6 +6,7 @@
 
     PrescriptionIndexCtrl.$inject = [
         '$scope',
+        '$rootScope',
         '$state',
         'ngDialog',
         'Prescription',
@@ -13,7 +14,7 @@
         'Account'
     ];
 
-    function PrescriptionIndexCtrl($scope, $state, ngDialog, Prescription, $stateParams, Account) {
+    function PrescriptionIndexCtrl($scope, $rootScope, $state, ngDialog, Prescription, $stateParams, Account) {
         if (!Account.isAuthenticated()) {
             $state.go('login', {signIn: true});
             return;
@@ -67,6 +68,18 @@
                 closeByDocument: false,
                 controller: 'PrescriptionNewOrEditCtrl'
             });
+
+            var openHandler = function(e, $dialog) {
+              if ($dialog.attr('id') === prescriptionDialog.id) {
+                console.log('ngDialog opened: ' + $dialog.attr('id'));
+                $('.palm-rejection--container').on('touchstart', function(e) {
+                  e.preventDefault();
+                  return;
+                });
+              }
+            };
+
+            $rootScope.$on('ngDialog.opened', openHandler);
 
             prescriptionDialog.closePromise.then(function (data) {
                 $('body').removeClass('stop-scrolling')
