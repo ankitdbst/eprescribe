@@ -12,59 +12,69 @@
             return;
         }
         var user = Account.getAuthenticatedAccount();
-        var patientId = $stateParams.patientId;
-        var prescriptionId = $stateParams.prescriptionId;
 
-        var params = {
-            user: user.mobile,
-            sessionId: user.sessionId,
-            pid: prescriptionId,
-            columnsToGet: ""
-        };
+        Initialize();
 
-        $scope.prescription = Prescription.get(params);
-        $scope.myPromise = $scope.prescription.$promise;
-
-        $scope.prescription.$promise.then(function (prescription) {
-            if (angular.isUndefined($scope.prescription.patient.alternateAddresses)) {
-                $scope.prescription.patient.alternateAddresses = [];
-            }
-            $scope.addresses = $scope.prescription.patient.alternateAddresses;
-            $scope.addresses.push($scope.prescription.patient.address);
-        });
-
-        var addresses = [];
-
-        $scope.pharmacies = [
-            "Durga Pharmacy",
-            "Apollo Pharmacy",
-            "Neelkanth Pharmacy"
-        ];
-
-        $scope.labs = [
-            "Apollo Labs",
-            "Dr Lal Labs",
-            "Super Religare Labs"
-        ];
-
+        //Functions
         $scope.order = Order;
         $scope.close = Close;
 
-        function Order() {
+        function Initialize() {
+            GetAddresses();
+            GetPharmacies();
+            GetLabs();
+        }
+
+        function GetAddresses() {
             var params = {
                 user: user.mobile,
                 sessionId: user.sessionId,
-                patientId: patientId,
-                doctorId: user.userId
+                pid: $stateParams.prescriptionId,
+                columnsToGet: ""
             };
+
+            $scope.prescription = Prescription.get(params);
+            $scope.myPromise = $scope.prescription.$promise;
+
+            $scope.prescription.$promise.then(function (prescription) {
+                if (angular.isUndefined($scope.prescription.patient.alternateAddresses)) {
+                    $scope.prescription.patient.alternateAddresses = [];
+                }
+                $scope.addresses = $scope.prescription.patient.alternateAddresses;
+                $scope.addresses.push($scope.prescription.patient.address);
+            });
+        }
+
+
+        function GetPharmacies() {
+            Prescription.listPharma({
+                user: user.userId,
+                sessionId: user.sessionId,
+                city: "Noida",//TODO: should always be default one i.e. Eremedium Pharmacy if patient is opening app, else if Doctor is opening then should display his configured pharmacies, if not configured any then should default one i.e. Eremedium Pharmacy..
+                limit: 10,
+                columnsToGet: ""
+            }, function (response) {
+                $scope.pharmacies = response;
+            });
+        }
+
+        function GetLabs() {
+            $scope.labs = [
+                "Apollo Labs",
+                "Dr Lal Labs",
+                "Super Religare Labs"
+            ];
+        }
+
+        function Order() {
             $state.go('PrescriptionOrderStatus', {
-                patientId: patientId,
-                prescriptionId: prescriptionId
+                patientId: $stateParams.patientId,
+                prescriptionId: $stateParams.prescriptionId
             });
         }
 
         function Close() {
-            $state.go('PatientNewOrEdit', {patientId: patientId});
+            $state.go('PatientNewOrEdit', {patientId: $stateParams.patientId});
         }
     }
 

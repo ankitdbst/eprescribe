@@ -28,6 +28,11 @@
           method: 'POST',
           url: 'http://52.74.177.118/ERService/medcineservice/MedAutocomplete',
           isArray: true
+        },
+        listPharma: {
+          method: 'POST',
+          url: 'http://52.74.177.118/ERService/pharmaservice/ListPharma',
+          isArray: true
         }
       };
 
