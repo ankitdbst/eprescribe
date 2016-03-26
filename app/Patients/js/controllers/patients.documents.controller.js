@@ -19,6 +19,7 @@
 
         $scope.upsertDocuments = UpsertDocuments;
         $scope.openDocument = OpenDocument;
+        $scope.uploader = {};
 
         function Initialize() {
             $scope.sortType = ''; // set the default sort type
@@ -27,7 +28,7 @@
         }
 
         function UpsertDocuments(index) {
-            $scope.document = _.isUndefined(index) ? {} : _.clone($scope.documentsList[index]);
+            $scope.document = {};
             $scope.document.date = new Date();
             $scope.readOnly = false;//Show Save button as its editable view
             var upsertDocumentDialog = ngDialog.open({
@@ -41,7 +42,7 @@
             });
 //
             upsertDocumentDialog.closePromise.then(function (data) {
-                if (data.value == "Add" || data.value == "Update") {
+                if (data.value == "Add" || data.value == "View") {
                     //Save the data..
                     SaveDocument('Document', "userDcoument");
                 }
@@ -60,16 +61,16 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.document = response;
-            });
-            $scope.readOnly = true;//Do Not Save button as its read only view
-            ngDialog.open({
-                template: 'Patients/partials/patients.upsert-document.html',
-                className: 'ngdialog-theme-default custom-width-1',
-                scope: $scope,
-                showClose: false,
-                closeByEscape: false,
-                closeByDocument: false,
-                controller: 'PatientUpsertDocumentsCtrl'
+                $scope.readOnly = true;//Do Not Save button as its read only view
+                ngDialog.open({
+                    template: 'Patients/partials/patients.upsert-document.html',
+                    className: 'ngdialog-theme-default custom-width-1',
+                    scope: $scope,
+                    showClose: false,
+                    closeByEscape: false,
+                    closeByDocument: false,
+                    controller: 'PatientUpsertDocumentsCtrl'
+                });
             });
         }
 

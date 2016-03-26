@@ -19,7 +19,7 @@
         function Initialize() {
             $scope.canvasEnabled = true; //TODO: user.settings.canvasEnabled;
             $scope.clinicalNote = $scope.$parent.clinicalNote;
-            $scope.saveBtnName = _.isEmpty($scope.clinicalNote) ? 'Add' : 'Update';
+            $scope.saveBtnName = $scope.readOnly ? 'View' : 'Add';
             $scope.dialogTitle = $scope.saveBtnName + " Clinical Note";
         }
     }

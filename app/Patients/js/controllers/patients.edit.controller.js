@@ -47,8 +47,15 @@
         $scope.uploader = {};
 
         $scope.handleUpload = function ($files, $event, $flow) {
-            alert('Uploaded..');
-            $scope.uploader.flow.upload();//TODO Post Image..
+            angular.forEach($flow.files, function (flowFile, i) {
+                var fileReader = new FileReader();
+                fileReader.onload = function (event) {
+                    var uri = event.target.result;
+                    $scope.patient.profileImageURL = uri;
+                    SavePhoto("Photo");
+                };
+                fileReader.readAsDataURL(flowFile.file);
+            });
         };
 
         //Functions
@@ -71,32 +78,8 @@
             //Computed properties
             $scope.patient.age.year = $rootScope.getAge($scope.patient.dob);
             $scope.patient.isDependant = ($scope.patient.relation == 'None') ? "false" : "true";
-            //Setup parameters.
-            var params = {
-                user: account.userId,
-                sessionId: account.sessionId,
-                doctorId: account.userId,
-                patientId: $scope.patient.patientId,
-                userMap: $scope.patient
-            };
-            //Delete redundant properties
-            $scope.myPromise = Patient.upsert(params, function (response) {
-                $scope.showAlert = true;
-                $scope.section = section;
-                //Show Proper Alert with option of going back.
-                if (angular.isUndefined(response)) {
-                    $scope.alertMessage = "Error in saving Patient's " + section + ", Please try again!";
-                    $scope.alertClass = "alert-danger";
-                } else if (response.respCode == 1) {
-                    $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
-                    $scope.alertClass = "alert-success";
-                    //If all goes good, rebind the data..
-                    $scope.patient = response.patient;
-                } else {
-                    $scope.alertMessage = response.response;
-                    $scope.alertClass = "alert-danger";
-                }
-            });
+
+            UpsertUser(section);
         }
 
         function SavePatientPeripheralDetails(section, detailType) {
@@ -117,8 +100,6 @@
                 detailType: detailType,
                 userDetail: detailType == 'userHistory' ? $scope.patient.history : $scope.patient.alergy
             };
-            //Delete redundant properties
-            delete $scope.patient["_id"];
             $scope.myPromise = Patient.upsertPeripheralDetails(params, function (response) {
                 $scope.showAlert = true;
                 $scope.section = section;
@@ -129,6 +110,47 @@
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
+                } else {
+                    $scope.alertMessage = response.response;
+                    $scope.alertClass = "alert-danger";
+                }
+            });
+        }
+
+        function SavePhoto(section) {
+            if (angular.isUndefined($scope.patient.patientId)) {
+                //if patient has not been created yet, then show an alert..
+                $scope.showAlert = true;
+                $scope.section = section;
+                $scope.alertMessage = "Please create Patient before saving " + section + "!";
+                $scope.alertClass = "alert-danger";
+                return;
+            }
+            UpsertUser(section);
+        }
+
+        function UpsertUser(section) {
+            //Setup parameters.
+            var params = {
+                user: account.userId,
+                sessionId: account.sessionId,
+                doctorId: account.userId,
+                patientId: $scope.patient.patientId,
+                userMap: $scope.patient
+            };
+
+            $scope.myPromise = Patient.upsert(params, function (response) {
+                $scope.showAlert = true;
+                $scope.section = section;
+                //Show Proper Alert with option of going back.
+                if (angular.isUndefined(response)) {
+                    $scope.alertMessage = "Error in saving Patient's " + section + ", Please try again!";
+                    $scope.alertClass = "alert-danger";
+                } else if (response.respCode == 1) {
+                    $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
+                    $scope.alertClass = "alert-success";
+                    //If all goes good, rebind the data..
+                    $scope.patient = response.patient;
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
@@ -151,8 +173,6 @@
             }, function (response) {
                 $scope.patient = response;
                 $scope.patient.isUpdate = true;
-                //TODO: dummy for now, profileimage should come from backend..
-                $scope.patient.profileImageURL = "img/User1.jpg"; //
                 //Once Profile is obtained..fetch history and allergies..
                 GetHistory();
                 GetAllergies();

@@ -2,21 +2,21 @@
     <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
 <form name="formPatientUpsertDocument" class="panel-group eremedium-dialog" novalidate autocomplete="off">
-    <div class="form-group" ng-class="{ 'has-error': formPatientUpsertDocument.documentImg.$touched && formPatientUpsertDocument.documentImg.$invalid }">
-        <label for="documentImg"> Add Document*:</label>
-        <input type="text" ng-model="document.img" class="form-control" name="documentImg" id="documentImg" placeholder="Add Document.." required/>
-        <div class="help-block" ng-messages="formPatientUpsertDocument.documentImg.$error" ng-if="formPatientUpsertDocument.documentImg.$touched">                    
+    <div class="form-group ng-scope" ng-class="{ 'has-error': formPatientUpsertDocument.documentName.$touched && formPatientUpsertDocument.documentName.$invalid }" flow-init="{singleFile:true}" flow-files-submitted='handleUpload($files, $event, $flow)' flow-name="uploader.flow" >
+        <span class="btn btn-default" flow-btn="" ng-show="!readOnly">Add Document
+            <input type="file" multiple="multiple" style="visibility: hidden; position: absolute;">
+        </span>
+        <input type="text" ng-model="document.documentName" class="form-control" name="documentName" id="documentName" ng-show="false" required/>
+        <span class="label label-info form-control" ng-show="!readOnly">{{document.documentName}}</span>
+        <a ng-href="data:application/octet-stream;{{document.img}}" ng-show="readOnly" download="{{document.documentName}}"> {{document.documentName}}</a>
+
+        <div class="help-block" ng-messages="formPatientUpsertDocument.documentName.$error" ng-if="formPatientUpsertDocument.documentName.$touched">                    
             <p ng-message="required">Document is mandatory!</p>
         </div>
     </div>
-
-    <div class="form-group">
-        <label for="documentName"> Name:</label>
-        <input type="text"  ng-model="document.documentName" class="form-control" id="documentName" name="documentName" placeholder="Document Name (optional)" />
-    </div>
     <div class="form-group">
         <label for="documentTag"> Tags:</label>
-        <input type="text"  ng-model="document.tag" class="form-control" id="documentTag" name="documentTag" placeholder="Document Tag (optional)" />
+        <input type="text"  ng-model="document.tag" class="form-control" id="documentTag" name="documentTag" placeholder="Document Tag (optional)" ng-disabled="readOnly"/>
     </div>
 </form>
 <navbar type="footer">

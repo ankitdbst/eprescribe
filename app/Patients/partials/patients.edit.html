@@ -36,6 +36,10 @@
     </h3>
 </div>
 <div class="col-md-2"></div>
+<div class="alert {{alertClass}}  fade in col-md-10" ng-show="showAlert" role="alert">
+    <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+    {{alertMessage}} 
+</div>
 <form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
     <div class="col-md-2" style="margin-top: 2%">
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
@@ -48,7 +52,6 @@
             <li spy="documents"><a href=""  ng-click="isDocumentsVisible = true; isDocumentsCollapsed = true">Documents</a></li>
             <li spy="labOrderTracking"><a href="" ng-click="isLabOrderTrackingVisible = true; isLabOrderTrackingCollapsed = true">Lab Order Tracking</a></li>
             <li spy="pharmacyOrderTracking"><a href="" ng-click="isPharmacyOrderTrackingVisible = true; isPharmacyOrderTrackingCollapsed = true">Pharmacy Order Tracking</a></li>
-            <li spy="messages"><a href="" ng-click="isMessagesVisible = true; isMessagesCollapsed = true">Messages</a></li>
         </ul>
     </div>
     <div id="divContent" class="col-md-10">
@@ -174,7 +177,7 @@
                             {{alertMessage}} 
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-primary" type="button" ng-click="savePatientProfile('identifyingDetails')" ng-show="identifyingDetailsChanged">
+                            <button class="btn btn-primary" type="button" ng-click="savePatientProfile('identifyingDetails')" ng-show="identifyingDetailsChanged" ng-disabled="formPatientProfile.$invalid">
                                 <i class="fa fa-floppy-o"></i> Save
                             </button>
                         </div>
@@ -381,20 +384,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="panel panel-info" id="messages" ng-show="isMessagesVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-envelope fa-1x"></i>
-                    <a ng-click="isMessagesCollapsed = !isMessagesCollapsed" href="">Messages</a>
-                </h4>
-            </div>
-            <div id="divMessages" uib-collapse="!isMessagesCollapsed">
-                <div class="panel-body">
-
-                </div>
-            </div>
-        </div>
-
     </div>
 </form>
