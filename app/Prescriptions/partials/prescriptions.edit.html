@@ -3,13 +3,11 @@
   <li><a ng-click="close()"><span class="glyphicon glyphicon-remove"></span></a></li>
 </navbar>
 <div cg-busy="myPromise"></div>
-<section resizable r-directions="['top']" r-height="300" class="palm-rejection--wrapper">
-  <div class="palm-rejection--container"></div>
-</section>
+<div palm-reject></div>
 <div class="eremedium-dialog">
   <form name="formPrescription" class="panel-group" novalidate>
     <h4>Diagnosis & Complaint <small>(hand write)</small></h4>
-    <div ng-model="prescription.imgDiagnosis" pw-canvas options="{width: 400, height: 300, color: '#ff0'}" ng-if="canvasEnabled" />
+    <div ng-model="prescription.imgDiagnosis" pw-canvas options="{}" ng-if="canvasEnabled" />
 
     <div ng-if="!canvasEnabled">
       <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">

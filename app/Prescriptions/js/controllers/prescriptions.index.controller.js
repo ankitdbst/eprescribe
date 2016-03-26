@@ -71,10 +71,11 @@
 
             var openHandler = function(e, $dialog) {
               if ($dialog.attr('id') === prescriptionDialog.id) {
-                console.log('ngDialog opened: ' + $dialog.attr('id'));
-                $('.palm-rejection--container').on('touchstart', function(e) {
+                $('.palm-rejection--wrapper').on('touchstart touchmove', function(e) {
                   e.preventDefault();
-                  return;
+                  if(e.stopPropagation) {
+                    e.stopPropagation();
+                  }
                 });
               }
             };

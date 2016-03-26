@@ -123,10 +123,6 @@ angular.module('pw.canvas-painter')
         };
         var ppts = [];
 
-        //set canvas size
-        canvas.width = canvasTmp.width;// = options.width;
-        canvas.height = canvasTmp.height;// = options.height;
-
 //        //set context style
 //        ctx.fillStyle = options.backgroundColor;
 //        ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -135,8 +131,12 @@ angular.module('pw.canvas-painter')
 //        ctxTmp.lineWidth = 10;
 //        ctxTmp.strokeStyle = options.color;
 
-        // TODO: Remove the existing project; paper.remove()
+        paper.remove();
         paper.setup(canvasTmp);
+
+        //set canvas size
+        canvas.width = canvasTmp.width;// = options.width;
+        canvas.height = canvasTmp.height;// = options.height;
 
         var path;
 
@@ -205,7 +205,7 @@ angular.module('pw.canvas-painter')
               // TODO: Work out the logic
               var delta = p2.subtract(p1);
               var step = delta.divide(2);
-              var fillWidth = 2;
+              var fillWidth = options.lineWidth;
 
               //var alpha = 1/step.length;
               var lineWidth = fillWidth/step.length;
@@ -237,7 +237,7 @@ angular.module('pw.canvas-painter')
             }
           }
 
-          path.smooth({type: 'catmull-rom'});
+          path.smooth();
           // Saving all the points in an array
 //          ppts.push({
 //            x: point.x,
@@ -289,7 +289,9 @@ angular.module('pw.canvas-painter')
           path.closed = true;
           canvasTmp.removeEventListener(PAINT_MOVE, paint, false);
           ctx.drawImage(canvasTmp, 0, 0);
-          ctxTmp.clearRect(0, 0, canvasTmp.width, canvasTmp.height);
+
+          paper.project.clear();
+          //ctxTmp.clearRect(0, 0, canvasTmp.width, canvasTmp.height);
           ppts = [];
         };
 
@@ -299,7 +301,7 @@ angular.module('pw.canvas-painter')
 
           setPointFromEvent(point, e);
           path = new paper.Path();
-          path.fillColor = 'black';
+          path.fillColor = options.color;
           path.fillCap = 'round'
           path.add(point);
 //          ppts.push({

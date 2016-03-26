@@ -242,3 +242,32 @@ body {
   height: 100%;
   overflow: hidden;
 }
+
+.palm-rejection--wrapper {
+  position: fixed;
+  pointer-events: all;
+  top: 400px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-height: 10px;
+  background-color: ghostwhite;
+  z-index: 999999;
+}
+
+.rg-top {
+  cursor: row-resize;
+  width: 100%;
+  top: 0;
+  left: 0;
+  margin-top: -7px;
+}
+
+.rg-top span {
+  border-width: 1px 0;
+  left: 50%;
+  margin: 3.5px 0 0 -10px;
+  width: 20px;
+  height: 7px;
+}
