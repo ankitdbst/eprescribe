@@ -15,7 +15,7 @@
 
       return {
         link: link,
-        restrict: 'E'
+        restrict: 'AE'
       }
     }
 }) ();
