@@ -69,21 +69,7 @@
                 controller: 'PrescriptionNewOrEditCtrl'
             });
 
-            var openHandler = function(e, $dialog) {
-              if ($dialog.attr('id') === prescriptionDialog.id) {
-                $('.palm-rejection--wrapper').on('touchstart touchmove', function(e) {
-                  e.preventDefault();
-                  if(e.stopPropagation) {
-                    e.stopPropagation();
-                  }
-                });
-              }
-            };
-
-            $rootScope.$on('ngDialog.opened', openHandler);
-
             prescriptionDialog.closePromise.then(function (data) {
-                $('body').removeClass('stop-scrolling')
                 var response = data.value;
                 if (_.isEqual(response.state, "saved")) {
                     $state.go('PatientNewOrEdit.PrescriptionIndex.Detail', {
