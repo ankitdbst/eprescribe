@@ -111,16 +111,17 @@
                 //console.log('Points: Top: ', top, 'Bottom: ', bottom);
                 path.add(top);
                 path.insert(0, bottom);
-              }
 
-              // Smoothen the path
-              path.smooth();
+                // Smoothen the path
+                path.smooth();
+              }
             };
 
             var copyTmpImage = function(e) {
               setPointFromEvent(point, e);
               path.add(point);
               path.closed = true;
+              path.smooth();
               canvasTmp.removeEventListener(PAINT_MOVE, paint, false);
               ctx.drawImage(canvasTmp, 0, 0);
 
@@ -128,7 +129,9 @@
               // We do this because the re-draw becomes too time intensivev operation
               // once the number of drawing objects are large on the canvas
               paper.project.clear();
-              saveImage();
+              // This is causing some performance impact.
+              // Need to schedule this on demand
+              // saveImage();
             };
 
             var startTmpImage = function(e) {
