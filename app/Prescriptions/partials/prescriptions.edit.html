@@ -8,7 +8,7 @@
 <div class="eremedium-dialog">
   <form name="formPrescription" class="panel-group" novalidate>
     <h4>Diagnosis & Complaint <small>(hand write)</small></h4>
-    <div ng-model="prescription.imgDiagnosis" pw-canvas options="{}" ng-if="canvasEnabled" />
+    <div ng-model="prescription.imgDiagnosis" my-canvas options="{}" ng-if="canvasEnabled" />
 
     <div ng-if="!canvasEnabled">
       <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">

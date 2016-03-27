@@ -4,17 +4,27 @@
     angular.module('ERemediumWebApp.utils.directives').
     directive('myCanvas', myCanvas);
 
-    myCanvas.$inject = ['$rootScope'];
+    myCanvas.$inject = [];
 
-    function myCanvas($rootScope) {
+    function myCanvas() {
         function link(scope, elm, attrs) {
-            //create canvas and context
+            var isTouch = !!('ontouchstart' in window);
+
+            var PAINT_START = isTouch ? 'touchstart' : 'mousedown';
+            var PAINT_MOVE = isTouch ? 'touchmove' : 'mousemove';
+            var PAINT_END = isTouch ? 'touchend' : 'mouseup';
+
+            var options = attrs.options || {};
+
+            // create canvas and context
             var canvas = document.createElement('canvas');
-            canvas.id = 'canvas';
+            canvas.id = options.canvasId;
             canvas.setAttribute('resize', '');
+
             var canvasTmp = document.createElement('canvas');
-            canvasTmp.id = 'canvasTmp';
+            canvasTmp.id = options.tmpCanvasId;
             canvasTmp.setAttribute('resize', '');
+
             angular.element(canvasTmp).css({
               position: 'absolute',
               top: 0,
@@ -25,100 +35,189 @@
             var ctx = canvas.getContext('2d');
             var ctxTmp = canvasTmp.getContext('2d');
 
-            //set canvas size
-//            canvas.width = canvasTmp.width = 600;
-//            canvas.height = canvasTmp.height = 400;
-
+            //inti variables
+            var point = {
+              x: 0,
+              y: 0
+            };
             paper.remove();
             paper.setup(canvasTmp);
+
+            // Set Canvas Width; At this point resize has taken effect and the
+            // Canvas occupies the maximum width available
             canvas.width = canvasTmp.width;
             canvas.height = canvasTmp.height;
 
-            paper.onResize = function(event) {
-              canvas.width = canvasTmp.width;
-              canvas.height = canvasTmp.height;
-            }
+            // Paper JS Path
+            var path;
 
-            LoadImage();
+            var getOffset = function(elem) {
+              var offsetTop = 0;
+              var offsetLeft = 0;
+              do {
+                if (!isNaN(elem.offsetLeft)) {
+                  offsetTop += elem.offsetTop;
+                  offsetLeft += elem.offsetLeft;
+                }
+                elem = elem.offsetParent;
+              } while (elem);
+              return {
+                left: offsetLeft,
+                top: offsetTop
+              };
+            };
 
-            function SaveImage() {
+            var setPointFromEvent = function(point, e) {
+              if (isTouch) {
+                point.x = e.changedTouches[0].pageX - getOffset(e.target).left;
+                point.y = e.changedTouches[0].pageY - getOffset(e.target).top;
+              } else {
+                point.x = e.offsetX !== undefined ? e.offsetX : e.layerX;
+                point.y = e.offsetY !== undefined ? e.offsetY : e.layerY;
+              }
+            };
+
+            var saveImage = function () {
               scope.$apply(function() {
                 scope.ngModel = canvas.toDataURL();
               });
-            }
+            };
 
-            function LoadImage() {
-              if(_.isEmpty(scope.ngModel)) {
-                return;
+            var paint = function(e) {
+              var p1 = new paper.Point(point.x, point.y), p2;
+              if (e) {
+                e.preventDefault();
+                setPointFromEvent(point, e);
+                p2 = new paper.Point(point.x, point.y);
+
+                if (p1.equals(p2)) return;
+
+                var delta = p2.subtract(p1);
+                var step = delta.divide(2);
+
+                var fillWidth = 2; // Hard coded as of now
+                var lineWidth = fillWidth/step.length;
+                var len = step.length;
+                var alpha = 1;
+                var velocity = alpha*((2*len)/45);
+
+                step = step.multiply((fillWidth - velocity)/len);
+                step.angle += 90;
+
+                var middlePoint = (p1.add(p2)).divide(2);
+                var top = middlePoint.add(step);
+                var bottom = middlePoint.subtract(step);
+
+                //console.log('Points: Top: ', top, 'Bottom: ', bottom);
+                path.add(top);
+                path.insert(0, bottom);
               }
-              var image = document.createElement('img');
-              image.src = scope.ngModel;
-              ctx.clearRect(0, 0, canvas.width, canvas.height);
-              ctx.drawImage(image, 0, 0);
-            }
 
-            var tool = new paper.Tool();
+              // Smoothen the path
+              path.smooth();
+            };
 
-            tool.minDistance = 0;
-            tool.maxDistance = 45;
+            var copyTmpImage = function(e) {
+              setPointFromEvent(point, e);
+              path.add(point);
+              path.closed = true;
+              canvasTmp.removeEventListener(PAINT_MOVE, paint, false);
+              ctx.drawImage(canvasTmp, 0, 0);
 
-            var path;
+              // Remove all the active layers in Paper JS
+              // We do this because the re-draw becomes too time intensivev operation
+              // once the number of drawing objects are large on the canvas
+              paper.project.clear();
+              saveImage();
+            };
 
-            tool.onMouseDown = function(event) {
+            var startTmpImage = function(e) {
+              e.preventDefault();
+              canvasTmp.addEventListener(PAINT_MOVE, paint, false);
+
+              setPointFromEvent(point, e);
               path = new paper.Path();
               path.fillColor = 'black';
               path.fillCap = 'round'
-              path.add(event.point);
-              var dot = new paper.Path.Circle(event.point, 1.5);
-              dot.fillColor = 'black';
-              console.log(event);
-            }
+              path.add(point);
+              paint();
+            };
 
-            tool.onMouseDrag = function(event) {
-              var step = event.delta.divide(2);
-              var fillWidth = 1.5;
+            var initListeners = function() {
+              canvasTmp.addEventListener(PAINT_START, startTmpImage, false);
+              canvasTmp.addEventListener(PAINT_END, copyTmpImage, false);
 
-              //var alpha = 1/step.length;
-              var lineWidth = fillWidth/step.length;
-              //console.log('Event.Length: ', step.length);
-              //console.log('Alpha: ', alpha);
+              if (!isTouch) {
+                var MOUSE_DOWN;
 
-              var len = step.length;
-              //console.log('Step Before:', step.length);
+                document.body.addEventListener('mousedown', mousedown);
+                document.body.addEventListener('mouseup', mouseup);
 
-              var alpha = 1;
-              var velocity = alpha*((2*len)/tool.maxDistance);
-              console.log('scalar: ', (fillWidth - velocity));
-              step = step.multiply((fillWidth - velocity)/len);
-              //console.log('Step After:', step.length);
+                scope.$on('$destroy', removeEventListeners);
 
-              console.log('step before: ', step.angle);
-              step.angle += 90;
-              console.log('step after: ', step.angle);
+                canvasTmp.addEventListener('mouseenter', mouseenter);
+                canvasTmp.addEventListener('mouseleave', mouseleave);
+              }
 
-              //console.log('Step length: ', step.length);
+              function mousedown() {
+                MOUSE_DOWN = true;
+              }
 
-              console.log('\n');
-              var top = event.middlePoint.add(step);
-              var bottom = event.middlePoint.subtract(step);
+              function mouseup() {
+                MOUSE_DOWN = false;
+              }
 
-              path.add(top);
-              path.insert(0, bottom);
-              path.smooth({type: 'catmull-rom'});
-            }
+              function removeEventListeners() {
+                document.body.removeEventListener('mousedown', mousedown);
+                document.body.removeEventListener('mouseup', mouseup);
+              }
 
-            tool.onMouseUp = function(event) {
-              path.add(event.point);
-              path.closed = true;
+              function mouseenter(e) {
+                // If the mouse is down when it enters the canvas, start a path
+                if (MOUSE_DOWN) {
+                  startTmpImage(e);
+                }
+              }
 
-              ctx.drawImage(canvasTmp, 0, 0, canvas.width, canvas.height);
-//              canvasTmp.clearRect(0, 0, canvasTmp.width, canvasTmp.height);
-              paper.project.clear();
-              SaveImage();
-//              path.smooth({type: 'catmull-rom'});
-//              path.rasterize();
-//              path.visible = false;
-            }
+              function mouseleave(e) {
+                // If the mouse is down when it leaves the canvas, end the path
+                if (MOUSE_DOWN) {
+                  copyTmpImage(e);
+                }
+              }
+            };
+
+            var init = function() {
+              // Hack to get canvas to work on touch devices
+              // This maybe due to some internal issue with e-remedium app
+              // or it maybe a global issue
+              var body = $('body').get(0);
+              var scrollTopInitial = body.scrollTop;
+              body.scrollTop = 0;
+
+              scope.$on('$destroy', removeScrollTop);
+
+              loadImage();
+
+              function removeScrollTop() {
+                body.scrollTop = scrollTopInitial;
+              }
+
+              function loadImage() {
+                if (_.isEmpty(scope.ngModel)) {
+                  return;
+                }
+                var image = document.createElement('img');
+                image.src = scope.ngModel;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(image, 0, 0);
+              }
+
+              // Initialize listeners
+              initListeners();
+            };
+
+            init();
         }
 
         var directive = {
@@ -131,5 +230,23 @@
         };
 
         return directive;
+    }
+
+    angular.module('ERemediumWebApp.utils.directives').
+    directive('palmReject', palmReject);
+
+    palmReject.$inject = [];
+
+    function palmReject() {
+      function link(scope, elm, attrs) {
+        elm.on('touchstart touchmove', function(e) {
+          e.preventDefault();
+        });
+      }
+
+      return {
+        link: link,
+        restrict: 'AE'
+      }
     }
 })();
