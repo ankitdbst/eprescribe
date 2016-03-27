@@ -121,7 +121,7 @@
               setPointFromEvent(point, e);
               path.add(point);
               path.closed = true;
-              path.smooth();
+
               canvasTmp.removeEventListener(PAINT_MOVE, paint, false);
               ctx.drawImage(canvasTmp, 0, 0);
 
