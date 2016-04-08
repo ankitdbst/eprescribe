@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Encoding and decoding ink content | WILL SDK Docs</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://localhost/will_docs_instance1/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://localhost/will_docs_instance1/wp-content/themes/will-doc/js/html5.js"></script>
+	<![endif]-->
+
+	<link rel="stylesheet" href="../../wp-content/themes/will-doc/css/style.css">
+	<link rel="stylesheet" href="../../wp-content/themes/will-doc/css/accordionmenu.css">
+
+	<script src="../../wp-content/themes/will-doc/js/jquery.min.js"></script>
+	<script src="../../wp-content/themes/will-doc/js/sidebar.js"></script>
+
+	<link rel="stylesheet" href="../../wp-content/themes/will-doc/css/highlight.css">
+	<script src="../../wp-content/themes/will-doc/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+	<header>
+		<div class="title">
+			<div>WILL &trade;</div>
+			<div>sdk documentation</div>
+		</div>
+		<!--
+		<div id="searchbox">
+			<input class="typeahead" type="text" placeholder="{{ search_text }}">
+		</div>
+-->
+	</header>
+
+	<div id="sitewrapper">
+<div id="sidebar">
+	<nav class="accordion">
+
+				<h1 class="do-not-cause-collapse" title="General Concepts">
+
+			General Concepts
+			</h1>
+
+							<div class="active-menu never-close">
+					<h2 class="not-collapsible" title="Architectural Overview">
+
+								<a href="../architecture/index.html"
+											>Architectural Overview</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Generating ink content">
+
+								<a href="../path-building/index.html"
+											>Generating ink content</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Rendering ink content">
+
+								<a href="../rasterizer/index.html"
+											>Rendering ink content</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Encoding and decoding ink content">
+
+								<a href="index.html"
+						 class="selected"					>Encoding and decoding ink content</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Exchanging ink content">
+
+								<a href="../file-format/index.html"
+											>Exchanging ink content</a>
+					
+			</h2>
+
+							</div>
+							<h1 title="Web SDK">
+
+			Web SDK
+			</h1>
+
+							<div>
+					<h2 title="Getting started">
+
+								<a href="../../web/getting-started/index.html"
+											>Getting started</a>
+					
+			</h2>
+
+						<h2 title="Release Notes">
+
+								<a href="../../web/release-notes/index.html"
+											>Release Notes</a>
+					
+			</h2>
+
+						<h2 title="Tutorials">
+
+								<a href="../../web/tutorials-overview/index.html"
+											>Tutorials</a>
+					
+			</h2>
+
+							<div>
+					<h3 title="Tutorial 1: Drawing with pointing devices">
+
+								<a href="../../web/tutorials-tutorial1/index.html"
+											>Tutorial 1: Drawing with pointing devices</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Setting up the ink engine">
+
+								<a href="../../web/tutorials-tutorial1-part1/index.html"
+											>Part 1: Setting up the ink engine</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Building paths from pointer input">
+
+								<a href="../../web/tutorials-tutorial1-part2/index.html"
+											>Part 2: Building paths from pointer input</a>
+					
+			</h4>
+
+						<h4 title="Part 3: Smoothing paths">
+
+								<a href="../../web/tutorials-tutorial1-part3/index.html"
+											>Part 3: Smoothing paths</a>
+					
+			</h4>
+
+						<h4 title="Part 4: Drawing preliminary paths">
+
+								<a href="../../web/tutorials-tutorial1-part4/index.html"
+											>Part 4: Drawing preliminary paths</a>
+					
+			</h4>
+
+						<h4 title="Part 5: Drawing semi-transparent strokes">
+
+								<a href="../../web/tutorials-tutorial1-part5/index.html"
+											>Part 5: Drawing semi-transparent strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 6: Using a particle brush">
+
+								<a href="../../web/tutorials-tutorial1-part6/index.html"
+											>Part 6: Using a particle brush</a>
+					
+			</h4>
+
+						<h4 title="Part 7: Generating a Bezier path">
+
+								<a href="../../web/tutorials-tutorial1-part7/index.html"
+											>Part 7: Generating a Bezier path</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 2: Encoding and decoding strokes">
+
+								<a href="../../web/tutorials-tutorial2/index.html"
+											>Tutorial 2: Encoding and decoding strokes</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Creating a stroke model">
+
+								<a href="../../web/tutorials-tutorial2-part1/index.html"
+											>Part 1: Creating a stroke model</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Serializing and deserializing strokes">
+
+								<a href="../../web/tutorials-tutorial2-part2/index.html"
+											>Part 2: Serializing and deserializing strokes</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 3: Erasing strokes">
+
+								<a href="../../web/tutorials-tutorial3/index.html"
+											>Tutorial 3: Erasing strokes</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Creating an eraser">
+
+								<a href="../../web/tutorials-tutorial3-part1/index.html"
+											>Part 1: Creating an eraser</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Erasing parts of strokes">
+
+								<a href="../../web/tutorials-tutorial3-part2/index.html"
+											>Part 2: Erasing parts of strokes</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 4: Selecting strokes">
+
+								<a href="../../web/tutorials-tutorial4/index.html"
+											>Tutorial 4: Selecting strokes</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Selecting strokes">
+
+								<a href="../../web/tutorials-tutorial4-part1/index.html"
+											>Part 1: Selecting strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Selecting parts of strokes">
+
+								<a href="../../web/tutorials-tutorial4-part2/index.html"
+											>Part 2: Selecting parts of strokes</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 5: Working with rasters">
+
+								<a href="../../web/tutorials-tutorial5/index.html"
+											>Tutorial 5: Working with rasters</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Displaying raster images">
+
+								<a href="../../web/tutorials-tutorial5-part1/index.html"
+											>Part 1: Displaying raster images</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Creating image masks">
+
+								<a href="../../web/tutorials-tutorial5-part2/index.html"
+											>Part 2: Creating image masks</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 6: Collaborating in real time">
+
+								<a href="../../web/tutorials-tutorial6/index.html"
+											>Tutorial 6: Collaborating in real time</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Composing strokes">
+
+								<a href="../../web/tutorials-tutorial6-part1/index.html"
+											>Part 1: Composing strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Erasing strokes">
+
+								<a href="../../web/tutorials-tutorial6-part2/index.html"
+											>Part 2: Erasing strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 3: Erasing parts of strokes">
+
+								<a href="../../web/tutorials-tutorial6-part3/index.html"
+											>Part 3: Erasing parts of strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 4: Selecting strokes">
+
+								<a href="../../web/tutorials-tutorial6-part4/index.html"
+											>Part 4: Selecting strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 5: Selecting parts of strokes">
+
+								<a href="../../web/tutorials-tutorial6-part5/index.html"
+											>Part 5: Selecting parts of strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 6: Composing strokes with latency">
+
+								<a href="../../web/tutorials-tutorial6-part6/index.html"
+											>Part 6: Composing strokes with latency</a>
+					
+			</h4>
+
+							</div>
+								</div>
+							<h2 title="API Reference">
+
+			API Reference
+			</h2>
+
+							<div>
+					<h3 title="Classes">
+
+			Classes
+			</h3>
+
+							<div>
+					<h4 title="BezierPath">
+
+								<a href="../../web-api/Module.BezierPath/index.html"
+											>BezierPath</a>
+					
+			</h4>
+
+						<h4 title="BrushDecoder">
+
+								<a href="../../web-api/Module.BrushDecoder/index.html"
+											>BrushDecoder</a>
+					
+			</h4>
+
+						<h4 title="BrushEncoder">
+
+								<a href="../../web-api/Module.BrushEncoder/index.html"
+											>BrushEncoder</a>
+					
+			</h4>
+
+						<h4 title="DirectBrush">
+
+								<a href="../../web-api/Module.DirectBrush/index.html"
+											>DirectBrush</a>
+					
+			</h4>
+
+						<h4 title="FlatPath">
+
+								<a href="../../web-api/Module.FlatPath/index.html"
+											>FlatPath</a>
+					
+			</h4>
+
+						<h4 title="GenericLayer">
+
+								<a href="../../web-api/Module.GenericLayer/index.html"
+											>GenericLayer</a>
+					
+			</h4>
+
+						<h4 title="GenericPath">
+
+								<a href="../../web-api/Module.GenericPath/index.html"
+											>GenericPath</a>
+					
+			</h4>
+
+						<h4 title="InkCanvas">
+
+								<a href="../../web-api/Module.InkCanvas/index.html"
+											>InkCanvas</a>
+					
+			</h4>
+
+						<h4 title="InkDecoder">
+
+								<a href="../../web-api/Module.InkDecoder/index.html"
+											>InkDecoder</a>
+					
+			</h4>
+
+						<h4 title="InkEncoder">
+
+								<a href="../../web-api/Module.InkEncoder/index.html"
+											>InkEncoder</a>
+					
+			</h4>
+
+						<h4 title="Intersector">
+
+								<a href="../../web-api/Module.Intersector/index.html"
+											>Intersector</a>
+					
+			</h4>
+
+						<h4 title="MultiChannelSmoothener">
+
+								<a href="../../web-api/Module.MultiChannelSmoothener/index.html"
+											>MultiChannelSmoothener</a>
+					
+			</h4>
+
+						<h4 title="OffscreenLayer">
+
+								<a href="../../web-api/Module.OffscreenLayer/index.html"
+											>OffscreenLayer</a>
+					
+			</h4>
+
+						<h4 title="ParticleBrush">
+
+								<a href="../../web-api/Module.ParticleBrush/index.html"
+											>ParticleBrush</a>
+					
+			</h4>
+
+						<h4 title="PathBuilder">
+
+								<a href="../../web-api/Module.PathBuilder/index.html"
+											>PathBuilder</a>
+					
+			</h4>
+
+						<h4 title="PathContext">
+
+								<a href="../../web-api/Module.PathContext/index.html"
+											>PathContext</a>
+					
+			</h4>
+
+						<h4 title="PathOperationDecoder">
+
+								<a href="../../web-api/Module.PathOperationDecoder/index.html"
+											>PathOperationDecoder</a>
+					
+			</h4>
+
+						<h4 title="PathOperationEncoder">
+
+								<a href="../../web-api/Module.PathOperationEncoder/index.html"
+											>PathOperationEncoder</a>
+					
+			</h4>
+
+						<h4 title="PressurePathBuilder">
+
+								<a href="../../web-api/Module.PressurePathBuilder/index.html"
+											>PressurePathBuilder</a>
+					
+			</h4>
+
+						<h4 title="SolidColorBrush">
+
+								<a href="../../web-api/Module.SolidColorBrush/index.html"
+											>SolidColorBrush</a>
+					
+			</h4>
+
+						<h4 title="SpeedPathBuilder">
+
+								<a href="../../web-api/Module.SpeedPathBuilder/index.html"
+											>SpeedPathBuilder</a>
+					
+			</h4>
+
+						<h4 title="Stroke">
+
+								<a href="../../web-api/Module.Stroke/index.html"
+											>Stroke</a>
+					
+			</h4>
+
+						<h4 title="StrokeBrush">
+
+								<a href="../../web-api/Module.StrokeBrush/index.html"
+											>StrokeBrush</a>
+					
+			</h4>
+
+						<h4 title="StrokeDrawContext">
+
+								<a href="../../web-api/Module.StrokeDrawContext/index.html"
+											>StrokeDrawContext</a>
+					
+			</h4>
+
+						<h4 title="StrokeRenderer">
+
+								<a href="../../web-api/Module.StrokeRenderer/index.html"
+											>StrokeRenderer</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Interfaces">
+
+			Interfaces
+			</h3>
+
+							<div>
+					<h4 title="PathOperationDecoderCallbacksHandlerInterface">
+
+								<a href="../../web-api/Module.PathOperationDecoderCallbacksHandlerInterface/index.html"
+											>PathOperationDecoderCallbacksHandlerInterface</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Namespaces">
+
+			Namespaces
+			</h3>
+
+							<div>
+					<h4 title="Module">
+
+								<a href="../../web-api/Module/index.html"
+											>Module</a>
+					
+			</h4>
+
+						<h4 title="Module.Color">
+
+								<a href="../../web-api/Module.Color/index.html"
+											>Module.Color</a>
+					
+			</h4>
+
+						<h4 title="Module.GLTools">
+
+								<a href="../../web-api/Module.GLTools/index.html"
+											>Module.GLTools</a>
+					
+			</h4>
+
+						<h4 title="Module.MatTools">
+
+								<a href="../../web-api/Module.MatTools/index.html"
+											>Module.MatTools</a>
+					
+			</h4>
+
+						<h4 title="Module.RectTools">
+
+								<a href="../../web-api/Module.RectTools/index.html"
+											>Module.RectTools</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Global">
+
+								<a href="../../web-api/global/index.html"
+											>Global</a>
+					
+			</h3>
+
+			
+	</nav>
+</div><div id="page_content" class='page-content'>
+	
+<div id="post-5" class="page">
+	<h1>Encoding and decoding ink content</h1>
+<p>The <strong>Serialization</strong> module provides algorithms for encoding and decoding ink content. These algorithms are optimized to work with the WILL stroke mathematical model (referred to as the <em>stroke model</em> in this documentation).</p>
+<p>The algorithms support the following features:</p>
+<ul>
+<li>Fast encoding and decoding</li>
+<li>Compact file size</li>
+<li>Portability across operating systems and devices</li>
+<li>Binary representation that can be embedded in different container formats</li>
+</ul>
+<h2>The encoding algorithm</h2>
+<p>The encoding algorithm implemented in the WILL software library is based on the well-known delta encoding technique. This technique is applied over all control point coordinates within a stroke, as well as across the corresponding width values for strokes with variable width. To enable further optimizations, these values are represented in integer form (as fixed-point numbers) before the delta encoding procedure.</p>
+<h3>Encoding coordinate values</h3>
+<p>The encoding process works as follows:</p>
+<p><strong>Step 1.</strong> Convert floating-point values to integer values using externally-specified decimal precision:</p>
+<pre><code>integerValue = floatValue * (10 ^ decimalPrecision);</code></pre>
+<p><strong>Step 2.</strong> Perform delta encoding on the converted values:</p>
+<pre><code>encodedValues[0] = integerValues[0];
+for(i = 1; i &lt; n; i++)
+{
+    encodedValues[i] = integerValues[i] - integerValues[i - 1];
+}</code></pre>
+<p><strong>Note:</strong> In converting between floating-point values and fixed-point (integer) values, some precision can be lost. If precision is critical to application functionality, you must take this into consideration. A possible solution is to rely on IEEE 754: in this case, for every value to be converted, you should use the appropriate <em>decimalPrecision</em> and an approximation that remains unchanged during this conversion.</p>
+<h3>Decoding coordinate values</h3>
+<p>To restore the original values, the encoding process is reversed, as follows:</p>
+<p><strong>Step 1.</strong> Perform delta decoding to restore the integer values:</p>
+<pre><code>integerValues[0] = encodedValues[0];
+for(i = 1; i &lt; n; i++)
+{
+    integerValues[i] = integerValues[i - 1] + encodedValues[i];
+}</code></pre>
+<p><strong>Step 2.</strong> Convert integer values to floating-point values using externally-specified decimal precision:</p>
+<pre><code>floatValue = integerValue / (10 ^ decimalPrecision)</code></pre>
+<h2>The encoding schema</h2>
+<p>Coordinates, width values, and other properties for every stroke are encoded in a binary form using <em>Google protocol buffers</em>. This allows rapid encoding and decoding, and the resulting binary code is highly-portable and compact because the techniques used for representing repeated stroke values greatly improve the efficiency of the varint technique used.</p>
+<p>Values are encoded according to the following schema:</p>
+<pre><code>package WacomInkFormat;
+
+option optimize_for = LITE_RUNTIME;
+
+enum CompositeOperation {
+//  CLEAR = 0;
+    COPY = 1;
+    SOURCE_OVER = 2;
+    DESTINATION_OVER = 3;
+//  SOURCE_IN = 4;
+//  DESTINATION_IN = 5;
+//  SOURCE_OUT = 6;
+    DESTINATION_OUT = 7;
+//  SOURCE_ATOP = 8;
+//  DESTINATION_ATOP = 9;
+//  XOR = 10;
+    LIGHTER = 11;
+
+    DIRECT_MULTIPLY = 12;
+    DIRECT_INVERT_SOURCE_MULTIPLY = 13;
+    DIRECT_DARKEN = 14;
+    DIRECT_LIGHTEN = 15;
+    DIRECT_SUBSTRACT = 16;
+    DIRECT_REVERSE_SUBSTRACT = 17;
+}
+
+message ParticlesPaint {
+    repeated bytes shape = 1;
+    optional float spacing = 2 [default = 2];
+    optional float scattering = 3 [default = 0];
+    enum Rotation {
+        NONE = 0;
+        RANDOM = 1;
+        TRAJECTORY = 2;
+    }
+    optional Rotation rotation = 4 [default = NONE];
+    repeated bytes fill = 5;
+    optional float fillWidth = 6 [default = 4];
+    optional float fillHeight = 7 [default = 4];
+    optional bool randomizeFill = 8 [default = false];
+    optional CompositeOperation compositeOperation = 9 [default = SOURCE_OVER];
+}
+
+message Path {
+    optional float startParameter = 1 [default = 0];
+    optional float endParameter = 2 [default = 1];
+    optional uint32 decimalPrecision = 3 [default = 2];
+    repeated sint32 data = 4 [packed = true];
+    repeated sint32 strokeWidth = 5 [packed = true];
+    repeated sint32 strokeColor = 6 [packed = true];
+    optional uint32 strokePaint = 7;
+    optional uint32 strokeParticlesRandomSeed = 8;
+    optional CompositeOperation compositeOperation = 9 [default = SOURCE_OVER];
+}</code></pre>
+<h3><em>Path</em> message properties</h3>
+<p>Every <em>Path</em> message in the schema represents a single stroke and its properties as described below:</p>
+<ul>
+<li>A value in the interval [0, 1] that specifies the exact beginning of the path:</li>
+</ul>
+<pre><code>    optional float startParameter = 1 [default = 0];</code></pre>
+<ul>
+<li>A value in the interval [0, 1] that specifies the exact ending of the path:</li>
+</ul>
+<pre><code>    optional float endParameter = 2 [default = 1];</code></pre>
+<ul>
+<li>The number of digits after the radix point for values stored in <em>data</em> and <em>strokeWidth</em> properties:</li>
+</ul>
+<pre><code>    optional uint32 decimalPrecision = 3 [default = 2];</code></pre>
+<ul>
+<li>An encoded list of the <em>x</em> and <em>y</em> values of all control points for a particular stroke:</li>
+</ul>
+<pre><code>    repeated sint32 data = 4 [packed = true];</code></pre>
+<ul>
+<li>A delta encoded list of width values for all control points for a stroke with a variable stroke width:</li>
+</ul>
+<pre><code>    repeated sint32 strokeWidth = 5 [packed = true];</code></pre>
+<p>For a stroke of constant width, this list contains a single value:</p>
+<ul>
+<li>A delta encoded list of color values in <em>RGBA</em> format:</li>
+</ul>
+<pre><code>    repeated sint32 strokeColor = 6 [packed = true];</code></pre>
+<p>For a stroke of constant color, this list contains a single value. Most commonly, any variation in stroke color is in the opacity (the alpha channel of the <em>RGBA</em> format). In other words, the same <em>RGB</em> values apply throughout, but the <em>A</em> value changes.</p>
+<ul>
+<li>A reference to a different <em>*Paint</em> object if the strokes should be visualized with a different technique from solid color painting (for example, particles paint):</li>
+</ul>
+<pre><code>    optional uint32 strokePaint = 7;</code></pre>
+<ul>
+<li>The random seed for the stroke used in the case of particles paint:</li>
+</ul>
+<pre><code>    optional uint32 strokeParticlesRandomSeed = 8;</code></pre>
+<ul>
+<li>How the stroke should be composited with the backdrop:</li>
+</ul>
+<pre><code>    optional CompositeOperation compositeOperation = 9 [default = SOURCE_OVER];</code></pre>
+<p>Supported compositing operations are based on Porter/Duff compositing modes. In addition, there are six &quot;direct&quot; blend modes that perform the specified blending by direct application of the corresponding operator to source and destination pre-multiplied color values.</p>
+<p>The list of <em>Path</em> messages that define all of the encoded strokes is represented as a length-delimited list as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Bytes sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>128 bit varint</td>
+<td><em>Path 1</em> message length</td>
+</tr>
+<tr>
+<td>Bytes</td>
+<td><em>Path 1</em> message bytes</td>
+</tr>
+<tr>
+<td>128 bit varint</td>
+<td><em>Path 2</em> message length</td>
+</tr>
+<tr>
+<td>Bytes</td>
+<td><em>Path 2</em> message bytes</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>128 bit varint</td>
+<td><em>Path N</em> message length</td>
+</tr>
+<tr>
+<td>Bytes</td>
+<td><em>Path N</em> message bytes</td>
+</tr>
+</tbody>
+</table>
+<h3><em>ParticlesPaint</em> message properties</h3>
+<p>The <strong>Serialization</strong> module also provides an encoding method for <em>ParticlesPaint</em>  messages. <em>ParticlesPaint</em> messages are used to describe the following properties necessary for the particles visualization technique:</p>
+<ul>
+<li>The <em>PNG</em> encoded image that represents the shape texture for the particle:</li>
+</ul>
+<pre><code>    repeated bytes shape = 1;</code></pre>
+<p>If the list contains more than one image, the sequence is treated as consecutive mipmap levels.</p>
+<ul>
+<li>The distance between particles along the path trajectory:</li>
+</ul>
+<pre><code>    optional float spacing = 2 [default = 2];</code></pre>
+<ul>
+<li>The maximum offset perpendicular to the path trajectory in which the particle is positioned:</li>
+</ul>
+<pre><code>    optional float scattering = 3 [default = 0];</code></pre>
+<p>The actual position of the particle is randomly determined within the interval defined by this parameter.</p>
+<ul>
+<li>The shape rotation:</li>
+</ul>
+<pre><code>    enum Rotation {
+        NONE = 0;
+        RANDOM = 1;
+        TRAJECTORY = 2;
+    }
+    optional Rotation rotation = 4 [default = NONE];</code></pre>
+<p>The rotation can take the following values:</p>
+<ul>
+<li><code>NONE</code>: the shape is not rotated when it is rendered.</li>
+<li><code>RANDOM</code>: the shape is randomly rotated before it is rendered.</li>
+<li><code>TRAJECTORY</code>: the shape is rotated to match the path trajectory before it is rendered.</li>
+</ul>
+<ul>
+<li>The <em>PNG</em> encoded image that represents the fill texture for the particle:</li>
+</ul>
+<pre><code>    repeated bytes fill = 5;</code></pre>
+<p>If the list contains more than one image, then the sequence is treated as consecutive mipmap levels.</p>
+<ul>
+<li>The width of the fill:</li>
+</ul>
+<pre><code>    optional float fillWidth = 6 [default = 4];</code></pre>
+<ul>
+<li>The height of the fill:</li>
+</ul>
+<pre><code>    optional float fillHeight = 7 [default = 4];</code></pre>
+<ul>
+<li>Whether the fill sampling location should be randomly changed for each particle rendering:</li>
+</ul>
+<pre><code>    optional bool randomizeFill = 8 [default = false];</code></pre>
+<ul>
+<li>How the stroke should be composited with the backdrop:</li>
+</ul>
+<pre><code>    optional CompositeOperation compositeOperation = 9 [default = SOURCE_OVER];</code></pre>
+<p>Supported compositing operations are based on Porter/Duff compositing modes. In addition, there are six &quot;direct&quot; blend modes that perform the specified blending by direct application of the corresponding operator to both source and destination pre-multiplied color values.</p>
+<h2>Encoder and Decoder components</h2>
+<p>The <strong>Serialization</strong> module provides two components that implement the encoding and decoding algorithms:</p>
+<ul>
+<li>The <strong>Encoder</strong> component provides a stream-like interface for encoding strokes information. It accepts stroke information in incremental steps, performs the encoding algorithm, and appends the resulting bytes to an in-memory byte buffer. The client can retrieve the byte buffer to obtain the result.</li>
+<li>The <strong>Decoder</strong> component provides an iterator-like interface for decoding strokes information. It decodes stroke information in incremental steps, extracting and decoding stroke information from the in-memory byte buffer on demand.</li>
+</ul>
+<p>![Encoder and Decoder components interactions]({{ site.url }}/assets/SerializationSequenceDiagram.png)</p>
+<p>Both components use <em>Google protocol buffers</em> for C++ in their implementations and follow the algorithm described above.</p>
+<p><strong>Note:</strong> The <em>Google protocol buffers</em> runtime is stripped and linked inside the WILL software library with hidden symbols. This makes the setup of these components simple and straightforward.</p>
+<p>You can extend the <em>Google protocol buffers</em> schema with custom properties and provide your own implementation of the <strong>Encoder</strong> and <strong>Decoder</strong> components by following the algorithm above. As <em>Google protocol buffers</em> provide backward/forward compatibility of messages, extensions do not break the compatibility of the binary data. However, the first 100 attribute identifiers are reserved for future extensions by Wacom. This means that you must use identifiers larger than 100 for custom attributes.</p>
+<p>Additionally, both components provide stroke information without using a specific abstraction. This allows you to create your own abstractions for strokes that are specifically designed for your application requirements.</p>
+<p>Similar <strong>Encoder</strong> and <strong>Decoder</strong> components are provided for <em>ParticlesPaint</em> information.</p>
+</div> <!-- page -->
+<div id="related_tutorials"><h2>Related tutorials</h2><ul><li><a href="../../web/tutorials-tutorial2-part1/index.html">WILL SDK for Web: Stroke Model</a></li></ul></div></div> <!-- page_content -->
+
+	</div><!-- #sitewrapper -->
+
+	<footer>
+		<img src="../../wp-content/themes/will-doc/images/img_logo_wacom.png" alt="" />
+<!--
+		<span>&nbsp;</span>
+		<a href="/contact.html">Contact</a>
+		<a href="/support.html">Support</a>
+-->
+	</footer>
+</body>
+</html>

@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>OffscreenLayer | WILL SDK Docs</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://localhost/will_docs_instance1/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://localhost/will_docs_instance1/wp-content/themes/will-doc/js/html5.js"></script>
+	<![endif]-->
+
+	<link rel="stylesheet" href="../../wp-content/themes/will-doc/css/style.css">
+	<link rel="stylesheet" href="../../wp-content/themes/will-doc/css/accordionmenu.css">
+
+	<script src="../../wp-content/themes/will-doc/js/jquery.min.js"></script>
+	<script src="../../wp-content/themes/will-doc/js/sidebar.js"></script>
+
+	<link rel="stylesheet" href="../../wp-content/themes/will-doc/css/highlight.css">
+	<script src="../../wp-content/themes/will-doc/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+	<header>
+		<div class="title">
+			<div>WILL &trade;</div>
+			<div>sdk documentation</div>
+		</div>
+		<!--
+		<div id="searchbox">
+			<input class="typeahead" type="text" placeholder="{{ search_text }}">
+		</div>
+-->
+	</header>
+
+	<div id="sitewrapper">
+<div id="sidebar">
+	<nav class="accordion">
+
+				<h1 class="do-not-cause-collapse" title="General Concepts">
+
+			General Concepts
+			</h1>
+
+							<div class="active-menu never-close">
+					<h2 class="not-collapsible" title="Architectural Overview">
+
+								<a href="../../general-concepts/architecture/index.html"
+											>Architectural Overview</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Generating ink content">
+
+								<a href="../../general-concepts/path-building/index.html"
+											>Generating ink content</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Rendering ink content">
+
+								<a href="../../general-concepts/rasterizer/index.html"
+											>Rendering ink content</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Encoding and decoding ink content">
+
+								<a href="../../general-concepts/serialization/index.html"
+											>Encoding and decoding ink content</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Exchanging ink content">
+
+								<a href="../../general-concepts/file-format/index.html"
+											>Exchanging ink content</a>
+					
+			</h2>
+
+							</div>
+							<h1 title="Web SDK">
+
+			Web SDK
+			</h1>
+
+							<div>
+					<h2 title="Getting started">
+
+								<a href="../../web/getting-started/index.html"
+											>Getting started</a>
+					
+			</h2>
+
+						<h2 title="Release Notes">
+
+								<a href="../../web/release-notes/index.html"
+											>Release Notes</a>
+					
+			</h2>
+
+						<h2 title="Tutorials">
+
+								<a href="../../web/tutorials-overview/index.html"
+											>Tutorials</a>
+					
+			</h2>
+
+							<div>
+					<h3 title="Tutorial 1: Drawing with pointing devices">
+
+								<a href="../../web/tutorials-tutorial1/index.html"
+											>Tutorial 1: Drawing with pointing devices</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Setting up the ink engine">
+
+								<a href="../../web/tutorials-tutorial1-part1/index.html"
+											>Part 1: Setting up the ink engine</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Building paths from pointer input">
+
+								<a href="../../web/tutorials-tutorial1-part2/index.html"
+											>Part 2: Building paths from pointer input</a>
+					
+			</h4>
+
+						<h4 title="Part 3: Smoothing paths">
+
+								<a href="../../web/tutorials-tutorial1-part3/index.html"
+											>Part 3: Smoothing paths</a>
+					
+			</h4>
+
+						<h4 title="Part 4: Drawing preliminary paths">
+
+								<a href="../../web/tutorials-tutorial1-part4/index.html"
+											>Part 4: Drawing preliminary paths</a>
+					
+			</h4>
+
+						<h4 title="Part 5: Drawing semi-transparent strokes">
+
+								<a href="../../web/tutorials-tutorial1-part5/index.html"
+											>Part 5: Drawing semi-transparent strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 6: Using a particle brush">
+
+								<a href="../../web/tutorials-tutorial1-part6/index.html"
+											>Part 6: Using a particle brush</a>
+					
+			</h4>
+
+						<h4 title="Part 7: Generating a Bezier path">
+
+								<a href="../../web/tutorials-tutorial1-part7/index.html"
+											>Part 7: Generating a Bezier path</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 2: Encoding and decoding strokes">
+
+								<a href="../../web/tutorials-tutorial2/index.html"
+											>Tutorial 2: Encoding and decoding strokes</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Creating a stroke model">
+
+								<a href="../../web/tutorials-tutorial2-part1/index.html"
+											>Part 1: Creating a stroke model</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Serializing and deserializing strokes">
+
+								<a href="../../web/tutorials-tutorial2-part2/index.html"
+											>Part 2: Serializing and deserializing strokes</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 3: Erasing strokes">
+
+								<a href="../../web/tutorials-tutorial3/index.html"
+											>Tutorial 3: Erasing strokes</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Creating an eraser">
+
+								<a href="../../web/tutorials-tutorial3-part1/index.html"
+											>Part 1: Creating an eraser</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Erasing parts of strokes">
+
+								<a href="../../web/tutorials-tutorial3-part2/index.html"
+											>Part 2: Erasing parts of strokes</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 4: Selecting strokes">
+
+								<a href="../../web/tutorials-tutorial4/index.html"
+											>Tutorial 4: Selecting strokes</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Selecting strokes">
+
+								<a href="../../web/tutorials-tutorial4-part1/index.html"
+											>Part 1: Selecting strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Selecting parts of strokes">
+
+								<a href="../../web/tutorials-tutorial4-part2/index.html"
+											>Part 2: Selecting parts of strokes</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 5: Working with rasters">
+
+								<a href="../../web/tutorials-tutorial5/index.html"
+											>Tutorial 5: Working with rasters</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Displaying raster images">
+
+								<a href="../../web/tutorials-tutorial5-part1/index.html"
+											>Part 1: Displaying raster images</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Creating image masks">
+
+								<a href="../../web/tutorials-tutorial5-part2/index.html"
+											>Part 2: Creating image masks</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 6: Collaborating in real time">
+
+								<a href="../../web/tutorials-tutorial6/index.html"
+											>Tutorial 6: Collaborating in real time</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Composing strokes">
+
+								<a href="../../web/tutorials-tutorial6-part1/index.html"
+											>Part 1: Composing strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Erasing strokes">
+
+								<a href="../../web/tutorials-tutorial6-part2/index.html"
+											>Part 2: Erasing strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 3: Erasing parts of strokes">
+
+								<a href="../../web/tutorials-tutorial6-part3/index.html"
+											>Part 3: Erasing parts of strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 4: Selecting strokes">
+
+								<a href="../../web/tutorials-tutorial6-part4/index.html"
+											>Part 4: Selecting strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 5: Selecting parts of strokes">
+
+								<a href="../../web/tutorials-tutorial6-part5/index.html"
+											>Part 5: Selecting parts of strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 6: Composing strokes with latency">
+
+								<a href="../../web/tutorials-tutorial6-part6/index.html"
+											>Part 6: Composing strokes with latency</a>
+					
+			</h4>
+
+							</div>
+								</div>
+							<h2 title="API Reference">
+
+			API Reference
+			</h2>
+
+							<div>
+					<h3 title="Classes">
+
+			Classes
+			</h3>
+
+							<div>
+					<h4 title="BezierPath">
+
+								<a href="../Module.BezierPath/index.html"
+											>BezierPath</a>
+					
+			</h4>
+
+						<h4 title="BrushDecoder">
+
+								<a href="../Module.BrushDecoder/index.html"
+											>BrushDecoder</a>
+					
+			</h4>
+
+						<h4 title="BrushEncoder">
+
+								<a href="../Module.BrushEncoder/index.html"
+											>BrushEncoder</a>
+					
+			</h4>
+
+						<h4 title="DirectBrush">
+
+								<a href="../Module.DirectBrush/index.html"
+											>DirectBrush</a>
+					
+			</h4>
+
+						<h4 title="FlatPath">
+
+								<a href="../Module.FlatPath/index.html"
+											>FlatPath</a>
+					
+			</h4>
+
+						<h4 title="GenericLayer">
+
+								<a href="../Module.GenericLayer/index.html"
+											>GenericLayer</a>
+					
+			</h4>
+
+						<h4 title="GenericPath">
+
+								<a href="../Module.GenericPath/index.html"
+											>GenericPath</a>
+					
+			</h4>
+
+						<h4 title="InkCanvas">
+
+								<a href="../Module.InkCanvas/index.html"
+											>InkCanvas</a>
+					
+			</h4>
+
+						<h4 title="InkDecoder">
+
+								<a href="../Module.InkDecoder/index.html"
+											>InkDecoder</a>
+					
+			</h4>
+
+						<h4 title="InkEncoder">
+
+								<a href="../Module.InkEncoder/index.html"
+											>InkEncoder</a>
+					
+			</h4>
+
+						<h4 title="Intersector">
+
+								<a href="../Module.Intersector/index.html"
+											>Intersector</a>
+					
+			</h4>
+
+						<h4 title="MultiChannelSmoothener">
+
+								<a href="../Module.MultiChannelSmoothener/index.html"
+											>MultiChannelSmoothener</a>
+					
+			</h4>
+
+						<h4 title="OffscreenLayer">
+
+								<a href="index.html"
+						 class="selected"					>OffscreenLayer</a>
+					
+			</h4>
+
+						<h4 title="ParticleBrush">
+
+								<a href="../Module.ParticleBrush/index.html"
+											>ParticleBrush</a>
+					
+			</h4>
+
+						<h4 title="PathBuilder">
+
+								<a href="../Module.PathBuilder/index.html"
+											>PathBuilder</a>
+					
+			</h4>
+
+						<h4 title="PathContext">
+
+								<a href="../Module.PathContext/index.html"
+											>PathContext</a>
+					
+			</h4>
+
+						<h4 title="PathOperationDecoder">
+
+								<a href="../Module.PathOperationDecoder/index.html"
+											>PathOperationDecoder</a>
+					
+			</h4>
+
+						<h4 title="PathOperationEncoder">
+
+								<a href="../Module.PathOperationEncoder/index.html"
+											>PathOperationEncoder</a>
+					
+			</h4>
+
+						<h4 title="PressurePathBuilder">
+
+								<a href="../Module.PressurePathBuilder/index.html"
+											>PressurePathBuilder</a>
+					
+			</h4>
+
+						<h4 title="SolidColorBrush">
+
+								<a href="../Module.SolidColorBrush/index.html"
+											>SolidColorBrush</a>
+					
+			</h4>
+
+						<h4 title="SpeedPathBuilder">
+
+								<a href="../Module.SpeedPathBuilder/index.html"
+											>SpeedPathBuilder</a>
+					
+			</h4>
+
+						<h4 title="Stroke">
+
+								<a href="../Module.Stroke/index.html"
+											>Stroke</a>
+					
+			</h4>
+
+						<h4 title="StrokeBrush">
+
+								<a href="../Module.StrokeBrush/index.html"
+											>StrokeBrush</a>
+					
+			</h4>
+
+						<h4 title="StrokeDrawContext">
+
+								<a href="../Module.StrokeDrawContext/index.html"
+											>StrokeDrawContext</a>
+					
+			</h4>
+
+						<h4 title="StrokeRenderer">
+
+								<a href="../Module.StrokeRenderer/index.html"
+											>StrokeRenderer</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Interfaces">
+
+			Interfaces
+			</h3>
+
+							<div>
+					<h4 title="PathOperationDecoderCallbacksHandlerInterface">
+
+								<a href="../Module.PathOperationDecoderCallbacksHandlerInterface/index.html"
+											>PathOperationDecoderCallbacksHandlerInterface</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Namespaces">
+
+			Namespaces
+			</h3>
+
+							<div>
+					<h4 title="Module">
+
+								<a href="../Module/index.html"
+											>Module</a>
+					
+			</h4>
+
+						<h4 title="Module.Color">
+
+								<a href="../Module.Color/index.html"
+											>Module.Color</a>
+					
+			</h4>
+
+						<h4 title="Module.GLTools">
+
+								<a href="../Module.GLTools/index.html"
+											>Module.GLTools</a>
+					
+			</h4>
+
+						<h4 title="Module.MatTools">
+
+								<a href="../Module.MatTools/index.html"
+											>Module.MatTools</a>
+					
+			</h4>
+
+						<h4 title="Module.RectTools">
+
+								<a href="../Module.RectTools/index.html"
+											>Module.RectTools</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Global">
+
+								<a href="../global/index.html"
+											>Global</a>
+					
+			</h3>
+
+			
+	</nav>
+</div><div id="page_content" class='page-content api web'>
+	
+<div id="post-25" class="page">
+	<h1>Class: OffscreenLayer</h1>
+<p><a href="../Module.GenericLayer/index.html"><em>Module.GenericLayer</em></a><br />&nbsp;&nbsp;&nbsp;&nbsp;Module.OffscreenLayer<br /></p>
+<hr />
+<div class="annotaions">
+<p>@protected</p>
+<p>@see: <a href="../Module.InkCanvas/index.html">Module.InkCanvas</a></p>
+<p>@since version 1.3</p>
+</div>
+<h2><a href="../Module/index.html">Module</a>.OffscreenLayer</h2>
+<p>Storage for offscreen rendering. Not constructable.
+InkCanvas creates such layers.</p>
+<h4>new OffscreenLayer() <span id="OffscreenLayer"></span></h4>
+<h3>Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>framebuffer</td>
+<td>WebGLFramebuffer</td>
+<td>Attached framebuffer if availble</td>
+</tr>
+<tr>
+<td>renderbuffer</td>
+<td>WebGLRenderbuffer</td>
+<td>Attached renderbuffer if availble</td>
+</tr>
+<tr>
+<td>texture</td>
+<td>WebGLTexture</td>
+<td>Attached texture if availble. Not availble when the layer uses a renderbuffer as a storage.</td>
+</tr>
+<tr>
+<td>width</td>
+<td>int</td>
+<td>Layer width</td>
+</tr>
+<tr>
+<td>height</td>
+<td>int</td>
+<td>Layer height</td>
+</tr>
+<tr>
+<td>bounds</td>
+<td><a href="../Module/index.html#Rectangle">Module.Rectangle</a></td>
+<td>The bounds of the layer. Equals to (0, 0, width, height).</td>
+</tr>
+</tbody>
+</table>
+<h3>Methods</h3>
+<h4>clear(rect, color) <span id="clear"></span></h4>
+<p>Clears layer area with a color</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>rect</em>, <strong>defaults:</strong> bounds</td>
+<td><a href="../Module/index.html#Rectangle">Module.Rectangle</a> &#124; <a href="../Module/index.html#Color">Module.Color</a></td>
+<td>area to clear</td>
+</tr>
+<tr>
+<td><em>color</em>, <strong>defaults:</strong> Module.Color.TRANSPERENT</td>
+<td><a href="../Module/index.html#Color">Module.Color</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>draw(stroke) <span id="draw"></span></h4>
+<p>Draws points with a brush over the layer</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stroke</td>
+<td><a href="../Module.Stroke/index.html">Module.Stroke</a></td>
+<td>model instance</td>
+</tr>
+</tbody>
+</table>
+<h5>Returns:</h5>
+<ul>
+<li><a href="../Module/index.html#Rectangle">Module.Rectangle</a> affected area</li>
+</ul>
+<h4>drawStroke(brush, path, width, color, roundCapBeginning, roundCapEnding, ts, tf, drawContext) <span id="drawStroke"></span></h4>
+<p>Draws points with a brush over the layer</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>brush</td>
+<td><a href="../Module.StrokeBrush/index.html"><em>Module.StrokeBrush</em></a></td>
+<td>instance of the Module.StrokeBrush class that determines how the stroke is going to be rendered</td>
+</tr>
+<tr>
+<td>path</td>
+<td><a href="../Module/index.html#Path">Module.Path</a></td>
+<td>points to draw</td>
+</tr>
+<tr>
+<td>width</td>
+<td>float</td>
+<td>The width of the stroke. If the stroke has a variable thickness which is included in the control points array, this parameter must be NaN.</td>
+</tr>
+<tr>
+<td>color</td>
+<td><a href="../Module/index.html#Color">Module.Color</a></td>
+<td>stroke color<br />       If the stroke has a variable alpha which is included in the control points array, alpha component must be NaN.</td>
+</tr>
+<tr>
+<td>roundCapBeginning</td>
+<td>boolean</td>
+<td>Cap the stroke with a circle at the start</td>
+</tr>
+<tr>
+<td>roundCapEnding</td>
+<td>boolean</td>
+<td>Cap the stroke with a circle at the end</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>float</td>
+<td>The starting value for the Catmull-Roll spline parameter</td>
+</tr>
+<tr>
+<td>tf</td>
+<td>float</td>
+<td>The final value for the Catmull-Rom spline parameter</td>
+</tr>
+<tr>
+<td>drawContext</td>
+<td><a href="../Module.StrokeDrawContext/index.html">Module.StrokeDrawContext</a></td>
+<td>Module.StrokeDrawContext instance (contains previous path point), applicable only when brush is Module.ParticleBrush</td>
+</tr>
+</tbody>
+</table>
+<h5>Returns:</h5>
+<ul>
+<li><a href="../Module/index.html#Rectangle">Module.Rectangle</a> affected area</li>
+</ul>
+<h4>fillPath(path, color, antiAliasing) <span id="fillPath"></span></h4>
+<p>Fills path with color</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><a href="../Module/index.html#Path">Module.Path</a></td>
+<td>control points to work with it</td>
+</tr>
+<tr>
+<td>color</td>
+<td><a href="../Module/index.html#Color">Module.Color</a></td>
+<td>fill color</td>
+</tr>
+<tr>
+<td>antiAliasing</td>
+<td>boolean</td>
+<td>is anti aliasing is enabled</td>
+</tr>
+</tbody>
+</table>
+<h4>blend(source, options) <span id="blend"></span></h4>
+<p>Draws the content of the 'source'. The 'source' must use a texture storage.</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source</td>
+<td><a href="../Module.GenericLayer/index.html"><em>Module.GenericLayer</em></a></td>
+<td>layer to be drawn</td>
+</tr>
+<tr>
+<td>options</td>
+<td><a href="../Module/index.html#BlendOptions">Module.BlendOptions</a></td>
+<td>blending configuration</td>
+</tr>
+</tbody>
+</table>
+<h4>readPixels(rect) <span id="readPixels"></span></h4>
+<p>Read pixels data</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>rect</em>, <strong>defaults:</strong> bounds</td>
+<td><a href="../Module/index.html#Rectangle">Module.Rectangle</a></td>
+<td>area to read</td>
+</tr>
+</tbody>
+</table>
+<h4>writePixels(bytes, rect) <span id="writePixels"></span></h4>
+<p>Write pixels data</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bytes</td>
+<td>Uint8Array</td>
+<td>pixels data</td>
+</tr>
+<tr>
+<td><em>rect</em>, <strong>defaults:</strong> bounds</td>
+<td><a href="../Module/index.html#Rectangle">Module.Rectangle</a></td>
+<td>area to write</td>
+</tr>
+</tbody>
+</table>
+</div> <!-- page -->
+</div> <!-- page_content -->
+
+	</div><!-- #sitewrapper -->
+
+	<footer>
+		<img src="../../wp-content/themes/will-doc/images/img_logo_wacom.png" alt="" />
+<!--
+		<span>&nbsp;</span>
+		<a href="/contact.html">Contact</a>
+		<a href="/support.html">Support</a>
+-->
+	</footer>
+</body>
+</html>

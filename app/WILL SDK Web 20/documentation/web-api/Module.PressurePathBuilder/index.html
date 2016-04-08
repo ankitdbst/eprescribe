@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>PressurePathBuilder | WILL SDK Docs</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://localhost/will_docs_instance1/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://localhost/will_docs_instance1/wp-content/themes/will-doc/js/html5.js"></script>
+	<![endif]-->
+
+	<link rel="stylesheet" href="../../wp-content/themes/will-doc/css/style.css">
+	<link rel="stylesheet" href="../../wp-content/themes/will-doc/css/accordionmenu.css">
+
+	<script src="../../wp-content/themes/will-doc/js/jquery.min.js"></script>
+	<script src="../../wp-content/themes/will-doc/js/sidebar.js"></script>
+
+	<link rel="stylesheet" href="../../wp-content/themes/will-doc/css/highlight.css">
+	<script src="../../wp-content/themes/will-doc/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+	<header>
+		<div class="title">
+			<div>WILL &trade;</div>
+			<div>sdk documentation</div>
+		</div>
+		<!--
+		<div id="searchbox">
+			<input class="typeahead" type="text" placeholder="{{ search_text }}">
+		</div>
+-->
+	</header>
+
+	<div id="sitewrapper">
+<div id="sidebar">
+	<nav class="accordion">
+
+				<h1 class="do-not-cause-collapse" title="General Concepts">
+
+			General Concepts
+			</h1>
+
+							<div class="active-menu never-close">
+					<h2 class="not-collapsible" title="Architectural Overview">
+
+								<a href="../../general-concepts/architecture/index.html"
+											>Architectural Overview</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Generating ink content">
+
+								<a href="../../general-concepts/path-building/index.html"
+											>Generating ink content</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Rendering ink content">
+
+								<a href="../../general-concepts/rasterizer/index.html"
+											>Rendering ink content</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Encoding and decoding ink content">
+
+								<a href="../../general-concepts/serialization/index.html"
+											>Encoding and decoding ink content</a>
+					
+			</h2>
+
+						<h2 class="not-collapsible" title="Exchanging ink content">
+
+								<a href="../../general-concepts/file-format/index.html"
+											>Exchanging ink content</a>
+					
+			</h2>
+
+							</div>
+							<h1 title="Web SDK">
+
+			Web SDK
+			</h1>
+
+							<div>
+					<h2 title="Getting started">
+
+								<a href="../../web/getting-started/index.html"
+											>Getting started</a>
+					
+			</h2>
+
+						<h2 title="Release Notes">
+
+								<a href="../../web/release-notes/index.html"
+											>Release Notes</a>
+					
+			</h2>
+
+						<h2 title="Tutorials">
+
+								<a href="../../web/tutorials-overview/index.html"
+											>Tutorials</a>
+					
+			</h2>
+
+							<div>
+					<h3 title="Tutorial 1: Drawing with pointing devices">
+
+								<a href="../../web/tutorials-tutorial1/index.html"
+											>Tutorial 1: Drawing with pointing devices</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Setting up the ink engine">
+
+								<a href="../../web/tutorials-tutorial1-part1/index.html"
+											>Part 1: Setting up the ink engine</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Building paths from pointer input">
+
+								<a href="../../web/tutorials-tutorial1-part2/index.html"
+											>Part 2: Building paths from pointer input</a>
+					
+			</h4>
+
+						<h4 title="Part 3: Smoothing paths">
+
+								<a href="../../web/tutorials-tutorial1-part3/index.html"
+											>Part 3: Smoothing paths</a>
+					
+			</h4>
+
+						<h4 title="Part 4: Drawing preliminary paths">
+
+								<a href="../../web/tutorials-tutorial1-part4/index.html"
+											>Part 4: Drawing preliminary paths</a>
+					
+			</h4>
+
+						<h4 title="Part 5: Drawing semi-transparent strokes">
+
+								<a href="../../web/tutorials-tutorial1-part5/index.html"
+											>Part 5: Drawing semi-transparent strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 6: Using a particle brush">
+
+								<a href="../../web/tutorials-tutorial1-part6/index.html"
+											>Part 6: Using a particle brush</a>
+					
+			</h4>
+
+						<h4 title="Part 7: Generating a Bezier path">
+
+								<a href="../../web/tutorials-tutorial1-part7/index.html"
+											>Part 7: Generating a Bezier path</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 2: Encoding and decoding strokes">
+
+								<a href="../../web/tutorials-tutorial2/index.html"
+											>Tutorial 2: Encoding and decoding strokes</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Creating a stroke model">
+
+								<a href="../../web/tutorials-tutorial2-part1/index.html"
+											>Part 1: Creating a stroke model</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Serializing and deserializing strokes">
+
+								<a href="../../web/tutorials-tutorial2-part2/index.html"
+											>Part 2: Serializing and deserializing strokes</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 3: Erasing strokes">
+
+								<a href="../../web/tutorials-tutorial3/index.html"
+											>Tutorial 3: Erasing strokes</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Creating an eraser">
+
+								<a href="../../web/tutorials-tutorial3-part1/index.html"
+											>Part 1: Creating an eraser</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Erasing parts of strokes">
+
+								<a href="../../web/tutorials-tutorial3-part2/index.html"
+											>Part 2: Erasing parts of strokes</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 4: Selecting strokes">
+
+								<a href="../../web/tutorials-tutorial4/index.html"
+											>Tutorial 4: Selecting strokes</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Selecting strokes">
+
+								<a href="../../web/tutorials-tutorial4-part1/index.html"
+											>Part 1: Selecting strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Selecting parts of strokes">
+
+								<a href="../../web/tutorials-tutorial4-part2/index.html"
+											>Part 2: Selecting parts of strokes</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 5: Working with rasters">
+
+								<a href="../../web/tutorials-tutorial5/index.html"
+											>Tutorial 5: Working with rasters</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Displaying raster images">
+
+								<a href="../../web/tutorials-tutorial5-part1/index.html"
+											>Part 1: Displaying raster images</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Creating image masks">
+
+								<a href="../../web/tutorials-tutorial5-part2/index.html"
+											>Part 2: Creating image masks</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Tutorial 6: Collaborating in real time">
+
+								<a href="../../web/tutorials-tutorial6/index.html"
+											>Tutorial 6: Collaborating in real time</a>
+					
+			</h3>
+
+							<div>
+					<h4 title="Part 1: Composing strokes">
+
+								<a href="../../web/tutorials-tutorial6-part1/index.html"
+											>Part 1: Composing strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 2: Erasing strokes">
+
+								<a href="../../web/tutorials-tutorial6-part2/index.html"
+											>Part 2: Erasing strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 3: Erasing parts of strokes">
+
+								<a href="../../web/tutorials-tutorial6-part3/index.html"
+											>Part 3: Erasing parts of strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 4: Selecting strokes">
+
+								<a href="../../web/tutorials-tutorial6-part4/index.html"
+											>Part 4: Selecting strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 5: Selecting parts of strokes">
+
+								<a href="../../web/tutorials-tutorial6-part5/index.html"
+											>Part 5: Selecting parts of strokes</a>
+					
+			</h4>
+
+						<h4 title="Part 6: Composing strokes with latency">
+
+								<a href="../../web/tutorials-tutorial6-part6/index.html"
+											>Part 6: Composing strokes with latency</a>
+					
+			</h4>
+
+							</div>
+								</div>
+							<h2 title="API Reference">
+
+			API Reference
+			</h2>
+
+							<div>
+					<h3 title="Classes">
+
+			Classes
+			</h3>
+
+							<div>
+					<h4 title="BezierPath">
+
+								<a href="../Module.BezierPath/index.html"
+											>BezierPath</a>
+					
+			</h4>
+
+						<h4 title="BrushDecoder">
+
+								<a href="../Module.BrushDecoder/index.html"
+											>BrushDecoder</a>
+					
+			</h4>
+
+						<h4 title="BrushEncoder">
+
+								<a href="../Module.BrushEncoder/index.html"
+											>BrushEncoder</a>
+					
+			</h4>
+
+						<h4 title="DirectBrush">
+
+								<a href="../Module.DirectBrush/index.html"
+											>DirectBrush</a>
+					
+			</h4>
+
+						<h4 title="FlatPath">
+
+								<a href="../Module.FlatPath/index.html"
+											>FlatPath</a>
+					
+			</h4>
+
+						<h4 title="GenericLayer">
+
+								<a href="../Module.GenericLayer/index.html"
+											>GenericLayer</a>
+					
+			</h4>
+
+						<h4 title="GenericPath">
+
+								<a href="../Module.GenericPath/index.html"
+											>GenericPath</a>
+					
+			</h4>
+
+						<h4 title="InkCanvas">
+
+								<a href="../Module.InkCanvas/index.html"
+											>InkCanvas</a>
+					
+			</h4>
+
+						<h4 title="InkDecoder">
+
+								<a href="../Module.InkDecoder/index.html"
+											>InkDecoder</a>
+					
+			</h4>
+
+						<h4 title="InkEncoder">
+
+								<a href="../Module.InkEncoder/index.html"
+											>InkEncoder</a>
+					
+			</h4>
+
+						<h4 title="Intersector">
+
+								<a href="../Module.Intersector/index.html"
+											>Intersector</a>
+					
+			</h4>
+
+						<h4 title="MultiChannelSmoothener">
+
+								<a href="../Module.MultiChannelSmoothener/index.html"
+											>MultiChannelSmoothener</a>
+					
+			</h4>
+
+						<h4 title="OffscreenLayer">
+
+								<a href="../Module.OffscreenLayer/index.html"
+											>OffscreenLayer</a>
+					
+			</h4>
+
+						<h4 title="ParticleBrush">
+
+								<a href="../Module.ParticleBrush/index.html"
+											>ParticleBrush</a>
+					
+			</h4>
+
+						<h4 title="PathBuilder">
+
+								<a href="../Module.PathBuilder/index.html"
+											>PathBuilder</a>
+					
+			</h4>
+
+						<h4 title="PathContext">
+
+								<a href="../Module.PathContext/index.html"
+											>PathContext</a>
+					
+			</h4>
+
+						<h4 title="PathOperationDecoder">
+
+								<a href="../Module.PathOperationDecoder/index.html"
+											>PathOperationDecoder</a>
+					
+			</h4>
+
+						<h4 title="PathOperationEncoder">
+
+								<a href="../Module.PathOperationEncoder/index.html"
+											>PathOperationEncoder</a>
+					
+			</h4>
+
+						<h4 title="PressurePathBuilder">
+
+								<a href="index.html"
+						 class="selected"					>PressurePathBuilder</a>
+					
+			</h4>
+
+						<h4 title="SolidColorBrush">
+
+								<a href="../Module.SolidColorBrush/index.html"
+											>SolidColorBrush</a>
+					
+			</h4>
+
+						<h4 title="SpeedPathBuilder">
+
+								<a href="../Module.SpeedPathBuilder/index.html"
+											>SpeedPathBuilder</a>
+					
+			</h4>
+
+						<h4 title="Stroke">
+
+								<a href="../Module.Stroke/index.html"
+											>Stroke</a>
+					
+			</h4>
+
+						<h4 title="StrokeBrush">
+
+								<a href="../Module.StrokeBrush/index.html"
+											>StrokeBrush</a>
+					
+			</h4>
+
+						<h4 title="StrokeDrawContext">
+
+								<a href="../Module.StrokeDrawContext/index.html"
+											>StrokeDrawContext</a>
+					
+			</h4>
+
+						<h4 title="StrokeRenderer">
+
+								<a href="../Module.StrokeRenderer/index.html"
+											>StrokeRenderer</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Interfaces">
+
+			Interfaces
+			</h3>
+
+							<div>
+					<h4 title="PathOperationDecoderCallbacksHandlerInterface">
+
+								<a href="../Module.PathOperationDecoderCallbacksHandlerInterface/index.html"
+											>PathOperationDecoderCallbacksHandlerInterface</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Namespaces">
+
+			Namespaces
+			</h3>
+
+							<div>
+					<h4 title="Module">
+
+								<a href="../Module/index.html"
+											>Module</a>
+					
+			</h4>
+
+						<h4 title="Module.Color">
+
+								<a href="../Module.Color/index.html"
+											>Module.Color</a>
+					
+			</h4>
+
+						<h4 title="Module.GLTools">
+
+								<a href="../Module.GLTools/index.html"
+											>Module.GLTools</a>
+					
+			</h4>
+
+						<h4 title="Module.MatTools">
+
+								<a href="../Module.MatTools/index.html"
+											>Module.MatTools</a>
+					
+			</h4>
+
+						<h4 title="Module.RectTools">
+
+								<a href="../Module.RectTools/index.html"
+											>Module.RectTools</a>
+					
+			</h4>
+
+							</div>
+							<h3 title="Global">
+
+								<a href="../global/index.html"
+											>Global</a>
+					
+			</h3>
+
+			
+	</nav>
+</div><div id="page_content" class='page-content api web'>
+	
+<div id="post-32" class="page">
+	<h1>Class: PressurePathBuilder</h1>
+<p><a href="../Module.PathBuilder/index.html"><em>Module.PathBuilder</em></a><br />&nbsp;&nbsp;&nbsp;&nbsp;Module.PressurePathBuilder<br /></p>
+<hr />
+<div class="annotaions">
+<p>@since version 1.0</p>
+</div>
+<h2><a href="../Module/index.html">Module</a>.PressurePathBuilder</h2>
+<p>PathBuilder implememtation</p>
+<h4>new PressurePathBuilder() <span id="PressurePathBuilder"></span></h4>
+<h3>Methods</h3>
+<h4>addPoint(phase, point, pressure) <span id="addPoint"></span></h4>
+<p>The method calculates a path part (a set of control points) from the provided input.
+The returned path part can be modified by clients (for example it can be smoothed).
+After that the part should be added it to the currently built path with the 'addPathPart' method.</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phase</td>
+<td><a href="../Module/index.html#InputPhase">Module.InputPhase</a></td>
+<td>InputPhase, value from InputPhase enum</td>
+</tr>
+<tr>
+<td>point</td>
+<td><a href="../Module/index.html#Point">Module.Point</a></td>
+<td></td>
+</tr>
+<tr>
+<td>pressure</td>
+<td>float</td>
+<td>The value of the pressure sensor</td>
+</tr>
+</tbody>
+</table>
+<h5>Returns:</h5>
+<ul>
+<li><a href="../Module/index.html#Path">Module.Path</a> added points</li>
+</ul>
+<h4>setMovementThreshold(minMovement) <span id="setMovementThreshold"></span></h4>
+<p>Sets the movement threshold - the minimal distance between two input events.
+The default value is 0, meaning that there is no restriction on the distance.
+For values greater than 0, the path builder will ignore new points,
+until the distance from the new point to the previously added point is greater than the parameter.</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>minMovement</td>
+<td>float</td>
+<td>the minimum movement</td>
+</tr>
+</tbody>
+</table>
+<h4>setNormalizationConfig() <span id="setNormalizationConfig"></span></h4>
+<p>Sets the min and max values that will be used for clamping the input values.
+Input values could be s pressure or speed, depending of the concrete class.</p>
+<h4>setPropertyConfig(propertyName, minValue, maxValue, initialValue, finalValue, propertyFunction, functionParameter, flip) <span id="setPropertyConfig"></span></h4>
+<p>Sets a property configuration. A property configuration guides the values that will be produced.
+A property could be the  width, or the alpha of the path for each control point.</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>propertyName</td>
+<td><a href="../Module/index.html#PropertyName">Module.PropertyName</a></td>
+<td>value</td>
+</tr>
+<tr>
+<td>minValue</td>
+<td>float</td>
+<td>The minimum value of the property</td>
+</tr>
+<tr>
+<td>maxValue</td>
+<td>float</td>
+<td>The maximum value of the property</td>
+</tr>
+<tr>
+<td>initialValue</td>
+<td>float</td>
+<td>The initial value of the property</td>
+</tr>
+<tr>
+<td>finalValue</td>
+<td>float</td>
+<td>The final value of the property</td>
+</tr>
+<tr>
+<td>propertyFunction</td>
+<td><a href="../Module/index.html#PropertyFunction">Module.PropertyFunction</a></td>
+<td>The function that will be used for path building.</td>
+</tr>
+<tr>
+<td>functionParameter</td>
+<td>float</td>
+<td>The function parameter</td>
+</tr>
+<tr>
+<td>flip</td>
+<td>boolean</td>
+<td>If set to true the property will be calculated in direct ratio to the normalized input value</td>
+</tr>
+</tbody>
+</table>
+<h4>disablePropertyConfig(name) <span id="disablePropertyConfig"></span></h4>
+<p>Disables property config</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="../Module/index.html#PropertyName">Module.PropertyName</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>calculateStride() <span id="calculateStride"></span></h4>
+<p>Calculates the stride of the points produced by the PathBuilder.
+The stride is the offset from one control point to the next.</p>
+<h5>Returns:</h5>
+<ul>
+<li>int stride</li>
+</ul>
+<h4>addPathPart(pathPart) <span id="addPathPart"></span></h4>
+<p>Adds path part</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pathPart</td>
+<td><a href="../Module/index.html#Path">Module.Path</a></td>
+<td>points from current path part</td>
+</tr>
+</tbody>
+</table>
+<h5>Returns:</h5>
+<ul>
+<li><a href="../Module.PathContext/index.html">Module.PathContext</a> full path and new points from input</li>
+</ul>
+<h4>createPreliminaryPath() <span id="createPreliminaryPath"></span></h4>
+<p>The method calculates a path part (a set of control points) without updating the path builder state.
+This path part will behave like the path is beeing finished.
+The returned path part can be modified by clients (for example, it can be smoothed).
+After that the part should be passed to the 'finishPreliminaryPath' method.</p>
+<h5>Returns:</h5>
+<ul>
+<li><a href="../Module/index.html#Path">Module.Path</a> preliminary points</li>
+</ul>
+<h4>finishPreliminaryPath() <span id="finishPreliminaryPath"></span></h4>
+<p>Gets the preliminary path for the path ending</p>
+<h5>Returns:</h5>
+<ul>
+<li><a href="../Module/index.html#Path">Module.Path</a> completed preliminary points</li>
+</ul>
+<h4>pointAtIndex(index) <span id="pointAtIndex"></span></h4>
+<p>Returns the control point of the path at the index specified.
+Point is structure with x, y, width and alpha properties.
+If the path is missing fields (for example has only x and y), the missing fields will be set to NaN.</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td>int</td>
+<td>in path</td>
+</tr>
+</tbody>
+</table>
+<h5>Returns:</h5>
+<ul>
+<li><a href="../Module/index.html#Point2D">Module.Point2D</a> point at index</li>
+</ul>
+<h4>pointsCount() <span id="pointsCount"></span></h4>
+<p>Returns the count of the control points</p>
+<h5>Returns:</h5>
+<ul>
+<li>int points count</li>
+</ul>
+<h4>createPath(points) <span id="createPath"></span></h4>
+<p>Creates path from points</p>
+<h5>Parameters:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>points</td>
+<td><a href="../Module/index.html#Int64Ptr">Module.Int64Ptr</a> &#124; Float32Array &#124; Array</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5>Returns:</h5>
+<ul>
+<li><a href="../Module/index.html#Path">Module.Path</a> path</li>
+</ul>
+</div> <!-- page -->
+</div> <!-- page_content -->
+
+	</div><!-- #sitewrapper -->
+
+	<footer>
+		<img src="../../wp-content/themes/will-doc/images/img_logo_wacom.png" alt="" />
+<!--
+		<span>&nbsp;</span>
+		<a href="/contact.html">Contact</a>
+		<a href="/support.html">Support</a>
+-->
+	</footer>
+</body>
+</html>
