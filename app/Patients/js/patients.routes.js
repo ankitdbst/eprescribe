@@ -35,28 +35,8 @@
                                         templateUrl: 'Patients/partials/patients.documents.html',
                                         controller: 'PatientsDocumentsCtrl'
                                     }
-                                },
-                                params: {
-                                    autoActivateChild: 'PatientNewOrEdit.PrescriptionIndex'
                                 }
-                            })
-                            .state('PatientNewOrEdit.PrescriptionIndex', {
-                                url: '/prescriptions',
-                                templateUrl: 'Prescriptions/partials/prescriptions.index.html',
-                                controller: 'PrescriptionIndexCtrl',
-                                params: {
-                                    autoActivateChild: 'PatientNewOrEdit.PrescriptionIndex.List'
-                                }
-                            })
-                            .state('PatientNewOrEdit.PrescriptionIndex.List', {
-                                templateUrl: 'Prescriptions/partials/prescriptions.list.html',
-                                controller: 'PrescriptionListCtrl'
-                            })
-                            .state('PatientNewOrEdit.PrescriptionIndex.Detail', {
-                                url: '/:prescriptionId',
-                                templateUrl: 'Prescriptions/partials/prescriptions.detail.html',
-                                controller: 'PrescriptionDetailCtrl'
-                            })
+                            });
                 }
             ]);
 })();

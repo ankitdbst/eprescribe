@@ -15,10 +15,7 @@
   ];
 
   function PrescriptionIndexCtrl($scope, $rootScope, $state, ngDialog, Prescription, $stateParams, Account) {
-    if (!Account.isAuthenticated()) {
-      $state.go('login', {signIn: true});
-      return;
-    }
+    $rootScope.pageHeader = "Prescriptions";
 
     var patientId = $stateParams.patientId;
     var user = Account.getAuthenticatedAccount();

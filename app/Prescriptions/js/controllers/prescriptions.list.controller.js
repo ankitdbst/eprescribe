@@ -13,11 +13,6 @@
   ];
 
   function PrescriptionListCtrl($scope, $stateParams, Prescription, Account, $state) {
-    if (!Account.isAuthenticated()) {
-      $state.go('login', {signIn: true});
-      return;
-    }
-
     var user = Account.getAuthenticatedAccount();
     var patientId = $stateParams.patientId;
 

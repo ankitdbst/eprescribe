@@ -8,6 +8,24 @@
 
     function($stateProvider) {
       $stateProvider
+
+      .state('PrescriptionIndex', {
+        url: '/patients/:patientId/prescriptions',
+        templateUrl: 'Prescriptions/partials/prescriptions.index.html',
+        controller: 'PrescriptionIndexCtrl',
+        params: {
+            autoActivateChild: 'PrescriptionIndex.List'
+        }
+      })
+      .state('PrescriptionIndex.List', {
+        templateUrl: 'Prescriptions/partials/prescriptions.list.html',
+        controller: 'PrescriptionListCtrl'
+      })
+      .state('PrescriptionIndex.Detail', {
+        url: '/:prescriptionId',
+        templateUrl: 'Prescriptions/partials/prescriptions.detail.html',
+        controller: 'PrescriptionDetailCtrl'
+      })
       .state('PrescriptionOrder', {
         url: '/patients/:patientId/prescriptions/order/:prescriptionId',
         templateUrl: 'Prescriptions/partials/prescriptions.order.html',
