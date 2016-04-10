@@ -62,7 +62,7 @@
                placeholder="How to take?" uib-typeahead="instruction for instruction in instructions | filter:$viewValue | limitTo:5"/>
         </div>
     </div>
-    
+
     <div class="form-group row">
         <div class="form-group col-md-4">
             <label for="dosageQuantiy">Dosage Quantity</label>
@@ -80,8 +80,8 @@
                    ng-init="medcine.frequency.intakeDuration = 1" class="form-control" id="intakeDuration" placeholder="" />
         </div>
     </div>
-    
-    <div class="row">    
+
+    <div class="row">
         <div class="form-group col-md-4">
             <label for="refills">Refills</label>
             <input type="number" min="0" class="form-control" ng-model="medcine.pharmaDetails.refills" ng-disabled="medcine.pharmaDetails.refillAsNeeded" ng-init="medcine.pharmaDetails.refills = 0" id="refills">
@@ -93,7 +93,7 @@
             </label>
         </div>
     </div>
-    
+
     <div class="form-group">
         <label for="comments">Instructions</label>
         <textarea class="form-control" ng-model="medcine.frequency.comments" rows="5" id="comments" placeholder="Instructions"></textarea>

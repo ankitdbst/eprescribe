@@ -1,74 +1,74 @@
 <div cg-busy="myPromise"></div>
 <table class="table table-striped" ng-show="prescription.medcines.length">
-    <thead>
-    <th colspan="1" ng-if="!editable">#</th>
-    <th colspan="3">Medicine Name</th>
-    <th colspan="2">Dosage</th>
-    <th colspan="3">Instructions</th>
-    <th>Duration</th>
-    <th>Refill</th>
-    <th ng-if="editable"></th>
+  <thead>
+  <th colspan="1" ng-if="!editable">#</th>
+  <th colspan="3">Medicine Name</th>
+  <th colspan="2">Dosage</th>
+  <th colspan="3">Instructions</th>
+  <th>Duration</th>
+  <th>Refill</th>
+  <th ng-if="editable"></th>
 </thead>
 <tbody>
-    <tr ng-repeat="medicine in prescription.medcines">
-        <td colspan="1" ng-if="!editable">
-            {{ $index + 1}}
-        </td>
-        <td colspan="3">
-            <div ng-if="!editable">{{ medicine.name}}</div>
-            <div ng-if="editable">
-                <div class="input-group input-group--autocomplete">                    
-                    <input type="text" ng-change="add('medcines')" ng-model="medicine.name" class=" form-control"
-                           placeholder="Medicine name..." uib-typeahead="medicine.name for medicine in search($viewValue)"/>
-                </div>
-            </div>
-        </td>
-        <td colspan="2">
-            <div ng-if="!editable">
-                {{ medicine.frequency.dosage}}
-            </div>
-            <div ng-if="editable">
-                <select class="form-control" ng-model="medicine.frequency.dosage"
-                        ng-options="dosage for dosage in dosages">
-                </select>
-            </div>
-        </td>
-        <td colspan="3">
-            <div ng-if="!editable">
-                {{medicine.frequency.intakeInst}}
-            </div>
-            <div ng-if="editable">
-                <input type="text" ng-model="medicine.frequency.intakeInst" class="form-control"
-                       placeholder="How to take?" uib-typeahead="instruction for instruction in instructions | filter:$viewValue | limitTo:5"/>
-            </div>
-        </td>
-        <td>
-            <div ng-if="!editable">
-                {{ medicine.frequency.duration}}
-                <span class="label label-info">day(s)</span>
-            </div>
-            <div ng-if="editable">
-                <div class="input-group">                    
-                    <input type="number" min="1" max="100" ng-model="medicine.frequency.duration" class="form-control" placeholder="Duration"/>
-                    <span class="label label-info input-group-addon">day(s)</span>
-                </div>
-            </div>
-        </td>
-        <td>
-            <div ng-if="!editable">
-                {{ medicine.pharmaDetails.refillAsNeeded ? "As needed" : medicine.pharmaDetails.refills }}
-            </div>
-            <div ng-if="editable">
-                <input type="checkbox" ng-model="medicine.pharmaDetails.refillAsNeeded"
-                       ng-change="medicine.pharmaDetails.refills = medicine.pharmaDetails.refillAsNeeded ? 0 : medicine.pharmaDetails.refills"/>
-            </div>
-        </td>
-        <td ng-if="editable">
-            <ul class="list-inline list-unstyled">
-                <li><a ng-click="delete($index)" ng-show="prescription.medcines.length > 1">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></li>
-            </ul>
-        </td>
-    </tr>
+  <tr ng-repeat="medicine in prescription.medcines">
+    <td colspan="1" ng-if="!editable">
+      {{ $index + 1}}
+    </td>
+    <td colspan="3">
+      <div ng-if="!editable">{{ medicine.name}}</div>
+      <div ng-if="editable">
+        <div class="input-group input-group--autocomplete">
+          <input type="text" ng-change="add('medcines')" ng-model="medicine.name" class=" form-control"
+               placeholder="Medicine name..." uib-typeahead="medicine.name for medicine in search($viewValue)"/>
+        </div>
+      </div>
+    </td>
+    <td colspan="2">
+      <div ng-if="!editable">
+        {{ medicine.frequency.dosage}}
+      </div>
+      <div ng-if="editable">
+        <select class="form-control" ng-model="medicine.frequency.dosage"
+            ng-options="dosage for dosage in dosages">
+        </select>
+      </div>
+    </td>
+    <td colspan="3">
+      <div ng-if="!editable">
+        {{medicine.frequency.intakeInst}}
+      </div>
+      <div ng-if="editable">
+        <input type="text" ng-model="medicine.frequency.intakeInst" class="form-control"
+             placeholder="How to take?" uib-typeahead="instruction for instruction in instructions | filter:$viewValue | limitTo:5"/>
+      </div>
+    </td>
+    <td>
+      <div ng-if="!editable">
+        {{ medicine.frequency.duration}}
+        <span class="label label-info">day(s)</span>
+      </div>
+      <div ng-if="editable">
+        <div class="input-group">
+          <input type="number" min="1" max="100" ng-model="medicine.frequency.duration" class="form-control" placeholder="Duration"/>
+          <span class="label label-info input-group-addon">day(s)</span>
+        </div>
+      </div>
+    </td>
+    <td>
+      <div ng-if="!editable">
+        {{ medicine.pharmaDetails.refillAsNeeded ? "As needed" : medicine.pharmaDetails.refills }}
+      </div>
+      <div ng-if="editable">
+        <input type="checkbox" ng-model="medicine.pharmaDetails.refillAsNeeded"
+             ng-change="medicine.pharmaDetails.refills = medicine.pharmaDetails.refillAsNeeded ? 0 : medicine.pharmaDetails.refills"/>
+      </div>
+    </td>
+    <td ng-if="editable">
+      <ul class="list-inline list-unstyled">
+        <li><a ng-click="delete($index)" ng-show="prescription.medcines.length > 1">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></li>
+      </ul>
+    </td>
+  </tr>
 </tbody>
 </table>
