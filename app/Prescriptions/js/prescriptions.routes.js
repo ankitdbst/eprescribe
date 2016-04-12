@@ -22,9 +22,14 @@
         controller: 'PrescriptionListCtrl'
       })
       .state('PrescriptionIndex.Detail', {
-        url: '/:prescriptionId',
+        url: '/{prescriptionId:[0-9]*}',
         templateUrl: 'Prescriptions/partials/prescriptions.detail.html',
         controller: 'PrescriptionDetailCtrl'
+      })
+      .state('PrescriptionNewOrEdit', {
+        url: '/patients/:patientId/prescriptions/new',
+        templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
+        controller: 'PrescriptionNewOrEditCtrl'
       })
       .state('PrescriptionOrder', {
         url: '/patients/:patientId/prescriptions/order/:prescriptionId',

@@ -5,6 +5,7 @@
       .controller('PrescriptionNewOrEditCtrl', PrescriptionNewOrEditCtrl);
 
   PrescriptionNewOrEditCtrl.$inject = [
+    '$rootScope',
     '$scope',
     'Prescription',
     '$stateParams',
@@ -13,16 +14,13 @@
     '$state'
   ];
 
-  function PrescriptionNewOrEditCtrl($scope, Prescription, $stateParams, Account, ngDialog, $state) {
-    if (!Account.isAuthenticated()) {
-      $state.go('login', {signIn: true});
-      return;
-    }
+  function PrescriptionNewOrEditCtrl($rootScope, $scope, Prescription, $stateParams, Account, ngDialog, $state) {
+    $rootScope.pageHeader = "Create Prescription";
 
     var patientId = $stateParams.patientId;
     var user = Account.getAuthenticatedAccount();
 
-    $scope.prescription = $scope.$parent.prescription;
+    $scope.prescription = new Prescription;
     $scope.dialogTitle = "New Prescription";
     $scope.canvasEnabled = user.settings.canvasEnabled;
 
@@ -36,6 +34,24 @@
 
     // Canvas | free write
     $scope.closeCanvas = CloseCanvas;
+
+    Init();
+
+    function Init() {
+      $scope.prescription.patientId = patientId;
+      $scope.prescription.doctorId = user.userId;
+      // Fill defaults from session object maybe
+      $scope.prescription.isUpdate = false; // for edit we change this to true
+      // Medications
+      $scope.prescription.medcines = [];
+      $scope.prescription.advises = [];
+
+      var defaultDate = new Date();
+      // Add 7 days
+      defaultDate.setDate(defaultDate.getDate() + 7);
+      $scope.prescription.nextVisit = {};
+      $scope.prescription.nextVisit.date = moment(defaultDate).format("DD/MM/YYYY hh:mm A");
+    }
 
     function UpsertPrescription() {
       var params = {
