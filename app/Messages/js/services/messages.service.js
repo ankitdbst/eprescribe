@@ -9,7 +9,7 @@
                     var actions = {
                         upsert: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/UpsertUser'
+                            url: 'http://52.76.165.4/ERService/userservice/UpsertUser'
                         }
                     };
 

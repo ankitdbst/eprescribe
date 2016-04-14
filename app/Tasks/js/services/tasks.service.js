@@ -9,16 +9,16 @@
                     var actions = {
                         upsert: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/UpsertUser'
+                            url: 'http://52.76.165.4/ERService/userservice/UpsertUser'
                         },
                         get: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetUserById',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUserById',
                             isArray: false
                         },
                         query: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetUsersForDoctor',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUsersForDoctor',
                             isArray: true
                         }
                     };

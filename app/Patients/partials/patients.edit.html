@@ -13,15 +13,19 @@
                 <img flow-img="$flow.files[0]" ng-src="{{patient.profileImageURL}}" class="img-circle" alt="Add Photo"  width="60" height="60">
                 <input type="file" style="visibility: hidden; position: absolute;">
             </span>
-            <blockquote class="col-md-9 text text-warning"  ng-show="patient.isUpdate">
+            <blockquote class="col-md-8 text text-warning"  ng-show="patient.isUpdate">
                 <p>{{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)</p>
                 <footer ng-show="patient.history.medical">Medical History of {{patient.history.medical}} </footer>
                 <footer ng-show="!patient.history.medical">No Medical History </footer>
             </blockquote>
-            <span class="btn-group col-md-2" style="margin-top: 2%;" ng-show="patient.isUpdate">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="btn-group col-md-3" style="margin-top: 2%;" ng-show="patient.isUpdate">
+                <button type="button" class="btn btn-primary" ng-click="openPrescriptions()">
                     <i class="fa fa-list"></i>
-                    Patient Actions <span class="caret"></span>
+                    Prescriptions
+                </button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="#">Refer a Doctor</a></li>
@@ -39,7 +43,7 @@
 </div>
 <form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
     <div class="pull-right" style="margin-top: 5%">
-        
+
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
             <li spy="identifyingDetails">
                 <a href="" ng-click="isIdentifyingDetailsCollapsed = false">
@@ -82,9 +86,9 @@
                 </a>
             </li>
         </ul>
-        
+
     </div>
-    
+
     <div id="divContent" class="col-md-12">
 
         <div class="panel panel-info" id="identifyingDetails">
@@ -396,6 +400,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </form>
