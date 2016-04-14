@@ -1,15 +1,18 @@
 <div ncy-breadcrumb></div>
 <button type="button" class="btn btn-primary prescription-menu" ng-click="create();" ng-if="minimized">
-  <i class="fa fa-plus"></i> New Prescription
+    <i class="fa fa-plus"></i> New Prescription
 </button>
 <h3 class="clearfix">
     <div class="form-group pull-right" ng-if="!minimized">
-      <button type="button" class="btn btn-default" ng-if="detailView" ng-click="clone(detailView);">
-        <i class="fa fa-clone fa-1x"></i> Clone Prescription
-      </button>
-      <button type="button" class="btn btn-primary" ng-click="create();">
-        <i class="fa fa-plus"></i> Create New Prescription
-      </button>
+        <button type="button" class="btn btn-default" ng-if="detailView" ng-click="clone(detailView);">
+            <i class="fa fa-clone fa-1x"></i> Clone Prescription
+        </button>
+        <button type="button" class="btn btn-info" ng-click="getAllPrescriptionsAccess();" ng-if="!detailView">
+            <i class="fa fa-eye"></i> View All Prescriptions
+        </button>
+        <button type="button" class="btn btn-primary" ng-click="create();">
+            <i class="fa fa-plus"></i> Create New Prescription
+        </button>
     </div>
 </h3>
 <hr>
