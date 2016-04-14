@@ -46,42 +46,45 @@
     }
 
     function CreatePrescription() {
-      var callback = function (response) {
-        var state = response.state;
-        if (_.isEqual(state, "closed") &&
-            confirm('Are you sure you want to close without saving your changes?')) {
-          return true;
-        }
-        return _.isEqual(state, "saved") || _.isEqual(state, "minimized");
-      };
-
-      var prescriptionDialog = ngDialog.open({
-        template: 'Prescriptions/partials/prescriptions.edit.html',
-        className: 'ngdialog-theme-default custom-width',
-        scope: $scope,
-        showClose: false,
-        preCloseCallback: callback,
-        closeByEscape: false,
-        closeByDocument: false,
-        controller: 'PrescriptionNewOrEditCtrl'
+      $state.go('PrescriptionNewOrEdit', {
+        patientId: $stateParams.patientId
       });
-
-      prescriptionDialog.closePromise.then(function (data) {
-        var response = data.value;
-        if (_.isEqual(response.state, "saved")) {
-          $state.go('PatientNewOrEdit.PrescriptionIndex.Detail', {
-            prescriptionId: response.data
-          });
-          $scope.minimized = false;
-        } else if (_.isEqual(response.state, "closed")) {
-          $scope.prescription = new Prescription;
-          Init();
-          $scope.minimized = false;
-        } else {
-          // minimize
-          $scope.minimized = true;
-        }
-      });
+//      var callback = function (response) {
+//        var state = response.state;
+//        if (_.isEqual(state, "closed") &&
+//            confirm('Are you sure you want to close without saving your changes?')) {
+//          return true;
+//        }
+//        return _.isEqual(state, "saved") || _.isEqual(state, "minimized");
+//      };
+//
+//      var prescriptionDialog = ngDialog.open({
+//        template: 'Prescriptions/partials/prescriptions.edit.html',
+//        className: 'ngdialog-theme-default custom-width',
+//        scope: $scope,
+//        showClose: false,
+//        preCloseCallback: callback,
+//        closeByEscape: false,
+//        closeByDocument: false,
+//        controller: 'PrescriptionNewOrEditCtrl'
+//      });
+//
+//      prescriptionDialog.closePromise.then(function (data) {
+//        var response = data.value;
+//        if (_.isEqual(response.state, "saved")) {
+//          $state.go('PatientNewOrEdit.PrescriptionIndex.Detail', {
+//            prescriptionId: response.data
+//          });
+//          $scope.minimized = false;
+//        } else if (_.isEqual(response.state, "closed")) {
+//          $scope.prescription = new Prescription;
+//          Init();
+//          $scope.minimized = false;
+//        } else {
+//          // minimize
+//          $scope.minimized = true;
+//        }
+//      });
     }
 
     function ClonePrescription(pid) {
