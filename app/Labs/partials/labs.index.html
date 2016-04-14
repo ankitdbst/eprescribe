@@ -1,8 +1,5 @@
 <div cg-busy="myPromise"></div>
-<ul class="breadcrumb">
-    <li><a href="#/patients">Home</a></li>
-    <li class="active">Labs & Imaging</li>
-</ul>
+<div ncy-breadcrumb></div>
 <form>
     <div class="form-group col-md-4 pull-right">
         <input type="text" class="form-control" placeholder="Search.." ng-model="inputSearch" id="inputSearch">
@@ -14,30 +11,30 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>Type</th>                     
-                <th>Patient Name</th> 
-                <th>Mobile Number</th> 
-                <th>Address</th> 
-                <th>Date Added</th> 
-                <th>Comments</th> 
+                <th>Type</th>
+                <th>Patient Name</th>
+                <th>Mobile Number</th>
+                <th>Address</th>
+                <th>Date Added</th>
+                <th>Comments</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="taskObj in taskList| filter: inputSearch | orderBy:dateadded"> 
+            <tr ng-repeat="taskObj in taskList| filter: inputSearch | orderBy:dateadded">
                 <td>{{taskObj.type}}</td>
                 <td>
                     <a href="#/patients/edit/{{taskObj.patient.patientId}}"> {{$rootScope.getFullName(taskObj.patient)}} </a>
                 </td>
-                <td>{{taskObj.patient.mobile}}</td> 
-                <td>{{$rootScope.getFullAddress(taskObj.patient)}}</td> 
-                <td>{{taskObj.dateadded}}</td> 
-                <td>{{taskObj.comments}}</td> 
+                <td>{{taskObj.patient.mobile}}</td>
+                <td>{{$rootScope.getFullAddress(taskObj.patient)}}</td>
+                <td>{{taskObj.dateadded}}</td>
+                <td>{{taskObj.comments}}</td>
                 <td>
                     <button type="button" class="btn btn-primary"> {{ buttonText(taskObj.type)}}
                         <span class="fa fa-sign-in fa-stack-1x"></span>
                     </button>
-                </td> 
+                </td>
             </tr>
         </tbody>
     </table>

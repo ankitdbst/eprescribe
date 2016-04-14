@@ -9,7 +9,10 @@
                             .state('PatientsList', {
                                 url: '/patients',
                                 templateUrl: 'Patients/partials/patients.list.html',
-                                controller: 'PatientsListCtrl'
+                                controller: 'PatientsListCtrl',
+                                ncyBreadcrumb: {
+                                  label: 'Home'
+                                }
                             })
                             .state('PatientVerifyOTP', {
                                 url: '/patients/verifyotp/:patientId',
@@ -35,6 +38,10 @@
                                         templateUrl: 'Patients/partials/patients.documents.html',
                                         controller: 'PatientsDocumentsCtrl'
                                     }
+                                },
+                                ncyBreadcrumb: {
+                                  label: 'Patient Profile',
+                                  parent: 'PatientsList'
                                 }
                             });
                 }

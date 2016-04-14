@@ -11,6 +11,7 @@ angular.module('ERemediumWebApp', [
     'ngTouch',
     'cgBusy',
     'flow',
+    'ncy-angular-breadcrumb',
     'angularResizable',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',

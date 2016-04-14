@@ -209,7 +209,9 @@
         }
 
         function OpenPrescriptions() {
-            $state.go('PrescriptionIndex.List');
+            $state.go('PrescriptionIndex', {
+              patientId: $stateParams.patientId
+            });
         }
     }
 })();

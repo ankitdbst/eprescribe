@@ -9,7 +9,11 @@
                             .state('Messages', {
                                 url: '/messages',
                                 templateUrl: 'Messages/partials/messages.index.html',
-                                controller: 'MessagesIndexCtrl'
+                                controller: 'MessagesIndexCtrl',
+                                ncyBreadcrumb: {
+                                  label: 'Messages',
+                                  parent: 'PatientsList'
+                                }
                             })
                 }
             ]);

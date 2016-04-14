@@ -29,7 +29,8 @@
     "signature_pad": "~1.5.3",
     "es6-shim": "~0.35.0",
     "paper": "~0.9.25",
-    "angular-resizable": "~1.2.x"
+    "angular-resizable": "~1.2.x",
+    "angular-breadcrumb": "~0.4.1"
   },
   "resolutions": {
     "angular": "~1.5.1"

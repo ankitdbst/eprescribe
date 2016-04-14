@@ -19,22 +19,38 @@
       })
       .state('PrescriptionIndex.List', {
         templateUrl: 'Prescriptions/partials/prescriptions.list.html',
-        controller: 'PrescriptionListCtrl'
+        controller: 'PrescriptionListCtrl',
+        ncyBreadcrumb: {
+          label: 'Prescriptions',
+          parent: 'PatientNewOrEdit'
+        }
       })
       .state('PrescriptionIndex.Detail', {
         url: '/{prescriptionId:[0-9]*}',
         templateUrl: 'Prescriptions/partials/prescriptions.detail.html',
-        controller: 'PrescriptionDetailCtrl'
+        controller: 'PrescriptionDetailCtrl',
+        ncyBreadcrumb: {
+          label: 'View',
+          parent: 'PrescriptionIndex.List'
+        }
       })
       .state('PrescriptionNewOrEdit', {
         url: '/patients/:patientId/prescriptions/new',
         templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
-        controller: 'PrescriptionNewOrEditCtrl'
+        controller: 'PrescriptionNewOrEditCtrl',
+        ncyBreadcrumb: {
+          label: 'New',
+          parent: 'PrescriptionIndex.List'
+        }
       })
       .state('PrescriptionOrder', {
         url: '/patients/:patientId/prescriptions/order/:prescriptionId',
         templateUrl: 'Prescriptions/partials/prescriptions.order.html',
-        controller: 'PrescriptionOrderCtrl'
+        controller: 'PrescriptionOrderCtrl',
+        ncyBreadcrumb: {
+          label: 'Place Order',
+          parent: 'PatientNewOrEdit'
+        }
       })
       .state('PrescriptionOrder.PatientNewOrEditAddress', {
         url: '/new-address',
@@ -44,7 +60,11 @@
       .state('PrescriptionOrderStatus', {
         url: '/patients/:patientId/prescriptions/order/status/:prescriptionId',
         templateUrl: 'Prescriptions/partials/prescriptions.order-status.html',
-        controller: 'PrescriptionOrderStatusCtrl'
+        controller: 'PrescriptionOrderStatusCtrl',
+        ncyBreadcrumb: {
+          label: 'Order Status',
+          parent: 'PatientNewOrEdit'
+        }
       });
     }
   ]);
