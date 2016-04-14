@@ -3,28 +3,29 @@
 <section resizable r-directions="['top']" r-height="300" palm-reject class="palm-rejection--wrapper">
 </section>
 <div class="eremedium-dialog">
-<form name="formPrescription" class="panel-group" novalidate>
-  <h4>Diagnosis & Complaint <small>(hand write)</small></h4>
-  <canvas ng-model="prescription.imgDiagnosis" will-canvas ng-if="canvasEnabled"></canvas>
-  <!--<div ng-model="prescription.imgDiagnosis" my-canvas options="{}" ng-if="canvasEnabled" />-->
+  <form name="formPrescription" class="panel-group" novalidate>
+    <h4>Diagnosis & Complaint <small>(hand write)</small></h4>
+    <canvas ng-model="prescription.imgDiagnosis" will-canvas ng-if="canvasEnabled"></canvas>
+    <!--<div ng-model="prescription.imgDiagnosis" my-canvas options="{}" ng-if="canvasEnabled" />-->
 
-  <div ng-if="!canvasEnabled">
-    <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">
-      <label for="patientComplaint">Patient Complaint*</label>
-      <textarea class="form-control" name="patientComplaint" ng-model="prescription.patientComplaint" id="patientComplaint" rows="3" placeholder="Patient Complaint" required></textarea>
-      <div class="help-block" ng-messages="formPrescription.patientComplaint.$error" ng-if="formPrescription.patientComplaint.$touched">
-          <p ng-message="required">Patient Complaint is mandatory!</p>
+    <div ng-if="!canvasEnabled">
+      <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">
+        <label for="patientComplaint">Patient Complaint*</label>
+        <textarea class="form-control" name="patientComplaint" ng-model="prescription.patientComplaint" id="patientComplaint" rows="3" placeholder="Patient Complaint" required></textarea>
+        <div class="help-block" ng-messages="formPrescription.patientComplaint.$error" ng-if="formPrescription.patientComplaint.$touched">
+            <p ng-message="required">Patient Complaint is mandatory!</p>
+        </div>
       </div>
-    </div>
-    <div class="form-group" ng-class="{ 'has-error': formPrescription.diagnosis.$touched && formPrescription.diagnosis.$invalid }">
-      <label for="diagnosis">Diagnosis*</label>
-      <textarea class="form-control" name="diagnosis" ng-model="prescription.diagnosis" id="diagnosis" rows="4" placeholder="Diagnosis" required></textarea>
-      <div class="help-block" ng-messages="formPrescription.diagnosis.$error" ng-if="formPrescription.diagnosis.$touched">
-          <p ng-message="required">Patient Diagnosis is mandatory!</p>
+      <div class="form-group" ng-class="{ 'has-error': formPrescription.diagnosis.$touched && formPrescription.diagnosis.$invalid }">
+        <label for="diagnosis">Diagnosis*</label>
+        <textarea class="form-control" name="diagnosis" ng-model="prescription.diagnosis" id="diagnosis" rows="4" placeholder="Diagnosis" required></textarea>
+        <div class="help-block" ng-messages="formPrescription.diagnosis.$error" ng-if="formPrescription.diagnosis.$touched">
+            <p ng-message="required">Patient Diagnosis is mandatory!</p>
+        </div>
       </div>
-    </div>
-  </div>  
-</form>
+    </div>  
+  </form>
+</div>
 <!--<navbar type="footer">-->
   <!--<li class="navbar-li-custom">-->
     <!--<div>-->
