@@ -28,11 +28,16 @@
             <div id="divSMSCenter" uib-collapse="isSMSCentreCollapsed">
                 <div class="panel-body">
                     <div class="well well-lg">
-                        Select Recepients
+                        <p class="text-info"><span class="badge alert-success">1</span> Select Recipients</p>
                     </div>
-                    <div class="well well-lg">
-                        SMS Text
+                    <div class="form-group well well-lg" ng-class="{ 'has-error': formMessages.smsText.$touched && formMessages.smsText.$invalid }">                    
+                        <p class="text-info"><span class="badge alert-success">2</span> Add SMS Text</p>
+                        <textarea class="form-control" ng-model="smsText" id="smsText" name="smsText" rows="1" placeholder="Enter text here.." required></textarea>
+                        <div class="help-block" ng-messages="formMessages.smsText.$error" ng-if="formMessages.smsText.$touched">
+                            <p ng-message="required">SMS Text is mandatory!</p>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert" role="alert" style="margin-bottom: 0%">
                             <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
