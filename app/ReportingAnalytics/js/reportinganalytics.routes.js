@@ -9,7 +9,11 @@
                             .state('ReportingAnalytics', {
                                 url: '/reportinganalytics',
                                 templateUrl: 'ReportingAnalytics/partials/reportinganalytics.index.html',
-                                controller: 'ReportingAnalyticsIndexCtrl'
+                                controller: 'ReportingAnalyticsIndexCtrl',
+                                ncyBreadcrumb: {
+                                  label: 'Reporting & Analytics',
+                                  parent: 'PatientsList'
+                                }
                             })
                 }
             ]);

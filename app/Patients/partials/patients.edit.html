@@ -1,13 +1,6 @@
 <div cg-busy="myPromise"></div>
-
-<div class="col-md-10">
-    <ul class="breadcrumb">
-        <li><a href="#/patients">Home</a></li>
-        <li class="active">Patient Profile</li>
-    </ul>
-</div>
-<div class="col-md-2"></div>
-<div class="col-md-10">
+<div ncy-breadcrumb></div>
+<div class="col-md-12">
     <h3 style="margin-top: 0%">
         <div flow-init="{singleFile:true}" flow-files-submitted='handleUpload($files, $event, $flow)' flow-name="uploader.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
             <span class="btn btn-link col-md-1" flow-btn="">
@@ -19,12 +12,15 @@
                 <footer ng-show="patient.history.medical">Medical History of {{patient.history.medical}} </footer>
                 <footer ng-show="!patient.history.medical">No Medical History </footer>
             </blockquote>
-            <span class="btn-group col-md-1" style="margin-top: 2%; margin-left:5%" ng-show="patient.isUpdate">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="btn-group col-md-3" style="margin-top: 2%;" ng-show="patient.isUpdate">
+                <button type="button" class="btn btn-primary" ng-click="openPrescriptions()">
                     <i class="fa fa-list"></i>
-                    Patient Actions <span class="caret"></span>
+                    Open Prescriptions
                 </button>
-
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
                 <ul class="dropdown-menu">
                     <li><a href="#">Refer a Doctor</a></li>
                     <li role="separator" class="divider"></li>
@@ -35,26 +31,59 @@
         </div>
     </h3>
 </div>
-<div class="col-md-2"></div>
-<div class="alert {{alertClass}}  fade in col-md-10" ng-show="showAlert" role="alert">
+<div class="alert {{alertClass}}  fade in col-md-12" ng-show="showAlert" role="alert">
     <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
     {{alertMessage}}
 </div>
 <form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
-    <div class="col-md-2" style="margin-top: 2%">
+    <div class="pull-right" style="margin-top: 5%">
+
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
-            <li spy="identifyingDetails"><a href="" ng-click="isIdentifyingDetailsCollapsed = false">Identifying Details</a></li>
-            <li spy="prescriptions"><a href="" ng-click="isPrescriptionsCollapsed = false">Prescriptions</a></li>
-            <li spy="history"><a href="" ng-click="isHistoryVisible = true; isHistoryCollapsed = true">History</a></li>
-            <li spy="allergies"><a href="" ng-click="isAllergiesVisible = true; isAllergiesCollapsed = true">Allergies</a></li>
-            <li spy="vitals"><a href="" ng-click="isVitalsVisible = true; isVitalsCollapsed = true">Vitals</a></li>
-            <li spy="clinicalNotes"><a href="" ng-click="isClinicalNotesVisible = true; isClinicalNotesCollapsed = true">Clinical Notes</a></li>
-            <li spy="documents"><a href=""  ng-click="isDocumentsVisible = true; isDocumentsCollapsed = true">Documents</a></li>
-            <li spy="labOrderTracking"><a href="" ng-click="isLabOrderTrackingVisible = true; isLabOrderTrackingCollapsed = true">Lab Order Tracking</a></li>
-            <li spy="pharmacyOrderTracking"><a href="" ng-click="isPharmacyOrderTrackingVisible = true; isPharmacyOrderTrackingCollapsed = true">Pharmacy Order Tracking</a></li>
+            <li spy="identifyingDetails">
+                <a href="" ng-click="isIdentifyingDetailsCollapsed = false">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                </a>
+            </li>
+            <li spy="history">
+                <a href="" ng-click="isHistoryVisible = true; isHistoryCollapsed = true">
+                    <i class="fa fa-history fa-1x"></i>
+                </a>
+            </li>
+            <li spy="allergies">
+                <a href="" ng-click="isAllergiesVisible = true; isAllergiesCollapsed = true">
+                    <i class="fa fa-ban fa-1x"></i>
+                </a>
+            </li>
+            <li spy="vitals">
+                <a href="" ng-click="isVitalsVisible = true; isVitalsCollapsed = true">
+                    <i class="fa fa-stethoscope fa-1x" ></i>
+                </a>
+            </li>
+            <li spy="clinicalNotes">
+                <a href="" ng-click="isClinicalNotesVisible = true; isClinicalNotesCollapsed = true">
+                    <i class="fa fa-sticky-note fa-1x"></i>
+                </a>
+            </li>
+            <li spy="documents">
+                <a href=""  ng-click="isDocumentsVisible = true; isDocumentsCollapsed = true">
+                    <i class="fa fa-file fa-1x"></i>
+                </a>
+            </li>
+            <li spy="labOrderTracking">
+                <a href="" ng-click="isLabOrderTrackingVisible = true; isLabOrderTrackingCollapsed = true">
+                    <i class="fa fa-building fa-1x"></i>
+                </a>
+            </li>
+            <li spy="pharmacyOrderTracking">
+                <a href="" ng-click="isPharmacyOrderTrackingVisible = true; isPharmacyOrderTrackingCollapsed = true">
+                    <i class="fa fa-medkit fa-1x"></i>
+                </a>
+            </li>
         </ul>
+
     </div>
-    <div id="divContent" class="col-md-10">
+
+    <div id="divContent" class="col-md-12">
 
         <div class="panel panel-info" id="identifyingDetails">
             <div class="panel-heading">
@@ -185,25 +214,6 @@
                 </div>
             </div>
         </div>
-
-        <!--<div class="panel panel-info" id="prescriptions">-->
-            <!--<div class="panel-heading">-->
-                <!--<h4 class="panel-title">-->
-                    <!--<i class="fa fa-list-alt fa-1x"></i>-->
-                    <!--<a id="aPrescriptionList" ng-click="isPrescriptionsCollapsed = !isPrescriptionsCollapsed" href="">Prescriptions</a>-->
-                    <!--<span class="pull-right" ng-show="!patient.hasAllPrescriptionsAccess">-->
-                        <!--<a href="" ng-click="getAllPrescriptionsAccess()">-->
-                            <!--<i class="fa fa-eye text-success"></i>-->
-                        <!--</a>-->
-                    <!--</span>-->
-                <!--</h4>-->
-            <!--</div>-->
-            <!--<div id="divPrescriptions" uib-collapse="isPrescriptionsCollapsed">-->
-                <!--<div class="panel-body">-->
-                    <!--<div ui-view></div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
 
         <div class="panel panel-info" id="history" ng-show="isHistoryVisible">
             <div class="panel-heading">
@@ -384,5 +394,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </form>

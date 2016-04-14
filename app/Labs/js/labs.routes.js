@@ -9,7 +9,11 @@
                             .state('Labs', {
                                 url: '/labs',
                                 templateUrl: 'Labs/partials/labs.index.html',
-                                controller: 'LabsIndexCtrl'
+                                controller: 'LabsIndexCtrl',
+                                ncyBreadcrumb: {
+                                  label: 'Labs & Imaging',
+                                  parent: 'PatientsList'
+                                }
                             })
                 }
             ]);

@@ -43,6 +43,7 @@
         $scope.savePatientProfile = SavePatientProfile;
         $scope.getAllPrescriptionsAccess = GetAllPrescriptionsAccess;
         $scope.savePatientPeripheralDetails = SavePatientPeripheralDetails;
+        $scope.openPrescriptions = OpenPrescriptions;
 
         $scope.uploader = {};
 
@@ -204,6 +205,12 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.patient.alergy = response[response.length - 1];
+            });
+        }
+
+        function OpenPrescriptions() {
+            $state.go('PrescriptionIndex', {
+              patientId: $stateParams.patientId
             });
         }
     }

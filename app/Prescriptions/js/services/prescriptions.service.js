@@ -9,34 +9,34 @@
           var actions = {
             upsert: {
               method: 'POST',
-              url: 'http://52.74.177.118/ERService/prescription/UpsertPrescription'
+              url: 'http://52.76.165.4/ERService/prescription/UpsertPrescription'
             },
             list: {
               method: 'POST',
-              url: 'http://52.74.177.118/ERService/prescription/ListPrescription',
+              url: 'http://52.76.165.4/ERService/prescription/ListPrescription',
               isArray: true
             },
             get: {
               method: 'POST',
-              url: 'http://52.74.177.118/ERService/prescription/GetPrescription'
+              url: 'http://52.76.165.4/ERService/prescription/GetPrescription'
             },
             query: {
               method: 'GET',
-              url: 'http://52.74.177.118/ERService/prescription/SearchPrescription'
+              url: 'http://52.76.165.4/ERService/prescription/SearchPrescription'
             },
             searchMed: {
               method: 'POST',
-              url: 'http://52.74.177.118/ERService/medcineservice/MedAutocomplete',
+              url: 'http://52.76.165.4/ERService/medcineservice/MedAutocomplete',
               isArray: true
             },
             listPharma: {
               method: 'POST',
-              url: 'http://52.74.177.118/ERService/pharmaservice/ListPharma',
+              url: 'http://52.76.165.4/ERService/pharmaservice/ListPharma',
               isArray: true
             },
             placeOrder: {
               method: 'POST',
-              url: 'http://52.74.177.118/ERService/orderservice/Order',
+              url: 'http://52.76.165.4/ERService/orderservice/Order',
               isArray: false
             }
           };

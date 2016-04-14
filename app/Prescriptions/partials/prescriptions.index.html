@@ -1,20 +1,8 @@
+<div ncy-breadcrumb></div>
 <button type="button" class="btn btn-primary prescription-menu" ng-click="create();" ng-if="minimized">
   <i class="fa fa-plus"></i> New Prescription
 </button>
 <h3 class="clearfix">
-    <div class="pull-left">
-      <div ng-if="detailView">
-        <button class="btn btn-default" ui-sref="PrescriptionIndex">
-          <span class="glyphicon glyphicon-arrow-left prescription-back"></span>
-        </button>
-      </div>
-      <div ng-if="!detailView">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
-          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
-        </div>
-      </div>
-    </div>
     <div class="form-group pull-right" ng-if="!minimized">
       <button type="button" class="btn btn-default" ng-if="detailView" ng-click="clone(detailView);">
         <i class="fa fa-clone fa-1x"></i> Clone Prescription

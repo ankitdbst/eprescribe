@@ -9,59 +9,59 @@
                     var actions = {
                         upsert: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/UpsertUser'
+                            url: 'http://52.76.165.4/ERService/userservice/UpsertUser'
                         },
                         upsertPeripheralDetails: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/InsertUserHistory'
+                            url: 'http://52.76.165.4/ERService/userservice/InsertUserHistory'
                         },
                         searchByMobile: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetUserByMobile',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUserByMobile',
                             isArray: true
                         },
                         get: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetUserById',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUserById',
                             isArray: false
                         },
                         query: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetUsersForDoctor',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUsersForDoctor',
                             isArray: true
                         },
                         getPeripheralDetails: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetUserHistory',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUserHistory',
                             isArray: true
                         },
                         getPeripheralDetailsById: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetUserHistoryById',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUserHistoryById',
                             isArray: false
                         },
                         getDocuments: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetUserDocument',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUserDocument',
                             isArray: true
                         },
                         upsertDocument: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/InsertUserDocument'
+                            url: 'http://52.76.165.4/ERService/userservice/InsertUserDocument'
                         },
                         getDocumentById: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/userservice/GetUserDocumentById',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUserDocumentById',
                             isArray: false
                         },
                         generateOTP: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/communicationservice/GenerateOTP',
+                            url: 'http://52.76.165.4/ERService/communicationservice/GenerateOTP',
                             isArray: false
                         },
                         verifyOTP: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/communicationservice/VerifyOTP',
+                            url: 'http://52.76.165.4/ERService/communicationservice/VerifyOTP',
                             isArray: false
                         }
                     };

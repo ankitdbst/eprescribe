@@ -9,7 +9,11 @@
                             .state('Pharmacy', {
                                 url: '/pharmacy',
                                 templateUrl: 'Pharmacy/partials/pharmacy.index.html',
-                                controller: 'PharmacyIndexCtrl'
+                                controller: 'PharmacyIndexCtrl',
+                                ncyBreadcrumb: {
+                                  label: 'Pharmacy',
+                                  parent: 'PatientsList'
+                                }
                             })
                 }
             ]);
