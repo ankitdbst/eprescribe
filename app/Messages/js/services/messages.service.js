@@ -7,9 +7,15 @@
                     var paramDefaults = {}; // Currently no param defaults
 
                     var actions = {
-                        upsert: {
+                        sendSMS: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/UpsertUser'
+                            url: 'http://52.74.177.118/ERService/communicationservice/SendSMS'
+                        },
+                        getDeliveryReport: {
+                            //TODO..
+                            method: 'POST',
+                            url: 'http://52.76.165.4/ERService/communicationservice/GetDeliveryReport',
+                            isArray: true
                         }
                     };
 
