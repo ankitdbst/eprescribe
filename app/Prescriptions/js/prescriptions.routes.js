@@ -31,6 +31,11 @@
         templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
         controller: 'PrescriptionNewOrEditCtrl'
       })
+      .state('PrescriptionNewOrEditMedicines', {
+        url: '/patients/:patientId/prescriptions/new/medecines',
+        templateUrl: 'Prescriptions/partials/prescriptions.edit-medicines.html',
+        controller: 'PrescriptionNewOrEditCtrl'
+      })
       .state('PrescriptionOrder', {
         url: '/patients/:patientId/prescriptions/order/:prescriptionId',
         templateUrl: 'Prescriptions/partials/prescriptions.order.html',

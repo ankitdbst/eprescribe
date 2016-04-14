@@ -1,0 +1,37 @@
+<!--<navbar type="header">-->
+  <!--<li><a ng-click="minimize();"><span class="glyphicon glyphicon-minus"></span></a></li>-->
+  <!--<li><a ng-click="close()"><span class="glyphicon glyphicon-remove"></span></a></li>-->
+<!--</navbar>-->
+<div cg-busy="myPromise"></div>
+<div class="eremedium-dialog">
+  <form name="formPrescription" class="panel-group" novalidate>
+    <div class="medicines-list">
+      <h4>Rx</h4>
+      <hr>
+      <items editable="true" type="medcine" prescription="prescription"></items>
+    </div>
+    <div class="advises-list">
+      <h4>Advises</h4>
+      <hr>
+      <items editable="true" type="advise" prescription="prescription"></items>
+    </div>
+    <div class="row prescription-other">
+      <div class="form-group col-md-3">
+        <label for="nextVisit">Next Visit</label>
+        <datetimepicker ng-model="prescription.nextVisit.date" id="nextVisit" placeholder="Schedule Next Visit"></datetimepicker>
+      </div>
+    </div>
+
+  </form>
+</div>
+<!--<navbar type="footer">-->
+  <!--<li class="navbar-li-custom">-->
+    <!--<div>-->
+        <!--<button type="button" class="btn btn-primary" ng-if="!canvasEditable" ng-click="save()"-->
+                <!--ng-disabled="formPrescription.$invalid">-->
+            <!--<i class="fa fa-floppy-o"></i> Save-->
+        <!--</button>-->
+    <!--</div>-->
+  <!--&lt;!&ndash;<li><a ng-click="upsertItem('medcine')"><span class="glyphicon glyphicon-plus"></span> Add Medicine</a></li>&ndash;&gt;-->
+  <!--&lt;!&ndash;<li><a ng-click="upsertItem('advise')"><span class="glyphicon glyphicon-plus"></span> Advises (Lab Tests)</a></li>&ndash;&gt;-->
+<!--</navbar>-->
