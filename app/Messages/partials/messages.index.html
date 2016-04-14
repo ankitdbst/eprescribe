@@ -27,14 +27,25 @@
             </div>
             <div id="divSMSCenter" uib-collapse="isSMSCentreCollapsed">
                 <div class="panel-body">
-                    <div class="well well-lg">
-                        <p class="text-info"><span class="badge alert-success">1</span> Select Recipients</p>
+                    <div class="form-group well well-lg" ng-class="{ 'has-error': formMessages.recipients.$touched && formMessages.recipients.$invalid }">
+                        
+                            <p class="text-info"><span class="badge alert-success">1</span> Select Recipients</p>
+                            <label class="radio-inline">
+                                <input name="radioGroup" id="radioAllPatients" value="allPatients" checked="" type="radio"> All Patients
+                            </label>
+                            <label class="radio-inline">
+                                <input name="radioGroup" id="radioSelectPatients" value="partialAll" type="radio"> Select Patients
+                            </label>
+                        
+                        <div class="help-block" ng-messages="formMessages.recipients.$error" ng-if="formMessages.recipients.$touched">
+                            <p ng-message="required">Please add Recipients!</p>
+                        </div>
                     </div>
                     <div class="form-group well well-lg" ng-class="{ 'has-error': formMessages.smsText.$touched && formMessages.smsText.$invalid }">                    
                         <p class="text-info"><span class="badge alert-success">2</span> Add SMS Text</p>
                         <textarea class="form-control" ng-model="smsText" id="smsText" name="smsText" rows="1" placeholder="Enter text here.." required></textarea>
                         <div class="help-block" ng-messages="formMessages.smsText.$error" ng-if="formMessages.smsText.$touched">
-                            <p ng-message="required">SMS Text is mandatory!</p>
+                            <p ng-message="required">Please enter SMS Text!</p>
                         </div>
                     </div>
 
@@ -44,7 +55,7 @@
                             {{alertMessage}}
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-primary" type="button" ng-click="sendSMS" ng-disabled="formMessages.$invalid">
+                            <button class="btn btn-primary" type="button" ng-click="sendSMS()" ng-disabled="formMessages.$invalid">
                                 <i class="fa fa-comment"></i> Send SMS
                             </button>
                         </div>

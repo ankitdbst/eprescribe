@@ -14,11 +14,38 @@
         $scope.account = Account.getAuthenticatedAccount();
 
         //Initialize
-        initialize();
+        Initialize();
 
+        //Functions..
+        $scope.sendSMS = SendSMS;
 
-        function initialize() {
+        function Initialize() {
             $rootScope.pageHeader = "Messages";
+        }
+
+        function SendSMS() {
+            //Setup parameters.
+            var params = {
+                user: $scope.account.userId,
+                sessionId: $scope.account.sessionId,
+                to: '9910430979', //todo
+                toType: 'partialAll',
+                msg: $scope.smsText,
+                channel: 'sms'
+            };
+            $scope.myPromise = Messages.sendSMS(params, function (response) {
+                $scope.showAlert = true;
+                if (angular.isUndefined(response)) {
+                    $scope.alertMessage = "Error in sending Message, Please try again!";
+                    $scope.alertClass = "alert-danger";
+                } else if (response.respCode == 1) {
+                    $scope.alertMessage = response.response;
+                    $scope.alertClass = "alert-success";
+                } else {
+                    $scope.alertMessage = response.response;
+                    $scope.alertClass = "alert-danger";
+                }
+            });
         }
     }
 })();
