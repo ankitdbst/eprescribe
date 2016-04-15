@@ -13,6 +13,8 @@ angular.module('ERemediumWebApp', [
     'flow',
     'ncy-angular-breadcrumb',
     'angularResizable',
+    'ui.select', 
+    'ngSanitize',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',
     'ERemediumWebApp.patients',
