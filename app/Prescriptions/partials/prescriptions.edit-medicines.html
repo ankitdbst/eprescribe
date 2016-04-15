@@ -3,10 +3,15 @@
   <!--<li><a ng-click="close()"><span class="glyphicon glyphicon-remove"></span></a></li>-->
 <!--</navbar>-->
 <div cg-busy="myPromise"></div>
+<div ncy-breadcrumb></div>
 <div class="eremedium-dialog">
-  <form name="formPrescription" class="panel-group" novalidate>
+  <form name="formPrescription"  class="panel-group" novalidate>
     <div class="medicines-list">
       <h4>Rx</h4>
+      <div class="input-group input-group--autocomplete">
+          <input type="text" ng-model="prescription.medcines[0].name" class=" form-control"
+               placeholder="Choose from template..." uib-typeahead="medicines.name for medicines in search($viewValue)"/>
+      </div>
       <hr>
       <items editable="true" type="medcine" prescription="prescription"></items>
     </div>
@@ -24,14 +29,16 @@
 
   </form>
 </div>
-<!--<navbar type="footer">-->
-  <!--<li class="navbar-li-custom">-->
-    <!--<div>-->
-        <!--<button type="button" class="btn btn-primary" ng-if="!canvasEditable" ng-click="save()"-->
-                <!--ng-disabled="formPrescription.$invalid">-->
-            <!--<i class="fa fa-floppy-o"></i> Save-->
-        <!--</button>-->
-    <!--</div>-->
-  <!--&lt;!&ndash;<li><a ng-click="upsertItem('medcine')"><span class="glyphicon glyphicon-plus"></span> Add Medicine</a></li>&ndash;&gt;-->
-  <!--&lt;!&ndash;<li><a ng-click="upsertItem('advise')"><span class="glyphicon glyphicon-plus"></span> Advises (Lab Tests)</a></li>&ndash;&gt;-->
-<!--</navbar>-->
+<navbar type="footer">
+  <li class="navbar-li-custom">
+    <div>
+        <button type="button" class="btn btn-primary" ng-if="!canvasEditable" ng-click="save()"
+                ng-disabled="formPrescription.$invalid">
+            <i class="fa fa-floppy-o"></i> Save
+        </button>
+      <button type="button" class="btn btn-primary" ng-if="!canvasEditable" ng-click="templateNameDialog()"
+              ng-disabled="formPrescription.$invalid">
+          <i class="fa fa-floppy-o"></i> Save as Template
+      </button>
+    </div>
+</navbar>
