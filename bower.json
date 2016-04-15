@@ -30,7 +30,9 @@
     "es6-shim": "~0.35.0",
     "paper": "~0.9.25",
     "angular-resizable": "~1.2.x",
-    "angular-breadcrumb": "~0.4.1"
+    "angular-breadcrumb": "~0.4.1",
+    "angular-ui-select": "0.16.x",
+    "angular-sanitize": "1.5.3"
   },
   "resolutions": {
     "angular": "~1.5.1"
