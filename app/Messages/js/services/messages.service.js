@@ -9,7 +9,7 @@
                     var actions = {
                         sendSMS: {
                             method: 'POST',
-                            url: 'http://52.74.177.118/ERService/communicationservice/SendSMS'
+                            url: 'http://52.76.165.4/ERService/communicationservice/SendSMS'
                         },
                         getDeliveryReport: {
                             //TODO..

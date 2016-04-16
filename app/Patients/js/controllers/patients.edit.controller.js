@@ -41,7 +41,6 @@
 
 
         $scope.savePatientProfile = SavePatientProfile;
-        $scope.getAllPrescriptionsAccess = GetAllPrescriptionsAccess;
         $scope.savePatientPeripheralDetails = SavePatientPeripheralDetails;
         $scope.openPrescriptions = OpenPrescriptions;
 
@@ -157,12 +156,7 @@
                     $scope.alertClass = "alert-danger";
                 }
             });
-        }
-
-        function GetAllPrescriptionsAccess() {
-            //Open Verify OTP pageÏ
-            $state.go('PatientVerifyOTP', {patientId: $scope.patient.patientId})
-        }
+        }        
 
         function GetUserProfile() {
             $scope.myPromise = Patient.get({

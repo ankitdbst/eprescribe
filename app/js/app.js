@@ -13,6 +13,8 @@ angular.module('ERemediumWebApp', [
     'flow',
     'ncy-angular-breadcrumb',
     'angularResizable',
+    'ui.select', 
+    'ngSanitize',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',
     'ERemediumWebApp.patients',
@@ -61,7 +63,9 @@ angular.module('ERemediumWebApp', [
              For Auto Load a Nested View. Read More
              http://stackoverflow.com/questions/26196906/ui-router-how-to-automatically-load-a-nested-view-within-the-parent-view-as-a-de
              */
-            $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+                //save the previous state in a rootScope variable so that it's accessible from everywhere
+                $rootScope.previousState = fromState;
                 var aac;
                 if (aac = toState && toState.params && toState.params.autoActivateChild) {
                     $state.go(aac);

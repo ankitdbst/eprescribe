@@ -83,7 +83,15 @@
                     /* When successfully verified, this should be set at back end
                      patient.isNew = false;
                      patient.hasAllPrescriptionsAccess = true; */
-                    $state.go('PatientNewOrEdit', {patientId: $stateParams.patientId});
+                    /*
+                     * If User is coming from Patient List page i.e. was trying to get patient access, then Navigate to Patient Profile Page
+                     * Else If User is coming from Prescriptions List page i.e. was trying to see ALL prescriptions, then Navigate to Prescriptions List page with ALL prescriptions..
+                     */
+                    if ($rootScope.previousState.name == 'PatientsList') {
+                        $state.go('PatientNewOrEdit', {patientId: $stateParams.patientId}, {reload: true});
+                    } else if ($rootScope.previousState.name == 'PrescriptionIndex.List') {
+                        $state.go('PrescriptionIndex', {patientId: $stateParams.patientId}, {reload: true});
+                    }
                 } else {
                     $scope.alertMessage = response.response + ". Please enter correct OTP.";
                     $scope.showAlert = true;
@@ -93,10 +101,12 @@
 
         function close() {
             postProcessing();
+            //Doctor doesn't have patient access, go to Home Page!
             if ($scope.patient.isNew) {
                 $state.go('PatientsList', null, {reload: true});
             } else {
-                $state.go('PatientNewOrEdit', {patientId: $stateParams.patientId});
+                //Doctor already has access and was trying to get Prescriptions access..
+                $state.go('PrescriptionIndex', {patientId: $stateParams.patientId}, {reload: true});
             }
         }
 

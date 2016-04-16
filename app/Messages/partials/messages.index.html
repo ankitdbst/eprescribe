@@ -27,19 +27,36 @@
             </div>
             <div id="divSMSCenter" uib-collapse="isSMSCentreCollapsed">
                 <div class="panel-body">
-                    <div class="well well-lg">
-                        Select Recepients
+                    <div class="form-group well well-lg col-md-12">
+                        <p class="text-info"><span class="badge alert-success">1</span> Select Recipients</p>
+                        <label class="radio-inline col-md-2">
+                            <input name="radioGroup" id="radioAllPatients" value="allPatients" type="radio" ng-model="selectedChoice"> All Patients
+                        </label>
+                        <label class="radio-inline col-md-6">
+                            <input name="radioGroup" id="radioSelectPatients" ng-model="selectedChoice" value="partialAll" type="radio"> 
+                            <ui-select multiple sortable="true"  ng-model="patient.selected" theme="bootstrap" title="Choose patients" on-select='focusSelectPatients()'>
+                                <ui-select-match placeholder="Select or search a patient in the list...">{{getFullName($select.selected[$index])}}</ui-select-match>
+                                <ui-select-choices repeat="patient in patientList | filter: $select.search">
+                                    <div ng-bind-html="getFullName(patient) | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </label>
                     </div>
-                    <div class="well well-lg">
-                        SMS Text
+                    <div class="form-group well well-lg col-md-12" ng-class="{ 'has-error': formMessages.smsText.$touched && formMessages.smsText.$invalid }">                    
+                        <p class="text-info"><span class="badge alert-success">2</span> Add SMS Text</p>
+                        <textarea class="form-control" rows="5" ng-model="smsText" id="smsText" name="smsText" placeholder="Enter text here.." required></textarea>
+                        <div class="help-block" ng-messages="formMessages.smsText.$error" ng-if="formMessages.smsText.$touched">
+                            <p ng-message="required">Please enter SMS Text!</p>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert" role="alert" style="margin-bottom: 0%">
                             <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
                             {{alertMessage}}
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-primary" type="button" ng-click="sendSMS" ng-disabled="formMessages.$invalid">
+                            <button class="btn btn-primary" type="button" ng-click="sendSMS()" ng-disabled="formMessages.$invalid">
                                 <i class="fa fa-comment"></i> Send SMS
                             </button>
                         </div>
