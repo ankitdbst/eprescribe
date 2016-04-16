@@ -19,7 +19,7 @@ angular.module('ERemediumWebApp', [
     'ERemediumWebApp.routes',
     'ERemediumWebApp.patients',
     'ERemediumWebApp.reportinganalytics',
-    'ERemediumWebApp.doctor_settings',
+    'ERemediumWebApp.doctor',
     'ERemediumWebApp.login',
     'ERemediumWebApp.prescriptions',
     'ERemediumWebApp.tasks',

@@ -1,0 +1,179 @@
+<div cg-busy="myPromise"></div>
+<div ncy-breadcrumb></div>
+
+<div class="col-md-12">
+    <h3 style="margin-top: 0%">
+        <div flow-init="{singleFile:true}" flow-files-submitted='handleUpload($files, $event, $flow)' flow-name="uploader.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
+            <span class="btn btn-link col-md-1" flow-btn="">
+                <img flow-img="$flow.files[0]" ng-src="{{doctor.profileImageURL}}" class="img-circle" alt="Add Photo"  width="60" height="60">
+                <input type="file" style="visibility: hidden; position: absolute;">
+            </span>
+            <blockquote class="col-md-8 text text-warning">
+                <p>{{getFullName(doctor)}}</p>
+                <footer ng-show="doctor.experience">{{doctor.experience}} </footer>
+                <footer ng-show="!doctor.experience">No Experience added </footer>
+                <footer ng-show="doctor.clinic.name">
+                    {{doctor.clinic.name}}, {{doctor.clinic.addressLine1}}, {{doctor.clinic.addressLine2}}, {{doctor.clinic.city}}, {{doctor.clinic.state}}, {{doctor.clinic.pincode}}
+                </footer>
+                <footer ng-show="!doctor.clinic.name">No Clinic added </footer>
+            </blockquote>
+            <span class="btn-group col-md-3" style="margin-top: 2%;">
+                <button type="button" class="btn btn-primary" ng-click="changePassword()">
+                    <i class="fa fa-user-secret"></i>
+                    Change Password
+                </button>             
+            </span>
+        </div>
+    </h3>
+</div>
+<!-- Profile Image Alert section -->
+<div class="alert {{alertClass}}  fade in col-md-12" ng-show="showAlert" role="alert">
+    <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+    {{alertMessage}}
+</div>
+
+<form name="formDoctorProfile" class="panel-group" novalidate scroll-spy>
+    <div class="pull-right" style="margin-top: 5%">
+        <ul id="navPills" class="nav nav-pills nav-stacked affix">
+            <li spy="profileDetails">
+                <a href="" ng-click="isProfileDetailsCollapsed = false">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                </a>
+            </li>
+            <li spy="clinicDetails">
+                <a href="" ng-click="isClinicDetailsCollapsed = true">
+                    <i class="fa fa-hospital-o fa-1x"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="divContent" class="col-md-12">
+        <div class="panel panel-info" id="profileDetails">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-list-alt fa-1x"></i>
+                    <a ng-click="isProfileDetailsCollapsed = !isProfileDetailsCollapsed" href="">Profile Details</a>
+                </h4>
+            </div>
+            <div id="divProfileDetails" uib-collapse="isProfileDetailsCollapsed">
+                <div class="panel-body">
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': formDoctorProfile.doctorFirstName.$touched && formDoctorProfile.doctorFirstName.$invalid }">
+                        <label for="doctorFirstName"> First Name*:</label>
+                        <input type="text" ng-model="doctor.firstName" class="form-control" ng-change="profileDetailsChanged = true" name="doctorFirstName" id="doctorFirstName" placeholder="First Name" required/>
+                        <div class="help-block" ng-messages="formDoctorProfile.doctorFirstName.$error" ng-if="formDoctorProfile.doctorFirstName.$touched">
+                            <p ng-message="required">First Name is mandatory!</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="doctorMiddleName"> Middle Name:</label>
+                        <input type="text"  ng-change="profileDetailsChanged = true" ng-model="doctor.midlleName" class="form-control" id="doctorMiddleName" name="doctorMiddleName" placeholder="Middle Name (optional)" />
+                    </div>
+                    <div class="form-group col-md-4" ng-class="{ 'has-error': formDoctorProfile.doctorLastName.$touched && formDoctorProfile.doctorLastName.$invalid }">
+                        <label for="doctorLastName"> Last Name*:</label>
+                        <input type="text" ng-change="profileDetailsChanged = true" ng-model="doctor.lastName" class="form-control" name="doctorLastName" id="doctorLastName" placeholder="Last Name" required/>
+                        <div class="help-block" ng-messages="formDoctorProfile.doctorLastName.$error" ng-if="formDoctorProfile.doctorLastName.$touched">
+                            <p ng-message="required">Last Name is mandatory!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group col-md-12" ng-class="{ 'has-error': formDoctorProfile.doctorMedicalRegNumber.$touched && formDoctorProfile.doctorMedicalRegNumber.$invalid }">
+                        <label for="doctorMedicalRegNumber">Medical Registration Number*:</label>
+                        <input type="number" min="0" ng-change="profileDetailsChanged = true" string-to-number ng-model="doctor.medicalregnumber" class="form-control" id="doctorMedicalRegNumber" name="doctorMedicalRegNumber" placeholder="Medical Registration Number" required/>
+                        <div class="help-block" ng-messages="formDoctorProfile.doctorMedicalRegNumber.$error" ng-if="formDoctorProfile.doctorMedicalRegNumber.$touched">
+                            <p ng-message="required">Medical Registration Number is mandatory!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group col-md-12">
+                        <label for="doctorAboutMe">About Me:</label>
+                        <textarea class="form-control" ng-change="profileDetailsChanged = true" ng-model="doctor.aboutme" id="doctorAboutMe" rows="2" placeholder="Please add details about youself.."></textarea>
+                    </div>
+                    
+                    <hr>
+                    
+                     <div class="form-group col-md-12">
+                        <label for="doctorExperience">Add Experience</label>
+                        <textarea class="form-control" ng-change="profileDetailsChanged = true" ng-model="doctor.experience" id="doctorExperience" rows="2" placeholder="Please add your Experience details.."></textarea>
+                    </div>
+                    
+                    <hr>
+                    
+                     <div class="form-group col-md-12">
+                        <label for="doctorMembership">Add Membership</label>
+                        <textarea class="form-control" ng-change="profileDetailsChanged = true" ng-model="doctor.membership" id="doctorMembership" rows="2" placeholder="Please add your Membership details.."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert && section == 'profileDetails'" role="alert" style="margin-bottom: 0%">
+                            <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+                            {{alertMessage}}
+                        </div>
+                        <div class="pull-right">
+                            <button class="btn btn-primary" type="button" ng-click="saveDoctorProfile('profileDetails')" ng-show="profileDetailsChanged" ng-disabled="formDoctorProfile.$invalid">
+                                <i class="fa fa-floppy-o"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-info" id="clinicDetails">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-hospital-o fa-1x"></i>
+                    <a ng-click="isClinicDetailsCollapsed = !isClinicDetailsCollapsed" href="">Clinic Details</a>
+                </h4>
+            </div>
+            <div id="divClinicDetails" uib-collapse="!isClinicDetailsCollapsed">
+                <div class="panel-body">
+                    <div class="form-group col-md-12">
+                        <label for="doctorClinicName">Clinic Name:</label>
+                        <input type="text" ng-model="doctor.clinic.name" class="form-control" ng-change="clinicDetailsChanged = true" name="doctorClinicName" id="doctorClinicName" placeholder="Clinic Name"/>
+                    </div>
+                    <div class="form-group col-md-4" >
+                        <label for="doctorAddressLine1">Address Line 1:</label>
+                        <textarea class="form-control" ng-change="clinicDetailsChanged = true" ng-model="doctor.clinic.addressLine1" id="doctorAddressLine1" name="doctorAddressLine1" rows="1" placeholder="Address Line 1"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="doctorAddressLine2">Address Line 2:</label>
+                        <textarea class="form-control" ng-change="clinicDetailsChanged = true" ng-model="doctor.clinic.addressLine2" id="doctorAddressLine2" name="doctorAddressLine2" rows="1" placeholder="Address Line 2"></textarea>
+                    </div>
+                    <div class="form-group col-md-4" >
+                        <label for="doctorLandmark">Landmark:</label>
+                        <textarea class="form-control" ng-change="clinicDetailsChanged = true" ng-model="doctor.clinic.landmark" id="doctorLandmark" name="doctorLandmark" rows="1" placeholder="Landmark"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="doctorCity">City:</label>
+                        <input type="text" ng-model="doctor.clinic.city" ng-change="clinicDetailsChanged = true" class="form-control" id="doctorCity" name="doctorCity" placeholder="City" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="doctorState">State:</label>
+                        <input type="text" ng-model="doctor.clinic.state" ng-change="clinicDetailsChanged = true" class="form-control" id="doctorState" name="doctorState" placeholder="State" />                       
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="doctorPinCode">PinCode:</label>
+                        <input type="number" string-to-number min="0" ng-change="clinicDetailsChanged = true" ng-model="doctor.clinic.pincode" class="form-control" id="doctorPinCode" name="doctorPinCode" placeholder="Pin Code"/>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert && section == 'clinicDetails'" role="alert" style="margin-bottom: 0%">
+                            <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+                            {{alertMessage}}
+                        </div>
+                        <div class="pull-right">
+                            <button class="btn btn-primary" type="button" ng-click="saveDoctorProfile('clinicDetails')" ng-show="clinicDetailsChanged">
+                                <i class="fa fa-floppy-o"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
