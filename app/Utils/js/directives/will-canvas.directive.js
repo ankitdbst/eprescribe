@@ -43,7 +43,7 @@
           var self = this;
           $(Module.canvas).on("mousedown touchstart", function(e) {self.beginStroke(e);});
           $(Module.canvas).on("mousemove touchmove", function(e) {self.moveStroke(e);});
-          $(document).on("mouseup touchend", function(e) {self.endStroke(e);});
+          $(Module.canvas).on("mouseup touchend", function(e) {self.endStroke(e);});
         },
 
         getOffset: function(elem) {
@@ -76,6 +76,8 @@
           e.preventDefault();
           var point = {x: 0, y: 0};
           this.setPointFromEvent(point, e.originalEvent);
+//          console.log("Point", {x: e.clientX, y: e.clientY});
+          console.re.log("Original Point", point);
           this.inputPhase = Module.InputPhase.Begin;
 
           this.buildPath(point);
@@ -89,6 +91,8 @@
           this.inputPhase = Module.InputPhase.Move;
           var point = {x: 0, y: 0};
           this.setPointFromEvent(point, e.originalEvent);
+//          console.log("Point", {x: e.clientX, y: e.clientY});
+          console.re.log("Original Point", point);
           this.pointerPos = point;
 
           if (WILL.frameID != WILL.canvas.frameID) {
@@ -111,7 +115,9 @@
 
           var point = {x: 0, y: 0};
           this.setPointFromEvent(point, e.originalEvent);
-          this.buildPath({x: e.clientX, y: e.clientY});
+//          console.log("Point", {x: e.clientX, y: e.clientY});
+          console.re.log("Original Point", point);
+          this.buildPath(point);
           this.drawPath();
 
           var stroke = new Module.Stroke(this.brush, this.path, NaN, this.color, 0, 1);
@@ -125,6 +131,7 @@
             this.smoothener.reset();
 
           var pathPart = this.pathBuilder.addPoint(this.inputPhase, pos, Date.now()/1000);
+          console.re.log("Path Part", window.JSON.stringify(pathPart));
           var smoothedPathPart = this.smoothener.smooth(pathPart, this.inputPhase == Module.InputPhase.End);
           var pathContext = this.pathBuilder.addPathPart(smoothedPathPart);
 
