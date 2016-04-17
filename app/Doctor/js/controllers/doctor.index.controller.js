@@ -18,8 +18,11 @@
 
         //Functions..
         $scope.upsertUser = UpsertUser;
+        $scope.changePassword = ChangePassword;
         $scope.showSummarySection = ShowSummarySection;
         $scope.closeSummarySection = CloseSummarySection;
+        $scope.showPasswordSection = ShowPasswordSection;
+        $scope.closePasswordSection = ClosePasswordSection;
 
         function Initialize() {
             $scope.showAlert = false;
@@ -50,6 +53,7 @@
         /*---------------------------------*/
 
         function EditMode(flag) {
+            $scope.passwordSectionUpdate = flag;
             $scope.summarySectionUpdate = flag;
             $scope.clinicSectionUpdate = flag;
             $scope.servicesSectionUpdate = flag;
@@ -62,6 +66,40 @@
 
         function CloseSummarySection() {
             $scope.summarySectionUpdate = false;
+        }
+        
+        function ShowPasswordSection() {
+            $scope.passwordSectionUpdate = true;
+        }
+
+        function ClosePasswordSection() {
+            $scope.passwordSectionUpdate = false;
+        }
+        
+        function ChangePassword (section) {
+            //Setup parameters.
+            var params = {
+                user: $scope.doctor.doctorId,
+                newPassword: $scope.doctor.password
+            };
+
+            $scope.myPromise = Doctor.changePassword(params, function (response) {
+                $scope.showAlert = true;
+                $scope.section = section;
+                //Show Proper Alert with option of going back.
+                if (angular.isUndefined(response)) {
+                    $scope.alertMessage = "Error in saving " + section + ", Please try again!";
+                    $scope.alertClass = "alert-danger";
+                } else if (response.respCode == 1) {
+                    $scope.alertMessage = section + " Saved Successfully!";
+                    $scope.alertClass = "alert-success";
+                    //If all goes good, rebind the data..
+                    EditMode(false);
+                } else {
+                    $scope.alertMessage = response.response;
+                    $scope.alertClass = "alert-danger";
+                }
+            });
         }
 
         function UpsertUser(section) {

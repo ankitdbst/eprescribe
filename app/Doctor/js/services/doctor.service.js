@@ -15,6 +15,10 @@
                         saveProfile: {
                             method: 'POST',
                             url: 'http://52.76.165.4/ERService/userservice/UpsertUser'
+                        },
+                        changePassword: {
+                            method: 'POST',
+                            url: 'http://52.76.165.4/ERService/userservice/SetPassword'
                         }
                     };
 
