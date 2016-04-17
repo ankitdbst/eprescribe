@@ -17,14 +17,23 @@
         Initialize();
 
         //Functions..
-        $scope.saveDoctorProfile = SaveDoctorProfile;
+        $scope.upsertUser = UpsertUser;
+        $scope.showSummarySection = ShowSummarySection;
+        $scope.closeSummarySection = CloseSummarySection;
 
         function Initialize() {
             $scope.showAlert = false;
             $rootScope.pageHeader = "Doctor Profile";
+
+            EditMode(false);
+            
+
             GetDoctorProfile();
         }
 
+
+        /*---------------------------------*/
+        /* Photo Handling Section */
         $scope.uploader = {};
 
         $scope.handleUpload = function ($files, $event, $flow) {
@@ -38,18 +47,31 @@
                 fileReader.readAsDataURL(flowFile.file);
             });
         };
+        /*---------------------------------*/
 
-        function SaveDoctorProfile(section) {
-            $scope.doctor.userType = "doctor";
-            UpsertUser(section);
+        function EditMode(flag) {
+            $scope.summarySectionUpdate = flag;
+            $scope.clinicSectionUpdate = flag;
+            $scope.servicesSectionUpdate = flag;
+            $scope.professionalDetailsSectionUpdate = flag;
+        }
+        
+        function ShowSummarySection() {
+            $scope.summarySectionUpdate = true;
+        }
+
+        function CloseSummarySection() {
+            $scope.summarySectionUpdate = false;
         }
 
         function UpsertUser(section) {
+            $scope.doctor.userType = "doctor";
             //Setup parameters.
             var params = {
                 user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
-                doctorId: $scope.account.userId,
+                doctorId: "",
+                patientId: "",
                 userMap: $scope.doctor
             };
 
@@ -65,6 +87,7 @@
                     $scope.alertClass = "alert-success";
                     //If all goes good, rebind the data..
                     $scope.doctor = response.doctor;
+                    EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
