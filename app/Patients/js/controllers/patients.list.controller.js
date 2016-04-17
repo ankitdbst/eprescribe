@@ -46,6 +46,7 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.doctor = response;
+                $rootScope.doctor = $scope.doctor;
             });
         }
 
