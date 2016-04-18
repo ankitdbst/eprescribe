@@ -69,16 +69,6 @@
                     <i class="fa fa-file fa-1x"></i>
                 </a>
             </li>
-            <li spy="labOrderTracking">
-                <a href="" ng-click="isLabOrderTrackingVisible = true; isLabOrderTrackingCollapsed = true">
-                    <i class="fa fa-building fa-1x"></i>
-                </a>
-            </li>
-            <li spy="pharmacyOrderTracking">
-                <a href="" ng-click="isPharmacyOrderTrackingVisible = true; isPharmacyOrderTrackingCollapsed = true">
-                    <i class="fa fa-medkit fa-1x"></i>
-                </a>
-            </li>
         </ul>
 
     </div>
@@ -361,44 +351,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="panel panel-info" id="labOrderTracking" ng-show="isLabOrderTrackingVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-building fa-1x"></i>
-                    <a ng-click="isLabOrderTrackingCollapsed = !isLabOrderTrackingCollapsed" href="">Lab Order Tracking</a>
-                    <span class="pull-right">
-                        <a href="">
-                            <i class="fa fa-area-chart text-success"></i>
-                        </a>
-                    </span>
-                </h4>
-            </div>
-            <div id="divLabOrderTracking" uib-collapse="!isLabOrderTrackingCollapsed">
-                <div class="panel-body">
-
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-info" id="pharmacyOrderTracking" ng-show="isPharmacyOrderTrackingVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-medkit fa-1x"></i>
-                    <a ng-click="isPharmacyOrderTrackingCollapsed = !isPharmacyOrderTrackingCollapsed" href="">Pharmacy Order Tracking</a>
-                    <span class="pull-right">
-                        <a href="" >
-                            <i class="fa fa-area-chart text-success"></i>
-                        </a>
-                    </span>
-                </h4>
-            </div>
-            <div id="divPharmacyOrderTracking" uib-collapse="!isPharmacyOrderTrackingCollapsed">
-                <div class="panel-body">
-
-                </div>
-            </div>
-        </div>
-
     </div>
 </form>
