@@ -9,10 +9,11 @@
     'Prescription',
     '$stateParams',
     'Account',
-    'ngDialog'
+    'ngDialog',
+    '$state'
   ];
 
-  function PrescriptionEditMedicinesCtrl($scope, Prescription, $stateParams, Account, ngDialog) {
+  function PrescriptionEditMedicinesCtrl($scope, Prescription, $stateParams, Account, ngDialog, $state) {
     $scope.prescription = $stateParams.prescription;
     var user = Account.getAuthenticatedAccount();
     $scope.save = UpsertPrescription;
@@ -92,9 +93,9 @@
 
       $scope.myPromise = Prescription.upsert(params, function (response) {
         if (_.isEqual(response.respCode, 1)) {
-          $scope.closeThisDialog({
-            state: 'saved',
-            data: response.pid
+          $state.go('PrescriptionIndex.Detail', {
+            prescriptionId: response.pid,
+            patientId: $stateParams.patientId
           });
         } else {
           // Show Error
@@ -138,6 +139,10 @@
               $scope.closeThisDialog({
                 state: 'saved',
                 data: response.pid
+              });
+              $state.go('PrescriptionIndex.Detail', {
+                prescriptionId: response.pid,
+                patientId: $stateParams.patientId
               });
             } else {
               // Show Error
