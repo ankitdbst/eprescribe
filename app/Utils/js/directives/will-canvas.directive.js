@@ -64,31 +64,31 @@
           }
         },
 
-          getOffset: function(elem) {
-            var offsetTop = 0;
-            var offsetLeft = 0;
-            do {
-              if (!isNaN(elem.offsetLeft)) {
-                offsetTop += elem.offsetTop;
-                offsetLeft += elem.offsetLeft;
-              }
-              elem = elem.offsetParent;
-            } while (elem);
-            return {
-              left: offsetLeft,
-              top: offsetTop
-            };
-          },
-
-          setPointFromEvent: function(point, e) {
-            if (this.isTouch) {
-              point.x = e.changedTouches[0].pageX - this.getOffset(e.target).left;
-              point.y = e.changedTouches[0].pageY - this.getOffset(e.target).top;
-            } else {
-              point.x = e.offsetX !== undefined ? e.offsetX : e.layerX;
-              point.y = e.offsetY !== undefined ? e.offsetY : e.layerY;
+        getOffset: function(elem) {
+          var offsetTop = 0;
+          var offsetLeft = 0;
+          do {
+            if (!isNaN(elem.offsetLeft)) {
+              offsetTop += elem.offsetTop;
+              offsetLeft += elem.offsetLeft;
             }
-          },
+            elem = elem.offsetParent;
+          } while (elem);
+          return {
+            left: offsetLeft,
+            top: offsetTop
+          };
+        },
+
+        setPointFromEvent: function(point, e) {
+          if (this.isTouch) {
+            point.x = e.changedTouches[0].pageX - this.getOffset(e.target).left;
+            point.y = e.changedTouches[0].pageY - this.getOffset(e.target).top;
+          } else {
+            point.x = e.offsetX !== undefined ? e.offsetX : e.layerX;
+            point.y = e.offsetY !== undefined ? e.offsetY : e.layerY;
+          }
+        },
 
         getPressure: function(e) {
           return (window.PointerEvent && e instanceof PointerEvent && e.pressure !== 0.5)?e.pressure:NaN;
@@ -96,6 +96,7 @@
 
         beginStroke: function(e) {
           // if (e.button != 0) return;
+          console.re.log("Event [Begin Phase]: ", e);
           e.preventDefault();
           this.inputPhase = Module.InputPhase.Begin;
           this.pressure = this.getPressure(e);
@@ -160,7 +161,7 @@
           var pathPart = this.pathBuilder.addPoint(this.inputPhase, pos, pathBuilderValue);
           // var pathContext = this.pathBuilder.addPathPart(pathPart);
           var smoothedPathPart = this.smoothener.smooth(pathPart, this.inputPhase == Module.InputPhase.End);
-            var pathContext = this.pathBuilder.addPathPart(smoothedPathPart);
+          var pathContext = this.pathBuilder.addPathPart(smoothedPathPart);
 
           this.pathPart = pathContext.getPathPart();
         },
