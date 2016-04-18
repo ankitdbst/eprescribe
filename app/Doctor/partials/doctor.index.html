@@ -1,0 +1,241 @@
+<div cg-busy="myPromise"></div>
+<div ncy-breadcrumb></div>
+<form name="formDoctorProfile" class="panel-group" novalidate>
+    <div class="col-md-12">
+        <h3 style="margin-top: 0%">
+            <div flow-init="{singleFile:true}" flow-files-submitted='handleUpload($files, $event, $flow)' flow-name="uploader.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
+                <span class="btn btn-link col-md-2" flow-btn="">
+                    <img flow-img="$flow.files[0]" ng-src="{{doctor.profileImageURL}}" class="img-circle" alt="Add Photo"  width="100" height="100">
+                    <input type="file" style="visibility: hidden; position: absolute;">
+                </span>
+                <blockquote class="col-md-6 text text-warning">
+                    <p>
+                        Dr. {{getFullName(doctor)}}
+                        <a href="" ng-click="showSummarySection()" ng-show="!summarySectionUpdate">
+                            <i class="fa fa-pencil fa-1x text-muted"></i>
+                        </a>
+                        <a href="" ng-click="upsertUser('Summary')" ng-show="summarySectionUpdate" a-disabled="formDoctorProfile.$invalid">
+                            <i class="fa fa-floppy-o fa-1x text-primary"></i>
+                        </a>
+                        <a href="" ng-click="closeSummarySection()" ng-show="summarySectionUpdate">
+                            <i class="fa fa-close fa-1x text-muted"></i>
+                        </a>
+                    </p>
+                    <footer style="white-space: pre; font-weight: bold" ng-show="doctor.briefsummary && !summarySectionUpdate">{{doctor.briefsummary}} </footer>   
+                    <br/>
+                    <footer ng-show="doctor.aboutme && !summarySectionUpdate">{{doctor.aboutme}}</footer>                
+                </blockquote>
+                <span class="btn-group col-md-4" style="margin-top: 2%;">
+                    <button type="button" class="btn btn-primary pull-right" ng-click="showPasswordSection()">
+                        <i class="fa fa-user-secret"></i>
+                        Change Password
+                    </button>       
+                    <br><br>            
+                    <div class="form-group" ng-show="passwordSectionUpdate" ng-class="{
+                            'has-error'
+                            : formDoctorProfile.doctorPassword.$touched && formDoctorProfile.doctorPassword.$invalid }">
+                        <input type="password" ng-model="doctor.password" class="form-control" name="doctorPassword" id="doctorPassword" placeholder="Enter New Password" required/>
+                        <a href="" ng-click="changePassword('Password')" a-disabled="formDoctorProfile.$invalid">
+                            <i class="fa fa-floppy-o fa-1x text-primary"></i>
+                        </a>
+                        <a href="" ng-click="closePasswordSection()">
+                            <i class="fa fa-close fa-1x text-muted"></i>
+                        </a>
+                        <div class="help-block" ng-messages="formDoctorProfile.doctorPassword.$error" ng-if="formDoctorProfile.doctorPassword.$touched">
+                            <p ng-message="required">Please enter New Password!</p>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </h3>
+
+    </div> 
+    <!-- Profile Image Alert section -->
+    <div class="alert {{alertClass}}  fade in col-md-12" ng-show="showAlert && section == 'Photo'" role="alert">
+        <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+        {{alertMessage}}
+    </div>
+    <span class="alert {{alertClass}}  fade in col-md-12" role="alert" ng-show="showAlert && section == 'Summary'">
+        <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+        {{alertMessage}} 
+    </span>
+    <span class="alert {{alertClass}}  fade in col-md-12" ng-show="showAlert && section == 'Password'" role="alert" style="margin-bottom: 0%">
+        <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+        {{alertMessage}} 
+    </span>
+    <div id="divContent" class="col-md-12">
+
+        <div ng-show="summarySectionUpdate">
+            <div class="form-group col-md-4" ng-class="{
+                    'has-error'
+                    : formDoctorProfile.doctorFirstName.$touched && formDoctorProfile.doctorFirstName.$invalid }">
+                <label for="doctorFirstName"> First Name*:</label>
+                <input type="text" ng-model="doctor.firstName" class="form-control" name="doctorFirstName" id="doctorFirstName" placeholder="First Name" required/>
+                <div class="help-block" ng-messages="formDoctorProfile.doctorFirstName.$error" ng-if="formDoctorProfile.doctorFirstName.$touched">
+                    <p ng-message="required">First Name is mandatory!</p>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="doctorMiddleName"> Middle Name:</label>
+                <input type="text" ng-model="doctor.midlleName" class="form-control" id="doctorMiddleName" name="doctorMiddleName" placeholder="Middle Name (optional)" />
+            </div>
+            <div class="form-group col-md-4" ng-class="{
+                    'has-error': formDoctorProfile.doctorLastName.$touched && formDoctorProfile.doctorLastName.$invalid }">
+                <label for="doctorLastName"> Last Name*:</label>
+                <input type="text" ng-model="doctor.lastName" class="form-control" name="doctorLastName" id="doctorLastName" placeholder="Last Name" required/>
+                <div class="help-block" ng-messages="formDoctorProfile.doctorLastName.$error" ng-if="formDoctorProfile.doctorLastName.$touched">
+                    <p ng-message="required">Last Name is mandatory!</p>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="doctorBriefSummary"> Brief Summary: </label>               
+                <textarea class="form-control" ng-model="doctor.briefsummary" id="doctorBriefSummary" rows="4" placeholder="Add a brief Summary about yourself.."></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="doctorAboutMe">About Me:</label>
+                <textarea class="form-control" ng-model="doctor.aboutme" id="doctorAboutMe" rows="4" placeholder="Please add details about youself.."></textarea>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="doctorMobileNumber">Mobile Number*:</label>
+                <input type="number" string-to-number ng-model="doctor.mobile" ng-disabled="true" class="form-control" id="doctorMobileNumber" name="doctorMobileNumber"/>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <hr>
+                <h4 class='text-success'>
+                    <i class="fa fa-hospital-o fa-2x"></i> 
+                    Clinic
+                    <a href="" ng-click="clinicSectionUpdate = true" ng-show="!clinicSectionUpdate">
+                        <i class="fa fa-pencil fa-1x text-muted"></i>
+                    </a>
+                    <a href="" ng-click="upsertUser('Clinic')" ng-show="clinicSectionUpdate">
+                        <i class="fa fa-floppy-o fa-1x text-primary"></i>
+                    </a>
+                    <a href="" ng-click="clinicSectionUpdate = false" ng-show="clinicSectionUpdate">
+                        <i class="fa fa-close fa-1x text-muted"></i>
+                    </a>
+                    <div class="alert {{alertClass}}  fade in inline-block" ng-show="showAlert && section == 'Clinic'" role="alert" style="margin-bottom: 0%">
+                        <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+                        {{alertMessage}} 
+                    </div>
+                </h4>
+                <hr>
+                <div ng-show="!clinicSectionUpdate">
+                    <address>
+                        <strong class="text-info"> {{doctor.clinic.name}} </strong><br>
+                        {{doctor.clinic.addressLine1}}, {{doctor.clinic.addressLine2}}<br>
+                        {{doctor.clinic.landmark}}, {{doctor.clinic.city}}, {{doctor.clinic.state}} {{doctor.clinic.pincode}}
+                    </address>
+                </div>
+                <div ng-show="clinicSectionUpdate">
+                    <div class="form-group col-md-12">
+                        <label for="doctorClinicName">Clinic Name:</label>
+                        <input type="text" ng-model="doctor.clinic.name" class="form-control" name="doctorClinicName" id="doctorClinicName" placeholder="Clinic Name"/>
+                    </div>
+                    <div class="form-group col-md-4" >
+                        <label for="doctorAddressLine1">Address Line 1:</label>
+                        <textarea class="form-control" ng-model="doctor.clinic.addressLine1" id="doctorAddressLine1" name="doctorAddressLine1" rows="2" placeholder="Address Line 1"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="doctorAddressLine2">Address Line 2:</label>
+                        <textarea class="form-control" ng-model="doctor.clinic.addressLine2" id="doctorAddressLine2" name="doctorAddressLine2" rows="2" placeholder="Address Line 2"></textarea>
+                    </div>
+                    <div class="form-group col-md-4" >
+                        <label for="doctorLandmark">Landmark:</label>
+                        <textarea class="form-control" ng-model="doctor.clinic.landmark" id="doctorLandmark" name="doctorLandmark" rows="2" placeholder="Landmarke"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="doctorCity">City:</label>
+                        <input type="text" ng-model="doctor.clinic.city" class="form-control" id="doctorCity" name="doctorCity" placeholder="City" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="doctorState">State:</label>
+                        <input type="text" ng-model="doctor.clinic.state" class="form-control" id="doctorState" name="doctorState" placeholder="State" />                       
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="doctorPinCode">PinCode:</label>
+                        <input type="number" string-to-number min="0" ng-model="doctor.clinic.pincode" class="form-control" id="doctorPinCode" name="doctorPinCode" placeholder="Pin Code"/>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <hr>
+                <h4 class='text-success'>
+                    <i class="fa fa-user-md fa-2x"></i> 
+                    Services 
+                    <a href="" ng-click="servicesSectionUpdate = true" ng-show="!servicesSectionUpdate">
+                        <i class="fa fa-pencil fa-1x text-muted"></i>
+                    </a>
+                    <a href="" ng-click="upsertUser('Services');" ng-show="servicesSectionUpdate">
+                        <i class="fa fa-floppy-o fa-1x text-primary"></i>
+                    </a>
+                    <a href="" ng-click="servicesSectionUpdate = false" ng-show="servicesSectionUpdate">
+                        <i class="fa fa-close fa-1x text-muted"></i>
+                    </a>
+                    <div class="alert {{alertClass}}  fade in inline-block" ng-show="showAlert && section == 'Services'" role="alert" style="margin-bottom: 0%">
+                        <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+                        {{alertMessage}} 
+                    </div>
+                </h4>
+                <hr>
+                <span ng-show="!servicesSectionUpdate" style="white-space: pre;"> {{doctor.services}} </span>
+                <textarea class="form-control" ng-model="doctor.services" id="doctorservices" name="doctorservices" rows="8" placeholder="Please add Offered Services.." ng-show="servicesSectionUpdate"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr>
+            <h4 class='text-success'>
+                <i class="fa fa-server fa-2x"></i> 
+                Professional Details
+                <a href="" ng-click="professionalDetailsSectionUpdate = true" ng-show="!professionalDetailsSectionUpdate">
+                    <i class="fa fa-pencil fa-1x text-muted"></i>
+                </a>
+                <a href="" ng-click="upsertUser('ProfessionalDetails')" ng-show="professionalDetailsSectionUpdate">
+                    <i class="fa fa-floppy-o fa-1x text-primary"></i>
+                </a>
+                <a href="" ng-click="professionalDetailsSectionUpdate = false" ng-show="professionalDetailsSectionUpdate">
+                    <i class="fa fa-close fa-1x text-muted"></i>
+                </a>
+                <div class="alert {{alertClass}}  fade in inline-block" ng-show="showAlert && section == 'ProfessionalDetails'" role="alert" style="margin-bottom: 0%">
+                    <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+                    {{alertMessage}} 
+                </div>
+            </h4>
+            <hr>
+
+            <div class='col-md-6'>
+                <h5 class='text-info'><i class="fa fa-trophy fa-1x"></i> Specializations</h5>
+                <textarea ng-show="professionalDetailsSectionUpdate" class="form-control" ng-model="doctor.specializations" id="doctorspecializations" name="doctorspecializations" rows="4" placeholder="Please add Specializations.."></textarea>
+                <span ng-show="!professionalDetailsSectionUpdate" style="white-space: pre;"> {{doctor.specializations}} </span>
+            </div>
+            <div class="col-md-6">
+                <h5 class='text-info'><i class="fa fa-tags fa-1x"></i> Memberships</h5>
+                <textarea ng-show="professionalDetailsSectionUpdate" class="form-control" ng-model="doctor.memberships" id="doctormemberships" name="doctormemberships" rows="4" placeholder="Please add Memberships.."></textarea>
+                <span ng-show="!professionalDetailsSectionUpdate" style="white-space: pre;"> {{doctor.memberships}} </span>
+            </div>
+            <hr class="col-md-12">
+            <div class="col-md-12">
+                <h5 class='text-info'><i class="fa fa-newspaper-o"></i> Education</h5>
+                <textarea ng-show="professionalDetailsSectionUpdate" class="form-control" ng-model="doctor.education" id="doctoreducation" name="doctoreducation" rows="4" placeholder="Please add Education Details.."></textarea>
+                <span ng-show="!professionalDetailsSectionUpdate" style="white-space: pre;"> {{doctor.education}} </span>                
+            </div>
+            <hr class="col-md-12">
+            <div class="col-md-12">
+                <h5 class='text-info'><i class="fa fa-server fa-1x"></i> Experience</h5>
+                <textarea ng-show="professionalDetailsSectionUpdate" class="form-control" ng-model="doctor.experience" id="doctorexperience" name="doctorexperience" rows="4" placeholder="Please add Experience Details.."></textarea>
+                <span ng-show="!professionalDetailsSectionUpdate" style="white-space: pre;"> {{doctor.experience}} </span>
+            </div>
+            <hr class="col-md-12">
+            <div class="col-md-12">
+                <h5 class='text-info'><i class="fa fa-wpforms fa-1x"></i> Registrations</h5>
+                <input type="text" ng-show="professionalDetailsSectionUpdate" ng-model="doctor.medicalregnumber" class="form-control" id="doctorMedicalRegNumber" name="doctorMedicalRegNumber" placeholder="Please enter your Medical Registration Number"/>
+                <span ng-show="!professionalDetailsSectionUpdate" style="white-space: pre;"> {{doctor.medicalregnumber}} </span>
+            </div>
+            <hr class="col-md-12">
+        </div>
+    </div>
+</form>
