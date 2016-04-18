@@ -40,32 +40,32 @@
 
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
             <li spy="identifyingDetails">
-                <a href="" ng-click="isIdentifyingDetailsCollapsed = false">
+                <a href="">
                     <i class="fa fa-list-alt fa-1x"></i>
                 </a>
             </li>
-            <li spy="history">
-                <a href="" ng-click="isHistoryVisible = true; isHistoryCollapsed = true">
+            <li spy="history" ng-show="patient.isUpdate">
+                <a href="" ng-click="isHistoryVisible = true;">
                     <i class="fa fa-history fa-1x"></i>
                 </a>
             </li>
-            <li spy="allergies">
-                <a href="" ng-click="isAllergiesVisible = true; isAllergiesCollapsed = true">
+            <li spy="allergies" ng-show="patient.isUpdate">
+                <a href="" ng-click="isAllergiesVisible = true;">
                     <i class="fa fa-ban fa-1x"></i>
                 </a>
             </li>
-            <li spy="vitals">
-                <a href="" ng-click="isVitalsVisible = true; isVitalsCollapsed = true">
+            <li spy="vitals" ng-show="patient.isUpdate">
+                <a href="" ng-click="isVitalsVisible = true;">
                     <i class="fa fa-stethoscope fa-1x" ></i>
                 </a>
             </li>
-            <li spy="clinicalNotes">
-                <a href="" ng-click="isClinicalNotesVisible = true; isClinicalNotesCollapsed = true">
+            <li spy="clinicalNotes" ng-show="patient.isUpdate">
+                <a href="" ng-click="isClinicalNotesVisible = true;">
                     <i class="fa fa-sticky-note fa-1x"></i>
                 </a>
             </li>
-            <li spy="documents">
-                <a href=""  ng-click="isDocumentsVisible = true; isDocumentsCollapsed = true">
+            <li spy="documents" ng-show="patient.isUpdate">
+                <a href=""  ng-click="isDocumentsVisible = true;">
                     <i class="fa fa-file-text fa-1x"></i>
                 </a>
             </li>
@@ -264,44 +264,45 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="allergies" ng-show="isAllergiesVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-ban fa-1x"></i>
-                    <a ng-click="isAllergiesCollapsed = !isAllergiesCollapsed" href="">Allergies</a>
-                    <span class="pull-right">
-                        <a href="">
-                            <i class="fa fa-road text-success"></i>
-                        </a>
-                    </span>
-                </h4>
-            </div>
-            <div id="divAllergies" uib-collapse="!isAllergiesCollapsed">
-                <div class="panel-body">
-                    <div class="form-group col-md-4">
-                        <label for="patientDrugAllergies">Drug Allergies:</label>
-                        <textarea class="form-control" ng-change="allergiesChanged = true" ng-model="patient.alergy.drug" id="patientDrugAllergies" rows="1" placeholder="E.g. Penicillins etc."></textarea>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="patientFoodAllergies">Food Allergies:</label>
-                        <textarea class="form-control" ng-change="allergiesChanged = true" ng-model="patient.alergy.food" id="patientFoodAllergies" rows="1" placeholder="E.g. No food allergies recorded etc."></textarea>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="patientEnvironmentalAllergies">Environmental Allergies:</label>
-                        <textarea class="form-control" ng-change="allergiesChanged = true" ng-model="patient.alergy.enviromental" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert && section == 'allergies'" role="alert" style="margin-bottom: 0%">
-                            <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
-                            {{alertMessage}}
-                        </div>
-                        <div class="pull-right">
-                            <button class="btn btn-primary" type="button" ng-click="savePatientPeripheralDetails('allergies', 'userAllergy')" ng-show="allergiesChanged">
-                                <i class="fa fa-floppy-o"></i> Save
-                            </button>
-                        </div>
-                    </div>
+
+        <div id="allergies" ng-show="isAllergiesVisible" class='col-md-12'>
+            <hr>
+            <h4 class='text-success'>
+                <i class="fa fa-ban fa-2x"></i>
+                Allergies
+                <a href="" ng-click="allergiesSectionUpdate = true" ng-show="!allergiesSectionUpdate">
+                    <i class="fa fa-pencil fa-1x text-muted"></i>
+                </a>
+                <a href="" ng-click="savePatientPeripheralDetails('Allergies', 'userAllergy')" ng-show="allergiesSectionUpdate">
+                    <i class="fa fa-floppy-o fa-1x text-primary"></i>
+                </a>
+                <a href="" ng-click="allergiesSectionUpdate = false" ng-show="
+                    SectionUpdate">
+                    <i class="fa fa-close fa-1x text-muted"></i>
+                </a>
+                <a href="">
+                    <i class="fa fa-road text-info"></i>
+                </a>
+                <div class="alert {{alertClass}}  fade in inline-block" ng-show="showAlert && section == 'Allergies'" role="alert" style="margin-bottom: 0%">
+                    <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+                    {{alertMessage}} 
                 </div>
+            </h4>
+            <hr>
+            <div class="col-md-4">
+                <h5 class='text-info'><i class="fa fa-flask fa-1x"></i> Drug Allergies</h5>
+                <textarea ng-show="allergiesSectionUpdate" class="form-control" ng-model="patient.alergy.drug" id="patientDrugAllergies" rows="1" placeholder="E.g. Penicillins etc."></textarea>
+                <span ng-show="!allergiesSectionUpdate" style="white-space: pre;"> {{patient.alergy.drug}} </span>
+            </div>
+            <div class="col-md-4">
+                <h5 class='text-info'><i class="fa fa-cutlery fa-1x"></i> Food Allergies</h5>
+                <textarea class="form-control" ng-show="allergiesSectionUpdate" ng-model="patient.alergy.food" id="patientFoodAllergies" rows="1" placeholder="E.g. No food allergies recorded etc."></textarea>
+                <span ng-show="!allergiesSectionUpdate" style="white-space: pre;"> {{patient.alergy.food}} </span>
+            </div>
+            <div class="col-md-4">
+                <h5 class='text-info'><i class="fa fa-envira fa-1x"></i> Environmental Allergies</h5>
+                <textarea class="form-control" ng-show="allergiesSectionUpdate" ng-model="patient.alergy.enviromental" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
+                <span ng-show="!allergiesSectionUpdate" style="white-space: pre;"> {{patient.alergy.enviromental}} </span>
             </div>
         </div>
 

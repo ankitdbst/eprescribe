@@ -28,7 +28,7 @@
     </tbody>
 </table>
 <div class="form-group">
-    <div class="alert {{alertClass}} col-md-8 fade in" ng-show="showAlert" role="alert" style="margin-bottom: 0%">
+    <div class="alert {{alertClass}} col-md-8 fade in" ng-show="showAlert && section == 'ClinicalNote'" role="alert" style="margin-bottom: 0%">
         <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
         {{alertMessage}} 
     </div>

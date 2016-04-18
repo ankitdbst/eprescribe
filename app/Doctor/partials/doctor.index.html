@@ -80,7 +80,8 @@
                 <input type="text" ng-model="doctor.midlleName" class="form-control" id="doctorMiddleName" name="doctorMiddleName" placeholder="Middle Name (optional)" />
             </div>
             <div class="form-group col-md-4" ng-class="{
-                    'has-error': formDoctorProfile.doctorLastName.$touched && formDoctorProfile.doctorLastName.$invalid }">
+                    'has-error'
+                    : formDoctorProfile.doctorLastName.$touched && formDoctorProfile.doctorLastName.$invalid }">
                 <label for="doctorLastName"> Last Name*:</label>
                 <input type="text" ng-model="doctor.lastName" class="form-control" name="doctorLastName" id="doctorLastName" placeholder="Last Name" required/>
                 <div class="help-block" ng-messages="formDoctorProfile.doctorLastName.$error" ng-if="formDoctorProfile.doctorLastName.$touched">
@@ -124,7 +125,7 @@
                 <hr>
                 <div ng-show="!clinicSectionUpdate">
                     <address>
-                        <strong class="text-info"> {{doctor.clinic.name}} </strong><br>
+                        <strong class="text-info"><i class="fa fa-map-marker fa-1x"></i>  {{doctor.clinic.name}} </strong><br>
                         {{doctor.clinic.addressLine1}}, {{doctor.clinic.addressLine2}}<br>
                         {{doctor.clinic.landmark}}, {{doctor.clinic.city}}, {{doctor.clinic.state}} {{doctor.clinic.pincode}}
                     </address>
