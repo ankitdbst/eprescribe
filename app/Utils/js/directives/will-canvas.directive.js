@@ -13,8 +13,6 @@
         backgroundColor: Module.Color.WHITE,
         color: Module.Color.BLACK,
 
-        strokes: new Array(),
-
         init: function(width, height, canvas) {
           this.isTouch = !!('ontouchstart' in window);
           this.initInkEngine(width, height, canvas);
@@ -23,80 +21,113 @@
 
         initInkEngine: function(width, height, canvas) {
           this.canvas = new Module.InkCanvas(canvas, width, height);
-          this.strokesLayer = this.canvas.createLayer();
+          this.canvas.clear(this.backgroundColor);
 
-          this.clear();
+          this.brush = new Module.DirectBrush();
 
-          this.brush = new Module.SolidColorBrush();
+          this.speedPathBuilder = new Module.SpeedPathBuilder();
+          this.speedPathBuilder.setNormalizationConfig(182, 3547);
+          // this.speedPathBuilder.setPropertyConfig(Module.PropertyName.Width, 2.05, 34.53, 0.72, NaN, Module.PropertyFunction.Power, 1.19, false);
+          this.speedPathBuilder.setPropertyConfig(Module.PropertyName.Width, 0.5, 1.2, NaN, NaN, Module.PropertyFunction.Sigmoid, 0.6, true);
 
-          this.pathBuilder = new Module.SpeedPathBuilder();
-          this.pathBuilder.setNormalizationConfig(5, 210);
-          this.pathBuilder.setPropertyConfig(Module.PropertyName.Width, 1, 3.2, NaN, NaN, Module.PropertyFunction.Sigmoid, 0.6, true);
+          if (window.PointerEvent) {
+            this.pressurePathBuilder = new Module.PressurePathBuilder();
+            this.pressurePathBuilder.setNormalizationConfig(0.195, 0.88);
+            this.pressurePathBuilder.setPropertyConfig(Module.PropertyName.Width, 2.05, 34.53, 0.72, NaN, Module.PropertyFunction.Power, 1.19, false);
+            this.smoothener = new Module.MultiChannelSmoothener(this.pressurePathBuilder.stride);
+          } else {
+            this.smoothener = new Module.MultiChannelSmoothener(this.speedPathBuilder.stride);
+          }
 
-          this.smoothener = new Module.MultiChannelSmoothener(this.pathBuilder.stride);
-
-          this.strokeRenderer = new Module.StrokeRenderer(this.canvas);
+          this.strokeRenderer = new Module.StrokeRenderer(this.canvas, this.canvas);
           this.strokeRenderer.configure({brush: this.brush, color: this.color});
         },
 
         initEvents: function() {
           var self = this;
-          $(Module.canvas).on("mousedown touchstart", function(e) {self.beginStroke(e);});
-          $(Module.canvas).on("mousemove touchmove", function(e) {self.moveStroke(e);});
-          $(Module.canvas).on("mouseup touchend", function(e) {self.endStroke(e);});
-        },
 
-        getOffset: function(elem) {
-          var offsetTop = 0;
-          var offsetLeft = 0;
-          do {
-            if (!isNaN(elem.offsetLeft)) {
-              offsetTop += elem.offsetTop;
-              offsetLeft += elem.offsetLeft;
+          if (window.PointerEvent) {
+            Module.canvas.addEventListener("pointerdown", function(e) {self.beginStroke(e);});
+            Module.canvas.addEventListener("pointermove", function(e) {self.moveStroke(e);});
+            document.addEventListener("pointerup", function(e) {self.endStroke(e);});
+          }
+          else {
+            Module.canvas.addEventListener("mousedown", function(e) {self.beginStroke(e);});
+            Module.canvas.addEventListener("mousemove", function(e) {self.moveStroke(e);});
+            document.addEventListener("mouseup", function(e) {self.endStroke(e);});
+
+            if (window.TouchEvent) {
+              Module.canvas.addEventListener("touchstart", function(e) {self.beginStroke(e);});
+              Module.canvas.addEventListener("touchmove", function(e) {self.moveStroke(e);});
+              document.addEventListener("touchend", function(e) {self.endStroke(e);});
             }
-            elem = elem.offsetParent;
-          } while (elem);
-          return {
-            left: offsetLeft,
-            top: offsetTop
-          };
-        },
-
-        setPointFromEvent: function(point, e) {
-          if (this.isTouch) {
-            point.x = e.changedTouches[0].pageX - this.getOffset(e.target).left;
-            point.y = e.changedTouches[0].pageY - this.getOffset(e.target).top;
-          } else {
-            point.x = e.offsetX !== undefined ? e.offsetX : e.layerX;
-            point.y = e.offsetY !== undefined ? e.offsetY : e.layerY;
           }
         },
 
-        beginStroke: function(e) {
-          e.preventDefault();
-          var point = {x: 0, y: 0};
-          this.setPointFromEvent(point, e.originalEvent);
-//          console.log("Point", {x: e.clientX, y: e.clientY});
-          console.re.log("Original Point", point);
-          this.inputPhase = Module.InputPhase.Begin;
+          getOffset: function(elem) {
+            var offsetTop = 0;
+            var offsetLeft = 0;
+            do {
+              if (!isNaN(elem.offsetLeft)) {
+                offsetTop += elem.offsetTop;
+                offsetLeft += elem.offsetLeft;
+              }
+              elem = elem.offsetParent;
+            } while (elem);
+            return {
+              left: offsetLeft,
+              top: offsetTop
+            };
+          },
 
+          setPointFromEvent: function(point, e) {
+            if (this.isTouch) {
+              point.x = e.changedTouches[0].pageX - this.getOffset(e.target).left;
+              point.y = e.changedTouches[0].pageY - this.getOffset(e.target).top;
+            } else {
+              point.x = e.offsetX !== undefined ? e.offsetX : e.layerX;
+              point.y = e.offsetY !== undefined ? e.offsetY : e.layerY;
+            }
+          },
+
+        getPressure: function(e) {
+          return (window.PointerEvent && e instanceof PointerEvent && e.pressure !== 0.5)?e.pressure:NaN;
+        },
+
+        beginStroke: function(e) {
+          // if (e.button != 0) return;
+          e.preventDefault();
+          this.inputPhase = Module.InputPhase.Begin;
+          this.pressure = this.getPressure(e);
+          this.pathBuilder = isNaN(this.pressure)?this.speedPathBuilder:this.pressurePathBuilder;
+
+          var point = {x: 0, y: 0};
+          this.setPointFromEvent(point, e);
           this.buildPath(point);
           this.drawPath();
         },
 
         moveStroke: function(e) {
-          e.preventDefault();
           if (!this.inputPhase) return;
-
+          e.preventDefault();
           this.inputPhase = Module.InputPhase.Move;
           var point = {x: 0, y: 0};
-          this.setPointFromEvent(point, e.originalEvent);
-//          console.log("Point", {x: e.clientX, y: e.clientY});
-          console.re.log("Original Point", point);
+          this.setPointFromEvent(point, e);
+
           this.pointerPos = point;
+          this.pressure = this.getPressure(e);
 
           if (WILL.frameID != WILL.canvas.frameID) {
             var self = this;
+//            if(!self.lastCalledTime) {
+//               self.lastCalledTime = Date.now();
+//               var fps = 0;
+//               return;
+//            }
+//            var delta = (Date.now() - self.lastCalledTime)/1000;
+//            self.lastCalledTime = Date.now();
+//            fps = 1/delta;
+//            console.re.log("FPS: ", fps);
 
             WILL.frameID = WILL.canvas.requestAnimationFrame(function() {
               if (self.inputPhase && self.inputPhase == Module.InputPhase.Move) {
@@ -108,20 +139,14 @@
         },
 
         endStroke: function(e) {
-          e.preventDefault();
           if (!this.inputPhase) return;
-
+          e.preventDefault();
           this.inputPhase = Module.InputPhase.End;
-
+          this.pressure = this.getPressure(e);
           var point = {x: 0, y: 0};
-          this.setPointFromEvent(point, e.originalEvent);
-//          console.log("Point", {x: e.clientX, y: e.clientY});
-          console.re.log("Original Point", point);
+          this.setPointFromEvent(point, e);
           this.buildPath(point);
           this.drawPath();
-
-          var stroke = new Module.Stroke(this.brush, this.path, NaN, this.color, 0, 1);
-          this.strokes.push(stroke);
 
           delete this.inputPhase;
         },
@@ -130,93 +155,22 @@
           if (this.inputPhase == Module.InputPhase.Begin)
             this.smoothener.reset();
 
-          var pathPart = this.pathBuilder.addPoint(this.inputPhase, pos, Date.now()/1000);
-          console.re.log("Path Part", window.JSON.stringify(pathPart));
+          var pathBuilderValue = isNaN(this.pressure)?Date.now() / 1000:this.pressure;
+
+          var pathPart = this.pathBuilder.addPoint(this.inputPhase, pos, pathBuilderValue);
+          // var pathContext = this.pathBuilder.addPathPart(pathPart);
           var smoothedPathPart = this.smoothener.smooth(pathPart, this.inputPhase == Module.InputPhase.End);
-          var pathContext = this.pathBuilder.addPathPart(smoothedPathPart);
+            var pathContext = this.pathBuilder.addPathPart(smoothedPathPart);
 
           this.pathPart = pathContext.getPathPart();
-          this.path = pathContext.getPath();
-
-          if (this.inputPhase == Module.InputPhase.Move) {
-            var preliminaryPathPart = this.pathBuilder.createPreliminaryPath();
-            var preliminarySmoothedPathPart = this.smoothener.smooth(preliminaryPathPart, true);
-
-            this.preliminaryPathPart = this.pathBuilder.finishPreliminaryPath(preliminarySmoothedPathPart);
-          }
         },
 
         drawPath: function() {
-          if (this.inputPhase == Module.InputPhase.Begin) {
-            this.strokeRenderer.draw(this.pathPart, false);
-            this.strokeRenderer.blendUpdatedArea();
-          }
-          else if (this.inputPhase == Module.InputPhase.Move) {
-            this.strokeRenderer.draw(this.pathPart, false);
-            this.strokeRenderer.drawPreliminary(this.preliminaryPathPart);
-
-            this.canvas.clear(this.strokeRenderer.updatedArea, this.backgroundColor);
-            this.canvas.blend(this.strokesLayer, {rect: this.strokeRenderer.updatedArea});
-
-            this.strokeRenderer.blendUpdatedArea();
-          }
-          else if (this.inputPhase == Module.InputPhase.End) {
-            this.strokeRenderer.draw(this.pathPart, true);
-            this.strokeRenderer.blendStroke(this.strokesLayer, Module.BlendMode.NORMAL);
-
-            this.canvas.clear(this.strokeRenderer.strokeBounds, this.backgroundColor);
-            this.canvas.blend(this.strokesLayer, {rect: this.strokeRenderer.strokeBounds});
-          }
-        },
-
-        redraw: function(dirtyArea) {
-          if (!dirtyArea) dirtyArea = this.canvas.bounds;
-          dirtyArea = Module.RectTools.ceil(dirtyArea);
-
-          this.strokesLayer.clear(dirtyArea);
-
-          this.strokes.forEach(function(stroke) {
-            var affectedArea = Module.RectTools.intersect(stroke.bounds, dirtyArea);
-
-            if (affectedArea) {
-              this.strokeRenderer.draw(stroke);
-              this.strokeRenderer.blendStroke(this.strokesLayer, stroke.blendMode);
-            }
-          }, this);
-
-          this.refresh(dirtyArea);
-        },
-
-        refresh: function(dirtyArea) {
-          this.canvas.blend(this.strokesLayer, {rect: Module.RectTools.ceil(dirtyArea)});
+          this.strokeRenderer.draw(this.pathPart, this.inputPhase == Module.InputPhase.End);
         },
 
         clear: function() {
-          this.strokes = new Array();
-
-          this.strokesLayer.clear(this.backgroundColor);
           this.canvas.clear(this.backgroundColor);
-        },
-
-        load: function(e) {
-          var input = e.currentTarget;
-          var file = input.files[0];
-          var reader = new FileReader();
-
-          reader.onload = function(e) {
-            WILL.clear();
-
-            var strokes = Module.InkDecoder.decode(new Uint8Array(e.target.result));
-            WILL.strokes.pushArray(strokes);
-            WILL.redraw(strokes.bounds);
-          };
-
-          reader.readAsArrayBuffer(file);
-        },
-
-        save: function() {
-          var data = Module.InkEncoder.encode(this.strokes);
-          saveAs(data, "export.data", "application/octet-stream");
         }
       };
 
