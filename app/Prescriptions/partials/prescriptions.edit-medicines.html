@@ -7,11 +7,14 @@
 <div class="eremedium-dialog">
   <form name="formPrescription"  class="panel-group" novalidate>
     <div class="medicines-list">
-      <h4>Rx</h4>
-      <div class="input-group input-group--autocomplete">
-          <input type="text" ng-model="prescription.medcines[0].name" class=" form-control"
-               placeholder="Choose from template..." uib-typeahead="medicines.name for medicines in search($viewValue)"/>
-      </div>
+      <h4>Rx</h4>      
+       <ui-select multiple sortable="true"  ng-model="templates.selected" theme="bootstrap" title="Choose template" on-select="templateAdded($item)" on-remove="templateRemoved($item)">
+        <ui-select-match placeholder="Choose a template...">{{getTemplateName($select.selected[$index])}}</ui-select-match>
+        <ui-select-choices repeat="template in templateList | filter: $select.search">
+            <div ng-bind-html="template.templateName | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+    
       <hr>
       <items editable="true" type="medcine" prescription="prescription"></items>
     </div>
@@ -29,16 +32,13 @@
 
   </form>
 </div>
-<navbar type="footer">
-  <li class="navbar-li-custom">
-    <div>
-        <button type="button" class="btn btn-primary" ng-if="!canvasEditable" ng-click="save()"
-                ng-disabled="formPrescription.$invalid">
-            <i class="fa fa-floppy-o"></i> Save
-        </button>
-      <button type="button" class="btn btn-primary" ng-if="!canvasEditable" ng-click="templateNameDialog()"
-              ng-disabled="formPrescription.$invalid">
-          <i class="fa fa-floppy-o"></i> Save as Template
-      </button>
-    </div>
-</navbar>
+<div class="pull-right">
+  <button type="button" class="btn btn-primary" ng-click="save()"
+          ng-disabled="formPrescription.$invalid">
+      <i class="fa fa-floppy-o"></i> Save
+  </button>
+  <button type="button" class="btn btn-primary" ng-click="templateNameDialog()"
+          ng-disabled="formPrescription.$invalid">
+      <i class="fa fa-floppy-o"></i> Save and Create Template
+  </button>
+</div>

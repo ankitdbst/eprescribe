@@ -61,9 +61,7 @@
       var params = {
         user: user.mobile,
         sessionId: user.sessionId,
-        prescription: $scope.prescription,
-        isTemplate: 'true',
-        templateName: 'FeverTemplate'
+        prescription: $scope.prescription
       };
 
       ['medcines', 'advises'].forEach(function (itemStr) {
@@ -182,7 +180,8 @@
 
     function AddMedicines() {
       $state.go('PrescriptionAddMedicines', {
-        patientId: $stateParams.patientId
+        patientId: $stateParams.patientId,
+        prescription: $scope.prescription
       });
     }
 

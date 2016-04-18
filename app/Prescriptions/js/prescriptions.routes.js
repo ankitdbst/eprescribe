@@ -46,7 +46,10 @@
       .state('PrescriptionAddMedicines', {
         url: '/patients/:patientId/prescriptions/new/medicines',
         templateUrl: 'Prescriptions/partials/prescriptions.edit-medicines.html',
-        controller: 'PrescriptionNewOrEditCtrl',
+        params: {
+          prescription: null
+        },
+        controller: 'PrescriptionEditMedicinesCtrl',
         ncyBreadcrumb: {
           label: 'Add Medicines',
           parent: 'PrescriptionNewOrEdit'

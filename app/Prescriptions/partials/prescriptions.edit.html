@@ -5,7 +5,7 @@
 <div class="eremedium-dialog">
   <form name="formPrescription" class="panel-group" novalidate>
     <h4>Diagnosis & Complaint <small>(hand write)</small>
-      <button type="button" class="btn btn-primary pull-right" ng-if="!canvasEditable" ng-click="addMedicines()">
+      <button type="button" class="btn btn-primary pull-right" ng-click="addMedicines()" style="margin-bottom:15px;">
             <span class="glyphicon glyphicon-plus"></span> Add Medicines
         </button>
     </h4>
@@ -43,13 +43,9 @@
   &lt;!&ndash;<li><a ng-click="upsertItem('advise')"><span class="glyphicon glyphicon-plus"></span> Advises (Lab Tests)</a></li>&ndash;&gt;
 </navbar>
 -->
-<navbar type="footer">
-  <h3></h3>
-  <li class="navbar-li-custom">
-    <div class="pull-right">
-        <button type="button" class="btn btn-primary pull-right" ng-if="!canvasEditable" ng-click="addMedicines()">
-            <span class="glyphicon glyphicon-plus"></span> Add Medicines
-        </button>
-    </div>
-</navbar>
+<div class="pull-right">
+    <button type="button" class="btn btn-primary" ng-click="addMedicines()">
+        <span class="glyphicon glyphicon-plus"></span> Add Medicines
+    </button>
+</div>
 

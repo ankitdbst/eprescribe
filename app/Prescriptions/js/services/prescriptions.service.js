@@ -1,7 +1,6 @@
 (function () {
   'use strict';
   angular.module('ERemediumWebApp.prescriptions.services')
-
       .factory('Prescription', ['$resource', function ($resource) {
           var resourceUrl = ''; // We have different resource url for different actions, so we will enter them in actions
           var paramDefaults = {}; // Currently no param defaults
@@ -37,6 +36,16 @@
             placeOrder: {
               method: 'POST',
               url: 'http://52.76.165.4/ERService/orderservice/Order',
+              isArray: false
+            },
+            getTemplates: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/prescription/ListTemplate',
+              isArray: true
+            },
+            getTemplateById: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/prescription/GetTemplateById',
               isArray: false
             }
           };
