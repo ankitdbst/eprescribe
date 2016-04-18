@@ -57,9 +57,14 @@
                     function setAuthenticatedAccount(account) {
                         $cookies.putObject('eremediumaccount', account);
                     }
+                    
+                    function logout() {
+                        $cookies.remove('eremediumaccount');
+                    }
 
                     return {
                         'login': login,
+                        'logout': logout,
                         'getAuthenticatedAccount': getAuthenticatedAccount,
                         'setAuthenticatedAccount': setAuthenticatedAccount,
                         'isAuthenticated': isAuthenticated

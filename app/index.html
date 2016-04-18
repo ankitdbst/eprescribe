@@ -18,8 +18,13 @@
     <link href="css/simple-sidebar.css" rel="stylesheet" type="text/css"/>
     <link href="css/gotham-rounded-book.css" rel="stylesheet" type="text/css"/>
     <link href="bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="bower_components/angular-busy/dist/angular-busy.min.css" rel="stylesheet" type="text/css"/>    
+    <link href="bower_components/angular-busy/dist/angular-busy.min.css" rel="stylesheet" type="text/css"/>
     <link href="bower_components/angular-ui-select/dist/select.css" rel="stylesheet" type="text/css"/>
+    <!-- Remote logging for iPad
+      Usage: console.re.log("Hello from remote logger");
+    -->
+    <script src="//console.re/connector.js" data-channel="fc9b-ca1e-104b" id="consolerescript"></script>
+
     <!-- For browsers with no/partial ES6 support -->
     <script src="bower_components/es6-shim/es6-shim.min.js" type="text/javascript"></script>
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -69,8 +74,8 @@
               <i class="fa fa-bell fa-2x"></i>
               <span class="badge alert-success">{{pendingTasksCount}}</span>
             </a>
-            <a class="btn btn-link" role="button">
-              <img ng-src="{{profileImageURL}}" class="img-circle" width="60" height="60">
+            <a class="btn btn-link" href='#/doctor' role="button">
+              <img ng-src="{{doctor.profileImageURL}}" class="img-circle" width="60" height="60">
             </a>
           </span>
         </div>
@@ -87,17 +92,17 @@
               </a>
             </li>
             <li>
-              <a href="#/tasks">
-                <span class="fa-stack fa-lg pull-left">
-                  <i class="fa fa-check-square-o fa-stack-1x "></i>
-                </span> Tasks <span class="badge">{{pendingTasksCount}}</span>
-              </a>
-            </li>
-            <li>
               <a href="#/messages">
                 <span class="fa-stack fa-lg pull-left">
                   <i class="fa fa-envelope fa-stack-1x "></i>
                 </span>Messages<span class="badge">{{pendingMessagesCount}}</span>
+              </a>
+            </li>
+            <li>
+              <a href="#/tasks">
+                <span class="fa-stack fa-lg pull-left">
+                  <i class="fa fa-check-square-o fa-stack-1x "></i>
+                </span> Tasks <span class="badge">{{pendingTasksCount}}</span>
               </a>
             </li>
             <li>
@@ -113,6 +118,11 @@
             <li>
               <a href="#/pharmacy">
                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-medkit fa-stack-1x "></i></span>Pharmacy
+              </a>
+            </li>
+            <li>
+              <a href="" ui-sref="login({signIn: true})">
+                <span class="fa-stack fa-lg pull-left"><i class="fa fa-sign-out fa-stack-1x "></i></span>Log Out
               </a>
             </li>
           </ul>
@@ -189,7 +199,6 @@
       <script src="js/app.config.js"></script>
       <script src="js/app.router.js"></script>
 
-      <script src="Doctor_Settings/doctor_settings.js"></script>
 
       <!-- Login -->
       <script src="Login/js/login.js"></script>
@@ -245,6 +254,12 @@
       <script src="Messages/js/messages.routes.js" type="text/javascript"></script>
       <script src="Messages/js/controllers/messages.index.controller.js" type="text/javascript"></script>
       <script src="Messages/js/services/messages.service.js" type="text/javascript"></script>
+
+      <!-- Doctor -->
+      <script src="Doctor/js/doctor.module.js" type="text/javascript"></script>
+      <script src="Doctor/js/doctor.routes.js" type="text/javascript"></script>
+      <script src="Doctor/js/controllers/doctor.index.controller.js" type="text/javascript"></script>
+      <script src="Doctor/js/services/doctor.service.js" type="text/javascript"></script>
       <!-- Labs -->
       <script src="Labs/js/labs.module.js" type="text/javascript"></script>
       <script src="Labs/js/labs.routes.js" type="text/javascript"></script>
@@ -259,6 +274,7 @@
       <script src="Utils/js/directives/print.directive.js" type="text/javascript"></script>
       <script src="Utils/js/directives/scrollspy.directive.js" type="text/javascript"></script>
       <script src="Utils/js/directives/spy.directive.js" type="text/javascript"></script>
+      <script src="Utils/js/directives/aDisabled.directive.js" type="text/javascript"></script>
       <script src="Utils/js/filters/datetime.filter.js"></script>
       <script src="Utils/js/sidebar_menu.js" type="text/javascript"></script>
       <script src="components/version/version.js"></script>

@@ -248,3 +248,10 @@ body {
   background-color: ghostwhite;
   z-index: 999999;
 }
+
+a.disabled {
+    color: #AAAAAA;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+}
