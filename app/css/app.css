@@ -264,3 +264,10 @@ a.disabled {
     padding-right:0; 
     border-radius: 50%; 
 }
+
+.hr-dotted {
+    border: 1px dotted gainsboro;
+    border-style: none none dotted; 
+    color: #fff; 
+    background-color: #fff;
+}

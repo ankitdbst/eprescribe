@@ -34,9 +34,11 @@
             $scope.patient.parentId = "";
             $scope.patient.dependants = [];
             $scope.patient.status = "WaitingOTP";
+            EditMode(true);
         } else {
             //Get Patient Details from server and populate patient object..
             GetUserProfile();
+            EditMode(false);
         }
 
 
@@ -64,7 +66,13 @@
             $scope.genders = ["Male", "Female"];
             $scope.relationshiptypes = ["None", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister", "Others"];
             $rootScope.pageHeader = "Patient Profile";
-            $scope.bloodgroups = ["None", "A+", "A-", "A Unknown", "B+", "B-", "B Unknown", "AB+", "AB-", "AB Unknown", "O+", "O-", "O Unknown"];
+            $scope.bloodgroups = ["None", "A+", "A-", "A Unknown", "B+", "B-", "B Unknown", "AB+", "AB-", "AB Unknown", "O+", "O-", "O Unknown"];            
+        }
+        
+        function EditMode(flag) {
+            $scope.identifyingDetailsSectionUpdate = flag;
+            $scope.historySectionUpdate = flag;
+            $scope.allergiesSectionUpdate = flag;            
         }
 
         function SavePatientProfile(section) {
@@ -110,6 +118,7 @@
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
+                    EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
@@ -151,6 +160,7 @@
                     $scope.alertClass = "alert-success";
                     //If all goes good, rebind the data..
                     $scope.patient = response.patient;
+                    EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
