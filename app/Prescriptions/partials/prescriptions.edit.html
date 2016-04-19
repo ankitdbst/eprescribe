@@ -5,7 +5,7 @@
 <div class="eremedium-dialog">
 <form name="formPrescription" class="panel-group" novalidate>
   <h4>Diagnosis & Complaint <small>(hand write)</small></h4>
-  <canvas ng-model="prescription.imgDiagnosis" will-canvas ng-if="canvasEnabled"></canvas>
+  <canvas ng-model="prescription.imgDiagnosis" will-canvas id="canvasPatientDiagnosis" ng-if="canvasEnabled"></canvas>
   <!--<div ng-model="prescription.imgDiagnosis" my-canvas options="{}" ng-if="canvasEnabled" />-->
 
   <div ng-if="!canvasEnabled">

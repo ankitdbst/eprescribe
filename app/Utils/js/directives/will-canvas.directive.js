@@ -15,12 +15,13 @@
 
         init: function(width, height, canvas) {
           this.isTouch = !!('ontouchstart' in window);
-          this.initInkEngine(width, height, canvas);
+          this.canvasEl = canvas;
+          this.initInkEngine(width, height);
           this.initEvents();
         },
 
-        initInkEngine: function(width, height, canvas) {
-          this.canvas = new Module.InkCanvas(canvas, width, height);
+        initInkEngine: function(width, height) {
+          this.canvas = new Module.InkCanvas(this.canvasEl, width, height);
           this.canvas.clear(this.backgroundColor);
 
           this.brush = new Module.DirectBrush();
@@ -82,8 +83,20 @@
 
         setPointFromEvent: function(point, e) {
           if (this.isTouch) {
-            point.x = e.changedTouches[0].pageX - this.getOffset(e.target).left;
-            point.y = e.changedTouches[0].pageY - this.getOffset(e.target).top;
+            // We want to remove touches that came along with the interactions with the canvas
+            // Touchmove, Touchstart, Touchend
+            var idx = 0;
+            if( e.changedTouches > 0 ) {
+              for( var i = 0; i < e.changedTouches; ++i ) {
+                if( e.changedTouches[i].target.id === canvasEl.id ) {
+                  idx = i;
+                  console.re.log("Multiple touches, found canvas: ", e.changedTouches[i].target.id);
+                  break;
+                }
+              }
+            }
+            point.x = e.changedTouches[idx].pageX - this.getOffset(e.target).left;
+            point.y = e.changedTouches[idx].pageY - this.getOffset(e.target).top;
           } else {
             point.x = e.offsetX !== undefined ? e.offsetX : e.layerX;
             point.y = e.offsetY !== undefined ? e.offsetY : e.layerY;
@@ -96,7 +109,6 @@
 
         beginStroke: function(e) {
           // if (e.button != 0) return;
-          console.re.log("Event [Begin Phase]: ", e);
           e.preventDefault();
           this.inputPhase = Module.InputPhase.Begin;
           this.pressure = this.getPressure(e);
