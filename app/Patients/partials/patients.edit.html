@@ -41,7 +41,7 @@
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
             <li spy="identifyingDetails">
                 <a href="">
-                    <i class="fa fa-list-alt fa-1x"></i>
+                    <i class="fa fa-user fa-1x"></i>
                 </a>
             </li>
             <li spy="history" ng-show="patient.isUpdate">
@@ -78,7 +78,7 @@
         <div id="identifyingDetails" class='col-md-12'>
             <hr>
             <h4 class='text-success'>
-                <i class="fa fa-list-alt fa-2x"></i>
+                <i class="fa fa-user fa-2x"></i>
                 Identifying Details*
                 <a href="" ng-click="identifyingDetailsSectionUpdate = true" ng-show="!identifyingDetailsSectionUpdate">
                     <i class="fa fa-pencil fa-1x text-muted"></i>
@@ -127,7 +127,7 @@
             <div class="col-md-4">
                 <h5 class='text-info'><i class="fa fa-calendar fa-1x"></i> Date of Birth*</h5>
                 <datetimepicker name="patientDateOfBirth" ng-show="identifyingDetailsSectionUpdate" id="patientDateOfBirth" ng-model="patient.dob" placeholder="Date of Birth"/>
-                <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.dob| date:'short'}} </span>
+                <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.dob| date:'medium'}} </span>
             </div>
             <div class="col-md-4">
                 <h5 class='text-info'><i class="fa fa-venus fa-1x"></i> Gender*</h5>                
@@ -202,7 +202,7 @@
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.address.addressLine2}} </span>
             </div>
             <div class="col-md-4">
-                <h5 class='text-info'><i class="fa fa-map-marker fa-1x"></i> City</h5>
+                <h5 class='text-info'><i class="fa fa-map-o fa-1x"></i> City</h5>
                 <input type="text" ng-model="patient.address.city" ng-show="identifyingDetailsSectionUpdate" class="form-control" id="patientCity" name="patientCity" placeholder="City" />
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.address.city}} </span>
             </div>
@@ -218,7 +218,7 @@
             </div>
         </div>
 
-        <div id="history" class='col-md-12'>
+        <div id="history" ng-show="patient.isUpdate" class='col-md-12'>
             <hr>
             <h4 class='text-success'>
                 <i class="fa fa-history fa-2x"></i>
@@ -276,7 +276,7 @@
             </div>
         </div>
 
-        <div id="allergies" class='col-md-12'>
+        <div id="allergies" ng-show="patient.isUpdate" class='col-md-12'>
             <hr>
             <h4 class='text-success'>
                 <i class="fa fa-ban fa-2x"></i>
