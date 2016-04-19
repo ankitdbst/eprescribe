@@ -15,12 +15,13 @@
 
         init: function(width, height, canvas) {
           this.isTouch = !!('ontouchstart' in window);
-          this.initInkEngine(width, height, canvas);
+          this.canvasEl = canvas;
+          this.initInkEngine(width, height);
           this.initEvents();
         },
 
-        initInkEngine: function(width, height, canvas) {
-          this.canvas = new Module.InkCanvas(canvas, width, height);
+        initInkEngine: function(width, height) {
+          this.canvas = new Module.InkCanvas(this.canvasEl, width, height);
           this.canvas.clear(this.backgroundColor);
 
           this.brush = new Module.DirectBrush();
@@ -95,8 +96,8 @@
         },
 
         beginStroke: function(e) {
-          // if (e.button != 0) return;
-          console.re.log("Event [Begin Phase]: ", e);
+          if(this.isTouch && e.changedTouches[0].target.id !== this.canvasEl.id)
+            return;
           e.preventDefault();
           this.inputPhase = Module.InputPhase.Begin;
           this.pressure = this.getPressure(e);
@@ -109,6 +110,8 @@
         },
 
         moveStroke: function(e) {
+          if(this.isTouch && e.changedTouches[0].target.id !== this.canvasEl.id)
+            return;
           if (!this.inputPhase) return;
           e.preventDefault();
           this.inputPhase = Module.InputPhase.Move;
@@ -140,6 +143,8 @@
         },
 
         endStroke: function(e) {
+          if(this.isTouch && e.changedTouches[0].target.id !== this.canvasEl.id)
+            return;
           if (!this.inputPhase) return;
           e.preventDefault();
           this.inputPhase = Module.InputPhase.End;
