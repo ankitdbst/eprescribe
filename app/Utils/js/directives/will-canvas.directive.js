@@ -96,7 +96,7 @@
         },
 
         beginStroke: function(e) {
-          if(e.changedTouches[0].target.id !== this.canvasEl.id)
+          if(this.isTouch && e.changedTouches[0].target.id !== this.canvasEl.id)
             return;
           e.preventDefault();
           this.inputPhase = Module.InputPhase.Begin;
@@ -110,7 +110,7 @@
         },
 
         moveStroke: function(e) {
-          if(e.changedTouches[0].target.id !== this.canvasEl.id)
+          if(this.isTouch && e.changedTouches[0].target.id !== this.canvasEl.id)
             return;
           if (!this.inputPhase) return;
           e.preventDefault();
@@ -143,7 +143,7 @@
         },
 
         endStroke: function(e) {
-          if(e.changedTouches[0].target.id !== this.canvasEl.id)
+          if(this.isTouch && e.changedTouches[0].target.id !== this.canvasEl.id)
             return;
           if (!this.inputPhase) return;
           e.preventDefault();
