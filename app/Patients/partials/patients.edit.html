@@ -40,43 +40,33 @@
 
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
             <li spy="identifyingDetails">
-                <a href="" ng-click="isIdentifyingDetailsCollapsed = false">
+                <a href="">
                     <i class="fa fa-list-alt fa-1x"></i>
                 </a>
             </li>
-            <li spy="history">
-                <a href="" ng-click="isHistoryVisible = true; isHistoryCollapsed = true">
+            <li spy="history" ng-show="patient.isUpdate">
+                <a href="" ng-click="isHistoryVisible = true;">
                     <i class="fa fa-history fa-1x"></i>
                 </a>
             </li>
-            <li spy="allergies">
-                <a href="" ng-click="isAllergiesVisible = true; isAllergiesCollapsed = true">
+            <li spy="allergies" ng-show="patient.isUpdate">
+                <a href="" ng-click="isAllergiesVisible = true;">
                     <i class="fa fa-ban fa-1x"></i>
                 </a>
             </li>
-            <li spy="vitals">
-                <a href="" ng-click="isVitalsVisible = true; isVitalsCollapsed = true">
+            <li spy="vitals" ng-show="patient.isUpdate">
+                <a href="" ng-click="isVitalsVisible = true;">
                     <i class="fa fa-stethoscope fa-1x" ></i>
                 </a>
             </li>
-            <li spy="clinicalNotes">
-                <a href="" ng-click="isClinicalNotesVisible = true; isClinicalNotesCollapsed = true">
+            <li spy="clinicalNotes" ng-show="patient.isUpdate">
+                <a href="" ng-click="isClinicalNotesVisible = true;">
                     <i class="fa fa-sticky-note fa-1x"></i>
                 </a>
             </li>
-            <li spy="documents">
-                <a href=""  ng-click="isDocumentsVisible = true; isDocumentsCollapsed = true">
-                    <i class="fa fa-file fa-1x"></i>
-                </a>
-            </li>
-            <li spy="labOrderTracking">
-                <a href="" ng-click="isLabOrderTrackingVisible = true; isLabOrderTrackingCollapsed = true">
-                    <i class="fa fa-building fa-1x"></i>
-                </a>
-            </li>
-            <li spy="pharmacyOrderTracking">
-                <a href="" ng-click="isPharmacyOrderTrackingVisible = true; isPharmacyOrderTrackingCollapsed = true">
-                    <i class="fa fa-medkit fa-1x"></i>
+            <li spy="documents" ng-show="patient.isUpdate">
+                <a href=""  ng-click="isDocumentsVisible = true;">
+                    <i class="fa fa-file-text fa-1x"></i>
                 </a>
             </li>
         </ul>
@@ -125,7 +115,7 @@
                         <label for="patientGender">Gender*:</label>
                         <select ng-model="patient.sex" ng-change="identifyingDetailsChanged = true" ng-options="gender for gender in genders" class="form-control" id="patientGender"></select>
                     </div>
-                    
+
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientMobileNumber.$touched && formPatientProfile.patientMobileNumber.$invalid }">
                         <label for="patientMobileNumber">Mobile Number*:</label>
                         <input type="number" min="0" ng-change="identifyingDetailsChanged = true" string-to-number ng-model="patient.mobile" ng-disabled="patient.isUpdate" class="form-control" id="patientMobileNumber" name="patientMobileNumber" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" required/>
@@ -135,12 +125,12 @@
                             <p ng-message="maxlength">Please enter valid Mobile Number!</p>
                         </div>
                     </div>
-                    
+
                     <div class="form-group col-md-4">
                         <label for="patientRelationshipType">Relationship Type*:</label>
                         <select ng-model="patient.relation" ng-change="identifyingDetailsChanged = true" ng-options="relationshiptype for relationshiptype in relationshiptypes" class="form-control" name="patientRelationshipType" id="patientRelationshipType"></select>
                     </div>
-                    
+
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientEmailId.$touched && formPatientProfile.patientEmailId.$invalid }">
                         <label for="patientEmailId">Email Id:</label>
                         <input type="email" ng-model="patient.email" ng-change="identifyingDetailsChanged = true" class="form-control" id="patientEmailId" name="patientEmailId" placeholder="Email Id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" />
@@ -148,7 +138,7 @@
                             <p ng-message="pattern">Please enter a valid Email Id!</p>
                         </div>
                     </div>
-                    
+
                     <div class="form-group col-md-4" ng-class="{ 'has-error': formPatientProfile.patientAlternateMobileNumber.$touched && formPatientProfile.patientAlternateMobileNumber.$invalid }">
                         <label for="patientAlternateMobileNumber">Alternate Mobile Number:</label>
                         <input type="number" min="0" ng-change="identifyingDetailsChanged = true" string-to-number ng-model="patient.alternateMobileNumber" class="form-control" id="patientAlternateMobileNumber" name="patientAlternateMobileNumber" placeholder="Alternate Mobile Number" ng-minlength="10" ng-maxlength="10"/>
@@ -161,7 +151,7 @@
                         <label for="patientLandlineNumber">Landline Number:</label>
                         <input type="number" ng-change="identifyingDetailsChanged = true" min="0" string-to-number ng-model="patient.landlineNumber" class="form-control" id="patientLandlineNumber" name="patientLandlineNumber" placeholder="Landline Number" />
                     </div>
-                    
+
                     <div class="form-group col-md-4">
                         <label for="patientBloodGroup">Blood Group:</label>
                         <select ng-model="patient.bloodgroup" ng-change="identifyingDetailsChanged = true" ng-options="bloodgroup for bloodgroup in bloodgroups" class="form-control" name="patientBloodGroup" id="patientBloodGroup"></select>
@@ -274,131 +264,78 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="allergies" ng-show="isAllergiesVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-ban fa-1x"></i>
-                    <a ng-click="isAllergiesCollapsed = !isAllergiesCollapsed" href="">Allergies</a>
-                    <span class="pull-right">
-                        <a href="">
-                            <i class="fa fa-road text-success"></i>
-                        </a>
-                    </span>
-                </h4>
-            </div>
-            <div id="divAllergies" uib-collapse="!isAllergiesCollapsed">
-                <div class="panel-body">
-                    <div class="form-group col-md-4">
-                        <label for="patientDrugAllergies">Drug Allergies:</label>
-                        <textarea class="form-control" ng-change="allergiesChanged = true" ng-model="patient.alergy.drug" id="patientDrugAllergies" rows="1" placeholder="E.g. Penicillins etc."></textarea>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="patientFoodAllergies">Food Allergies:</label>
-                        <textarea class="form-control" ng-change="allergiesChanged = true" ng-model="patient.alergy.food" id="patientFoodAllergies" rows="1" placeholder="E.g. No food allergies recorded etc."></textarea>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="patientEnvironmentalAllergies">Environmental Allergies:</label>
-                        <textarea class="form-control" ng-change="allergiesChanged = true" ng-model="patient.alergy.enviromental" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert && section == 'allergies'" role="alert" style="margin-bottom: 0%">
-                            <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
-                            {{alertMessage}}
-                        </div>
-                        <div class="pull-right">
-                            <button class="btn btn-primary" type="button" ng-click="savePatientPeripheralDetails('allergies', 'userAllergy')" ng-show="allergiesChanged">
-                                <i class="fa fa-floppy-o"></i> Save
-                            </button>
-                        </div>
-                    </div>
+
+        <div id="allergies" ng-show="isAllergiesVisible" class='col-md-12'>
+            <hr>
+            <h4 class='text-success'>
+                <i class="fa fa-ban fa-2x"></i>
+                Allergies
+                <a href="" ng-click="allergiesSectionUpdate = true" ng-show="!allergiesSectionUpdate">
+                    <i class="fa fa-pencil fa-1x text-muted"></i>
+                </a>
+                <a href="" ng-click="savePatientPeripheralDetails('Allergies', 'userAllergy')" ng-show="allergiesSectionUpdate">
+                    <i class="fa fa-floppy-o fa-1x text-primary"></i>
+                </a>
+                <a href="" ng-click="allergiesSectionUpdate = false" ng-show="
+                    SectionUpdate">
+                    <i class="fa fa-close fa-1x text-muted"></i>
+                </a>
+                <a href="">
+                    <i class="fa fa-road text-info"></i>
+                </a>
+                <div class="alert {{alertClass}}  fade in inline-block" ng-show="showAlert && section == 'Allergies'" role="alert" style="margin-bottom: 0%">
+                    <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+                    {{alertMessage}} 
                 </div>
+            </h4>
+            <hr>
+            <div class="col-md-4">
+                <h5 class='text-info'><i class="fa fa-flask fa-1x"></i> Drug Allergies</h5>
+                <textarea ng-show="allergiesSectionUpdate" class="form-control" ng-model="patient.alergy.drug" id="patientDrugAllergies" rows="1" placeholder="E.g. Penicillins etc."></textarea>
+                <span ng-show="!allergiesSectionUpdate" style="white-space: pre;"> {{patient.alergy.drug}} </span>
+            </div>
+            <div class="col-md-4">
+                <h5 class='text-info'><i class="fa fa-cutlery fa-1x"></i> Food Allergies</h5>
+                <textarea class="form-control" ng-show="allergiesSectionUpdate" ng-model="patient.alergy.food" id="patientFoodAllergies" rows="1" placeholder="E.g. No food allergies recorded etc."></textarea>
+                <span ng-show="!allergiesSectionUpdate" style="white-space: pre;"> {{patient.alergy.food}} </span>
+            </div>
+            <div class="col-md-4">
+                <h5 class='text-info'><i class="fa fa-envira fa-1x"></i> Environmental Allergies</h5>
+                <textarea class="form-control" ng-show="allergiesSectionUpdate" ng-model="patient.alergy.enviromental" id="patientEnvironmentalAllergies" rows="1" placeholder="E.g. Pollen Allergy etc."></textarea>
+                <span ng-show="!allergiesSectionUpdate" style="white-space: pre;"> {{patient.alergy.enviromental}} </span>
             </div>
         </div>
 
-        <div class="panel panel-info" id="vitals" ng-show="isVitalsVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-stethoscope fa-1x"></i>
-                    <a ng-click="isVitalsCollapsed = !isVitalsCollapsed" href="">Vitals</a>
-                    <span class="pull-right">
-                        <a href="">
-                            <i class="fa fa-area-chart text-success"></i>
-                        </a>
-                    </span>
-                </h4>
-            </div>
-            <div id="divVitals" uib-collapse="!isVitalsCollapsed">
-                <div class="panel-body">
-                    <div ui-view="vitals"></div>
-                </div>
-            </div>
+        <div id="vitals" ng-show="isVitalsVisible" class='col-md-8'>
+            <hr>
+            <h4 class='text-success'>
+                <i class="fa fa-stethoscope fa-2x"></i>
+                Vitals
+                <a href="">
+                    <i class="fa fa-area-chart text-info"></i>
+                </a>
+            </h4>
+            <hr>
+            <div ui-view="vitals"></div>
         </div>
 
-        <div class="panel panel-info" id="clinicalNotes" ng-show="isClinicalNotesVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-sticky-note fa-1x"></i>
-                    <a ng-click="isClinicalNotesCollapsed = !isClinicalNotesCollapsed" href="">Clinical Notes</a>
-                </h4>
-            </div>
-            <div id="divClinicalNotes" uib-collapse="!isClinicalNotesCollapsed">
-                <div class="panel-body">
-                    <div ui-view="clinicalNotes"></div>
-                </div>
-            </div>
+        <div id="clinicalNotes" ng-show="isClinicalNotesVisible" class='col-md-4'>
+            <hr>
+            <h4 class='text-success'>
+                <i class="fa fa-sticky-note fa-2x"></i>
+                Clinical Notes
+            </h4>
+            <hr>
+            <div ui-view="clinicalNotes"></div>
         </div>
-
-        <div class="panel panel-info" id="documents" ng-show="isDocumentsVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-file fa-1x"></i>
-                    <a ng-click="isDocumentsCollapsed = !isDocumentsCollapsed" href="">Documents</a>
-                </h4>
-            </div>
-            <div id="divDocuments" uib-collapse="!isDocumentsCollapsed">
-                <div class="panel-body">
-                    <div ui-view="documents"></div>
-                </div>
-            </div>
+        <div id="documents" ng-show="isDocumentsVisible" class='col-md-12'>
+            <hr>
+            <h4 class='text-success'>
+                <i class="fa fa-file-text fa-2x"></i>
+                Documents
+            </h4>
+            <hr>
+            <div ui-view="documents"></div>
         </div>
-
-        <div class="panel panel-info" id="labOrderTracking" ng-show="isLabOrderTrackingVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-building fa-1x"></i>
-                    <a ng-click="isLabOrderTrackingCollapsed = !isLabOrderTrackingCollapsed" href="">Lab Order Tracking</a>
-                    <span class="pull-right">
-                        <a href="">
-                            <i class="fa fa-area-chart text-success"></i>
-                        </a>
-                    </span>
-                </h4>
-            </div>
-            <div id="divLabOrderTracking" uib-collapse="!isLabOrderTrackingCollapsed">
-                <div class="panel-body">
-
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-info" id="pharmacyOrderTracking" ng-show="isPharmacyOrderTrackingVisible">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <i class="fa fa-medkit fa-1x"></i>
-                    <a ng-click="isPharmacyOrderTrackingCollapsed = !isPharmacyOrderTrackingCollapsed" href="">Pharmacy Order Tracking</a>
-                    <span class="pull-right">
-                        <a href="" >
-                            <i class="fa fa-area-chart text-success"></i>
-                        </a>
-                    </span>
-                </h4>
-            </div>
-            <div id="divPharmacyOrderTracking" uib-collapse="!isPharmacyOrderTrackingCollapsed">
-                <div class="panel-body">
-
-                </div>
-            </div>
-        </div>
-
     </div>
 </form>

@@ -28,6 +28,10 @@
     $scope.save = UpsertPrescription;
     $scope.close = ClosePrescription;
     $scope.minimize = Minimize;
+    $scope.addMedicines = AddMedicines;
+    $scope.saveAsTemplate = UpsertPrescriptionAsTemplate;
+    $scope.templateNameDialog = TemplateNameDialog;
+    $scope.search = SearchMedicine;
 
     // Medicine/Advises
     $scope.upsertItem = UpsertItem;
@@ -57,6 +61,50 @@
       var params = {
         user: user.mobile,
         sessionId: user.sessionId,
+        prescription: $scope.prescription
+      };
+
+      ['medcines', 'advises'].forEach(function (itemStr) {
+        var len = $scope.prescription[itemStr].length;
+        if (_.isEmpty($scope.prescription[itemStr][len - 1]) ||
+            Object.keys($scope.prescription[itemStr][len - 1]).length == 1) {
+          $scope.prescription[itemStr].pop();
+        }
+      });
+
+      $scope.myPromise = Prescription.upsert(params, function (response) {
+        if (_.isEqual(response.respCode, 1)) {
+          $scope.closeThisDialog({
+            state: 'saved',
+            data: response.pid
+          });
+        } else {
+          // Show Error
+          console.log(response);
+        }
+      });
+    }
+
+    function TemplateNameDialog() {
+      var templateNameDialog = ngDialog.open({
+        template: 'Prescriptions/partials/prescriptions.template-name-dialog.html',
+        className: 'ngdialog-theme-default',
+        scope: $scope,
+        showClose: true,
+        closeByEscape: false,
+        closeByDocument: false,
+        controller: 'PrescriptionNewOrEditCtrl'
+      });
+    }
+
+    function UpsertPrescriptionAsTemplate() {
+
+      
+      var params = {
+        user: user.mobile,
+        sessionId: user.sessionId,
+        isTemplate: "true",
+        templateName: $scope.templatename,
         prescription: $scope.prescription
       };
 
@@ -129,5 +177,25 @@
     function CloseCanvas() {
       $scope.canvasEditable = false;
     }
+
+    function AddMedicines() {
+      $state.go('PrescriptionAddMedicines', {
+        patientId: $stateParams.patientId,
+        prescription: $scope.prescription
+      });
+    }
+
+    function SearchMedicine(searchText) {
+      var params = {
+        user: user.mobile,
+        sessionId: user.sessionId,
+        doctorId: user.userId,
+        searchText: searchText,
+        limit: 5,
+        columnsToGet: ""
+      };
+      $scope.myPromise = Prescription.searchMed(params).$promise;
+      return Prescription.searchMed(params).$promise;
+    } 
   }
 })();

@@ -200,3 +200,7 @@
     content: "•";
     padding: 5px;
 }
+.template-name-input {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

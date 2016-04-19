@@ -1,15 +1,5 @@
 <div cg-busy="myPromise"></div>
 
-<div class="form-group">
-    <div class="alert {{alertClass}} col-md-8 fade in" ng-show="showAlert" role="alert" style="margin-bottom: 0%">
-        <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
-        {{alertMessage}} 
-    </div>
-    <button type="button" class="btn btn-primary  pull-right" ng-click="upsertVitals()">
-        <i class="fa fa-plus"></i> Add
-    </button>           
-</div>
-
 <table class="table table-hover">
     <thead>
         <tr>                 
@@ -68,3 +58,12 @@
         </tr>
     </tbody>
 </table>
+<div class="form-group">
+    <div class="alert {{alertClass}} col-md-8 fade in" ng-show="showAlert && section == 'Vitals'" role="alert" style="margin-bottom: 0%">
+        <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+        {{alertMessage}} 
+    </div>
+    <button type="button" class="btn btn-primary btn-circle pull-right" ng-click="upsertVitals()">
+        <i class="fa fa-plus fa-2x"></i> 
+    </button>           
+</div>

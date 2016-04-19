@@ -43,6 +43,18 @@
           parent: 'PrescriptionIndex.List'
         }
       })
+      .state('PrescriptionAddMedicines', {
+        url: '/patients/:patientId/prescriptions/new/medicines',
+        templateUrl: 'Prescriptions/partials/prescriptions.edit-medicines.html',
+        params: {
+          prescription: null
+        },
+        controller: 'PrescriptionEditMedicinesCtrl',
+        ncyBreadcrumb: {
+          label: 'Add Medicines',
+          parent: 'PrescriptionNewOrEdit'
+        }
+      })
       .state('PrescriptionOrder', {
         url: '/patients/:patientId/prescriptions/order/:prescriptionId',
         templateUrl: 'Prescriptions/partials/prescriptions.order.html',

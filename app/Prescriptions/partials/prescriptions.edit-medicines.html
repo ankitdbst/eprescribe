@@ -1,0 +1,44 @@
+<!--<navbar type="header">-->
+  <!--<li><a ng-click="minimize();"><span class="glyphicon glyphicon-minus"></span></a></li>-->
+  <!--<li><a ng-click="close()"><span class="glyphicon glyphicon-remove"></span></a></li>-->
+<!--</navbar>-->
+<div cg-busy="myPromise"></div>
+<div ncy-breadcrumb></div>
+<div class="eremedium-dialog">
+  <form name="formPrescription"  class="panel-group" novalidate>
+    <div class="medicines-list">
+      <h4>Rx</h4>      
+       <ui-select multiple sortable="true"  ng-model="templates.selected" theme="bootstrap" title="Choose template" on-select="templateAdded($item)" on-remove="templateRemoved($item)">
+        <ui-select-match placeholder="Choose a template...">{{getTemplateName($select.selected[$index])}}</ui-select-match>
+        <ui-select-choices repeat="template in templateList | filter: $select.search">
+            <div ng-bind-html="template.templateName | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+    
+      <hr>
+      <items editable="true" type="medcine" prescription="prescription"></items>
+    </div>
+    <div class="advises-list">
+      <h4>Advises</h4>
+      <hr>
+      <items editable="true" type="advise" prescription="prescription"></items>
+    </div>
+    <div class="row prescription-other">
+      <div class="form-group col-md-3">
+        <label for="nextVisit">Next Visit</label>
+        <datetimepicker ng-model="prescription.nextVisit.date" id="nextVisit" placeholder="Schedule Next Visit"></datetimepicker>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="pull-right">
+  <button type="button" class="btn btn-primary" ng-click="save()"
+          ng-disabled="formPrescription.$invalid">
+      <i class="fa fa-floppy-o"></i> Save
+  </button>
+  <button type="button" class="btn btn-primary" ng-click="templateNameDialog()"
+          ng-disabled="formPrescription.$invalid">
+      <i class="fa fa-floppy-o"></i> Save and Create Template
+  </button>
+</div>

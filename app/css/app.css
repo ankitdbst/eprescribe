@@ -222,7 +222,7 @@ body {
 }
 
 .input-group--autocomplete {
-  width: 100%;
+    width: 100%;
 }
 
 .modal-dialog {
@@ -239,14 +239,14 @@ body {
 }
 
 .palm-rejection--wrapper.resizable {
-  position: fixed;
-  pointer-events: all;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: ghostwhite;
-  z-index: 999999;
+    position: fixed;
+    pointer-events: all;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: ghostwhite;
+    z-index: 999999;
 }
 
 a.disabled {
@@ -254,4 +254,13 @@ a.disabled {
     cursor: default;
     pointer-events: none;
     text-decoration: none;
+}
+
+
+.btn-circle {
+    height:45px;
+    width:45px;
+    padding-left:0;
+    padding-right:0; 
+    border-radius: 50%; 
 }
