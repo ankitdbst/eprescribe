@@ -25,12 +25,7 @@
         $scope.openPatientProfile = openPatientProfile;
 
         function initialize() {
-            $scope.sortType = ''; // set the default sort type
-            $scope.sortReverse = false;  // set the default sort order
-            $scope.sortSearchResultsReverse = false;// set the default sort order for search results
-            $scope.sortSearchResultsType = ''// set the default sort type for search results
             $scope.showAlert = false;
-            $scope.showSearchResults = false;
             $rootScope.pageHeader = "Patients";
             $scope.patient = {};
             $scope.patient.search = {mobilenumber: ''};
@@ -82,12 +77,10 @@
                 {
                     $scope.showAlert = true;
                     $scope.alertMessage = "No Patient Found with Mobile Number: " + $scope.patient.search.mobilenumber + "!";
-                    $scope.showSearchResults = false;
                 } else
                 {
                     $scope.showAlert = false;
-                    $scope.showSearchResults = true;
-                    $scope.searchPatientResults = response;
+                    $scope.patientList = response;
                 }
             }
             );
