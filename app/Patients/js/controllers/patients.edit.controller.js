@@ -84,6 +84,9 @@
              */
             $scope.patient.isNew = false;
             //Computed properties
+            if($scope.patient.age == undefined) {
+                $scope.patient.age = {};
+            }
             $scope.patient.age.year = $rootScope.getAge($scope.patient.dob);
             $scope.patient.isDependant = ($scope.patient.relation == 'None') ? "false" : "true";
 

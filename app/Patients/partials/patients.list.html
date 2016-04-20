@@ -14,6 +14,7 @@
                 <input type="text" ng-keydown="$event.which === 13 && searchByMobileNumber()" class="form-control" placeholder="Search by Patient's Mobile Number.." ng-model="patient.search.mobilenumber" id="patientsearchmobilenumber">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="searchByMobileNumber()"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-default" type="button" ng-click="getPatientList()"><span class="fa fa-refresh fa-1x"></span></button>
                 </span>
             </div><!-- /input-group -->
         </div>
@@ -21,7 +22,6 @@
     <div class="alert alert-danger" role="alert" ng-show="showAlert">
         {{alertMessage}}
     </div>
-
     <div class="row">
         <div class="col-md-4 col-xs-6" ng-repeat="patientObj in patientList">
             <div class="thumbnail">

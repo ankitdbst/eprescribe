@@ -14,24 +14,26 @@
         $scope.account = Account.getAuthenticatedAccount();
 
         //Initialize
-        initialize();
-
-        //GetDoctorProfile..
-        getDoctorProfile();
+        Initialize();
 
         //Functions..
         $scope.searchByMobileNumber = searchByMobileNumber;
         $scope.createPatientProfile = createPatientProfile;
         $scope.openPatientProfile = openPatientProfile;
+        $scope.getPatientList = GetPatientList;
 
-        function initialize() {
+        function Initialize() {
             $scope.showAlert = false;
             $rootScope.pageHeader = "Patients";
             $scope.patient = {};
             $scope.patient.search = {mobilenumber: ''};
+            //GetDoctorProfile..
+            GetDoctorProfile();
+            //retrieve full patient list from backend..
+            GetPatientList();
         }
 
-        function getDoctorProfile() {
+        function GetDoctorProfile() {
             //Get Patient Details from server and populate patient object..
             $scope.myPromise = Patient.get({
                 user: $scope.account.userId,
@@ -45,18 +47,19 @@
             });
         }
 
-        $scope.patientList = Patient.query({
-            user: $scope.account.userId,
-            sessionId: $scope.account.sessionId,
-            doctorId: $scope.account.userId,
-            limit: 50,
-            columnsToGet: ""
-        }, function (response) {
-            $scope.patientList = response;
+        function GetPatientList() {
+            $scope.patientList = Patient.query({
+                user: $scope.account.userId,
+                sessionId: $scope.account.sessionId,
+                doctorId: $scope.account.userId,
+                limit: 50,
+                columnsToGet: ""
+            }, function (response) {
+                $scope.patientList = response;
+            }
+            );
+            $scope.myPromise = $scope.patientList.$promise;
         }
-        );
-
-        $scope.myPromise = $scope.patientList.$promise;
 
         //Functions
         function createPatientProfile() {
