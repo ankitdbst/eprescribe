@@ -83,9 +83,9 @@ $(".sidebar-nav a").on("click", function () {
 
 //Lock orientation!!
 angular.element(document).ready(function ($) {
-    screen.orientation.lock('landscape-primary').catch(function () {
-        // whatever
-    });
+//    screen.orientation.lock('landscape-primary').catch(function () {
+//        // whatever
+//    });
 
     // Fixa navbar ao ultrapassa-lo
     var navbar = $(".navbar-main"),
