@@ -19,7 +19,7 @@
     }
 
     var user = Account.getAuthenticatedAccount();
-    $scope.canvasEnabled = !user.settings.canvasEnabled;
+    $scope.canvasEnabled = user.settings.canvasEnabled;
 
     var pid = $stateParams.prescriptionId;
     var params = {
