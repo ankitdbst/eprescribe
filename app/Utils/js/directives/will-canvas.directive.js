@@ -174,6 +174,7 @@
           this.buildPath(point);
           this.drawPath();
 
+          this.saveImage();
           delete this.inputPhase;
         },
 
@@ -197,6 +198,23 @@
 
         clear: function() {
           this.canvas.clear(this.backgroundColor);
+        },
+
+        saveImage: function () {
+          var width = this.canvas.width,
+              height = this.canvas.height;
+          var data = this.canvas.readPixels(this.canvas.bounds);
+          // Create a 2D canvas to store the result
+          var canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          var context = canvas.getContext('2d');
+
+          // Copy the pixels to a 2D canvas
+          var imageData = context.createImageData(width, height);
+          imageData.data.set(data);
+          context.putImageData(imageData, 0, 0);
+          scope.ngModel = canvas.toDataURL();
         }
       };
 
