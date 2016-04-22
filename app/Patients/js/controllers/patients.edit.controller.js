@@ -16,35 +16,11 @@
 
         Initialize();
 
-
-        if ($stateParams.patientId == '') {
-            //A new patient profile is being created!
-            //Set empty object..
-            $scope.patient = {};
-            $scope.patient.history = {};
-            $scope.patient.alergy = {};
-            $scope.patient.address = {};
-            $scope.patient.age = {};
-            $scope.patient.isUpdate = false;
-            $scope.patient.sex = "Male";//set default value..
-            $scope.patient.relation = "None";
-            $scope.patient.bloodgroup = "None";
-            $scope.patient.hasAllPrescriptionsAccess = false; //When creating a new patient, it should NOT have default access to ALL prescriptions
-            $scope.patient.password = "";
-            $scope.patient.parentId = "";
-            $scope.patient.dependants = [];
-            $scope.patient.status = "WaitingOTP";
-            EditMode(true);
-        } else {
-            //Get Patient Details from server and populate patient object..
-            GetUserProfile();
-            EditMode(false);
-        }
-
-
+        //Functions
         $scope.savePatientProfile = SavePatientProfile;
         $scope.savePatientPeripheralDetails = SavePatientPeripheralDetails;
         $scope.openPrescriptions = OpenPrescriptions;
+        $scope.getAllPrescriptionsAccess = GetAllPrescriptionsAccess;
 
         $scope.uploader = {};
 
@@ -67,6 +43,29 @@
             $scope.relationshiptypes = ["None", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister", "Others"];
             $rootScope.pageHeader = "Patient Profile";
             $scope.bloodgroups = ["None", "A+", "A-", "A Unknown", "B+", "B-", "B Unknown", "AB+", "AB-", "AB Unknown", "O+", "O-", "O Unknown"];
+            if ($stateParams.patientId == '') {
+                //A new patient profile is being created!
+                //Set empty object..
+                $scope.patient = {};
+                $scope.patient.history = {};
+                $scope.patient.alergy = {};
+                $scope.patient.address = {};
+                $scope.patient.age = {};
+                $scope.patient.isUpdate = false;
+                $scope.patient.sex = "Male";//set default value..
+                $scope.patient.relation = "None";
+                $scope.patient.bloodgroup = "None";
+                $scope.patient.hasFullAccess = true;//If the Doctor/Hospital is creating patient, then he already has full access..
+                $scope.patient.password = "";
+                $scope.patient.parentId = "";
+                $scope.patient.dependants = [];
+                $scope.patient.status = "WaitingOTP";
+                EditMode(true);
+            } else {
+                //Get Patient Details from server and populate patient object..
+                GetUserProfile();
+                EditMode(false);
+            }
         }
 
         function EditMode(flag) {
@@ -80,18 +79,13 @@
             $scope.patient.userType = "patient";
             $scope.patient.isDependant = ($scope.patient.relation == 'None') ? "false" : "true";
             $scope.patient.isUpdate = true;
-            /*
-             * Whether Doctor is creating a profile, or opening an existing profile with or without OTP
-             * isNew would be false as doctor already has access for the profile.
-             */
-            $scope.patient.isNew = false;
-            
+
             //Computed properties
             if ($scope.patient.age == undefined) {
                 $scope.patient.age = {};
             }
             $scope.patient.age.year = $rootScope.getAge($scope.patient.dob);
-            
+
             UpsertUser(section);
         }
 
@@ -220,6 +214,11 @@
             $state.go('PrescriptionIndex', {
                 patientId: $stateParams.patientId
             });
+        }
+
+        function GetAllPrescriptionsAccess() {
+            //Open Verify OTP pageÏ
+            $state.go('PatientVerifyOTP', {patientId: $stateParams.patientId})
         }
     }
 })();

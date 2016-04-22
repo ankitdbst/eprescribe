@@ -29,10 +29,11 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Refer a Doctor</a></li>
-                        <li role="separator" class="divider"></li>
+                        <li ng-if="!patient.hasFullAccess"><a href="#" ng-click="getAllPrescriptionsAccess();">Get {{patient.firstName}} Records Access</a></li>
                         <li><a href="#">Send E-Remedium App link</a></li>
                         <li><a href="#">Print Patient Form</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Refer a Doctor</a></li>
                     </ul>
                 </span>
             </div>
@@ -52,12 +53,12 @@
                     <i class="fa fa-user fa-1x"></i>
                 </a>
             </li>
-            <li spy="history" ng-show="patient.isUpdate">
+            <li spy="history" ng-show="patient.isUpdate && patient.hasFullAccess">
                 <a href="">
                     <i class="fa fa-history fa-1x"></i>
                 </a>
             </li>
-            <li spy="allergies" ng-show="patient.isUpdate">
+            <li spy="allergies" ng-show="patient.isUpdate && patient.hasFullAccess">
                 <a href="">
                     <i class="fa fa-ban fa-1x"></i>
                 </a>
@@ -221,7 +222,7 @@
             </div>
         </div>
 
-        <div id="history" ng-show="patient.isUpdate" class='col-md-12'>
+        <div id="history" ng-show="patient.isUpdate && patient.hasFullAccess" class='col-md-12'>
             <hr>
             <h4 class='text-success'>
                 <i class="fa fa-history fa-2x"></i>
@@ -279,7 +280,7 @@
             </div>
         </div>
 
-        <div id="allergies" ng-show="patient.isUpdate" class='col-md-12'>
+        <div id="allergies" ng-show="patient.isUpdate && patient.hasFullAccess" class='col-md-12'>
             <hr>
             <h4 class='text-success'>
                 <i class="fa fa-ban fa-2x"></i>

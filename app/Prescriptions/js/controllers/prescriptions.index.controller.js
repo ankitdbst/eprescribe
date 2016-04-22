@@ -27,7 +27,6 @@
 
     $scope.create = CreatePrescription;
     $scope.clone = ClonePrescription;
-    $scope.getAllPrescriptionsAccess = GetAllPrescriptionsAccess;
     $scope.minimized = false;
 
     function Init() {
@@ -52,10 +51,7 @@
       });
     }
     
-    function GetAllPrescriptionsAccess() {
-            //Open Verify OTP pageÏ
-            $state.go('PatientVerifyOTP', {patientId: patientId})
-        }
+    
 
     function ClonePrescription(pid) {
       if (_.isUndefined(pid))
