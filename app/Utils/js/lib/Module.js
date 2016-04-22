@@ -924,7 +924,7 @@ Object.extend(Module.GenericLayer.prototype, {
 	 */
 	writePixels: function(bytes, rect) {
 		if (!bytes) throw new Error("GenericLayer$writePixels 'bytes' parameter is required");
-		if (!(bytes instanceof Uint8Array)) throw new Error("GenericLayer$writePixels 'bytes' parameter is not instance of Uint8Array");
+		if (!(bytes instanceof Uint8Array || bytes instanceof Uint8ClampedArray)) throw new Error("GenericLayer$writePixels 'bytes' parameter is not instance of Uint8Array");
 		if (!rect) rect = this.bounds;
 
 		Module.writeBytes(bytes, function(int64Ptr) {

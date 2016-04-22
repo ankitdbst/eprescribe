@@ -20,6 +20,11 @@
         $scope.upsertClinicalNotes = UpsertClinicalNotes;
         $scope.openClinicalNote = OpenClinicalNote;
 
+        // API exposed by WILL directive
+        $scope.setDirectiveFn = function(saveImageFn) {
+            $scope.saveImageFn = saveImageFn;
+        };
+
         function initialize() {
             $scope.sortType = ''; // set the default sort type
             $scope.sortReverse = false;  // set the default sort order
@@ -42,6 +47,7 @@
 //
             upsertNoteDialog.closePromise.then(function (data) {
                 if (data.value == "Add" || data.value == "View") {
+                    $scope.clinicalNote.img = $scope.saveImageFn();
                     //Save the data..
                     SavePatientPeripheralDetails('ClinicalNote', "userClinicalNote");
                 }

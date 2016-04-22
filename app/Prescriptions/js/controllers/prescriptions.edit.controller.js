@@ -25,8 +25,8 @@
     $scope.canvasEnabled = user.settings.canvasEnabled;
 
     // API exposed by WILL directive
-    $scope.setDirectiveFn = function(directiveFn) {
-        $scope.directiveFn = directiveFn;
+    $scope.setDirectiveFn = function(saveImageFn) {
+        $scope.saveImageFn = saveImageFn;
     };
 
     // Prescription
@@ -185,7 +185,7 @@
 
     function AddMedicines() {
       // Save prescription image
-      $scope.prescription.imgDiagnosis = $scope.directiveFn();
+      $scope.prescription.imgDiagnosis = $scope.saveImageFn();
 
       $state.go('PrescriptionAddMedicines', {
         patientId: $stateParams.patientId,

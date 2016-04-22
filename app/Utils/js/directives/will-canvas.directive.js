@@ -18,6 +18,8 @@
   function willCanvas() {
     function link(scope, elem, attrs) {
       var canvas = elem.get(0);
+      var canvasImg = scope.ngModel;
+
       var WILL = {
         backgroundColor: Module.Color.WHITE,
         color: Module.Color.BLACK,
@@ -27,6 +29,10 @@
           this.canvasEl = canvas;
           this.initInkEngine(width, height);
           this.initEvents();
+
+          if (!_.isEmpty(canvasImg)) {
+            this.loadImage(canvasImg);
+          }
         },
 
         initInkEngine: function(width, height) {
@@ -214,6 +220,23 @@
           imageData.data.set(data);
           context.putImageData(imageData, 0, 0);
           return canvas.toDataURL();
+        },
+
+        loadImage: function(img) {
+          var width = this.canvas.width,
+              height = this.canvas.height;
+          var image = document.createElement('img');
+          image.src = img;
+
+          var canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          var context = canvas.getContext('2d');
+          context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          context.drawImage(image, 0, 0);
+
+          var imageData = context.getImageData(0, 0, width, height);
+          this.canvas.writePixels(imageData.data, this.canvas.bounds);
         }
       };
 
@@ -224,14 +247,15 @@
       WILL.init(canvas.parentElement.offsetWidth, canvas.parentElement.offsetHeight, canvas);
       _.bindAll(WILL, 'saveImage');
       // Set the callback
-      scope.setFn({theDirFn: WILL.saveImage});
+      scope.setFn({saveImage: WILL.saveImage});
     }
 
     var directive = {
         link: link,
         restrict: 'AE',
         scope: {
-          setFn: '&'
+          setFn: '&',
+          ngModel: '='
         }
     };
 
