@@ -174,7 +174,6 @@
           this.buildPath(point);
           this.drawPath();
 
-          this.saveImage();
           delete this.inputPhase;
         },
 
@@ -214,7 +213,7 @@
           var imageData = context.createImageData(width, height);
           imageData.data.set(data);
           context.putImageData(imageData, 0, 0);
-          scope.ngModel = canvas.toDataURL();
+          return canvas.toDataURL();
         }
       };
 
@@ -223,13 +222,16 @@
       }
 
       WILL.init(canvas.parentElement.offsetWidth, canvas.parentElement.offsetHeight, canvas);
+      _.bindAll(WILL, 'saveImage');
+      // Set the callback
+      scope.setFn({theDirFn: WILL.saveImage});
     }
 
     var directive = {
         link: link,
         restrict: 'AE',
         scope: {
-          ngModel: '='
+          setFn: '&'
         }
     };
 

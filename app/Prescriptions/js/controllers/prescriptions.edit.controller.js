@@ -24,6 +24,11 @@
     $scope.dialogTitle = "New Prescription";
     $scope.canvasEnabled = user.settings.canvasEnabled;
 
+    // API exposed by WILL directive
+    $scope.setDirectiveFn = function(directiveFn) {
+        $scope.directiveFn = directiveFn;
+    };
+
     // Prescription
     $scope.save = UpsertPrescription;
     $scope.close = ClosePrescription;
@@ -99,7 +104,7 @@
 
     function UpsertPrescriptionAsTemplate() {
 
-      
+
       var params = {
         user: user.mobile,
         sessionId: user.sessionId,
@@ -179,6 +184,9 @@
     }
 
     function AddMedicines() {
+      // Save prescription image
+      $scope.prescription.imgDiagnosis = $scope.directiveFn();
+
       $state.go('PrescriptionAddMedicines', {
         patientId: $stateParams.patientId,
         prescription: $scope.prescription
@@ -196,6 +204,6 @@
       };
       $scope.myPromise = Prescription.searchMed(params).$promise;
       return Prescription.searchMed(params).$promise;
-    } 
+    }
   }
 })();
