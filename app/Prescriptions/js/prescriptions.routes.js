@@ -38,6 +38,9 @@
         url: '/patients/:patientId/prescriptions/new',
         templateUrl: 'Prescriptions/partials/prescriptions.edit.html',
         controller: 'PrescriptionNewOrEditCtrl',
+        params: {
+          prescriptionId: null
+        },
         ncyBreadcrumb: {
           label: 'New',
           parent: 'PrescriptionIndex.List'

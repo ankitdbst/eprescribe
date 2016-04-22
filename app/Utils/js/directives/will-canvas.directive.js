@@ -245,9 +245,9 @@
       }
 
       WILL.init(canvas.parentElement.offsetWidth, canvas.parentElement.offsetHeight, canvas);
-      _.bindAll(WILL, 'saveImage');
+      _.bindAll(WILL, 'saveImage', 'loadImage');
       // Set the callback
-      scope.setFn({saveImage: WILL.saveImage});
+      scope.setFn({saveImage: WILL.saveImage, loadImage: WILL.loadImage});
     }
 
     var directive = {
