@@ -15,6 +15,7 @@ angular.module('ERemediumWebApp', [
     'angularResizable',
     'ui.select',
     'ngSanitize',
+    'frapontillo.bootstrap-switch',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',
     'ERemediumWebApp.patients',

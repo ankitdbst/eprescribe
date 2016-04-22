@@ -92,12 +92,7 @@
         }
 
         function openPatientProfile(patient) {
-            //If Patient is new for logged in doctor show OTP else directly go to patient profile
-            if (!patient.isNew) {
-                $state.go('PatientNewOrEdit', {patientId: patient.patientId})
-            } else {
-                $state.go('PatientVerifyOTP', {patientId: patient.patientId})
-            }
+            $state.go('PatientNewOrEdit', {patientId: patient.patientId});
         }
     }
 })();

@@ -29,7 +29,7 @@
             $rootScope.pageHeader = "Doctor Profile";
 
             EditMode(false);
-            
+
 
             GetDoctorProfile();
         }
@@ -59,7 +59,7 @@
             $scope.servicesSectionUpdate = flag;
             $scope.professionalDetailsSectionUpdate = flag;
         }
-        
+
         function ShowSummarySection() {
             $scope.summarySectionUpdate = true;
         }
@@ -67,7 +67,7 @@
         function CloseSummarySection() {
             $scope.summarySectionUpdate = false;
         }
-        
+
         function ShowPasswordSection() {
             $scope.passwordSectionUpdate = true;
         }
@@ -75,8 +75,8 @@
         function ClosePasswordSection() {
             $scope.passwordSectionUpdate = false;
         }
-        
-        function ChangePassword (section) {
+
+        function ChangePassword(section) {
             //Setup parameters.
             var params = {
                 user: $scope.doctor.doctorId,
@@ -143,6 +143,15 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.doctor = response;
+                if($scope.doctor.settings == undefined) {
+                    $scope.doctor.settings = {};
+                }
+                if ($scope.doctor.settings.canvasEnabled == undefined){
+                    $scope.doctor.settings.canvasEnabled = true;
+                }
+                if ($scope.doctor.settings.twoFactorAuthentication == undefined){
+                    $scope.doctor.settings.twoFactorAuthentication = false;
+                }
             });
         }
     }

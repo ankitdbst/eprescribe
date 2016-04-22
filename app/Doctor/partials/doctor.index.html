@@ -25,12 +25,12 @@
                     <br/>
                     <footer ng-show="doctor.aboutme && !summarySectionUpdate">{{doctor.aboutme}}</footer>                
                 </blockquote>
-                <span class="btn-group col-md-4" style="margin-top: 2%;">
-                    <button type="button" class="btn btn-primary pull-right" ng-click="showPasswordSection()">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary" ng-click="showPasswordSection()">
                         <i class="fa fa-user-secret"></i>
                         Change Password
                     </button>       
-                    <br><br>            
+                    <br>
                     <div class="form-group" ng-show="passwordSectionUpdate" ng-class="{
                             'has-error'
                             : formDoctorProfile.doctorPassword.$touched && formDoctorProfile.doctorPassword.$invalid }">
@@ -45,7 +45,24 @@
                             <p ng-message="required">Please enter New Password!</p>
                         </div>
                     </div>
-                </span>
+                    <br>
+                    <div class="well">
+                        <h5 class='text-info'>
+                            <i class="fa fa-gear fa-1x"></i> 
+                            Enable Handwriting 
+                            <input type="checkbox" switch-size="small" bs-switch ng-model="doctor.settings.canvasEnabled" switch-on-color="success" switch-off-color="danger"/> 
+                        </h5>
+                        <h5 class='text-info'>
+                            <i class="fa fa-gear fa-1x"></i> 
+                            Two Factor Authentication
+                            <input type="checkbox" bs-switch switch-size="small" ng-model="doctor.settings.twoFactorAuthentication" switch-on-color="success" switch-off-color="danger"/> 
+                        </h5>
+
+                        <button class="btn btn-primary btn-sm" type="button" ng-click="upsertUser('Settings')">
+                            <i class="fa fa-floppy-o"></i> Save Settings
+                        </button>
+                    </div>
+                </div>
             </div>
         </h3>
 
@@ -63,6 +80,11 @@
         <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
         {{alertMessage}} 
     </span>
+    <span class="alert {{alertClass}}  fade in col-md-12" ng-show="showAlert && section == 'Settings'" role="alert" style="margin-bottom: 0%">
+        <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+        {{alertMessage}} 
+    </span>
+
     <div id="divContent" class="col-md-12">
 
         <div ng-show="summarySectionUpdate">
