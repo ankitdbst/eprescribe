@@ -66,30 +66,32 @@
             $scope.genders = ["Male", "Female"];
             $scope.relationshiptypes = ["None", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister", "Others"];
             $rootScope.pageHeader = "Patient Profile";
-            $scope.bloodgroups = ["None", "A+", "A-", "A Unknown", "B+", "B-", "B Unknown", "AB+", "AB-", "AB Unknown", "O+", "O-", "O Unknown"];            
+            $scope.bloodgroups = ["None", "A+", "A-", "A Unknown", "B+", "B-", "B Unknown", "AB+", "AB-", "AB Unknown", "O+", "O-", "O Unknown"];
         }
-        
+
         function EditMode(flag) {
             $scope.identifyingDetailsSectionUpdate = flag;
             $scope.historySectionUpdate = flag;
-            $scope.allergiesSectionUpdate = flag;            
+            $scope.allergiesSectionUpdate = flag;
         }
 
         function SavePatientProfile(section) {
             //Common settings for a patient
             $scope.patient.userType = "patient";
+            $scope.patient.isDependant = ($scope.patient.relation == 'None') ? "false" : "true";
+            $scope.patient.isUpdate = true;
             /*
              * Whether Doctor is creating a profile, or opening an existing profile with or without OTP
              * isNew would be false as doctor already has access for the profile.
              */
             $scope.patient.isNew = false;
+            
             //Computed properties
-            if($scope.patient.age == undefined) {
+            if ($scope.patient.age == undefined) {
                 $scope.patient.age = {};
             }
             $scope.patient.age.year = $rootScope.getAge($scope.patient.dob);
-            $scope.patient.isDependant = ($scope.patient.relation == 'None') ? "false" : "true";
-
+            
             UpsertUser(section);
         }
 
@@ -169,7 +171,7 @@
                     $scope.alertClass = "alert-danger";
                 }
             });
-        }        
+        }
 
         function GetUserProfile() {
             $scope.myPromise = Patient.get({
@@ -180,7 +182,6 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.patient = response;
-                $scope.patient.isUpdate = true;
                 //Once Profile is obtained..fetch history and allergies..
                 GetHistory();
                 GetAllergies();
@@ -217,7 +218,7 @@
 
         function OpenPrescriptions() {
             $state.go('PrescriptionIndex', {
-              patientId: $stateParams.patientId
+                patientId: $stateParams.patientId
             });
         }
     }

@@ -7,27 +7,35 @@
                 <img flow-img="$flow.files[0]" ng-src="{{patient.profileImageURL}}" class="img-circle" alt="Add Photo"  width="60" height="60">
                 <input type="file" style="visibility: hidden; position: absolute;">
             </span>
-            <blockquote class="col-md-8 text text-warning"  ng-show="patient.isUpdate">
-                <p>{{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)</p>
-                <footer ng-show="patient.history.medical">Medical History of {{patient.history.medical}} </footer>
-                <footer ng-show="!patient.history.medical">No Medical History </footer>
-            </blockquote>
-            <span class="btn-group col-md-3" style="margin-top: 2%;" ng-show="patient.isUpdate">
-                <button type="button" class="btn btn-primary" ng-click="openPrescriptions()">
+            <div class="col-md-11" ng-show="patient.isUpdate">
+                <blockquote class="col-md-7 text text-warning">
+                    <p>{{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)</p>
+                    <footer ng-show="patient.history.medical">Medical History of {{patient.history.medical}} </footer>
+                    <footer ng-show="!patient.history.medical">No Medical History </footer>
+                </blockquote>
+
+                <button type="button" class="btn btn-info" ng-click="bookAppointment()">
                     <i class="fa fa-list"></i>
-                    Open Prescriptions
+                    Book Appointment
                 </button>
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Refer a Doctor</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Send E-Remedium App link</a></li>
-                    <li><a href="#">Print Patient Form</a></li>
-                </ul>
-            </span>
+
+                <span class="btn-group" >                
+                    <button type="button" class="btn btn-primary" ng-click="openPrescriptions()">
+                        <i class="fa fa-list"></i>
+                        Open Prescriptions
+                    </button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Refer a Doctor</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Send E-Remedium App link</a></li>
+                        <li><a href="#">Print Patient Form</a></li>
+                    </ul>
+                </span>
+            </div>
         </div>
     </h3>
 </div>
@@ -98,7 +106,7 @@
                 </div>
             </h4>
             <hr>
-            <div class="col-md-4" ng-class="{ 'has-error': formPatientProfile.patientFirstName.$touched && formPatientProfile.patientFirstName.$invalid }">
+            <div class="col-md-3" ng-class="{ 'has-error': formPatientProfile.patientFirstName.$touched && formPatientProfile.patientFirstName.$invalid }">
                 <h5 class='text-info'><i class="fa fa-user fa-1x"></i> First Name*</h5>
                 <input type="text" ng-show="identifyingDetailsSectionUpdate" ng-model="patient.firstName" class="form-control" name="patientFirstName" id="patientFirstName" placeholder="First Name" required/>
                 <div class="help-block" ng-messages="formPatientProfile.patientFirstName.$error" ng-if="formPatientProfile.patientFirstName.$touched">
@@ -106,12 +114,12 @@
                 </div>
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.firstName}} </span>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h5 class='text-info'><i class="fa fa-user fa-1x"></i> Middle Name</h5>
                 <input type="text" ng-show="identifyingDetailsSectionUpdate" ng-model="patient.midlleName" class="form-control" name="patientMiddleName" id="patientMiddleName" placeholder="Middle Name (optional)" />
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.midlleName}} </span>
             </div>
-            <div class="col-md-4" ng-class="{ 'has-error': formPatientProfile.patientLastName.$touched && formPatientProfile.patientLastName.$invalid }">
+            <div class="col-md-3" ng-class="{ 'has-error': formPatientProfile.patientLastName.$touched && formPatientProfile.patientLastName.$invalid }">
                 <h5 class='text-info'><i class="fa fa-user fa-1x"></i> Last Name*</h5>
                 <input type="text" ng-show="identifyingDetailsSectionUpdate" ng-model="patient.lastName" class="form-control" name="patientLastName" id="patientLastName" placeholder="Last Name" required/>
                 <div class="help-block" ng-messages="formPatientProfile.patientLastName.$error" ng-if="formPatientProfile.patientLastName.$touched">
@@ -119,22 +127,7 @@
                 </div>
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.lastName}} </span>
             </div>
-
-            <div class="col-md-12">
-                <hr class="hr-dotted"/>
-            </div>
-
-            <div class="col-md-4">
-                <h5 class='text-info'><i class="fa fa-calendar fa-1x"></i> Date of Birth*</h5>
-                <datetimepicker name="patientDateOfBirth" ng-show="identifyingDetailsSectionUpdate" id="patientDateOfBirth" ng-model="patient.dob" placeholder="Date of Birth"/>
-                <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.dob| date:'medium'}} </span>
-            </div>
-            <div class="col-md-4">
-                <h5 class='text-info'><i class="fa fa-venus fa-1x"></i> Gender*</h5>                
-                <select ng-model="patient.sex" ng-show="identifyingDetailsSectionUpdate" ng-options="gender for gender in genders" class="form-control" id="patientGender"></select>
-                <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.sex}} </span>
-            </div>
-            <div class="col-md-4" ng-class="{ 'has-error': formPatientProfile.patientMobileNumber.$touched && formPatientProfile.patientMobileNumber.$invalid }">
+            <div class="col-md-3" ng-class="{ 'has-error': formPatientProfile.patientMobileNumber.$touched && formPatientProfile.patientMobileNumber.$invalid }">
                 <h5 class='text-info'><i class="fa fa-mobile fa-1x"></i> Mobile Number*</h5>
                 <input type="number" ng-show="identifyingDetailsSectionUpdate" string-to-number ng-model="patient.mobile" ng-disabled="patient.isUpdate" class="form-control" id="patientMobileNumber" name="patientMobileNumber" placeholder="Mobile Number" ng-minlength="10" ng-maxlength="10" required/>
                 <div class="help-block" ng-messages="formPatientProfile.patientMobileNumber.$error" ng-if="formPatientProfile.patientMobileNumber.$touched">
@@ -144,17 +137,27 @@
                 </div>
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.mobile}} </span>
             </div>
-            
+
             <div class="col-md-12">
                 <hr class="hr-dotted"/>
             </div>
-            
-            <div class="col-md-4">
-                <h5 class='text-info'><i class="fa fa-users fa-1x"></i> Relationship*</h5>                
+
+            <div class="col-md-3">
+                <h5 class='text-info'><i class="fa fa-users fa-1x"></i> Relationship</h5>                
                 <select ng-model="patient.relation" ng-show="identifyingDetailsSectionUpdate" ng-options="relationshiptype for relationshiptype in relationshiptypes" class="form-control" name="patientRelationshipType" id="patientRelationshipType"></select>
-                <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.relation}} </span>
+                <span ng-show="!identifyingDetailsSectionUpdate"> {{patient.relation}} </span>
             </div>
-            <div class="col-md-4" ng-class="{ 'has-error': formPatientProfile.patientEmailId.$touched && formPatientProfile.patientEmailId.$invalid }">
+            <div class="col-md-3">
+                <h5 class='text-info'><i class="fa fa-calendar fa-1x"></i> Date of Birth</h5>
+                <datetimepicker name="patientDateOfBirth" ng-show="identifyingDetailsSectionUpdate" id="patientDateOfBirth" ng-model="patient.dob" placeholder="Date of Birth"/>
+                <span ng-show="!identifyingDetailsSectionUpdate"> {{patient.dob| date:'medium'}} </span>
+            </div>
+            <div class="col-md-3">
+                <h5 class='text-info'><i class="fa fa-venus fa-1x"></i> Gender</h5>                
+                <select ng-model="patient.sex" ng-show="identifyingDetailsSectionUpdate" ng-options="gender for gender in genders" class="form-control" id="patientGender"></select>
+                <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.sex}} </span>
+            </div>
+            <div class="col-md-3" ng-class="{ 'has-error': formPatientProfile.patientEmailId.$touched && formPatientProfile.patientEmailId.$invalid }">
                 <h5 class='text-info'><i class="fa fa-at fa-1x"></i> Email Id</h5>
                 <input type="email" ng-model="patient.email" ng-show="identifyingDetailsSectionUpdate" class="form-control" id="patientEmailId" name="patientEmailId" placeholder="Email Id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"/>
                 <div class="help-block" ng-messages="formPatientProfile.patientEmailId.$error" ng-if="formPatientProfile.patientEmailId.$touched">
@@ -162,7 +165,12 @@
                 </div>
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.email}} </span>
             </div>
-            <div class="col-md-4" ng-class="{ 'has-error': formPatientProfile.patientAlternateMobileNumber.$touched && formPatientProfile.patientAlternateMobileNumber.$invalid }">
+
+            <div class="col-md-12">
+                <hr class="hr-dotted"/>
+            </div>
+
+            <div class="col-md-3" ng-class="{ 'has-error': formPatientProfile.patientAlternateMobileNumber.$touched && formPatientProfile.patientAlternateMobileNumber.$invalid }">
                 <h5 class='text-info'><i class="fa fa-mobile fa-1x"></i> Alternate Mobile Number</h5>
                 <input type="number" ng-show="identifyingDetailsSectionUpdate" string-to-number ng-model="patient.alternateMobileNumber" class="form-control" id="patientAlternateMobileNumber" name="patientAlternateMobileNumber" placeholder="Alternate Mobile Number" ng-minlength="10" ng-maxlength="10"/>
                 <div class="help-block" ng-messages="formPatientProfile.patientAlternateMobileNumber.$error" ng-if="formPatientProfile.patientAlternateMobileNumber.$touched">
@@ -171,26 +179,21 @@
                 </div>
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.alternateMobileNumber}} </span>
             </div>
-            
-            <div class="col-md-12">
-                <hr class="hr-dotted"/>
-            </div>
-            
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h5 class='text-info'><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Landline Number</h5>
                 <input type="number" ng-show="identifyingDetailsSectionUpdate" string-to-number ng-model="patient.landlineNumber" class="form-control" id="patientLandlineNumber" name="patientLandlineNumber" placeholder="Landline Number" />
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.landlineNumber}} </span>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h5 class='text-info'><span class="glyphicon glyphicon-tint" aria-hidden="true"></span> Blood Group</h5>
                 <select ng-model="patient.bloodgroup" ng-show="identifyingDetailsSectionUpdate" ng-options="bloodgroup for bloodgroup in bloodgroups" class="form-control" name="patientBloodGroup" id="patientBloodGroup"></select>
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.bloodgroup}} </span>
             </div>
-            
+
             <div class="col-md-12">
                 <hr class="hr-dotted"/>
             </div>
-            
+
             <div class="col-md-4">
                 <h5 class='text-info'><i class="fa fa-map-o fa-1x"></i> Address Line 1</h5>
                 <textarea class="form-control" ng-show="identifyingDetailsSectionUpdate" ng-model="patient.address.addressLine1" id="patientAddressLine1" name="patientAddressLine1" rows="1" placeholder="Address Line 1" ></textarea>

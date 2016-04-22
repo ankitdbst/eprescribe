@@ -34,6 +34,9 @@ angular.module('ERemediumWebApp', [
                 if (angular.isUndefined(inputPatientObject)) {
                     return;
                 }
+                if(inputPatientObject.midlleName == undefined) {
+                    inputPatientObject.midlleName = "";
+                }
                 return inputPatientObject.firstName + " " + inputPatientObject.midlleName + " " + inputPatientObject.lastName;
             };
 
