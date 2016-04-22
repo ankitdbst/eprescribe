@@ -6,6 +6,15 @@
 
   willCanvas.$inject = [];
 
+  function MyPoint() {
+    this.x = undefined;
+    this.y = undefined;
+  }
+
+  MyPoint.prototype.isValid = function() {
+    return !(this.x == undefined && this.y == undefined);
+  }
+
   function willCanvas() {
     function link(scope, elem, attrs) {
       var canvas = elem.get(0);
@@ -82,13 +91,22 @@
         },
 
         setPointFromEvent: function(point, e) {
+          if (window.PointerEvent && e instanceof PointerEvent) {
+            console.re.log("Pointer events supported!");
+            e = e.originalEvent;
+          }
+
           if (this.isTouch) {
+            if (e.changedTouches[0].target.id !== this.canvasEl.id) { // there will always be at-least 1 changedTouch
+              return false;                                           // causing the TouchEvent
+            }
             point.x = e.changedTouches[0].pageX - this.getOffset(e.target).left;
             point.y = e.changedTouches[0].pageY - this.getOffset(e.target).top;
           } else {
             point.x = e.offsetX !== undefined ? e.offsetX : e.layerX;
             point.y = e.offsetY !== undefined ? e.offsetY : e.layerY;
           }
+          return true;
         },
 
         getPressure: function(e) {
@@ -96,27 +114,28 @@
         },
 
         beginStroke: function(e) {
-          if(this.isTouch && e.changedTouches[0].target.id !== this.canvasEl.id)
-            return;
+          var point = new MyPoint;
+          this.setPointFromEvent(point, e);
+          if (!point.isValid()) return;
+
           e.preventDefault();
           this.inputPhase = Module.InputPhase.Begin;
           this.pressure = this.getPressure(e);
           this.pathBuilder = isNaN(this.pressure)?this.speedPathBuilder:this.pressurePathBuilder;
 
-          var point = {x: 0, y: 0};
-          this.setPointFromEvent(point, e);
           this.buildPath(point);
           this.drawPath();
         },
 
         moveStroke: function(e) {
-          if(this.isTouch && e.changedTouches[0].target.id !== this.canvasEl.id)
-            return;
           if (!this.inputPhase) return;
+
+          var point = new MyPoint;
+          this.setPointFromEvent(point, e)
+          if (!point.isValid()) return;
+
           e.preventDefault();
           this.inputPhase = Module.InputPhase.Move;
-          var point = {x: 0, y: 0};
-          this.setPointFromEvent(point, e);
 
           this.pointerPos = point;
           this.pressure = this.getPressure(e);
@@ -143,14 +162,15 @@
         },
 
         endStroke: function(e) {
-          if(this.isTouch && e.changedTouches[0].target.id !== this.canvasEl.id)
-            return;
           if (!this.inputPhase) return;
+
+          var point = new MyPoint;
+          this.setPointFromEvent(point, e);
+          if (!point.isValid()) return;
+
           e.preventDefault();
           this.inputPhase = Module.InputPhase.End;
           this.pressure = this.getPressure(e);
-          var point = {x: 0, y: 0};
-          this.setPointFromEvent(point, e);
           this.buildPath(point);
           this.drawPath();
 
