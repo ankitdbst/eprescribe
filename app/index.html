@@ -20,6 +20,7 @@
     <link href="bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="bower_components/angular-busy/dist/angular-busy.min.css" rel="stylesheet" type="text/css"/>
     <link href="bower_components/angular-ui-select/dist/select.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
     <!-- Remote logging for iPad
       Usage: console.re.log("Hello from remote logger");
     -->
@@ -193,6 +194,12 @@
       <script src="Utils/angular-resizable/src/angular-resizable.js" type="text/javascript"></script>
       <script src="bower_components/angular-ui-select/dist/select.min.js" type="text/javascript"></script>
       <!--<script src="bower_components/angular-resizable/angular-resizable.min.js" type="text/javascript"></script>-->
+      <!-- ui-calendar-->
+      <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+      <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+      <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+      <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+      <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
 
       <!-- WILL -->
       <script src="Utils/js/lib/js.ext.js"></script>
@@ -285,10 +292,12 @@
       <script src="components/version/version.js"></script>
       <script src="components/version/version-directive.js"></script>
       <script src="components/version/interpolate-filter.js"></script>
-      <!-- ui-calendar-->
-      <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-      <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-      <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
+      <!-- Appointments -->
+      <script src="Appointments/js/appointments.module.js" type="text/javascript"></script>
+      <script src="Appointments/js/appointments.routes.js" type="text/javascript"></script>
+      <script src="Appointments/js/controllers/appointments.index.controller.js" type="text/javascript"></script>
+      <script src="Appointments/js/services/appointments.service.js" type="text/javascript"></script>
+
     </div>
   </body>
 </html>

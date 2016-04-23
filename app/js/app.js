@@ -27,7 +27,8 @@ angular.module('ERemediumWebApp', [
     'ERemediumWebApp.utils',
     'ERemediumWebApp.pharmacy',
     'ERemediumWebApp.messages',
-    'ERemediumWebApp.labs'
+    'ERemediumWebApp.labs',
+    'ERemediumWebApp.appointments'
 ])
 
         .run(function ($rootScope, $location, $state) {
