@@ -93,7 +93,7 @@ body {
 }
 
 .footer a:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
 }
 
 .bottomLinks {
@@ -128,7 +128,7 @@ body {
 }
 
 .appicons a:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
     color: #eee;
 }
 
@@ -138,6 +138,9 @@ body {
 
 .navbar-default {
     background-color: #283c4a;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
 }
 
 .header {
@@ -152,14 +155,14 @@ body {
 
 .header a {
     display: inline-block;
-    margin: 0 1px;    
+    margin: 0 1px;
     color: white;
     transition: 0.5s;
     transform: scale(1);
 }
 
 .header a:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
 }
 
 .table-vcenter td {
@@ -183,7 +186,7 @@ body {
 
 .affix a {
     /*display: inline-block;*/
-    /*margin: 0 1px;*/    
+    /*margin: 0 1px;*/
     color: white;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
@@ -194,7 +197,7 @@ body {
 }
 
 .affix a:hover,a:focus {
-    transform: scale(1.1); 
+    transform: scale(1.1);
     color:#2a6496;
     text-decoration:underline;
 }
@@ -262,13 +265,13 @@ a.disabled {
     height:45px;
     width:45px;
     padding-left:0;
-    padding-right:0; 
-    border-radius: 50%; 
+    padding-right:0;
+    border-radius: 50%;
 }
 
 .hr-dotted {
     border: 1px dotted gainsboro;
-    border-style: none none dotted; 
-    color: #fff; 
+    border-style: none none dotted;
+    color: #fff;
     background-color: #fff;
 }
