@@ -91,8 +91,15 @@
     // Move to constants service
     $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     $scope.times = ['Morning', 'Afternoon', 'Night'];
-    $scope.$watch('$scope.prescription.medcines', function(newVal,oldVal){
-      var i = 0;
+
+    var typeWatch = $scope.$watch('type', function(val) {
+      console.log("Item str: " + val);
+      if(_.isUndefined(val)) return;
+      var watchExpr = 'prescription.' + val + 's';
+      $scope.$watch(watchExpr, function(newVal){
+        console.log(newVal);
+      }, true);
+      typeWatch();
     });
 
     function AddItem() {
