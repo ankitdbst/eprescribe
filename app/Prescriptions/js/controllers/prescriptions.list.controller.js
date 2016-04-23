@@ -18,6 +18,11 @@
 
     $scope.$parent.detailView = null;
     $scope.prescriptions = $scope.$parent.prescriptions;
+    $scope.detail = function(pid) {
+      $state.go('PrescriptionIndex.Detail', {
+        prescriptionId: pid
+      });
+    }
 
     $scope.canvasEnabled = user.settings.canvasEnabled;
     $scope.sortSearchResultsReverse = false;// set the default sort order
