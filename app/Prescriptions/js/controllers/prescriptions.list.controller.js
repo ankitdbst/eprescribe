@@ -29,13 +29,28 @@
       sessionId: user.sessionId,
       doctorId: user.userId,
       patientId: patientId,
-      limit: 10,
-      columnsToGet: ""
+      columnsToGet: "creationDate,patientComplaint,diagnosis,medcines,advises",
+      limit: 15
     };
 
-    $scope.prescriptions = Prescription.list(params);
-    $scope.myPromise = $scope.prescriptions.$promise;
     $scope.delete = Delete;
+    $scope.load = Load;
+
+    var pages = 0,
+        size = 15,
+        loading = false;
+
+    Load();
+    function Load() {
+      if (loading) return;
+      loading = true;
+      params.limit += pages*size;
+      $scope.myPromise = Prescription.list(params, function(response) {
+        $scope.prescriptions = response;
+        loading = false;
+      }).$promise;
+      pages++;
+    }
 
     function Delete(index) {
       $scope.prescriptions.splice(index, 1);
