@@ -86,21 +86,47 @@
     $scope.delete = Delete;
     $scope.add = AddItem;
     $scope.search = SearchMedicine;
+    $scope.flag = 1;
 
     // Move to constants service
     $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     $scope.times = ['Morning', 'Afternoon', 'Night'];
+    $scope.$watch('$scope.prescription.medcines', function(newVal,oldVal){
+      var i = 0;
+    });
 
     function AddItem() {
       var itemsStr = $scope.type + 's';
       var len = $scope.prescription[itemsStr].length;
+      /*
       if (!_.isEmpty($scope.prescription[itemsStr][len - 1]) &&
           Object.keys($scope.prescription[itemsStr][len - 1]).length !== 1) {
         $scope.prescription[itemsStr].push({});
+        $scope.flag++;
+      }
+      */
+      if (Object.keys($scope.prescription[itemsStr][len - 1]).length !== 1) {
+        $scope.prescription[itemsStr].push({});
+        //  $scope.flag++;
       }
     }
 
     function SearchMedicine(searchText) {
+      if(searchText == undefined || searchText == ""){
+        //TODO Back button causing data deletion
+         AddItem();
+        //Just return Favourite Meds only. This is onClick only
+        var params = {
+          user: user.mobile,
+          sessionId: user.sessionId,
+          doctorId: user.userId,
+          limit: 5,
+          columnsToGet: ""
+        };
+        $scope.myPromise = Prescription.getFavouriteMed(params).$promise;
+        return Prescription.getFavouriteMed(params).$promise;
+      }
+      AddItem();
       var params = {
         user: user.mobile,
         sessionId: user.sessionId,

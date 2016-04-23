@@ -32,7 +32,8 @@
     "angular-resizable": "~1.2.x",
     "angular-breadcrumb": "~0.4.1",
     "angular-ui-select": "0.16.x",
-    "angular-sanitize": "1.5.3"
+    "angular-sanitize": "1.5.3",
+    "angular-ui-calendar": "^1.0.1"
   },
   "resolutions": {
     "angular": "~1.5.1"

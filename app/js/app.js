@@ -14,6 +14,7 @@ angular.module('ERemediumWebApp', [
     'ncy-angular-breadcrumb',
     'angularResizable',
     'ui.select',
+    'ui.calendar',
     'ngSanitize',
     'ERemediumWebApp.config',
     'ERemediumWebApp.routes',

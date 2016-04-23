@@ -37,8 +37,17 @@
     };
 
     $scope.templates = {};
+    var counter = 0;
     // $scope.myPromise = Prescription.getTemplates(params).$promise;
-    $scope.templateList = Prescription.getTemplates(params);
+    $scope.templateList = Prescription.getTemplates(params, function(response) {
+      for(var i = 0; i< $scope.templateList.length;i++)
+      {
+        if(i%2 == 0) {
+          $scope.templateList[i].favourite = true;
+        }
+      }
+    });
+    
     // console.log($scope.templateList);
     $scope.getTemplateName = function(template) {
       return template.templateName;
@@ -59,6 +68,13 @@
           $scope.prescription[itemStr].push({});
         }
       });
+    };
+    $scope.firstLetterGroupFn = function(item) {
+      if(item.favourite == true)
+        return "Favourites";
+      else
+        return "Templates";
+      //counter++;
     };
     $scope.templateRemoved = function(item) {
       //Need to remove whatever added in templateAdded function
@@ -119,7 +135,7 @@
 
           function UpsertPrescriptionAsTemplate() {
             var params = {
-              user: '101',
+              user: user.mobile,
               sessionId: user.sessionId,
               isTemplate: "true",
               templateName: $scope.template_name,

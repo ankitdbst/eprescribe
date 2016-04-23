@@ -47,6 +47,11 @@
               method: 'POST',
               url: 'http://52.76.165.4/ERService/prescription/GetTemplateById',
               isArray: false
+            },
+            getFavouriteMed: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/medcineservice/GetFavouriteMed',
+              isArray: true
             }
           };
 

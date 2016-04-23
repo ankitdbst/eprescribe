@@ -18,8 +18,8 @@
       <div ng-if="!editable">{{ medicine.name}}</div>
       <div ng-if="editable">
         <div class="input-group input-group--autocomplete">
-          <input type="text" ng-change="add('medcines')" ng-model="medicine.name" class=" form-control"
-               placeholder="Medicine name..." uib-typeahead="medicine.name for medicine in search($viewValue)"/>
+          <input type="text" ng-model="medicine.name" class=" form-control"
+               placeholder="Medicine name..." uib-typeahead="medicine.name for medicine in search($viewValue)" typeahead-min-length="0"/>
         </div>
       </div>
     </td>
@@ -39,7 +39,7 @@
       </div>
       <div ng-if="editable">
         <input type="text" ng-model="medicine.frequency.intakeInst" class="form-control"
-             placeholder="How to take?" uib-typeahead="instruction for instruction in instructions | filter:$viewValue | limitTo:5"/>
+             placeholder="How to take?" uib-typeahead="instruction for instruction in instructions | filter:$viewValue | limitTo:5" typeahead-min-length="0"/>
       </div>
     </td>
     <td>

@@ -8,9 +8,10 @@
   <form name="formPrescription"  class="panel-group" novalidate>
     <div class="medicines-list">
       <h4>Rx</h4>      
+      <!-- TODO Make it async https://github.com/angular-ui/ui-select/wiki/ui-select -->
        <ui-select multiple sortable="true"  ng-model="templates.selected" theme="bootstrap" title="Choose template" on-select="templateAdded($item)" on-remove="templateRemoved($item)">
         <ui-select-match placeholder="Choose a template...">{{getTemplateName($select.selected[$index])}}</ui-select-match>
-        <ui-select-choices repeat="template in templateList | filter: $select.search">
+        <ui-select-choices group-by="firstLetterGroupFn" repeat="template in templateList | filter: $select.search">
             <div ng-bind-html="template.templateName | highlight: $select.search"></div>
         </ui-select-choices>
       </ui-select>
