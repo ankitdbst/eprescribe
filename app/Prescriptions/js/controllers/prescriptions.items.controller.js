@@ -98,30 +98,22 @@
       var watchExpr = 'prescription.' + val + 's';
       $scope.$watch(watchExpr, function(newVal){
         console.log(newVal);
+        var len = newVal.length;
+        if(Object.keys(newVal[len-1]).length > 1) {
+          AddItem();
+        }
       }, true);
       typeWatch();
     });
 
     function AddItem() {
       var itemsStr = $scope.type + 's';
-      var len = $scope.prescription[itemsStr].length;
-      /*
-      if (!_.isEmpty($scope.prescription[itemsStr][len - 1]) &&
-          Object.keys($scope.prescription[itemsStr][len - 1]).length !== 1) {
-        $scope.prescription[itemsStr].push({});
-        $scope.flag++;
-      }
-      */
-      if (Object.keys($scope.prescription[itemsStr][len - 1]).length !== 1) {
-        $scope.prescription[itemsStr].push({});
-        //  $scope.flag++;
-      }
+      $scope.prescription[itemsStr].push({});
     }
 
     function SearchMedicine(searchText) {
       if(searchText == undefined || searchText == ""){
-        //TODO Back button causing data deletion
-         AddItem();
+        //TODO: Back button causing data deletion
         //Just return Favourite Meds only. This is onClick only
         var params = {
           user: user.mobile,
@@ -133,7 +125,6 @@
         $scope.myPromise = Prescription.getFavouriteMed(params).$promise;
         return Prescription.getFavouriteMed(params).$promise;
       }
-      AddItem();
       var params = {
         user: user.mobile,
         sessionId: user.sessionId,
