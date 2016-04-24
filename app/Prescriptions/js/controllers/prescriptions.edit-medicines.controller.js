@@ -70,11 +70,14 @@
       });
     };
     $scope.firstLetterGroupFn = function(item) {
+      //TODO: Fearure deprecated as of now. Code remains for future iteration
+      //Add group-by="firstLetterGroupFn" at ui-select-choices directive
+      /*
       if(item.favourite == true)
         return "Favourites";
       else
         return "Templates";
-      //counter++;
+      */
     };
     $scope.templateRemoved = function(item) {
       //Need to remove whatever added in templateAdded function
