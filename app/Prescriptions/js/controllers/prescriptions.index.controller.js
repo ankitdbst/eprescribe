@@ -27,7 +27,6 @@
 
     $scope.create = CreatePrescription;
     $scope.clone = ClonePrescription;
-    $scope.getAllPrescriptionsAccess = GetAllPrescriptionsAccess;
     $scope.minimized = false;
 
     function Init() {
@@ -51,29 +50,30 @@
         patientId: $stateParams.patientId
       });
     }
-    
-    function GetAllPrescriptionsAccess() {
-            //Open Verify OTP pageÏ
-            $state.go('PatientVerifyOTP', {patientId: patientId})
-        }
+
+
 
     function ClonePrescription(pid) {
-      if (_.isUndefined(pid))
-        pid = $stateParams.prescriptionId;
-
-      var params = {
-        user: user.mobile,
-        sessionId: user.sessionId,
-        pid: pid,
-        columnsToGet: ""
-      };
-
-      $scope.prescription = Prescription.get(params);
-      $scope.prescription.$promise.then(function (response) {
-        delete $scope.prescription.pid; // We do not want to send the pid;
-        delete $scope.prescription._id;
-        CreatePrescription();
+      $state.go('PrescriptionNewOrEdit', {
+        patientId: $stateParams.patientId,
+        prescriptionId: pid
       });
+//      if (_.isUndefined(pid))
+//        pid = $stateParams.prescriptionId;
+//
+//      var params = {
+//        user: user.mobile,
+//        sessionId: user.sessionId,
+//        pid: pid,
+//        columnsToGet: ""
+//      };
+//
+//      $scope.prescription = Prescription.get(params);
+//      $scope.prescription.$promise.then(function (response) {
+//        delete $scope.prescription.pid; // We do not want to send the pid;
+//        delete $scope.prescription._id;
+//        CreatePrescription();
+//      });
     }
   }
 

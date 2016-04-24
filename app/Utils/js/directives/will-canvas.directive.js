@@ -6,21 +6,37 @@
 
   willCanvas.$inject = [];
 
+  function MyPoint() {
+    this.x = undefined;
+    this.y = undefined;
+  }
+
+  MyPoint.prototype.isValid = function() {
+    return !(this.x == undefined && this.y == undefined);
+  }
+
   function willCanvas() {
     function link(scope, elem, attrs) {
       var canvas = elem.get(0);
+      var canvasImg = scope.ngModel;
+
       var WILL = {
         backgroundColor: Module.Color.WHITE,
         color: Module.Color.BLACK,
 
         init: function(width, height, canvas) {
           this.isTouch = !!('ontouchstart' in window);
-          this.initInkEngine(width, height, canvas);
+          this.canvasEl = canvas;
+          this.initInkEngine(width, height);
           this.initEvents();
+
+          if (!_.isEmpty(canvasImg)) {
+            this.loadImage(canvasImg);
+          }
         },
 
-        initInkEngine: function(width, height, canvas) {
-          this.canvas = new Module.InkCanvas(canvas, width, height);
+        initInkEngine: function(width, height) {
+          this.canvas = new Module.InkCanvas(this.canvasEl, width, height);
           this.canvas.clear(this.backgroundColor);
 
           this.brush = new Module.DirectBrush();
@@ -81,13 +97,22 @@
         },
 
         setPointFromEvent: function(point, e) {
+          if (window.PointerEvent && e instanceof PointerEvent) {
+            console.re.log("Pointer events supported!");
+            e = e.originalEvent;
+          }
+
           if (this.isTouch) {
+            if (e.changedTouches[0].target.id !== this.canvasEl.id) { // there will always be at-least 1 changedTouch
+              return false;                                           // causing the TouchEvent
+            }
             point.x = e.changedTouches[0].pageX - this.getOffset(e.target).left;
             point.y = e.changedTouches[0].pageY - this.getOffset(e.target).top;
           } else {
             point.x = e.offsetX !== undefined ? e.offsetX : e.layerX;
             point.y = e.offsetY !== undefined ? e.offsetY : e.layerY;
           }
+          return true;
         },
 
         getPressure: function(e) {
@@ -95,25 +120,28 @@
         },
 
         beginStroke: function(e) {
-          // if (e.button != 0) return;
-          console.re.log("Event [Begin Phase]: ", e);
+          var point = new MyPoint;
+          this.setPointFromEvent(point, e);
+          if (!point.isValid()) return;
+
           e.preventDefault();
           this.inputPhase = Module.InputPhase.Begin;
           this.pressure = this.getPressure(e);
           this.pathBuilder = isNaN(this.pressure)?this.speedPathBuilder:this.pressurePathBuilder;
 
-          var point = {x: 0, y: 0};
-          this.setPointFromEvent(point, e);
           this.buildPath(point);
           this.drawPath();
         },
 
         moveStroke: function(e) {
           if (!this.inputPhase) return;
+
+          var point = new MyPoint;
+          this.setPointFromEvent(point, e)
+          if (!point.isValid()) return;
+
           e.preventDefault();
           this.inputPhase = Module.InputPhase.Move;
-          var point = {x: 0, y: 0};
-          this.setPointFromEvent(point, e);
 
           this.pointerPos = point;
           this.pressure = this.getPressure(e);
@@ -141,11 +169,14 @@
 
         endStroke: function(e) {
           if (!this.inputPhase) return;
+
+          var point = new MyPoint;
+          this.setPointFromEvent(point, e);
+          if (!point.isValid()) return;
+
           e.preventDefault();
           this.inputPhase = Module.InputPhase.End;
           this.pressure = this.getPressure(e);
-          var point = {x: 0, y: 0};
-          this.setPointFromEvent(point, e);
           this.buildPath(point);
           this.drawPath();
 
@@ -172,6 +203,40 @@
 
         clear: function() {
           this.canvas.clear(this.backgroundColor);
+        },
+
+        saveImage: function () {
+          var width = this.canvas.width,
+              height = this.canvas.height;
+          var data = this.canvas.readPixels(this.canvas.bounds);
+          // Create a 2D canvas to store the result
+          var canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          var context = canvas.getContext('2d');
+
+          // Copy the pixels to a 2D canvas
+          var imageData = context.createImageData(width, height);
+          imageData.data.set(data);
+          context.putImageData(imageData, 0, 0);
+          return canvas.toDataURL();
+        },
+
+        loadImage: function(img) {
+          var width = this.canvas.width,
+              height = this.canvas.height;
+          var image = document.createElement('img');
+          image.src = img;
+
+          var canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          var context = canvas.getContext('2d');
+          context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          context.drawImage(image, 0, 0);
+
+          var imageData = context.getImageData(0, 0, width, height);
+          this.canvas.writePixels(imageData.data, this.canvas.bounds);
         }
       };
 
@@ -180,12 +245,16 @@
       }
 
       WILL.init(canvas.parentElement.offsetWidth, canvas.parentElement.offsetHeight, canvas);
+      _.bindAll(WILL, 'saveImage', 'loadImage');
+      // Set the callback
+      scope.setFn({saveImage: WILL.saveImage, loadImage: WILL.loadImage});
     }
 
     var directive = {
         link: link,
         restrict: 'AE',
         scope: {
+          setFn: '&',
           ngModel: '='
         }
     };

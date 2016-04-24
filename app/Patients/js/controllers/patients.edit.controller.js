@@ -16,33 +16,11 @@
 
         Initialize();
 
-
-        if ($stateParams.patientId == '') {
-            //A new patient profile is being created!
-            //Set empty object..
-            $scope.patient = {};
-            $scope.patient.history = {};
-            $scope.patient.alergy = {};
-            $scope.patient.address = {};
-            $scope.patient.age = {};
-            $scope.patient.isUpdate = false;
-            $scope.patient.sex = "Male";//set default value..
-            $scope.patient.relation = "None";
-            $scope.patient.bloodgroup = "None";
-            $scope.patient.hasAllPrescriptionsAccess = false; //When creating a new patient, it should NOT have default access to ALL prescriptions
-            $scope.patient.password = "";
-            $scope.patient.parentId = "";
-            $scope.patient.dependants = [];
-            $scope.patient.status = "WaitingOTP";
-        } else {
-            //Get Patient Details from server and populate patient object..
-            GetUserProfile();
-        }
-
-
+        //Functions
         $scope.savePatientProfile = SavePatientProfile;
         $scope.savePatientPeripheralDetails = SavePatientPeripheralDetails;
         $scope.openPrescriptions = OpenPrescriptions;
+        $scope.getAllPrescriptionsAccess = GetAllPrescriptionsAccess;
 
         $scope.uploader = {};
 
@@ -65,19 +43,48 @@
             $scope.relationshiptypes = ["None", "Daughter", "Son", "Wife", "Father", "Mother", "Grand Father", "Grand Mother", "Brother", "Sister", "Others"];
             $rootScope.pageHeader = "Patient Profile";
             $scope.bloodgroups = ["None", "A+", "A-", "A Unknown", "B+", "B-", "B Unknown", "AB+", "AB-", "AB Unknown", "O+", "O-", "O Unknown"];
+            if ($stateParams.patientId == '') {
+                //A new patient profile is being created!
+                //Set empty object..
+                $scope.patient = {};
+                $scope.patient.history = {};
+                $scope.patient.alergy = {};
+                $scope.patient.address = {};
+                $scope.patient.age = {};
+                $scope.patient.isUpdate = false;
+                $scope.patient.sex = "Male";//set default value..
+                $scope.patient.relation = "None";
+                $scope.patient.bloodgroup = "None";
+                $scope.patient.hasFullAccess = true;//If the Doctor/Hospital is creating patient, then he already has full access..
+                $scope.patient.password = "";
+                $scope.patient.parentId = "";
+                $scope.patient.dependants = [];
+                $scope.patient.status = "WaitingOTP";
+                EditMode(true);
+            } else {
+                //Get Patient Details from server and populate patient object..
+                GetUserProfile();
+                EditMode(false);
+            }
+        }
+
+        function EditMode(flag) {
+            $scope.identifyingDetailsSectionUpdate = flag;
+            $scope.historySectionUpdate = flag;
+            $scope.allergiesSectionUpdate = flag;
         }
 
         function SavePatientProfile(section) {
             //Common settings for a patient
             $scope.patient.userType = "patient";
-            /*
-             * Whether Doctor is creating a profile, or opening an existing profile with or without OTP
-             * isNew would be false as doctor already has access for the profile.
-             */
-            $scope.patient.isNew = false;
-            //Computed properties
-            $scope.patient.age.year = $rootScope.getAge($scope.patient.dob);
             $scope.patient.isDependant = ($scope.patient.relation == 'None') ? "false" : "true";
+            $scope.patient.isUpdate = true;
+
+            //Computed properties
+            if ($scope.patient.age == undefined) {
+                $scope.patient.age = {};
+            }
+            $scope.patient.age.year = $rootScope.getAge($scope.patient.dob);
 
             UpsertUser(section);
         }
@@ -110,6 +117,7 @@
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
+                    EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
@@ -151,12 +159,13 @@
                     $scope.alertClass = "alert-success";
                     //If all goes good, rebind the data..
                     $scope.patient = response.patient;
+                    EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
                 }
             });
-        }        
+        }
 
         function GetUserProfile() {
             $scope.myPromise = Patient.get({
@@ -167,7 +176,6 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.patient = response;
-                $scope.patient.isUpdate = true;
                 //Once Profile is obtained..fetch history and allergies..
                 GetHistory();
                 GetAllergies();
@@ -204,8 +212,13 @@
 
         function OpenPrescriptions() {
             $state.go('PrescriptionIndex', {
-              patientId: $stateParams.patientId
+                patientId: $stateParams.patientId
             });
+        }
+
+        function GetAllPrescriptionsAccess() {
+            //Open Verify OTP pageÏ
+            $state.go('PatientVerifyOTP', {patientId: $stateParams.patientId})
         }
     }
 })();

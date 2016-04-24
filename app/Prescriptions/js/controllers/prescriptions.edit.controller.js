@@ -20,9 +20,37 @@
     var patientId = $stateParams.patientId;
     var user = Account.getAuthenticatedAccount();
 
-    $scope.prescription = new Prescription;
+    var pid = $stateParams.prescriptionId;
+    if (_.isEmpty(pid)) {
+      $scope.prescription = new Prescription;
+      Init();
+    } else {
+      var params = {
+        user: user.mobile,
+        sessionId: user.sessionId,
+        pid: pid,
+        columnsToGet: ""
+      };
+
+      $scope.prescription = Prescription.get(params);
+      $scope.prescription.$promise.then(function (response) {
+        delete $scope.prescription.pid; // We do not want to send the pid;
+        delete $scope.prescription._id;
+        if ($scope.loadImageFn && !_.isEmpty($scope.prescription.imgDiagnosis)) {
+          $scope.loadImageFn($scope.prescription.imgDiagnosis);
+        }
+        InitItems();
+      });
+    }
+
     $scope.dialogTitle = "New Prescription";
     $scope.canvasEnabled = user.settings.canvasEnabled;
+
+    // API exposed by WILL directive
+    $scope.setDirectiveFn = function(saveImageFn, loadImageFn) {
+        $scope.saveImageFn = saveImageFn;
+        $scope.loadImageFn = loadImageFn;
+    };
 
     // Prescription
     $scope.save = UpsertPrescription;
@@ -39,8 +67,6 @@
     // Canvas | free write
     $scope.closeCanvas = CloseCanvas;
 
-    Init();
-
     function Init() {
       $scope.prescription.patientId = patientId;
       $scope.prescription.doctorId = user.userId;
@@ -50,11 +76,23 @@
       $scope.prescription.medcines = [];
       $scope.prescription.advises = [];
 
+      InitItems();
+
       var defaultDate = new Date();
       // Add 7 days
       defaultDate.setDate(defaultDate.getDate() + 7);
       $scope.prescription.nextVisit = {};
       $scope.prescription.nextVisit.date = moment(defaultDate).format("DD/MM/YYYY hh:mm A");
+    }
+
+    function InitItems() {
+      ['medcines', 'advises'].forEach(function (itemsStr) {
+        var len = $scope.prescription[itemsStr].length;
+        if (len == 0 || (!_.isEmpty($scope.prescription[itemsStr][len - 1]) &&
+            Object.keys($scope.prescription[itemsStr][len - 1]).length !== 1)) {
+          $scope.prescription[itemsStr].push({});
+        }
+      });
     }
 
     function UpsertPrescription() {
@@ -99,7 +137,7 @@
 
     function UpsertPrescriptionAsTemplate() {
 
-      
+
       var params = {
         user: user.mobile,
         sessionId: user.sessionId,
@@ -128,14 +166,6 @@
         }
       });
     }
-
-    ['medcines', 'advises'].forEach(function (itemsStr) {
-      var len = $scope.prescription[itemsStr].length;
-      if (len == 0 || (!_.isEmpty($scope.prescription[itemsStr][len - 1]) &&
-          Object.keys($scope.prescription[itemsStr][len - 1]).length !== 1)) {
-        $scope.prescription[itemsStr].push({});
-      }
-    });
 
     function UpsertItem(item, index) {
       var itemStr, itemsStr;
@@ -179,6 +209,9 @@
     }
 
     function AddMedicines() {
+      // Save prescription image
+      $scope.prescription.imgDiagnosis = $scope.saveImageFn();
+
       $state.go('PrescriptionAddMedicines', {
         patientId: $stateParams.patientId,
         prescription: $scope.prescription
@@ -196,6 +229,6 @@
       };
       $scope.myPromise = Prescription.searchMed(params).$promise;
       return Prescription.searchMed(params).$promise;
-    } 
+    }
   }
 })();
