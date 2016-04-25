@@ -96,11 +96,18 @@
       console.log("Item str: " + val);
       if(_.isUndefined(val)) return;
       var watchExpr = 'prescription.' + val + 's';
-      $scope.$watch(watchExpr, function(newVal){
-        console.log(newVal);
-        var len = newVal.length;
-        if(Object.keys(newVal[len-1]).length > 1) {
-          AddItem();
+      var medicinesWatch = $scope.$watch(watchExpr, function(newVal, oldVal) {
+        if(newVal !== undefined && oldVal !== undefined) {
+          var newLen = newVal.length;
+          var oldLen = oldVal.length;
+          if(newLen == oldLen - 1 && Object.keys(oldVal[oldLen-1]).length == 0) {
+            //Time to unbind listener
+            medicinesWatch();
+            return;
+          }
+          if(Object.keys(newVal[newLen-1]).length > 1) {
+            AddItem();
+          }
         }
       }, true);
       typeWatch();
