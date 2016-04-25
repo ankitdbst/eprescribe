@@ -9,7 +9,7 @@
     <div class="medicines-list">
       <h4 style="display: inline-block">Rx</h4>      
       <!-- TODO Make it async https://github.com/angular-ui/ui-select/wiki/ui-select -->
-       <ui-select multiple sortable="true"  ng-model="templates.selected" theme="bootstrap" title="Choose template" on-select="templateAdded($item)" on-remove="templateRemoved($item)" style= "display: inline-block; width: 97%; margin-left: 5px">
+       <ui-select multiple sortable="true"  ng-model="templates.selected" theme="bootstrap" title="Choose template" on-select="templateAdded($item)" on-remove="templateRemoved($item)" style= "display: inline-block; width: 95%; margin-left: 5px">
         <ui-select-match placeholder="Choose a template...">{{getTemplateName($select.selected[$index])}}</ui-select-match>
         <ui-select-choices repeat="template in templateList | filter: $select.search">
             <div ng-bind-html="template.templateName | highlight: $select.search"></div>
