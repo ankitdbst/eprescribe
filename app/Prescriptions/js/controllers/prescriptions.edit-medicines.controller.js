@@ -95,9 +95,8 @@
       });
     };
     function UpsertPrescription() {
-      //TODO change user to user.mobile
       var params = {
-        user: '101',
+        user: user.userId,
         sessionId: user.sessionId,
         prescription: $scope.prescription
       };
@@ -138,7 +137,7 @@
 
           function UpsertPrescriptionAsTemplate() {
             var params = {
-              user: user.mobile,
+              user: user.userId,
               sessionId: user.sessionId,
               isTemplate: "true",
               templateName: $scope.template_name,
