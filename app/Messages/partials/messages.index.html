@@ -2,16 +2,16 @@
 <div ncy-breadcrumb></div>
 
 <form name="formMessages" class="panel-group" novalidate scroll-spy>
-    <div class="pull-right">
+    <div style="margin-left: 96%">
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
             <li spy="smsCenter">
                 <a href="" ng-click="isSMSCentreCollapsed = false">
-                    <i class="fa fa-comment-o fa-1x"></i>
+                    <i class="fa fa-comment-o fa-2x"></i>
                 </a>
             </li>
             <li spy="deliveryReport">
                 <a href="" ng-click="isDeliveryReportVisible = true; isDeliveryReportCollapsed = true">
-                    <i class="fa fa-list-alt fa-1x"></i>
+                    <i class="fa fa-list-alt fa-2x"></i>
                 </a>
             </li>
         </ul>
@@ -21,7 +21,7 @@
         <div class="panel panel-info" id="smsCenter">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-comment fa-1x"></i>
+                    <i class="fa fa-comment-o fa-2x"></i>
                     <a ng-click="isSMSCentreCollapsed = !isSMSCentreCollapsed" href="">SMS Center</a>                    
                 </h4>
             </div>
@@ -67,7 +67,7 @@
         <div class="panel panel-info" id="deliveryReport" ng-show="isDeliveryReportVisible">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-list-alt fa-1x"></i>
+                    <i class="fa fa-list-alt fa-2x"></i>
                     <a ng-click="isDeliveryReportCollapsed = !isDeliveryReportCollapsed" href="">Delivery Report (Last 25 Transactions)</a>
                 </h4>
             </div>
