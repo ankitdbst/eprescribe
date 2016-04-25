@@ -19,6 +19,7 @@
     function link(scope, elem, attrs) {
       var canvas = elem.get(0);
       var canvasImg = scope.ngModel;
+      var scope = scope;
 
       var WILL = {
         backgroundColor: Module.Color.WHITE,
@@ -102,16 +103,22 @@
             e = e.originalEvent;
           }
 
+          var top;
           if (this.isTouch) {
             if (e.changedTouches[0].target.id !== this.canvasEl.id) { // there will always be at-least 1 changedTouch
               return false;                                           // causing the TouchEvent
             }
             point.x = e.changedTouches[0].pageX - this.getOffset(e.target).left;
             point.y = e.changedTouches[0].pageY - this.getOffset(e.target).top;
+            top = e.changedTouches[0].clientY;
           } else {
             point.x = e.offsetX !== undefined ? e.offsetX : e.layerX;
             point.y = e.offsetY !== undefined ? e.offsetY : e.layerY;
+            top = e.clientY;
           }
+
+          // Notify parent scopes about the canvas write
+          scope.$emit('canvas.write', top);
           return true;
         },
 

@@ -242,8 +242,20 @@
 
     function palmReject() {
       function link(scope, elm, attrs) {
+        var elem = elm;
         elm.on('touchstart touchmove', function(e) {
           e.preventDefault();
+        });
+
+        var buffer = 50; // 50px
+
+        scope.$on('canvas.write', function(e, top) {
+          var windowHeight = $(window).height();
+          var rTop = windowHeight - elem.height();
+          if( rTop - top < 50 ) {
+            var newHeight = windowHeight - (top + buffer);
+            elem.height(newHeight);
+          }
         });
       }
 
