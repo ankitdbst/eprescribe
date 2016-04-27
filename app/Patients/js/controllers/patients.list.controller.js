@@ -53,7 +53,7 @@
                 sessionId: $scope.account.sessionId,
                 doctorId: $scope.account.userId,
                 limit: 50,
-                columnsToGet: ""
+                columnsToGet: "profileImageURL,firstName,midlleName,lastName,sex,age,mobile,email,patientId"
             }, function (response) {
                 $scope.patientList = response;
             }
@@ -74,7 +74,7 @@
                 doctorId: $scope.account.userId,
                 mobile: $scope.patient.search.mobilenumber,
                 limit: 50,
-                columnsToGet: ""
+                columnsToGet: "profileImageURL,firstName,midlleName,lastName,sex,age,mobile,email,patientId"
             }, function (response) {
                 if (angular.isUndefined(response) || response == '')
                 {
