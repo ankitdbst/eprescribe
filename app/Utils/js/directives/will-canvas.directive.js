@@ -251,7 +251,7 @@
         return WILL.brush;
       }
 
-      WILL.init(canvas.parentElement.offsetWidth, canvas.parentElement.offsetHeight, canvas);
+      WILL.init(canvas.parentElement.offsetWidth, window.innerHeight, canvas);
       _.bindAll(WILL, 'saveImage', 'loadImage');
       // Set the callback
       scope.setFn({saveImage: WILL.saveImage, loadImage: WILL.loadImage});
