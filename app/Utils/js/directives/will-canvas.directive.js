@@ -251,7 +251,12 @@
         return WILL.brush;
       }
 
-      WILL.init(canvas.parentElement.offsetWidth, window.innerHeight, canvas);
+      var canvasHeight = canvas.parentElement.offsetHeight;
+      if( scope.fullScreen ) {
+        canvasHeight = window.innerHeight - canvas.offsetTop;
+      }
+
+      WILL.init(canvas.parentElement.offsetWidth, canvasHeight, canvas);
       _.bindAll(WILL, 'saveImage', 'loadImage');
       // Set the callback
       scope.setFn({saveImage: WILL.saveImage, loadImage: WILL.loadImage});
@@ -262,7 +267,8 @@
         restrict: 'AE',
         scope: {
           setFn: '&',
-          ngModel: '='
+          ngModel: '=',
+          fullScreen: '='
         }
     };
 

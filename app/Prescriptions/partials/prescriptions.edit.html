@@ -9,7 +9,7 @@
             <span class="glyphicon glyphicon-plus"></span> Add Medicines
         </button>
     </h4>
-    <canvas set-fn="setDirectiveFn(saveImage, loadImage)" will-canvas id="canvasPatientDiagnosis" ng-if="canvasEnabled"></canvas>
+    <canvas set-fn="setDirectiveFn(saveImage, loadImage)" full-screen="true" will-canvas id="canvasPatientDiagnosis" ng-if="canvasEnabled"></canvas>
     <!--<div ng-model="prescription.imgDiagnosis" my-canvas options="{}" ng-if="canvasEnabled" />-->
 
     <div ng-if="!canvasEnabled">
