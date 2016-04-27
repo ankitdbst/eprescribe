@@ -37,8 +37,17 @@
     };
 
     $scope.templates = {};
+    var counter = 0;
     // $scope.myPromise = Prescription.getTemplates(params).$promise;
-    $scope.templateList = Prescription.getTemplates(params);
+    $scope.templateList = Prescription.getTemplates(params, function(response) {
+      for(var i = 0; i< $scope.templateList.length;i++)
+      {
+        if(i%2 == 0) {
+          $scope.templateList[i].favourite = true;
+        }
+      }
+    });
+    
     // console.log($scope.templateList);
     $scope.getTemplateName = function(template) {
       return template.templateName;
@@ -60,6 +69,16 @@
         }
       });
     };
+    $scope.firstLetterGroupFn = function(item) {
+      //TODO: Fearure deprecated as of now. Code remains for future iteration
+      //Add group-by="firstLetterGroupFn" at ui-select-choices directive
+      /*
+      if(item.favourite == true)
+        return "Favourites";
+      else
+        return "Templates";
+      */
+    };
     $scope.templateRemoved = function(item) {
       //Need to remove whatever added in templateAdded function
       //Starting with medcines
@@ -76,9 +95,8 @@
       });
     };
     function UpsertPrescription() {
-      //TODO change user to user.mobile
       var params = {
-        user: '101',
+        user: user.userId,
         sessionId: user.sessionId,
         prescription: $scope.prescription
       };
@@ -119,7 +137,7 @@
 
           function UpsertPrescriptionAsTemplate() {
             var params = {
-              user: '101',
+              user: user.userId,
               sessionId: user.sessionId,
               isTemplate: "true",
               templateName: $scope.template_name,

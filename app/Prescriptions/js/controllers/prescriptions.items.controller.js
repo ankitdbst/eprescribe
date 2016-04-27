@@ -86,21 +86,52 @@
     $scope.delete = Delete;
     $scope.add = AddItem;
     $scope.search = SearchMedicine;
+    $scope.flag = 1;
 
     // Move to constants service
     $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     $scope.times = ['Morning', 'Afternoon', 'Night'];
 
+    var typeWatch = $scope.$watch('type', function(val) {
+      console.log("Item str: " + val);
+      if(_.isUndefined(val)) return;
+      var watchExpr = 'prescription.' + val + 's';
+      var medicinesWatch = $scope.$watch(watchExpr, function(newVal, oldVal) {
+        if(newVal !== undefined && oldVal !== undefined) {
+          var newLen = newVal.length;
+          var oldLen = oldVal.length;
+          if(newLen == oldLen - 1 && Object.keys(oldVal[oldLen-1]).length == 0) {
+            //Time to unbind listener
+            medicinesWatch();
+            return;
+          }
+          if(Object.keys(newVal[newLen-1]).length > 1) {
+            AddItem();
+          }
+        }
+      }, true);
+      typeWatch();
+    });
+
     function AddItem() {
       var itemsStr = $scope.type + 's';
-      var len = $scope.prescription[itemsStr].length;
-      if (!_.isEmpty($scope.prescription[itemsStr][len - 1]) &&
-          Object.keys($scope.prescription[itemsStr][len - 1]).length !== 1) {
-        $scope.prescription[itemsStr].push({});
-      }
+      $scope.prescription[itemsStr].push({});
     }
 
     function SearchMedicine(searchText) {
+      if(searchText == undefined || searchText == ""){
+        //TODO: Back button causing data deletion
+        //Just return Favourite Meds only. This is onClick only
+        var params = {
+          user: user.mobile,
+          sessionId: user.sessionId,
+          doctorId: user.userId,
+          limit: 5,
+          columnsToGet: ""
+        };
+        $scope.myPromise = Prescription.getFavouriteMed(params).$promise;
+        return Prescription.getFavouriteMed(params).$promise;
+      }
       var params = {
         user: user.mobile,
         sessionId: user.sessionId,

@@ -45,37 +45,37 @@
     {{alertMessage}}
 </div>
 <form name="formPatientProfile" class="panel-group" novalidate scroll-spy>
-    <div class="pull-right" style="margin-top: 5%">
+    <div style="margin-top: 5%; margin-left: 96%">
 
         <ul id="navPills" class="nav nav-pills nav-stacked affix">
             <li spy="identifyingDetails">
                 <a href="">
-                    <i class="fa fa-user fa-1x"></i>
+                    <i class="fa fa-user fa-2x"></i>
                 </a>
             </li>
             <li spy="history" ng-show="patient.isUpdate && patient.hasFullAccess">
                 <a href="">
-                    <i class="fa fa-history fa-1x"></i>
+                    <i class="fa fa-history fa-2x"></i>
                 </a>
             </li>
             <li spy="allergies" ng-show="patient.isUpdate && patient.hasFullAccess">
                 <a href="">
-                    <i class="fa fa-ban fa-1x"></i>
+                    <i class="fa fa-ban fa-2x"></i>
                 </a>
             </li>
             <li spy="vitals" ng-show="patient.isUpdate">
                 <a href="" ng-click="isVitalsVisible = true;">
-                    <i class="fa fa-stethoscope fa-1x" ></i>
+                    <i class="fa fa-stethoscope fa-2x" ></i>
                 </a>
             </li>
             <li spy="clinicalNotes" ng-show="patient.isUpdate">
                 <a href="" ng-click="isClinicalNotesVisible = true;">
-                    <i class="fa fa-sticky-note fa-1x"></i>
+                    <i class="fa fa-sticky-note fa-2x"></i>
                 </a>
             </li>
             <li spy="documents" ng-show="patient.isUpdate">
                 <a href=""  ng-click="isDocumentsVisible = true;">
-                    <i class="fa fa-file-text fa-1x"></i>
+                    <i class="fa fa-file-text fa-2x"></i>
                 </a>
             </li>
         </ul>
@@ -90,16 +90,16 @@
                 <i class="fa fa-user fa-2x"></i>
                 Identifying Details*
                 <a href="" ng-click="identifyingDetailsSectionUpdate = true" ng-show="!identifyingDetailsSectionUpdate">
-                    <i class="fa fa-pencil fa-1x text-muted"></i>
+                    <i class="fa fa-pencil fa-2x text-muted"></i>
                 </a>
                 <a href="" ng-click="savePatientProfile('IdentifyingDetails')" ng-show="identifyingDetailsSectionUpdate" a-disabled="formPatientProfile.$invalid">
-                    <i class="fa fa-floppy-o fa-1x text-primary"></i>
+                    <i class="fa fa-floppy-o fa-2x text-primary"></i>
                 </a>
                 <a href="" ng-click="identifyingDetailsSectionUpdate = false" ng-show="identifyingDetailsSectionUpdate">
-                    <i class="fa fa-close fa-1x text-muted"></i>
+                    <i class="fa fa-close fa-2x text-muted"></i>
                 </a>
                 <a href="">
-                    <i class="fa fa-road text-info"></i>
+                    <i class="fa fa-road text-info fa-2x"></i>
                 </a>
                 <div class="alert {{alertClass}}  fade in inline-block" ng-show="showAlert && section == 'IdentifyingDetails'" role="alert" style="margin-bottom: 0%">
                     <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
