@@ -9,10 +9,11 @@
     '$stateParams',
     'Prescription',
     'Account',
-    '$state'
+    '$state',
+    '$rootScope'
   ];
 
-  function PrescriptionListCtrl($scope, $stateParams, Prescription, Account, $state) {
+  function PrescriptionListCtrl($scope, $stateParams, Prescription, Account, $state, $rootScope) {
     var user = Account.getAuthenticatedAccount();
     var patientId = $stateParams.patientId;
 
@@ -24,7 +25,7 @@
       });
     }
 
-    $scope.canvasEnabled = user.settings.canvasEnabled;
+    $scope.canvasEnabled = $rootScope.doctor.settings.canvasEnabled;
     $scope.sortSearchResultsReverse = false;// set the default sort order
     $scope.sortSearchResultsType = ''// set the default sort type
 
