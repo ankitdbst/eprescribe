@@ -71,6 +71,7 @@
         $scope.prescription.images.push({});
         $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
       } else {
+        if( currIdx < 0 || currIdx > $scope.prescription.images.length-1 ) return; // Defensive check
         $scope.prescription.images[$scope.canvasIdx].src = $scope.saveImageFn();
         $scope.canvasIdx = currIdx;
         $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
