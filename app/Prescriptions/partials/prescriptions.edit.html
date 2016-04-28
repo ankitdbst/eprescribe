@@ -9,7 +9,28 @@
             <span class="glyphicon glyphicon-plus"></span> Add Medicines
         </button>
     </h4>
-    <canvas set-fn="setDirectiveFn(saveImage, loadImage)" full-screen="true" will-canvas id="canvasPatientDiagnosis" ng-if="canvasEnabled"></canvas>
+    <nav>
+      <ul class="pagination">
+        <li ng-class="{'disabled': canvasIdx==0}">
+          <a ng-click="loadCanvas(canvasIdx-1)"
+             aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li ng-class="{'active': $index==canvasIdx}"
+            ng-repeat="n in range(0, prescription.images.length-1)">
+          <a ng-click="loadCanvas($index)">{{$index+1}}</a>
+        </li>
+        <li ng-class="{'disabled': canvasIdx==prescription.images.length-1}">
+          <a ng-click="loadCanvas(canvasIdx+1)"
+             aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <canvas set-fn="setDirectiveFn(saveImage, loadImage)" full-screen="true" will-canvas id="canvasPatientDiagnosis" ng-if="canvasEnabled">
+    </canvas>
     <!--<div ng-model="prescription.imgDiagnosis" my-canvas options="{}" ng-if="canvasEnabled" />-->
 
     <div ng-if="!canvasEnabled">
@@ -28,6 +49,10 @@
         </div>
       </div>
     </div>
+
+    <button type="button" class="btn btn-primary btn-circle canvas-add" ng-click="loadCanvas();">
+        <i class="fa fa-plus fa-2x"></i>
+    </button>
   </form>
 </div>
 <!--

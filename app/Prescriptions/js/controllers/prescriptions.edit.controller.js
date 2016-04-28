@@ -36,15 +36,40 @@
       $scope.prescription.$promise.then(function (response) {
         delete $scope.prescription.pid; // We do not want to send the pid;
         delete $scope.prescription._id;
-        if ($scope.loadImageFn && !_.isEmpty($scope.prescription.imgDiagnosis)) {
-          $scope.loadImageFn($scope.prescription.imgDiagnosis);
+        if ($scope.loadImageFn && !_.isUndefined($scope.canvasIdx)
+                               && $scope.prescription.images.length > $scope.canvasIdx) {
+          $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
         }
         InitItems();
       });
     }
 
+    $scope.canvasIdx = 0;
+    $scope.range = function(min, max, step) {
+        step = step || 1;
+        var input = [];
+        for (var i = min; i <= max; i += step) {
+            input.push(i);
+        }
+        return input;
+    };
+
     $scope.dialogTitle = "New Prescription";
     $scope.canvasEnabled = user.settings.canvasEnabled;
+    $scope.loadCanvas = LoadCanvas;
+
+    function LoadCanvas(currIdx) {
+      if( _.isUndefined(currIdx) ) {
+        $scope.prescription.images[$scope.canvasIdx].src = $scope.saveImageFn();
+        $scope.canvasIdx++;
+        $scope.prescription.images.push({});
+        $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
+      } else {
+        $scope.prescription.images[$scope.canvasIdx].src = $scope.saveImageFn();
+        $scope.canvasIdx = currIdx;
+        $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
+      }
+    }
 
     // API exposed by WILL directive
     $scope.setDirectiveFn = function(saveImageFn, loadImageFn) {
@@ -75,6 +100,7 @@
       // Medications
       $scope.prescription.medcines = [];
       $scope.prescription.advises = [];
+      $scope.prescription.images = [{}]; // Save prescription images
 
       InitItems();
 

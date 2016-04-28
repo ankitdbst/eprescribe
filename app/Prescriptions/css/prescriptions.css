@@ -208,3 +208,9 @@
   overflow-y: auto;
   max-height: 200px;
 }
+
+.canvas-add {
+  position: fixed;
+  bottom: 70px;
+  right: 50px;
+}

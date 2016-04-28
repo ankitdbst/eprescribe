@@ -23,7 +23,7 @@
   </div>
   <div ng-if="canvasEnabled">
     <!--<label>Complaints & Diagnosis: </label>-->
-    <img ng-src="{{prescription.imgDiagnosis}}" />
+    <img ng-src="{{img.src}}" ng-repeat="img in prescription.images"/>
   </div>
   <hr>
   <div>
