@@ -17,7 +17,7 @@
         Initialize();
 
         //Functions..
-        $scope.searchByMobileNumber = searchByMobileNumber;
+        $scope.search = search;
         $scope.createPatientProfile = createPatientProfile;
         $scope.openPatientProfile = openPatientProfile;
         $scope.getPatientList = GetPatientList;
@@ -26,7 +26,7 @@
             $scope.showAlert = false;
             $rootScope.pageHeader = "Patients";
             $scope.patient = {};
-            $scope.patient.search = {mobilenumber: ''};
+            $scope.patient.search = '';
             //retrieve full patient list from backend..
             GetPatientList();
         }
@@ -50,20 +50,19 @@
             $state.go('PatientNewOrEdit');
         }
 
-        function searchByMobileNumber() {
-
-            $scope.searchPatientResults = Patient.searchByMobile({
+        function search() {
+            $scope.searchPatientResults = Patient.search({
                 user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
                 doctorId: $scope.account.userId,
-                mobile: $scope.patient.search.mobilenumber,
+                searchText: $scope.patient.search,
                 limit: 50,
                 columnsToGet: "profileImageURL,firstName,midlleName,lastName,sex,age,mobile,email,patientId"
             }, function (response) {
                 if (angular.isUndefined(response) || response == '')
                 {
                     $scope.showAlert = true;
-                    $scope.alertMessage = "No Patient Found with Mobile Number: " + $scope.patient.search.mobilenumber + "!";
+                    $scope.alertMessage = "No Patient found with details: " + $scope.patient.search + "!";
                 } else
                 {
                     $scope.showAlert = false;
@@ -71,7 +70,6 @@
                 }
             }
             );
-
             $scope.myPromise = $scope.searchPatientResults.$promise;
         }
 
