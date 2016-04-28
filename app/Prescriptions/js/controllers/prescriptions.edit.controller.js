@@ -18,7 +18,13 @@
     $rootScope.pageHeader = "Create Prescription";
 
     var patientId = $stateParams.patientId;
+    
+    if (!Account.isAuthenticated()) {
+      $state.go('login', {signIn: true});
+      return;
+    }
     var user = Account.getAuthenticatedAccount();
+    
 
     var pid = $stateParams.prescriptionId;
     if (_.isEmpty(pid)) {
@@ -55,7 +61,7 @@
     };
 
     $scope.dialogTitle = "New Prescription";
-    $scope.canvasEnabled = $rootScope.doctor.settings.canvasEnabled;
+    $scope.canvasEnabled = user.loggedInUser.settings.canvasEnabled;
     $scope.loadCanvas = LoadCanvas;
 
     function LoadCanvas(currIdx) {

@@ -14,6 +14,10 @@
   ];
 
   function PrescriptionListCtrl($scope, $stateParams, Prescription, Account, $state, $rootScope) {
+    if (!Account.isAuthenticated()) {
+      $state.go('login', {signIn: true});
+      return;
+    }
     var user = Account.getAuthenticatedAccount();
     var patientId = $stateParams.patientId;
 
@@ -25,7 +29,7 @@
       });
     }
 
-    $scope.canvasEnabled = $rootScope.doctor.settings.canvasEnabled;
+    $scope.canvasEnabled = user.loggedInUser.settings.canvasEnabled;
     $scope.sortSearchResultsReverse = false;// set the default sort order
     $scope.sortSearchResultsType = ''// set the default sort type
 

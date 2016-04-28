@@ -17,7 +17,7 @@
         Initialize();
 
         function Initialize() {
-            $scope.canvasEnabled = $rootScope.doctor.settings.canvasEnabled;
+            $scope.canvasEnabled = account.loggedInUser.settings.canvasEnabled;
             $scope.clinicalNote = $scope.$parent.clinicalNote;
             $scope.directiveFn = $scope.$parent.directiveFn;
             $scope.saveBtnName = $scope.readOnly ? 'View' : 'Add';

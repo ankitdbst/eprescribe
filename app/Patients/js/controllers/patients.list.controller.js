@@ -27,24 +27,8 @@
             $rootScope.pageHeader = "Patients";
             $scope.patient = {};
             $scope.patient.search = {mobilenumber: ''};
-            //GetDoctorProfile..
-            GetDoctorProfile();
             //retrieve full patient list from backend..
             GetPatientList();
-        }
-
-        function GetDoctorProfile() {
-            //Get Patient Details from server and populate patient object..
-            $scope.myPromise = Patient.get({
-                user: $scope.account.userId,
-                sessionId: $scope.account.sessionId,
-                isDoctor: true,
-                mobile: "",
-                columnsToGet: ""
-            }, function (response) {
-                $scope.doctor = response;
-                $rootScope.doctor = $scope.doctor;
-            });
         }
 
         function GetPatientList() {

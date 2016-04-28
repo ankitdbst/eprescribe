@@ -20,7 +20,7 @@
     }
 
     var user = Account.getAuthenticatedAccount();
-    $scope.canvasEnabled = $rootScope.doctor.settings.canvasEnabled;
+    $scope.canvasEnabled = user.loggedInUser.settings.canvasEnabled;
 
     var pid = $stateParams.prescriptionId;
     var params = {

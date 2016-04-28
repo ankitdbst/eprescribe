@@ -16,7 +16,7 @@
                     return $resource(resourceUrl, paramDefaults, actions);
                 }])
 
-            .factory('Account', ['Login', '$cookies', '$rootScope', function (Login, $cookies, $rootScope) {
+            .factory('Account', ['Login', '$cookies', '$rootScope', 'Patient', function (Login, $cookies, $rootScope, Patient) {
 
                     function login(params, loginHandler) {
                         return Login.validateCredentials(params).$promise.then(function (response) {
@@ -29,10 +29,25 @@
                                     }
                                 });
                                 setAuthenticatedAccount(account);
+                                //Fetch Doctor Profile here and store in Cookie..
+                                GetDoctorProfile(account);
                             }
                             if (angular.isDefined(loginHandler)) {
                                 loginHandler(response);
                             }
+                        });
+                    }
+
+                    function GetDoctorProfile(account) {
+                        Patient.get({
+                            user: account.userId,
+                            sessionId: account.sessionId,
+                            isDoctor: true,
+                            mobile: "",
+                            columnsToGet: "settings,userType,userId,firstName,midlleName,lastName,mobile,"
+                        }, function (response) {
+                            account.loggedInUser = response;
+                            setAuthenticatedAccount(account);
                         });
                     }
 
