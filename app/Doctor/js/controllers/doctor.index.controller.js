@@ -93,8 +93,8 @@
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
-                    //If all goes good, rebind the data..
-                    EditMode(false);
+                    //If all goes good, then ask him to relogin
+                    $state.go('login', {signIn: true});
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
