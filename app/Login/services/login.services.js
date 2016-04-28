@@ -28,6 +28,8 @@
                                         delete response[key];
                                     }
                                 });
+                                //Store once in cookies..and use everywhere..
+                                account.baseURL = "http://52.76.165.4/ERService/"
                                 setAuthenticatedAccount(account);
                             }
                             if (angular.isDefined(loginHandler)) {
