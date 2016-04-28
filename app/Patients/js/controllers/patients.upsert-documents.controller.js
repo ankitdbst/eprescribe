@@ -19,7 +19,6 @@
         function Initialize() {
             $scope.document = $scope.$parent.document;
             $scope.saveBtnName = $scope.readOnly ? 'View' : 'Add';
-            $scope.dialogTitle = $scope.saveBtnName + " Document";
         }
 
         $scope.uploader = {};

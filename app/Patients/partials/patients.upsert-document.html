@@ -1,6 +1,3 @@
-<navbar type="header">
-    <li><a ng-click="closeThisDialog('closed')"><span class="glyphicon glyphicon-remove"></span></a></li>
-</navbar>
 <form name="formPatientUpsertDocument" class="panel-group eremedium-dialog" novalidate autocomplete="off">
     <div class="form-group ng-scope" ng-class="{ 'has-error': formPatientUpsertDocument.documentName.$touched && formPatientUpsertDocument.documentName.$invalid }" flow-init="{singleFile:true}" flow-files-submitted='handleUpload($files, $event, $flow)' flow-name="uploader.flow" >
         <span class="btn btn-default" flow-btn="" ng-show="!readOnly">Add Document

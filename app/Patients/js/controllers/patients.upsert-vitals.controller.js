@@ -19,9 +19,6 @@
         function Initialize() {
             $scope.vital = $scope.$parent.vital;
             $scope.saveBtnName = _.isEmpty($scope.vital) ? 'Add' : 'Update';
-            $scope.dialogTitle = $scope.saveBtnName + " Vital";
         }
-
-        
     }
 })();

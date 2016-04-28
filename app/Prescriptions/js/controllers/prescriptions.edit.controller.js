@@ -55,7 +55,7 @@
     };
 
     $scope.dialogTitle = "New Prescription";
-    $scope.canvasEnabled = user.settings.canvasEnabled;
+    $scope.canvasEnabled = $rootScope.doctor.settings.canvasEnabled;
     $scope.loadCanvas = LoadCanvas;
 
     function LoadCanvas(currIdx) {
