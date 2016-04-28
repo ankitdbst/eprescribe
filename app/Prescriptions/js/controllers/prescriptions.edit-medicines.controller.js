@@ -29,7 +29,7 @@
     // });
     console.log("Prescription: ", $scope.prescription);
     var params = {
-      user: user.mobile,
+      user: user.loggedInUser.mobile,
       sessionId: user.sessionId,
       doctorId: user.userId,
       columnsToGet: "",

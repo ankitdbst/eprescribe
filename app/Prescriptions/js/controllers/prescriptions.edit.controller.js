@@ -32,7 +32,7 @@
       Init();
     } else {
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         pid: pid,
         columnsToGet: ""
@@ -129,7 +129,7 @@
 
     function UpsertPrescription() {
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         prescription: $scope.prescription
       };
@@ -171,7 +171,7 @@
 
 
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         isTemplate: "true",
         templateName: $scope.templatename,
@@ -252,7 +252,7 @@
 
     function SearchMedicine(searchText) {
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         doctorId: user.userId,
         searchText: searchText,

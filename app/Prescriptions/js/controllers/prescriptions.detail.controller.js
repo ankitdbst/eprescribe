@@ -24,7 +24,7 @@
 
     var pid = $stateParams.prescriptionId;
     var params = {
-      user: user.mobile,
+      user: user.loggedInUser.mobile,
       sessionId: user.sessionId,
       pid: pid,
       columnsToGet: ""

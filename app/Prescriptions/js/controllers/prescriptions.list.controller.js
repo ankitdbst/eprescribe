@@ -33,9 +33,9 @@
     $scope.sortSearchResultsReverse = false;// set the default sort order
     $scope.sortSearchResultsType = ''// set the default sort type
 
-    $scope.doctorName = user.name || "Manoj Saini"; // Should come from session
+    $scope.doctorName = $rootScope.getFullName(user.loggedInUser);
     var params = {
-      user: user.mobile,
+      user: user.loggedInUser.mobile,
       sessionId: user.sessionId,
       doctorId: user.userId,
       patientId: patientId,
