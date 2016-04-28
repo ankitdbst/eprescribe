@@ -13,6 +13,7 @@
         }
 
         var account = Account.getAuthenticatedAccount();
+        $scope.account = account;
 
         Initialize();
 
