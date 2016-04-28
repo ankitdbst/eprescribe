@@ -28,9 +28,6 @@
                                         delete response[key];
                                     }
                                 });
-                                account.settings = {
-                                    canvasEnabled: true
-                                }; // This needs to be sent from the API
                                 setAuthenticatedAccount(account);
                             }
                             if (angular.isDefined(loginHandler)) {
@@ -55,9 +52,12 @@
                     }
 
                     function setAuthenticatedAccount(account) {
-                        $cookies.putObject('eremediumaccount', account);
+                        // Find tomorrow's date.
+                        var expireDate = new Date();
+                        expireDate.setDate(expireDate.getDate() + 7);//Expires in 30 days..
+                        $cookies.putObject('eremediumaccount', account, {'expires': expireDate});
                     }
-                    
+
                     function logout() {
                         $cookies.remove('eremediumaccount');
                     }

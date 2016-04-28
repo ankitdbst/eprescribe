@@ -9,17 +9,18 @@
     '$stateParams',
     'Prescription',
     'Account',
-    '$state'
+    '$state',
+    '$rootScope'
   ];
 
-  function PrescriptionDetailCtrl($scope, $stateParams, Prescription, Account, $state) {
+  function PrescriptionDetailCtrl($scope, $stateParams, Prescription, Account, $state, $rootScope) {
     if (!Account.isAuthenticated()) {
       $state.go('login', {signIn: true});
       return;
     }
 
     var user = Account.getAuthenticatedAccount();
-    $scope.canvasEnabled = user.settings.canvasEnabled;
+    $scope.canvasEnabled = $rootScope.doctor.settings.canvasEnabled;
 
     var pid = $stateParams.prescriptionId;
     var params = {
