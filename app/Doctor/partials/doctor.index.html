@@ -92,20 +92,20 @@
                     'has-error'
                     : formDoctorProfile.doctorFirstName.$touched && formDoctorProfile.doctorFirstName.$invalid }">
                 <label for="doctorFirstName"> First Name*:</label>
-                <input type="text" ng-model="doctor.firstName" class="form-control" name="doctorFirstName" id="doctorFirstName" placeholder="First Name" required/>
+                <input type="text" ng-model="doctor.firstName" class="form-control" name="doctorFirstName" id="doctorFirstName" placeholder="First Name" required readonly/>
                 <div class="help-block" ng-messages="formDoctorProfile.doctorFirstName.$error" ng-if="formDoctorProfile.doctorFirstName.$touched">
                     <p ng-message="required">First Name is mandatory!</p>
                 </div>
             </div>
             <div class="form-group col-md-4">
                 <label for="doctorMiddleName"> Middle Name:</label>
-                <input type="text" ng-model="doctor.midlleName" class="form-control" id="doctorMiddleName" name="doctorMiddleName" placeholder="Middle Name (optional)" />
+                <input type="text" ng-model="doctor.midlleName" class="form-control" id="doctorMiddleName" name="doctorMiddleName" placeholder="Middle Name (optional)" readonly/>
             </div>
             <div class="form-group col-md-4" ng-class="{
                     'has-error'
                     : formDoctorProfile.doctorLastName.$touched && formDoctorProfile.doctorLastName.$invalid }">
                 <label for="doctorLastName"> Last Name*:</label>
-                <input type="text" ng-model="doctor.lastName" class="form-control" name="doctorLastName" id="doctorLastName" placeholder="Last Name" required/>
+                <input type="text" ng-model="doctor.lastName" class="form-control" name="doctorLastName" id="doctorLastName" placeholder="Last Name" required readonly/>
                 <div class="help-block" ng-messages="formDoctorProfile.doctorLastName.$error" ng-if="formDoctorProfile.doctorLastName.$touched">
                     <p ng-message="required">Last Name is mandatory!</p>
                 </div>
