@@ -16,7 +16,7 @@
                     return $resource(resourceUrl, paramDefaults, actions);
                 }])
 
-            .factory('Account', ['Login', '$cookies', '$rootScope', 'Patient', function (Login, $cookies, $rootScope, Patient) {
+            .factory('Account', ['Login', '$cookies', '$rootScope', function (Login, $cookies, $rootScope) {
 
                     function login(params, loginHandler) {
                         return Login.validateCredentials(params).$promise.then(function (response) {
@@ -29,25 +29,10 @@
                                     }
                                 });
                                 setAuthenticatedAccount(account);
-                                //Fetch Doctor Profile here and store in Cookie..
-                                GetDoctorProfile(account);
                             }
                             if (angular.isDefined(loginHandler)) {
                                 loginHandler(response);
                             }
-                        });
-                    }
-
-                    function GetDoctorProfile(account) {
-                        Patient.get({
-                            user: account.userId,
-                            sessionId: account.sessionId,
-                            isDoctor: true,
-                            mobile: "",
-                            columnsToGet: "settings,userType,userId,firstName,midlleName,lastName,mobile,"
-                        }, function (response) {
-                            account.loggedInUser = response;
-                            setAuthenticatedAccount(account);
                         });
                     }
 
@@ -66,10 +51,7 @@
                         return !!$cookies.get('eremediumaccount');
                     }
 
-                    function setAuthenticatedAccount(account) {
-                        // Find tomorrow's date.
-                        var expireDate = new Date();
-                        expireDate.setDate(expireDate.getDate() + 7);//Expires in 30 days..
+                    function setAuthenticatedAccount(account, expireDate) {
                         $cookies.putObject('eremediumaccount', account, {'expires': expireDate});
                     }
 

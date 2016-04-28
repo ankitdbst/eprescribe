@@ -14,11 +14,11 @@
 
     angular.module('ERemediumWebApp.login.services', []);
 
-    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'Account', '$stateParams'];
+    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'Account', '$stateParams', 'Patient'];
 
-    function LoginCtrl($scope, $rootScope, $state, Account, $stateParams) {
+    function LoginCtrl($scope, $rootScope, $state, Account, $stateParams, Patient) {
 
-        initialize();
+        Initialize();
 
         //Assign Functions..
         $scope.signIn = signIn;
@@ -45,11 +45,38 @@
                     $scope.alertMessage = "Invalid Credentials, Please try again!";
                 } else
                 {
+                    //Fetch Doctor Profile here and store in Cookie..
+                    GetDoctorProfile(response);
+
                     postLoginProcessing();
                     //Navigate to First Page in menu
                     $state.go('PatientsList');
                 }
             }
+        }
+
+        function GetCookieExpiryTime() {
+            // Find tomorrow's date.
+            var expireDate = new Date();
+            if ($scope.rememberMe) {
+                expireDate.setDate(expireDate.getDate() + 7);//Expires in 7 days..
+            } else {
+                expireDate.setDate(expireDate.getDate() + 2);//Expires in 7 days..
+            }
+            return expireDate;
+        }
+
+        function GetDoctorProfile(account) {
+            $scope.myPromise = Patient.get({
+                user: account.userId,
+                sessionId: account.sessionId,
+                isDoctor: true,
+                mobile: "",
+                columnsToGet: "settings,userType,userId,firstName,midlleName,lastName,mobile,"
+            }, function (response) {
+                account.loggedInUser = response;
+                Account.setAuthenticatedAccount(account, GetCookieExpiryTime());
+            });
         }
 
         function postLoginProcessing() {
@@ -94,10 +121,11 @@
             //        );
         }
 
-        function initialize() {
+        function Initialize() {
             $scope.showAlert = false;
             $rootScope.showMenu = false;
             $rootScope.pageHeader = "";
+            $scope.rememberMe = true;
             //TODO REMOVE!!
             $scope.mobileNumber = 7838352425;
             $scope.password = "123@ivp";
