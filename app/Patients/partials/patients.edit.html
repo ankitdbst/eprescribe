@@ -19,7 +19,7 @@
                     Book Appointment
                 </button>
 
-                <span class="btn-group" >                
+                <span class="btn-group" >
                     <button type="button" class="btn btn-primary" ng-click="openPrescriptions()">
                         <i class="fa fa-list"></i>
                         Open Prescriptions
@@ -103,7 +103,7 @@
                 </a>
                 <div class="alert {{alertClass}}  fade in inline-block" ng-show="showAlert && section == 'IdentifyingDetails'" role="alert" style="margin-bottom: 0%">
                     <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
-                    {{alertMessage}} 
+                    {{alertMessage}}
                 </div>
             </h4>
             <hr>
@@ -144,17 +144,17 @@
             </div>
 
             <div class="col-md-3 col-sm-3">
-                <h5 class='text-info'><i class="fa fa-users fa-1x"></i> Relationship</h5>                
+                <h5 class='text-info'><i class="fa fa-users fa-1x"></i> Relationship</h5>
                 <select ng-model="patient.relation" ng-show="identifyingDetailsSectionUpdate" ng-options="relationshiptype for relationshiptype in relationshiptypes" class="form-control" name="patientRelationshipType" id="patientRelationshipType"></select>
                 <span ng-show="!identifyingDetailsSectionUpdate"> {{patient.relation}} </span>
             </div>
             <div class="col-md-3 col-sm-3">
                 <h5 class='text-info'><i class="fa fa-calendar fa-1x"></i> Date of Birth</h5>
-                <datetimepicker name="patientDateOfBirth" ng-show="identifyingDetailsSectionUpdate" id="patientDateOfBirth" ng-model="patient.dob" placeholder="Date of Birth"/>
+                <input type="date" name="patientDateOfBirth" ng-show="identifyingDetailsSectionUpdate" id="patientDateOfBirth" ng-model="patient.dob" placeholder="Date of Birth"/>
                 <span ng-show="!identifyingDetailsSectionUpdate"> {{patient.dob| date:'medium'}} </span>
             </div>
             <div class="col-md-3 col-sm-3">
-                <h5 class='text-info'><i class="fa fa-venus fa-1x"></i> Gender</h5>                
+                <h5 class='text-info'><i class="fa fa-venus fa-1x"></i> Gender</h5>
                 <select ng-model="patient.sex" ng-show="identifyingDetailsSectionUpdate" ng-options="gender for gender in genders" class="form-control" id="patientGender"></select>
                 <span ng-show="!identifyingDetailsSectionUpdate" style="white-space: pre;"> {{patient.sex}} </span>
             </div>
@@ -241,7 +241,7 @@
                 </a>
                 <div class="alert {{alertClass}}  fade in inline-block" ng-show="showAlert && section == 'History'" role="alert" style="margin-bottom: 0%">
                     <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
-                    {{alertMessage}} 
+                    {{alertMessage}}
                 </div>
             </h4>
             <hr>
@@ -299,7 +299,7 @@
                 </a>
                 <div class="alert {{alertClass}}  fade in inline-block" ng-show="showAlert && section == 'Allergies'" role="alert" style="margin-bottom: 0%">
                     <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
-                    {{alertMessage}} 
+                    {{alertMessage}}
                 </div>
             </h4>
             <hr>
