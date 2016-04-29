@@ -50,9 +50,15 @@
       </div>
     </div>
 
-    <button type="button" class="btn btn-primary btn-circle canvas-add" ng-click="loadCanvas();" ng-if="canvasEnabled">
+    <div class="btn-group dropup canvas-add">
+      <button type="button" class="btn btn-primary btn-circle dropdown-toggle" data-toggle="dropdown" ng-if="canvasEnabled">
         <i class="fa fa-plus fa-2x"></i>
-    </button>
+      </button>
+      <ul class="dropdown-menu">
+         <li><a tabindex="1" ng-click="loadCanvas();">Blank</a></li>
+         <li><a tabindex="2" ng-click="loadCanvas(undefined, 'ophthalmology');">Ophthalmology</a></li>
+      </ul>
+    </div>
   </form>
 </div>
 <!--

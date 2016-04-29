@@ -217,3 +217,8 @@ canvas {
   bottom: 70px;
   right: 50px;
 }
+
+.dropdown-menu {
+  right: 0;
+  left: inherit;
+}
