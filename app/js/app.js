@@ -64,6 +64,11 @@ angular.module('ERemediumWebApp', [
             $rootScope.go = function (path) {
                 $location.path(path);
             };
+            
+            $rootScope.getImageURL = function(baseURL, loggedInUserId, sessionId, userId) {
+                var inputParams = { user: loggedInUserId, sessionId: sessionId, imgIdOfUser: userId };
+                return baseURL + "userservice/GetImage?" + $.param(inputParams);
+            }
 
             /*
              For Auto Load a Nested View. Read More

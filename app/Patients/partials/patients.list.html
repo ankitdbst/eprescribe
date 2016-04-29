@@ -27,7 +27,7 @@
         <div class="col-md-4 col-xs-6" ng-repeat="patientObj in patientList">
             <div class="thumbnail">
                 <a href="#" ng-click="openPatientProfile(patientObj)" class="inline-block" role="button">
-                    <img ng-src="{{patientObj.profileImageURL}}" alt="No Photo" class="img-rounded" width="80" height="80" >
+                    <img ng-src="{{getImageURL(account.baseURL, account.userId, account.sessionId, patientObj.patientId)}}" alt="No Photo" class="img-rounded" width="80" height="80" >
                 </a>
                 <div class="caption inline-block">
                     <h4> 
