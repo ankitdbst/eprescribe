@@ -18,13 +18,13 @@
     $rootScope.pageHeader = "Create Prescription";
 
     var patientId = $stateParams.patientId;
-    
+
     if (!Account.isAuthenticated()) {
       $state.go('login', {signIn: true});
       return;
     }
     var user = Account.getAuthenticatedAccount();
-    
+
 
     var pid = $stateParams.prescriptionId;
     if (_.isEmpty(pid)) {
@@ -42,8 +42,8 @@
       $scope.prescription.$promise.then(function (response) {
         delete $scope.prescription.pid; // We do not want to send the pid;
         delete $scope.prescription._id;
-        if ($scope.loadImageFn && !_.isUndefined($scope.canvasIdx)
-                               && $scope.prescription.images.length > $scope.canvasIdx) {
+        if( $scope.canvasEnabled && $scope.loadImageFn && !_.isUndefined($scope.canvasIdx)
+                                 && $scope.prescription.images.length > $scope.canvasIdx ) {
           $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
         }
         InitItems();
@@ -243,7 +243,9 @@
 
     function AddMedicines() {
       // Save prescription image
-      $scope.prescription.imgDiagnosis = $scope.saveImageFn();
+      if( $scope.canvasEnabled ) {
+        $scope.prescription.imgDiagnosis = $scope.saveImageFn();
+      }
 
       $state.go('PrescriptionAddMedicines', {
         patientId: $stateParams.patientId,

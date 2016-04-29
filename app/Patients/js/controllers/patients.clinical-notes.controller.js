@@ -47,7 +47,9 @@
 //
             upsertNoteDialog.closePromise.then(function (data) {
                 if (data.value == "Add" || data.value == "View") {
-                    $scope.clinicalNote.img = $scope.saveImageFn();
+                    if( $scope.account.loggedInUser.settings.canvasEnabled ) {
+                      $scope.clinicalNote.img = $scope.saveImageFn();
+                    }
                     //Save the data..
                     SavePatientPeripheralDetails('ClinicalNote', "userClinicalNote");
                 }

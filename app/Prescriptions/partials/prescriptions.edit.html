@@ -1,15 +1,15 @@
 <div cg-busy="myPromise"></div>
 <div ncy-breadcrumb></div>
-<section resizable r-directions="['top']" r-height="600" palm-reject class="palm-rejection--wrapper">
+<section resizable r-directions="['top']" r-height="500" palm-reject class="palm-rejection--wrapper" ng-if="canvasEnabled">
 </section>
-<div class="eremedium-dialog">
+<div>
   <form name="formPrescription" class="panel-group" novalidate>
-    <h4>Diagnosis & Complaint <small>(hand write)</small>
+    <h4>Diagnosis & Complaint <small ng-if="canvasEnabled">(hand write)</small>
       <button type="button" class="btn btn-primary pull-right" ng-click="addMedicines()" style="margin-bottom:15px;">
             <span class="glyphicon glyphicon-plus"></span> Add Medicines
         </button>
     </h4>
-    <nav>
+    <nav ng-if="canvasEnabled">
       <ul class="pagination">
         <li ng-class="{'disabled': canvasIdx==0}">
           <a ng-click="loadCanvas(canvasIdx-1)"
@@ -36,21 +36,21 @@
     <div ng-if="!canvasEnabled">
       <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">
         <label for="patientComplaint">Patient Complaint*</label>
-        <textarea class="form-control" name="patientComplaint" ng-model="prescription.patientComplaint" id="patientComplaint" rows="3" placeholder="Patient Complaint" required></textarea>
+        <textarea class="form-control" name="patientComplaint" ng-model="prescription.patientComplaint" id="patientComplaint" rows="5" placeholder="Patient Complaint" required></textarea>
         <div class="help-block" ng-messages="formPrescription.patientComplaint.$error" ng-if="formPrescription.patientComplaint.$touched">
             <p ng-message="required">Patient Complaint is mandatory!</p>
         </div>
       </div>
       <div class="form-group" ng-class="{ 'has-error': formPrescription.diagnosis.$touched && formPrescription.diagnosis.$invalid }">
         <label for="diagnosis">Diagnosis*</label>
-        <textarea class="form-control" name="diagnosis" ng-model="prescription.diagnosis" id="diagnosis" rows="4" placeholder="Diagnosis" required></textarea>
+        <textarea class="form-control" name="diagnosis" ng-model="prescription.diagnosis" id="diagnosis" rows="6" placeholder="Diagnosis" required></textarea>
         <div class="help-block" ng-messages="formPrescription.diagnosis.$error" ng-if="formPrescription.diagnosis.$touched">
             <p ng-message="required">Patient Diagnosis is mandatory!</p>
         </div>
       </div>
     </div>
 
-    <button type="button" class="btn btn-primary btn-circle canvas-add" ng-click="loadCanvas();">
+    <button type="button" class="btn btn-primary btn-circle canvas-add" ng-click="loadCanvas();" ng-if="canvasEnabled">
         <i class="fa fa-plus fa-2x"></i>
     </button>
   </form>
