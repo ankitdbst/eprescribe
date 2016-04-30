@@ -9,7 +9,7 @@
             </span>
             <div class="col-md-11" ng-show="patient.isUpdate">
                 <blockquote class="col-md-7 text text-warning">
-                    <p>{{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year}} year(s)</p>
+                    <p>{{getFullName(patient)}}, {{patient.sex}}, {{patient.age.year ? patient.age.year :  "-" }} year(s)</p>
                     <footer ng-show="patient.history.medical">Medical History of {{patient.history.medical}} </footer>
                     <footer ng-show="!patient.history.medical">No Medical History </footer>
                 </blockquote>
@@ -149,7 +149,7 @@
             <div class="col-md-4 col-sm-4">
                 <h5 class='text-info'><i class="fa fa-calendar fa-1x"></i> Date of Birth</h5>
                 <input type="date" name="patientDateOfBirth" ng-show="identifyingDetailsSectionUpdate" id="patientDateOfBirth" ng-model="patient.dob" placeholder="Date of Birth"/>
-                <span ng-show="!identifyingDetailsSectionUpdate"> {{patient.dob| date:'dd/MM/yyyy'}} </span>
+                <span ng-show="!identifyingDetailsSectionUpdate"> {{patient.dob | date:'dd/MM/yyyy'}} </span>
             </div>
             <div class="col-md-12 col-sm-12">
                 <hr class="hr-dotted"/>

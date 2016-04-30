@@ -155,18 +155,21 @@
                 if (angular.isUndefined(response)) {
                     $scope.alertMessage = "Error in saving Patient's " + section + ", Please try again!";
                     $scope.alertClass = "alert-danger";
+                    $scope.patient.isUpdate = false; //if there is an error from backend ..reset the isUpdate flag e.g. Mobile Number can be edited
+
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
                     //If all goes good, rebind the data..
                     $scope.patient = response.patient;
-                    if( $scope.patient.dob ) {
-                      $scope.patient.dob = new Date($scope.patient.dob);
+                    if ($scope.patient.dob) {
+                        $scope.patient.dob = new Date($scope.patient.dob);
                     }
                     EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
+                    $scope.patient.isUpdate = false; //if there is an error from backend ..reset the isUpdate flag e.g. Mobile Number can be edited
                 }
             });
         }
