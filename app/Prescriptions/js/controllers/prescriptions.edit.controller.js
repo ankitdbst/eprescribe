@@ -30,6 +30,16 @@
         $scope.loadImageFn = loadImageFn;
         $rootScope.$emit("willInitialised");
     };
+    
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+      //save the previous state in a rootScope variable so that it's accessible from everywhere
+      $rootScope.previousState = fromState;
+      if(fromState.name == "PrescriptionAddMedicines" && toState.name == "PrescriptionNewOrEdit") {
+          //Pass on presription.imgDiagnosis so that on back event canvas image is not lost
+          toParams.prescription = {};
+          toParams.prescription = fromParams.prescription;
+      }
+    });
     $scope.canvasEnabled = user.loggedInUser.settings.canvasEnabled;
     $scope.canvasIdx = 0;
 
