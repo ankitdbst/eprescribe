@@ -174,9 +174,10 @@
                 sessionId: account.sessionId,
                 isDoctor: false,
                 mobile: "",
-                columnsToGet: ""
+                columnsToGet: "sex,modifiedBy,userType,patientId,parentId,hasFullAccess,dependants,bloodgroup,age,userId,midlleName,firstName,isUpdate,searchCol,lastName,status,relation,modifiedDate,creationDate,createdBy,landlineNumber,address,email,dob,isDependant,mobile,alternateMobileNumber"
             }, function (response) {
                 $scope.patient = response;
+                $scope.imageURL = $rootScope.getImageURL(account.baseURL, account.userId, account.sessionId, $scope.patient.patientId);
                 //Once Profile is obtained..fetch history and allergies..
                 GetHistory();
                 GetAllergies();
