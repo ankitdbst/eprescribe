@@ -36,8 +36,8 @@
             <h5 class='text-info'><i class="fa fa-envira fa-1x"></i> Environmental Allergies</h5>
             <span style="white-space: pre;"> {{patient.alergy.enviromental}} </span>
         </div>
-        <hr class="col-md-12 col-xs-12">
-        <h4 class='text-muted col-md-12 col-xs-12'>
+        <h4 class='text-muted col-md-12 col-xs-12' ng-if="patient.vital.dateTime">
+            <hr>
             <i class="fa fa-stethoscope fa-1x"></i>
             Vitals
         </h4>
