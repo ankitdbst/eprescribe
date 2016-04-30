@@ -238,9 +238,9 @@
     angular.module('ERemediumWebApp.utils.directives').
     directive('palmReject', palmReject);
 
-    palmReject.$inject = [];
+    palmReject.$inject = ['$rootScope'];
 
-    function palmReject() {
+    function palmReject($rootScope) {
       function link(scope, elm, attrs) {
         var elem = elm;
         elm.on('touchstart touchmove', function(e) {
@@ -249,7 +249,7 @@
 
         var buffer = 50; // 50px
 
-        scope.$on('canvas.write', function(e, top) {
+        $rootScope.$on('canvas.write', function(e, top) {
           var windowHeight = $(window).height();
           var rTop = windowHeight - elem.height();
           if( rTop - top < 50 ) {
