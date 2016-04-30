@@ -160,6 +160,9 @@
                     $scope.alertClass = "alert-success";
                     //If all goes good, rebind the data..
                     $scope.patient = response.patient;
+                    if( $scope.patient.dob ) {
+                      $scope.patient.dob = new Date($scope.patient.dob);
+                    }
                     EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
@@ -177,6 +180,7 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.patient = response;
+                $scope.patient.dob = new Date($scope.patient.dob);
                 //Once Profile is obtained..fetch history and allergies..
                 GetHistory();
                 GetAllergies();
