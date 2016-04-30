@@ -1,45 +1,113 @@
 <!--<navbar type="header">-->
-  <!--<li><a ng-click="minimize();"><span class="glyphicon glyphicon-minus"></span></a></li>-->
-  <!--<li><a ng-click="close()"><span class="glyphicon glyphicon-remove"></span></a></li>-->
+<!--<li><a ng-click="minimize();"><span class="glyphicon glyphicon-minus"></span></a></li>-->
+<!--<li><a ng-click="close()"><span class="glyphicon glyphicon-remove"></span></a></li>-->
 <!--</navbar>-->
 <div cg-busy="myPromise"></div>
 <div ncy-breadcrumb></div>
 <div class="eremedium-dialog">
-  <form name="formPrescription"  class="panel-group" novalidate>
-    <div class="medicines-list">
-      <h4 style="display: inline-block">Rx</h4>
-      <!-- TODO Make it async https://github.com/angular-ui/ui-select/wiki/ui-select -->
-       <ui-select multiple sortable="true"  ng-model="templates.selected" theme="bootstrap" title="Choose template" on-select="templateAdded($item)" on-remove="templateRemoved($item)" style= "display: inline-block; width: 95%; margin-left: 5px">
-        <ui-select-match placeholder="Choose a template...">{{getTemplateName($select.selected[$index])}}</ui-select-match>
-        <ui-select-choices repeat="template in templateList | filter: $select.search">
-            <div ng-bind-html="template.templateName | highlight: $select.search"></div>
-        </ui-select-choices>
-      </ui-select>
+    <form name="formPrescription"  class="panel-group" novalidate>
+        <div class="panel panel-default" id="patientChart" >
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fa fa-user fa-1x"></i>
+                    <a ng-click="isPatientChartCollapsed = !isPatientChartCollapsed" href="">Patient Chart</a>
+                </h4>
+            </div>
+            <div id="divPatientChart" uib-collapse="!isPatientChartCollapsed">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-md-4 col-sm-4" ng-if="patient.history.medical">
+                            <h5 class='text-info'><i class="fa fa-heartbeat fa-1x"></i> Medical History</h5>
+                            <span style="white-space: pre;"> {{patient.history.medical}} </span>
+                        </div>
+                        <div class="col-md-4 col-sm-4" ng-if="patient.history.surgical">
+                            <h5 class='text-info'><i class="fa fa-wheelchair fa-1x"></i> Surgical History</h5>
+                            <span style="white-space: pre;"> {{patient.history.surgical}} </span>
+                        </div>
+                        <div class="col-md-4 col-sm-4" ng-if="patient.history.family">
+                            <h5 class='text-info'><i class="fa fa-users fa-1x"></i> Family History</h5>
+                            <span style="white-space: pre;"> {{patient.history.family}} </span>
+                        </div>
+                        <div class="col-md-4 col-sm-4" ng-if="patient.alergy.drug">
+                            <h5 class='text-info'><i class="fa fa-flask fa-1x"></i> Drug Allergies</h5>
+                            <span style="white-space: pre;"> {{patient.alergy.drug}} </span>
+                        </div>
+                        <div class="col-md-4 col-sm-4" ng-if="patient.alergy.food">
+                            <h5 class='text-info'><i class="fa fa-cutlery fa-1x"></i> Food Allergies</h5>
+                            <span style="white-space: pre;"> {{patient.alergy.food}} </span>
+                        </div>
+                        <div class="col-md-4 col-sm-4" ng-if="patient.alergy.enviromental">
+                            <h5 class='text-info'><i class="fa fa-envira fa-1x"></i> Environmental Allergies</h5>
+                            <span style="white-space: pre;"> {{patient.alergy.enviromental}} </span>
+                        </div>
+                        <hr class="col-md-12 col-sm-12">
+                        <h4 class='text-muted col-md-12 col-sm-12'>
+                            <i class="fa fa-stethoscope fa-1x"></i>
+                            Vitals
+                        </h4>
+                        <div class="col-md-2 col-sm-2" ng-if="patient.vital.dateTime"> 
+                            <h5 class='text-info'>DateTime</h5>
+                            <span style="white-space: pre;"> {{patient.vital.dateTime| date:'short'}} </span>
+                        </div>
+                        <div class="col-md-2 col-sm-2" ng-if="patient.vital.temp">
+                            <h5 class='text-info'>Temp (&#8457;)</h5>
+                            <span style="white-space: pre;"> {{patient.vital.temp}} </span>
+                        </div>
+                        <div class="col-md-2 col-sm-2" ng-if="patient.vital.pulse">
+                            <h5 class='text-info'>Pulse (bpm)</h5>
+                            <span style="white-space: pre;"> {{patient.vital.pulse}} </span>
+                        </div>
+                        <div class="col-md-2 col-sm-2" ng-if="patient.vital.rr">
+                            <h5 class='text-info'>RR (breaths/min)</h5>
+                            <span style="white-space: pre;"> {{patient.vital.rr}} </span>
+                        </div>
+                        <div class="col-md-2 col-sm-2" ng-if="patient.vital.bp">
+                            <h5 class='text-info'>SYS/DIA (mmhg)</h5>
+                            <span style="white-space: pre;"> {{patient.vital.bp}} </span>
+                        </div>
+                        <div class="col-md-2 col-sm-2" ng-if="patient.vital.wt">
+                            <h5 class='text-info'>Weight (Kg)</h5>
+                            <span style="white-space: pre;"> {{patient.vital.wt}} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="medicines-list">
+            <h4 style="display: inline-block">Rx</h4>
+            <!-- TODO Make it async https://github.com/angular-ui/ui-select/wiki/ui-select -->
+            <ui-select multiple sortable="true"  ng-model="templates.selected" theme="bootstrap" title="Choose template" on-select="templateAdded($item)" on-remove="templateRemoved($item)" style= "display: inline-block; width: 95%; margin-left: 5px">
+                <ui-select-match placeholder="Choose a template...">{{getTemplateName($select.selected[$index])}}</ui-select-match>
+                <ui-select-choices repeat="template in templateList | filter: $select.search">
+                    <div ng-bind-html="template.templateName | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
 
-      <hr>
-      <items editable="true" type="medcine" prescription="prescription"></items>
-    </div>
-    <div class="advises-list">
-      <h4>Advises</h4>
-      <hr>
-      <items editable="true" type="advise" prescription="prescription"></items>
-    </div>
-    <div class="row prescription-other">
-      <div class="form-group col-md-3">
-        <label for="nextVisit">Next Visit</label>
-        <input ng-model="prescription.nextVisit.date" type="datetime-local" id="nextVisit" placeholder="Schedule Next Visit"/>
-      </div>
-    </div>
+            <hr>
+            <items editable="true" type="medcine" prescription="prescription"></items>
+        </div>
+        <div class="advises-list">
+            <h4>Advises</h4>
+            <hr>
+            <items editable="true" type="advise" prescription="prescription"></items>
+        </div>
+        <div class="row prescription-other">
+            <div class="form-group col-md-3">
+                <label for="nextVisit">Next Visit</label>
+                <input ng-model="prescription.nextVisit.date" type="datetime-local" id="nextVisit" placeholder="Schedule Next Visit"/>
+            </div>
+        </div>
 
-  </form>
+    </form>
 </div>
 <div class="pull-right">
-  <button type="button" class="btn btn-primary" ng-click="save()"
-          ng-disabled="formPrescription.$invalid">
-      <i class="fa fa-floppy-o"></i> Save
-  </button>
-  <button type="button" class="btn btn-primary" ng-click="templateNameDialog()"
-          ng-disabled="formPrescription.$invalid">
-      <i class="fa fa-floppy-o"></i> Save and Create Template
-  </button>
+    <button type="button" class="btn btn-primary" ng-click="save()"
+            ng-disabled="formPrescription.$invalid">
+        <i class="fa fa-floppy-o"></i> Save
+    </button>
+    <button type="button" class="btn btn-primary" ng-click="templateNameDialog()"
+            ng-disabled="formPrescription.$invalid">
+        <i class="fa fa-floppy-o"></i> Save and Create Template
+    </button>
 </div>

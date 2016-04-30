@@ -15,7 +15,7 @@
                             <i class="fa fa-pencil fa-2x text-muted"></i>
                         </a>
                         <a href="" ng-click="upsertUser('Summary')" ng-show="summarySectionUpdate" a-disabled="formDoctorProfile.$invalid">
-                            <i class="fa fa-floppy-o fa-2x text-primary"></i>
+                            <i class="fa fa-floppy-o fa-2x"></i>
                         </a>
                         <a href="" ng-click="closeSummarySection()" ng-show="summarySectionUpdate">
                             <i class="fa fa-close fa-2x text-muted"></i>
@@ -36,7 +36,7 @@
                             : formDoctorProfile.doctorPassword.$touched && formDoctorProfile.doctorPassword.$invalid }">
                         <input type="password" ng-model="doctor.password" class="form-control" name="doctorPassword" id="doctorPassword" placeholder="Enter New Password" required/>
                         <a href="" ng-click="changePassword('Password')" a-disabled="formDoctorProfile.$invalid">
-                            <i class="fa fa-floppy-o fa-2x text-primary"></i>
+                            <i class="fa fa-floppy-o fa-2x"></i>
                         </a>
                         <a href="" ng-click="closePasswordSection()">
                             <i class="fa fa-close fa-2x text-muted"></i>
