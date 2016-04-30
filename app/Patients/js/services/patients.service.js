@@ -15,9 +15,9 @@
                             method: 'POST',
                             url: 'http://52.76.165.4/ERService/userservice/InsertUserHistory'
                         },
-                        searchByMobile: {
+                        search: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/GetUserByMobile',
+                            url: 'http://52.76.165.4/ERService/userservice/SearchUser',
                             isArray: true
                         },
                         get: {
@@ -51,7 +51,7 @@
                         },
                         getDocumentById: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/GetUserDocumentById',
+                            url: 'http://52.76.165.4:8400/ERService/userservice/GetUserDocumentById',
                             isArray: false
                         },
                         generateOTP: {

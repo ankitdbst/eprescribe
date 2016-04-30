@@ -11,22 +11,23 @@
 
         <div class="form-group col-md-4 pull-right">
             <div class="input-group">
-                <input type="text" ng-keydown="$event.which === 13 && searchByMobileNumber()" class="form-control" placeholder="Search by Patient's Mobile Number.." ng-model="patient.search.mobilenumber" id="patientsearchmobilenumber">
+                <input type="text" ng-keydown="$event.which === 13 && search()" class="form-control" placeholder="Search by Patient's Mobile Number.." ng-model="patient.search" id="patientsearch">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="searchByMobileNumber()"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-default" type="button" ng-click="search()"><span class="glyphicon glyphicon-search"></span></button>
                     <button class="btn btn-default" type="button" ng-click="getPatientList()"><span class="fa fa-refresh fa-1x"></span></button>
                 </span>
             </div><!-- /input-group -->
         </div>
     </div>
     <div class="alert alert-danger" role="alert" ng-show="showAlert">
+        <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
         {{alertMessage}}
     </div>
     <div class="row">
         <div class="col-md-4 col-xs-6" ng-repeat="patientObj in patientList">
             <div class="thumbnail">
                 <a href="#" ng-click="openPatientProfile(patientObj)" class="inline-block" role="button">
-                    <img ng-src="{{patientObj.profileImageURL}}" alt="No Photo" class="img-rounded" width="80" height="80" >
+                    <img ng-src="{{getImageURL(account.baseURL, account.userId, account.sessionId, patientObj.patientId)}}" alt="No Photo" class="img-rounded" width="80" height="80" >
                 </a>
                 <div class="caption inline-block">
                     <h4> 

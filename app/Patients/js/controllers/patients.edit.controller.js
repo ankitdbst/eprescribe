@@ -13,6 +13,7 @@
         }
 
         var account = Account.getAuthenticatedAccount();
+        $scope.account = account;
 
         Initialize();
 
@@ -155,15 +156,21 @@
                 if (angular.isUndefined(response)) {
                     $scope.alertMessage = "Error in saving Patient's " + section + ", Please try again!";
                     $scope.alertClass = "alert-danger";
+                    $scope.patient.isUpdate = false; //if there is an error from backend ..reset the isUpdate flag e.g. Mobile Number can be edited
+
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = "Patient's " + section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
                     //If all goes good, rebind the data..
                     $scope.patient = response.patient;
+                    if ($scope.patient.dob) {
+                        $scope.patient.dob = new Date($scope.patient.dob);
+                    }
                     EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
+                    $scope.patient.isUpdate = false; //if there is an error from backend ..reset the isUpdate flag e.g. Mobile Number can be edited
                 }
             });
         }
@@ -174,9 +181,11 @@
                 sessionId: account.sessionId,
                 isDoctor: false,
                 mobile: "",
-                columnsToGet: ""
+                columnsToGet: "sex,modifiedBy,userType,patientId,parentId,hasFullAccess,dependants,bloodgroup,age,userId,midlleName,firstName,isUpdate,searchCol,lastName,status,relation,modifiedDate,creationDate,createdBy,landlineNumber,address,email,dob,isDependant,mobile,alternateMobileNumber"
             }, function (response) {
                 $scope.patient = response;
+                $scope.imageURL = $rootScope.getImageURL(account.baseURL, account.userId, account.sessionId, $scope.patient.patientId);
+                $scope.patient.dob = new Date($scope.patient.dob);
                 //Once Profile is obtained..fetch history and allergies..
                 GetHistory();
                 GetAllergies();

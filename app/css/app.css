@@ -251,6 +251,11 @@ body {
     width: 100%;
     background-color: #f5f5f5;
     z-index: 999999;
+    background-image: url(../img/PalmRest2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: scroll;
+    background-blend-mode: darken;
 }
 
 a.disabled {
@@ -277,7 +282,7 @@ a.disabled {
 }
 
 .palm-rejection--wrapper .rg-top span {
-  left: 5%;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+    left: 5%;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
 }

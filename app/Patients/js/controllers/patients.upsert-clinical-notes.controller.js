@@ -4,9 +4,9 @@
     angular.module('ERemediumWebApp.patients.controllers')
             .controller('PatientUpsertClinicalNotesCtrl', PatientUpsertClinicalNotesCtrl);
 
-    PatientUpsertClinicalNotesCtrl.$inject = ['$scope', '$stateParams', '$state', 'Patient', 'Account'];
+    PatientUpsertClinicalNotesCtrl.$inject = ['$scope', '$stateParams', '$state', 'Patient', 'Account', '$rootScope'];
 
-    function PatientUpsertClinicalNotesCtrl($scope, $stateParams, $state, Patient, Account) {
+    function PatientUpsertClinicalNotesCtrl($scope, $stateParams, $state, Patient, Account, $rootScope) {
         if (!Account.isAuthenticated()) {
             $state.go('login', {signIn: true});
             return;
@@ -17,11 +17,10 @@
         Initialize();
 
         function Initialize() {
-            $scope.canvasEnabled = true; //TODO: user.settings.canvasEnabled;
+            $scope.canvasEnabled = account.loggedInUser.settings.canvasEnabled;
             $scope.clinicalNote = $scope.$parent.clinicalNote;
             $scope.directiveFn = $scope.$parent.directiveFn;
             $scope.saveBtnName = $scope.readOnly ? 'View' : 'Add';
-            $scope.dialogTitle = $scope.saveBtnName + " Clinical Note";
         }
     }
 })();

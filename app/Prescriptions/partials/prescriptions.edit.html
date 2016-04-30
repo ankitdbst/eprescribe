@@ -1,32 +1,63 @@
 <div cg-busy="myPromise"></div>
 <div ncy-breadcrumb></div>
-<section resizable r-directions="['top']" r-height="300" palm-reject class="palm-rejection--wrapper">
+<section resizable r-directions="['top']" r-height="500" palm-reject class="palm-rejection--wrapper" ng-if="canvasEnabled">
 </section>
-<div class="eremedium-dialog">
+<div>
   <form name="formPrescription" class="panel-group" novalidate>
-    <h4>Diagnosis & Complaint <small>(hand write)</small>
+    <h4>Diagnosis & Complaint <small ng-if="canvasEnabled">(hand write)</small>
       <button type="button" class="btn btn-primary pull-right" ng-click="addMedicines()" style="margin-bottom:15px;">
             <span class="glyphicon glyphicon-plus"></span> Add Medicines
         </button>
     </h4>
-    <canvas set-fn="setDirectiveFn(saveImage, loadImage)" will-canvas id="canvasPatientDiagnosis" ng-if="canvasEnabled"></canvas>
+    <nav ng-if="canvasEnabled">
+      <ul class="pagination">
+        <li ng-class="{'disabled': canvasIdx==0}">
+          <a ng-click="loadCanvas(canvasIdx-1)"
+             aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li ng-class="{'active': $index==canvasIdx}"
+            ng-repeat="n in range(0, prescription.images.length-1)">
+          <a ng-click="loadCanvas($index)">{{$index+1}}</a>
+        </li>
+        <li ng-class="{'disabled': canvasIdx==prescription.images.length-1}">
+          <a ng-click="loadCanvas(canvasIdx+1)"
+             aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <canvas set-fn="setDirectiveFn(saveImage, loadImage)" full-screen="true" will-canvas id="canvasPatientDiagnosis" ng-if="canvasEnabled">
+    </canvas>
     <!--<div ng-model="prescription.imgDiagnosis" my-canvas options="{}" ng-if="canvasEnabled" />-->
 
     <div ng-if="!canvasEnabled">
       <div class="form-group"  ng-class="{ 'has-error': formPrescription.patientComplaint.$touched && formPrescription.patientComplaint.$invalid }">
         <label for="patientComplaint">Patient Complaint*</label>
-        <textarea class="form-control" name="patientComplaint" ng-model="prescription.patientComplaint" id="patientComplaint" rows="3" placeholder="Patient Complaint" required></textarea>
+        <textarea class="form-control" name="patientComplaint" ng-model="prescription.patientComplaint" id="patientComplaint" rows="5" placeholder="Patient Complaint" required></textarea>
         <div class="help-block" ng-messages="formPrescription.patientComplaint.$error" ng-if="formPrescription.patientComplaint.$touched">
             <p ng-message="required">Patient Complaint is mandatory!</p>
         </div>
       </div>
       <div class="form-group" ng-class="{ 'has-error': formPrescription.diagnosis.$touched && formPrescription.diagnosis.$invalid }">
         <label for="diagnosis">Diagnosis*</label>
-        <textarea class="form-control" name="diagnosis" ng-model="prescription.diagnosis" id="diagnosis" rows="4" placeholder="Diagnosis" required></textarea>
+        <textarea class="form-control" name="diagnosis" ng-model="prescription.diagnosis" id="diagnosis" rows="6" placeholder="Diagnosis" required></textarea>
         <div class="help-block" ng-messages="formPrescription.diagnosis.$error" ng-if="formPrescription.diagnosis.$touched">
             <p ng-message="required">Patient Diagnosis is mandatory!</p>
         </div>
       </div>
+    </div>
+
+    <div class="btn-group dropup canvas-add">
+      <button type="button" class="btn btn-primary btn-circle dropdown-toggle" data-toggle="dropdown" ng-if="canvasEnabled">
+        <i class="fa fa-plus fa-2x"></i>
+      </button>
+      <ul class="dropdown-menu">
+         <li><a tabindex="1" ng-click="loadCanvas();">Blank</a></li>
+         <li><a tabindex="2" ng-click="loadCanvas(undefined, 'ophthalmology');">Ophthalmology</a></li>
+      </ul>
     </div>
   </form>
 </div>
@@ -43,9 +74,9 @@
   &lt;!&ndash;<li><a ng-click="upsertItem('advise')"><span class="glyphicon glyphicon-plus"></span> Advises (Lab Tests)</a></li>&ndash;&gt;
 </navbar>
 -->
-<div class="pull-right">
-    <button type="button" class="btn btn-primary" ng-click="addMedicines()">
-        <span class="glyphicon glyphicon-plus"></span> Add Medicines
-    </button>
-</div>
+<!--<div class="pull-right">-->
+    <!--<button type="button" class="btn btn-primary" ng-click="addMedicines()">-->
+        <!--<span class="glyphicon glyphicon-plus"></span> Add Medicines-->
+    <!--</button>-->
+<!--</div>-->
 

@@ -27,7 +27,7 @@
 
     function GetAddresses() {
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         pid: $stateParams.prescriptionId,
         columnsToGet: ""

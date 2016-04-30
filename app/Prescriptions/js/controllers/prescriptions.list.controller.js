@@ -9,10 +9,15 @@
     '$stateParams',
     'Prescription',
     'Account',
-    '$state'
+    '$state',
+    '$rootScope'
   ];
 
-  function PrescriptionListCtrl($scope, $stateParams, Prescription, Account, $state) {
+  function PrescriptionListCtrl($scope, $stateParams, Prescription, Account, $state, $rootScope) {
+    if (!Account.isAuthenticated()) {
+      $state.go('login', {signIn: true});
+      return;
+    }
     var user = Account.getAuthenticatedAccount();
     var patientId = $stateParams.patientId;
 
@@ -24,17 +29,17 @@
       });
     }
 
-    $scope.canvasEnabled = user.settings.canvasEnabled;
+    $scope.canvasEnabled = user.loggedInUser.settings.canvasEnabled;
     $scope.sortSearchResultsReverse = false;// set the default sort order
     $scope.sortSearchResultsType = ''// set the default sort type
 
-    $scope.doctorName = user.name || "Manoj Saini"; // Should come from session
+    $scope.doctorName = $rootScope.getFullName(user.loggedInUser);
     var params = {
-      user: user.mobile,
+      user: user.loggedInUser.mobile,
       sessionId: user.sessionId,
       doctorId: user.userId,
       patientId: patientId,
-      columnsToGet: "creationDate,patientComplaint,diagnosis,medcines,advises",
+      columnsToGet: "pid,creationDate,patientComplaint,diagnosis,medcines,advises",
       limit: 15
     };
 

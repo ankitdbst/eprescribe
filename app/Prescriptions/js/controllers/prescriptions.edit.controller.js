@@ -18,7 +18,13 @@
     $rootScope.pageHeader = "Create Prescription";
 
     var patientId = $stateParams.patientId;
+
+    if (!Account.isAuthenticated()) {
+      $state.go('login', {signIn: true});
+      return;
+    }
     var user = Account.getAuthenticatedAccount();
+
 
     var pid = $stateParams.prescriptionId;
     if (_.isEmpty(pid)) {
@@ -26,7 +32,7 @@
       Init();
     } else {
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         pid: pid,
         columnsToGet: ""
@@ -36,15 +42,49 @@
       $scope.prescription.$promise.then(function (response) {
         delete $scope.prescription.pid; // We do not want to send the pid;
         delete $scope.prescription._id;
-        if ($scope.loadImageFn && !_.isEmpty($scope.prescription.imgDiagnosis)) {
-          $scope.loadImageFn($scope.prescription.imgDiagnosis);
+        if( $scope.canvasEnabled && $scope.loadImageFn && !_.isUndefined($scope.canvasIdx)
+                                 && $scope.prescription.images.length > $scope.canvasIdx ) {
+          $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
         }
         InitItems();
       });
     }
 
+    $scope.canvasIdx = 0;
+    $scope.range = function(min, max, step) {
+        step = step || 1;
+        var input = [];
+        for (var i = min; i <= max; i += step) {
+            input.push(i);
+        }
+        return input;
+    };
+
     $scope.dialogTitle = "New Prescription";
-    $scope.canvasEnabled = user.settings.canvasEnabled;
+    $scope.canvasEnabled = user.loggedInUser.settings.canvasEnabled;
+    $scope.loadCanvas = LoadCanvas;
+
+    function LoadCanvas(currIdx, template) {
+      if( _.isUndefined(currIdx) ) {
+        $scope.prescription.images[$scope.canvasIdx].src = $scope.saveImageFn();
+        $scope.canvasIdx++;
+        $scope.prescription.images.push({});
+        if( !_.isUndefined(template) ) {
+          var img = new Image();
+          img.src = "img/ophthalmology.png";
+          img.onload = function() {
+            $scope.loadImageFn(img.src);
+          };
+        } else {
+          $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
+        }
+      } else {
+        if( currIdx < 0 || currIdx > $scope.prescription.images.length-1 ) return; // Defensive check
+        $scope.prescription.images[$scope.canvasIdx].src = $scope.saveImageFn();
+        $scope.canvasIdx = currIdx;
+        $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
+      }
+    }
 
     // API exposed by WILL directive
     $scope.setDirectiveFn = function(saveImageFn, loadImageFn) {
@@ -81,14 +121,17 @@
         // $scope.loadImageFn($scope.prescription.imgDiagnosis);
       }
 
+      $scope.prescription.images = [{}]; // Save prescription images
 
       InitItems();
 
       var defaultDate = new Date();
+      console.log(defaultDate);
       // Add 7 days
       defaultDate.setDate(defaultDate.getDate() + 7);
       $scope.prescription.nextVisit = {};
-      $scope.prescription.nextVisit.date = moment(defaultDate).format("DD/MM/YYYY hh:mm A");
+      $scope.prescription.nextVisit.date = defaultDate;
+      console.log($scope.prescription.nextVisit.date);
     }
 
     function InitItems() {
@@ -103,7 +146,7 @@
 
     function UpsertPrescription() {
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         prescription: $scope.prescription
       };
@@ -145,7 +188,7 @@
 
 
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         isTemplate: "true",
         templateName: $scope.templatename,
@@ -216,7 +259,9 @@
 
     function AddMedicines() {
       // Save prescription image
-      $scope.prescription.imgDiagnosis = $scope.saveImageFn();
+      if( $scope.canvasEnabled ) {
+        $scope.prescription.images[$scope.canvasIdx].src = $scope.saveImageFn();
+      }
 
       $state.go('PrescriptionAddMedicines', {
         patientId: $stateParams.patientId,
@@ -226,7 +271,7 @@
 
     function SearchMedicine(searchText) {
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         doctorId: user.userId,
         searchText: searchText,

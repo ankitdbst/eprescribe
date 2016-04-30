@@ -123,7 +123,7 @@
         //TODO: Back button causing data deletion
         //Just return Favourite Meds only. This is onClick only
         var params = {
-          user: user.mobile,
+          user: user.loggedInUser.mobile,
           sessionId: user.sessionId,
           doctorId: user.userId,
           limit: 5,
@@ -133,7 +133,7 @@
         return Prescription.getFavouriteMed(params).$promise;
       }
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         doctorId: user.userId,
         searchText: searchText,

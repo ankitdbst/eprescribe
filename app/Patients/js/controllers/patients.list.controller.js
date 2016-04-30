@@ -17,7 +17,7 @@
         Initialize();
 
         //Functions..
-        $scope.searchByMobileNumber = searchByMobileNumber;
+        $scope.search = search;
         $scope.createPatientProfile = createPatientProfile;
         $scope.openPatientProfile = openPatientProfile;
         $scope.getPatientList = GetPatientList;
@@ -26,25 +26,9 @@
             $scope.showAlert = false;
             $rootScope.pageHeader = "Patients";
             $scope.patient = {};
-            $scope.patient.search = {mobilenumber: ''};
-            //GetDoctorProfile..
-            GetDoctorProfile();
+            $scope.patient.search = '';
             //retrieve full patient list from backend..
             GetPatientList();
-        }
-
-        function GetDoctorProfile() {
-            //Get Patient Details from server and populate patient object..
-            $scope.myPromise = Patient.get({
-                user: $scope.account.userId,
-                sessionId: $scope.account.sessionId,
-                isDoctor: true,
-                mobile: "",
-                columnsToGet: ""
-            }, function (response) {
-                $scope.doctor = response;
-                $rootScope.doctor = $scope.doctor;
-            });
         }
 
         function GetPatientList() {
@@ -53,7 +37,7 @@
                 sessionId: $scope.account.sessionId,
                 doctorId: $scope.account.userId,
                 limit: 50,
-                columnsToGet: ""
+                columnsToGet: "firstName,midlleName,lastName,sex,age,mobile,email,patientId"
             }, function (response) {
                 $scope.patientList = response;
             }
@@ -66,20 +50,19 @@
             $state.go('PatientNewOrEdit');
         }
 
-        function searchByMobileNumber() {
-
-            $scope.searchPatientResults = Patient.searchByMobile({
+        function search() {
+            $scope.searchPatientResults = Patient.search({
                 user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
                 doctorId: $scope.account.userId,
-                mobile: $scope.patient.search.mobilenumber,
+                searchText: $scope.patient.search,
                 limit: 50,
-                columnsToGet: ""
+                columnsToGet: "firstName,midlleName,lastName,sex,age,mobile,email,patientId"
             }, function (response) {
                 if (angular.isUndefined(response) || response == '')
                 {
                     $scope.showAlert = true;
-                    $scope.alertMessage = "No Patient Found with Mobile Number: " + $scope.patient.search.mobilenumber + "!";
+                    $scope.alertMessage = "No Patient found with details: " + $scope.patient.search + "!";
                 } else
                 {
                     $scope.showAlert = false;
@@ -87,7 +70,6 @@
                 }
             }
             );
-
             $scope.myPromise = $scope.searchPatientResults.$promise;
         }
 

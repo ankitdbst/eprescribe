@@ -93,8 +93,8 @@
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
-                    //If all goes good, rebind the data..
-                    EditMode(false);
+                    //If all goes good, then ask him to relogin
+                    $state.go('login', {signIn: true});
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
@@ -123,7 +123,11 @@
                 } else if (response.respCode == 1) {
                     $scope.alertMessage = section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
-                    //If all goes good, rebind the data..
+                    //If settings are updated, then ask him to relogin
+                    if (section == "Settings") {
+                        $state.go('login', {signIn: true});
+                    }
+                    //If all else goes good, rebind the data..
                     $scope.doctor = response.doctor;
                     EditMode(false);
                 } else {
@@ -143,13 +147,13 @@
                 columnsToGet: ""
             }, function (response) {
                 $scope.doctor = response;
-                if($scope.doctor.settings == undefined) {
+                if ($scope.doctor.settings == undefined) {
                     $scope.doctor.settings = {};
                 }
-                if ($scope.doctor.settings.canvasEnabled == undefined){
+                if ($scope.doctor.settings.canvasEnabled == undefined) {
                     $scope.doctor.settings.canvasEnabled = true;
                 }
-                if ($scope.doctor.settings.twoFactorAuthentication == undefined){
+                if ($scope.doctor.settings.twoFactorAuthentication == undefined) {
                     $scope.doctor.settings.twoFactorAuthentication = false;
                 }
             });

@@ -28,9 +28,8 @@
                                         delete response[key];
                                     }
                                 });
-                                account.settings = {
-                                    canvasEnabled: true
-                                }; // This needs to be sent from the API
+                                //Store once in cookies..and use everywhere..
+                                account.baseURL = "http://52.76.165.4/ERService/"
                                 setAuthenticatedAccount(account);
                             }
                             if (angular.isDefined(loginHandler)) {
@@ -54,10 +53,10 @@
                         return !!$cookies.get('eremediumaccount');
                     }
 
-                    function setAuthenticatedAccount(account) {
-                        $cookies.putObject('eremediumaccount', account);
+                    function setAuthenticatedAccount(account, expireDate) {
+                        $cookies.putObject('eremediumaccount', account, {'expires': expireDate});
                     }
-                    
+
                     function logout() {
                         $cookies.remove('eremediumaccount');
                     }

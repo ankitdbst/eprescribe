@@ -81,7 +81,7 @@
 
     function SearchMedicine(searchText) {
       var params = {
-        user: user.mobile,
+        user: user.loggedInUser.mobile,
         sessionId: user.sessionId,
         doctorId: user.userId,
         searchText: searchText,
