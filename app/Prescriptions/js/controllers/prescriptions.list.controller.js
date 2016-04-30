@@ -39,7 +39,7 @@
       sessionId: user.sessionId,
       doctorId: user.userId,
       patientId: patientId,
-      columnsToGet: "creationDate,patientComplaint,diagnosis,medcines,advises",
+      columnsToGet: "pid,creationDate,patientComplaint,diagnosis,medcines,advises",
       limit: 15
     };
 
