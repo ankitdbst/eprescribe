@@ -21,6 +21,7 @@
         $scope.savePatientPeripheralDetails = SavePatientPeripheralDetails;
         $scope.openPrescriptions = OpenPrescriptions;
         $scope.getAllPrescriptionsAccess = GetAllPrescriptionsAccess;
+        $scope.bookAppointment = BookAppointment;
 
         $scope.uploader = {};
 
@@ -212,6 +213,12 @@
 
         function OpenPrescriptions() {
             $state.go('PrescriptionIndex', {
+                patientId: $stateParams.patientId
+            });
+        }
+
+        function BookAppointment() {
+            $state.go('PatientAppointments', {
                 patientId: $stateParams.patientId
             });
         }

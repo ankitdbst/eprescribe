@@ -75,6 +75,12 @@
       // Medications
       $scope.prescription.medcines = [];
       $scope.prescription.advises = [];
+      if($stateParams.prescription && $stateParams.prescription.imgDiagnosis)
+      { 
+        $scope.prescription.imgDiagnosis = $stateParams.prescription.imgDiagnosis;
+        // $scope.loadImageFn($scope.prescription.imgDiagnosis);
+      }
+
 
       InitItems();
 

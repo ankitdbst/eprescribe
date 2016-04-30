@@ -71,6 +71,11 @@ angular.module('ERemediumWebApp', [
   $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
     //save the previous state in a rootScope variable so that it's accessible from everywhere
     $rootScope.previousState = fromState;
+    if(fromState.name == "PrescriptionAddMedicines" && toState.name == "PrescriptionNewOrEdit") {
+        //Pass on presription.imgDiagnosis so that on back event canvas image is not lost
+        toParams.prescription = {};
+        toParams.prescription.imgDiagnosis = fromParams.prescription.imgDiagnosis;
+    }
     var aac;
     if (aac = toState && toState.params && toState.params.autoActivateChild) {
       $state.go(aac);

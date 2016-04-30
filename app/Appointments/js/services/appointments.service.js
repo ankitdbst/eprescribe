@@ -10,6 +10,16 @@
                         upsert: {
                             method: 'POST',
                             url: 'http://52.76.165.4/ERService/userservice/UpsertUser'
+                        },
+                        get: {
+                            method: 'POST',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUserById',
+                            isArray: false
+                        },
+                        getProfile: {
+                            method: 'POST',
+                            url: 'http://52.76.165.4/ERService/userservice/GetUserById',
+                            isArray: false
                         }
                     };
 

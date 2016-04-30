@@ -1,0 +1,19 @@
+Patient Id: {{patientId}}
+</br>
+Patient Name: 
+<div ng-if="patientId != undefined">
+	 {{patient.firstName}} {{patient.lastName}}
+</div>
+<input ng-if="patientId == undefined" type="text" ng-model="patientName" class=" form-control template-name-input" placeholder="Enter Patient Name"/>
+Doctor Name: {{doctor.firstName}} {{doctor.lastName}}
+</br>
+Doctor Id: {{doctor.doctorId}}
+</br>
+StartTime: {{startTime}}
+</br>
+Duration:
+</br>
+<button type="button" class="btn btn-primary" ng-click="saveAppointment()"
+                ng-disabled="formPrescription.$invalid">
+ Done
+</button>
