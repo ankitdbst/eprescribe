@@ -4,7 +4,7 @@
   angular.module('ERemediumWebApp.utils.directives').
   directive('willCanvas', willCanvas);
 
-  willCanvas.$inject = [];
+  willCanvas.$inject = ['$rootScope'];
 
   function MyPoint() {
     this.x = undefined;
@@ -15,7 +15,7 @@
     return !(this.x == undefined && this.y == undefined);
   }
 
-  function willCanvas() {
+  function willCanvas($rootScope) {
     function link(scope, elem, attrs) {
       var canvas = elem.get(0);
       var canvasImg = scope.ngModel;
@@ -118,7 +118,7 @@
           }
 
           // Notify parent scopes about the canvas write
-          scope.$emit('canvas.write', top);
+          $rootScope.$emit('canvas.write', top);
           return true;
         },
 
