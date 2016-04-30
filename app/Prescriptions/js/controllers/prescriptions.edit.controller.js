@@ -252,7 +252,7 @@
     function AddMedicines() {
       // Save prescription image
       if( $scope.canvasEnabled ) {
-        $scope.prescription.imgDiagnosis = $scope.saveImageFn();
+        $scope.prescription.images[$scope.canvasIdx].src = $scope.saveImageFn();
       }
 
       $state.go('PrescriptionAddMedicines', {
