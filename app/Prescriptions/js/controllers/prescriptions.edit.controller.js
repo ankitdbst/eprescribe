@@ -120,10 +120,12 @@
       InitItems();
 
       var defaultDate = new Date();
+      console.log(defaultDate);
       // Add 7 days
       defaultDate.setDate(defaultDate.getDate() + 7);
       $scope.prescription.nextVisit = {};
-      $scope.prescription.nextVisit.date = moment(defaultDate).format("DD/MM/YYYY hh:mm A");
+      $scope.prescription.nextVisit.date = defaultDate;
+      console.log($scope.prescription.nextVisit.date);
     }
 
     function InitItems() {
