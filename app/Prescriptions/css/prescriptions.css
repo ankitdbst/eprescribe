@@ -38,9 +38,12 @@
 }
 
 .eremedium-dialog {
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-bottom: 25px;
 }
 
-.eremedium-dialog canvas {
+canvas {
   border: 1px solid #f4f4f4;
   width: 100%;
 }
@@ -213,4 +216,9 @@
   position: fixed;
   bottom: 70px;
   right: 50px;
+}
+
+.dropdown-menu {
+  right: 0;
+  left: inherit;
 }

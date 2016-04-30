@@ -18,13 +18,13 @@
     $rootScope.pageHeader = "Create Prescription";
 
     var patientId = $stateParams.patientId;
-    
+
     if (!Account.isAuthenticated()) {
       $state.go('login', {signIn: true});
       return;
     }
     var user = Account.getAuthenticatedAccount();
-    
+
 
     var pid = $stateParams.prescriptionId;
     if (_.isEmpty(pid)) {
@@ -42,8 +42,8 @@
       $scope.prescription.$promise.then(function (response) {
         delete $scope.prescription.pid; // We do not want to send the pid;
         delete $scope.prescription._id;
-        if ($scope.loadImageFn && !_.isUndefined($scope.canvasIdx)
-                               && $scope.prescription.images.length > $scope.canvasIdx) {
+        if( $scope.canvasEnabled && $scope.loadImageFn && !_.isUndefined($scope.canvasIdx)
+                                 && $scope.prescription.images.length > $scope.canvasIdx ) {
           $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
         }
         InitItems();
@@ -64,12 +64,20 @@
     $scope.canvasEnabled = user.loggedInUser.settings.canvasEnabled;
     $scope.loadCanvas = LoadCanvas;
 
-    function LoadCanvas(currIdx) {
+    function LoadCanvas(currIdx, template) {
       if( _.isUndefined(currIdx) ) {
         $scope.prescription.images[$scope.canvasIdx].src = $scope.saveImageFn();
         $scope.canvasIdx++;
         $scope.prescription.images.push({});
-        $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
+        if( !_.isUndefined(template) ) {
+          var img = new Image();
+          img.src = "img/ophthalmology.png";
+          img.onload = function() {
+            $scope.loadImageFn(img.src);
+          };
+        } else {
+          $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
+        }
       } else {
         if( currIdx < 0 || currIdx > $scope.prescription.images.length-1 ) return; // Defensive check
         $scope.prescription.images[$scope.canvasIdx].src = $scope.saveImageFn();
@@ -243,7 +251,9 @@
 
     function AddMedicines() {
       // Save prescription image
-      $scope.prescription.imgDiagnosis = $scope.saveImageFn();
+      if( $scope.canvasEnabled ) {
+        $scope.prescription.imgDiagnosis = $scope.saveImageFn();
+      }
 
       $state.go('PrescriptionAddMedicines', {
         patientId: $stateParams.patientId,
