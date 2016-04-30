@@ -24,12 +24,26 @@
       return;
     }
     var user = Account.getAuthenticatedAccount();
-
+    // API exposed by WILL directive
+    $scope.setDirectiveFn = function(saveImageFn, loadImageFn) {
+        $scope.saveImageFn = saveImageFn;
+        $scope.loadImageFn = loadImageFn;
+        $rootScope.$emit("willInitialised");
+    };
+    $scope.canvasEnabled = user.loggedInUser.settings.canvasEnabled;
+    $scope.canvasIdx = 0;
 
     var pid = $stateParams.prescriptionId;
     if (_.isEmpty(pid)) {
-      $scope.prescription = new Prescription;
-      Init();
+      if($stateParams.prescription)
+      { 
+        $scope.prescription = $stateParams.prescription;
+        // $scope.loadImageFn($scope.prescription.imgDiagnosis);
+      }
+      else {
+        $scope.prescription = new Prescription;
+        Init();
+      }
     } else {
       var params = {
         user: user.loggedInUser.mobile,
@@ -50,7 +64,6 @@
       });
     }
 
-    $scope.canvasIdx = 0;
     $scope.range = function(min, max, step) {
         step = step || 1;
         var input = [];
@@ -61,8 +74,14 @@
     };
 
     $scope.dialogTitle = "New Prescription";
-    $scope.canvasEnabled = user.loggedInUser.settings.canvasEnabled;
     $scope.loadCanvas = LoadCanvas;
+    $rootScope.$on('willInitialised', function () {
+      //Now load the images on canvas
+      if( $scope.prescription.images && $scope.canvasEnabled && $scope.loadImageFn && !_.isUndefined($scope.canvasIdx)
+                                 && $scope.prescription.images.length > $scope.canvasIdx) {
+          $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
+      }
+    });
 
     function LoadCanvas(currIdx, template) {
       if( _.isUndefined(currIdx) ) {
@@ -85,12 +104,6 @@
         $scope.loadImageFn($scope.prescription.images[$scope.canvasIdx].src);
       }
     }
-
-    // API exposed by WILL directive
-    $scope.setDirectiveFn = function(saveImageFn, loadImageFn) {
-        $scope.saveImageFn = saveImageFn;
-        $scope.loadImageFn = loadImageFn;
-    };
 
     // Prescription
     $scope.save = UpsertPrescription;
@@ -115,11 +128,6 @@
       // Medications
       $scope.prescription.medcines = [];
       $scope.prescription.advises = [];
-      if($stateParams.prescription && $stateParams.prescription.imgDiagnosis)
-      { 
-        $scope.prescription.imgDiagnosis = $stateParams.prescription.imgDiagnosis;
-        // $scope.loadImageFn($scope.prescription.imgDiagnosis);
-      }
 
       $scope.prescription.images = [{}]; // Save prescription images
 

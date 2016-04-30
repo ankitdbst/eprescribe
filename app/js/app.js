@@ -80,7 +80,7 @@ angular.module('ERemediumWebApp', [
                 if(fromState.name == "PrescriptionAddMedicines" && toState.name == "PrescriptionNewOrEdit") {
                     //Pass on presription.imgDiagnosis so that on back event canvas image is not lost
                     toParams.prescription = {};
-                    toParams.prescription.imgDiagnosis = fromParams.prescription.imgDiagnosis;
+                    toParams.prescription = fromParams.prescription;
                 }
                 var aac;
                 if (aac = toState && toState.params && toState.params.autoActivateChild) {
