@@ -11,63 +11,63 @@
     </div>
     <hr>
 
-    <div class="form-group">
-        <div class="col-md-4 col-sm-4" ng-if="patient.history.medical">
+    <div class="form-group row">
+        <div class="col-md-4 col-xs-4" ng-if="patient.history.medical">
             <h5 class='text-info'><i class="fa fa-heartbeat fa-1x"></i> Medical History</h5>
             <span style="white-space: pre;"> {{patient.history.medical}} </span>
         </div>
-        <div class="col-md-4 col-sm-4" ng-if="patient.history.surgical">
+        <div class="col-md-4 col-xs-4" ng-if="patient.history.surgical">
             <h5 class='text-info'><i class="fa fa-wheelchair fa-1x"></i> Surgical History</h5>
             <span style="white-space: pre;"> {{patient.history.surgical}} </span>
         </div>
-        <div class="col-md-4 col-sm-4" ng-if="patient.history.family">
+        <div class="col-md-4 col-xs-4" ng-if="patient.history.family">
             <h5 class='text-info'><i class="fa fa-users fa-1x"></i> Family History</h5>
             <span style="white-space: pre;"> {{patient.history.family}} </span>
         </div>
-        <div class="col-md-4 col-sm-4" ng-if="patient.alergy.drug">
+        <div class="col-md-4 col-xs-4" ng-if="patient.alergy.drug">
             <h5 class='text-info'><i class="fa fa-flask fa-1x"></i> Drug Allergies</h5>
             <span style="white-space: pre;"> {{patient.alergy.drug}} </span>
         </div>
-        <div class="col-md-4 col-sm-4" ng-if="patient.alergy.food">
+        <div class="col-md-4 col-xs-4" ng-if="patient.alergy.food">
             <h5 class='text-info'><i class="fa fa-cutlery fa-1x"></i> Food Allergies</h5>
             <span style="white-space: pre;"> {{patient.alergy.food}} </span>
         </div>
-        <div class="col-md-4 col-sm-4" ng-if="patient.alergy.enviromental">
+        <div class="col-md-4 col-xs-4" ng-if="patient.alergy.enviromental">
             <h5 class='text-info'><i class="fa fa-envira fa-1x"></i> Environmental Allergies</h5>
             <span style="white-space: pre;"> {{patient.alergy.enviromental}} </span>
         </div>
-        <hr class="col-md-12 col-sm-12">
-        <h4 class='text-muted col-md-12 col-sm-12'>
+        <hr class="col-md-12 col-xs-12">
+        <h4 class='text-muted col-md-12 col-xs-12'>
             <i class="fa fa-stethoscope fa-1x"></i>
             Vitals
         </h4>
-        <div class="col-md-2 col-sm-2" ng-if="patient.vital.dateTime"> 
+        <div class="col-md-2 col-xs-2" ng-if="patient.vital.dateTime"> 
             <h5 class='text-info'>DateTime</h5>
             <span style="white-space: pre;"> {{patient.vital.dateTime| date:'short'}} </span>
         </div>
-        <div class="col-md-2 col-sm-2" ng-if="patient.vital.temp">
+        <div class="col-md-2 col-xs-2" ng-if="patient.vital.temp">
             <h5 class='text-info'>Temp (&#8457;)</h5>
             <span style="white-space: pre;"> {{patient.vital.temp}} </span>
         </div>
-        <div class="col-md-2 col-sm-2" ng-if="patient.vital.pulse">
+        <div class="col-md-2 col-xs-2" ng-if="patient.vital.pulse">
             <h5 class='text-info'>Pulse (bpm)</h5>
             <span style="white-space: pre;"> {{patient.vital.pulse}} </span>
         </div>
-        <div class="col-md-2 col-sm-2" ng-if="patient.vital.rr">
+        <div class="col-md-2 col-xs-2" ng-if="patient.vital.rr">
             <h5 class='text-info'>RR (breaths/min)</h5>
             <span style="white-space: pre;"> {{patient.vital.rr}} </span>
         </div>
-        <div class="col-md-2 col-sm-2" ng-if="patient.vital.bp">
+        <div class="col-md-2 col-xs-2" ng-if="patient.vital.bp">
             <h5 class='text-info'>SYS/DIA (mmhg)</h5>
             <span style="white-space: pre;"> {{patient.vital.bp}} </span>
         </div>
-        <div class="col-md-2 col-sm-2" ng-if="patient.vital.wt">
+        <div class="col-md-2 col-xs-2" ng-if="patient.vital.wt">
             <h5 class='text-info'>Weight (Kg)</h5>
             <span style="white-space: pre;"> {{patient.vital.wt}} </span>
         </div>
     </div>
 
-    <hr class="col-md-12 col-sm-12">
+    <hr class="col-md-12 col-xs-12">
     <div ng-if="!canvasEnabled">
         <div>
             <label><strong>Complaints: </strong></label>
