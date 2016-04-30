@@ -87,7 +87,6 @@
         }
 
         function GetVitals() {
-            //Get Patient Details from server and populate patient object..
             Patient.getPeripheralDetails({
                 user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
