@@ -54,7 +54,7 @@
                 detailType: 'userVitals',
                 columnsToGet: ""
             }, function (response) {
-                $scope.patient.vital = response[response.length - 1];
+                $scope.patient.vital = response[0];
             });
         }
 
@@ -67,7 +67,7 @@
                 detailType: 'userHistory',
                 columnsToGet: ""
             }, function (response) {
-                $scope.patient.history = response[response.length - 1];
+                $scope.patient.history = response[0];
             });
         }
 
@@ -80,7 +80,7 @@
                 detailType: 'userAllergy',
                 columnsToGet: ""
             }, function (response) {
-                $scope.patient.alergy = response[response.length - 1];
+                $scope.patient.alergy = response[0];
             });
         }
     }
