@@ -45,10 +45,7 @@
                     $scope.alertMessage = "Invalid Credentials, Please try again!";
                 } else
                 {
-                    //Fetch Doctor Profile here and store in Cookie..
-                    GetDoctorProfile(response);
-
-                    postLoginProcessing();
+                    postLoginProcessing(response);
                     //Navigate to First Page in menu
                     $state.go('PatientsList');
                 }
@@ -75,11 +72,16 @@
                 columnsToGet: "settings,userType,userId,firstName,midlleName,lastName,mobile,"
             }, function (response) {
                 account.loggedInUser = response;
+                //Now store Doctor Profile in cookie..
                 Account.setAuthenticatedAccount(account, GetCookieExpiryTime());
             });
         }
 
-        function postLoginProcessing() {
+        function postLoginProcessing(account) {
+            //Fetch Doctor Profile here 
+            GetDoctorProfile(account);
+            //Set doctor image profile..
+            $rootScope.loggedInUserImageURL = $rootScope.getImageURL(account.baseURL, account.userId, account.sessionId, account.userId);
             //start showing menu items
             $rootScope.showMenu = true;
             $('#loginModal').modal('hide');
