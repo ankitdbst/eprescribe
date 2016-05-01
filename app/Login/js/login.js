@@ -128,9 +128,6 @@
             $rootScope.showMenu = false;
             $rootScope.pageHeader = "";
             $scope.rememberMe = true;
-            //TODO REMOVE!!
-            $scope.mobileNumber = 7838352425;
-            $scope.password = "123@ivp";
             //necessary to remove any existing cookies..
             Account.logout();
         }
