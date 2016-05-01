@@ -33,6 +33,11 @@
               url: 'http://52.76.165.4/ERService/pharmaservice/ListPharma',
               isArray: true
             },
+            listLabs: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/pharmaservice/ListPharma',//TODO put in correct contract!
+              isArray: true
+            },
             placeOrder: {
               method: 'POST',
               url: 'http://52.76.165.4/ERService/orderservice/Order',

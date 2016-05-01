@@ -69,7 +69,7 @@
                 sessionId: account.sessionId,
                 isDoctor: true,
                 mobile: "",
-                columnsToGet: "settings,userType,userId,firstName,midlleName,lastName,mobile,"
+                columnsToGet: "settings,userType,userId,firstName,midlleName,lastName,mobile,clinic"
             }, function (response) {
                 account.loggedInUser = response;
                 //Now store Doctor Profile in cookie..
