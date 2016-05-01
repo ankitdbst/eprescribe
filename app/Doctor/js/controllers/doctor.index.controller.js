@@ -144,7 +144,7 @@
                 sessionId: $scope.account.sessionId,
                 isDoctor: true,
                 mobile: "",
-                columnsToGet: ""
+                columnsToGet: "sex,clinic,modifiedBy,settings,specializations,education,password,medicalregnumber,userType,patientId,parentId,userId,age,midlleName,experience,firstName,searchCol,aboutme,lastName,services,status,relation,modifiedDate,creationDate,briefsummary,doctorId,memberships,mobile"
             }, function (response) {
                 $scope.doctor = response;
                 if ($scope.doctor.settings == undefined) {

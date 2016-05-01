@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li spy="deliveryReport">
-                <a href="" ng-click="isDeliveryReportVisible = true; isDeliveryReportCollapsed = true">
+                <a href="" ng-click="isEmailCenterVisible = true; isEmailCenterCollapsed = true">
                     <i class="fa fa-list-alt fa-2x"></i>
                 </a>
             </li>
@@ -66,16 +66,54 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-info" id="deliveryReport" ng-show="isDeliveryReportVisible">
+        <div class="panel panel-info" id="emailCenter">       
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-list-alt fa-2x"></i>
-                    <a ng-click="isDeliveryReportCollapsed = !isDeliveryReportCollapsed" href="">Delivery Report (Last 25 Transactions)</a>
+                    <i class="fa fa-envelope-o fa-2x"></i>
+                    <a ng-click="isEmailCenterCollapsed = !isEmailCenterCollapsed" href="">Email Center</a>                    
                 </h4>
             </div>
-            <div id="divHistory" uib-collapse="!isDeliveryReportCollapsed">
+            <div id="divSMSCenter" uib-collapse="!isEmailCenterCollapsed">
                 <div class="panel-body">
+                    <div class="form-group well well-lg col-sm-12">
+                        <p class="text-info"><span class="badge alert-success">1</span> Select Recipients</p>
+                        <label class="col-sm-12">
+                            <input name="radioGroup" id="radioAllPatients" value="allPatients" type="radio" ng-model="selectedChoice" ng-click="patient.selected = ''"> All Patients
+                        </label>
+                        <label class="col-sm-12">
+                            <input name="radioGroup" id="radioSelectPatients" ng-model="selectedChoice" value="partialAll" type="radio" class=""> 
+                            <span class="inline-block" style="width: 90%">
+                                <ui-select multiple sortable="true"  ng-model="patient.selected" theme="bootstrap" title="Choose patients" on-select='focusSelectPatients()'>
+                                    <ui-select-match placeholder="Select or search a patient in the list...">{{getFullName($select.selected[$index])}}</ui-select-match>
+                                    <ui-select-choices repeat="patient in patientList | filter: $select.search">
+                                        <div ng-bind-html="getFullName(patient) | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="form-group well well-lg col-md-12 col-sm-12" ng-class="{ 'has-error': formMessages.smsText.$touched && formMessages.smsText.$invalid }">                    
+                        <p class="text-info"><span class="badge alert-success">2</span> Add Email Body</p>
+                        <textarea class="form-control" rows="5" ng-model="smsText" id="smsText" name="smsText" placeholder="Enter text here.." required></textarea>
+                        <div class="help-block" ng-messages="formMessages.smsText.$error" ng-if="formMessages.smsText.$touched">
+                            <p ng-message="required">Please enter SMS Text!</p>
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <div class="alert {{alertClass}} col-md-8  fade in" ng-show="showAlert" role="alert" style="margin-bottom: 0%">
+                            <button type="button" class="close" ng-click="showAlert = false" aria-hidden="true">&times;</button>
+                            {{alertMessage}}
+                        </div>
+                        <div class="pull-right">
+                            <button class="btn btn-default" type="button" ng-click="">
+                                <i class="fa fa-envelope-o"></i> Add Attachment
+                            </button>
+                            <button class="btn btn-primary" type="button" ng-click="" ng-disabled="formMessages.$invalid">
+                                <i class="fa fa-envelope-o"></i> Send Email
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
