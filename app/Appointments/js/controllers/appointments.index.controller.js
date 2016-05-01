@@ -4,9 +4,9 @@
     angular.module('ERemediumWebApp.appointments.controllers')
             .controller('AppointmentsIndexCtrl', AppointmentsIndexCtrl);
 
-    AppointmentsIndexCtrl.$inject = ['$scope', 'Appointments', '$state', '$rootScope', 'Account', '$stateParams','ngDialog'];
+    AppointmentsIndexCtrl.$inject = ['$scope', 'Appointments', '$state', '$rootScope', 'Account', '$stateParams','ngDialog','uiCalendarConfig'];
 
-    function AppointmentsIndexCtrl($scope, Appointments, $state, $rootScope, Account, $stateParams, ngDialog) {
+    function AppointmentsIndexCtrl($scope, Appointments, $state, $rootScope, Account, $stateParams, ngDialog, uiCalendarConfig) {
         if (!Account.isAuthenticated()) {
             $state.go('Appointments', {signIn: true});
             return;
@@ -15,11 +15,42 @@
         $scope.patientId = $stateParams.patientId;
         //Initialize
         initialize();
-        $scope.alertEventOnClick = function(item) {
+        $scope.intervals = [
+            "15 minutes",
+            "30 minutes",
+            "45 minutes"
+        ];
+        $scope.fillAppointment = function(date, jsEvent, view) {
             // alert("alert event on click");
             //Show a dialog to create a new Event
-            if(item._ambigTime === false) {
+            // uiCalendarConfig.calendars['myCalendar'].fullCalendar('refetchEvents');
+            if(view.name == "agendaDay") {
+                // var dateFrom = moment(date).format('YYYY-MM-DD');
+                $scope.date = date;
+                $scope.originalDate = date;
+                $scope.dateFrom = date.format();
+                $scope.startTime = date.format('hh:mm T')+'M';
+                //var dateTo = date.add(5*60*1000).format();
+                // $scope.eventSources[0].events.push({
+                //         title: 'FCB-786',
+                //         start: dateFrom,
+                //         end: dateTo,
+                //         stick: true
+                //       });
+            //     uiCalendarConfig.calendars.myCalendar.fullCalendar('renderEvent', {
+            //     title: 'FCB-333',
+            //     start: '2016-05-01T05:30:00',
+            //     end: '2016-05-01T07:30:00',
+            //     stick: true
+            // });
+            // $scope.eventSources[0].events.push({
+            //             title: 'FCB-555',
+            //             start: '2016-05-01T08:30:00',
+            //             end: '2016-05-01T09:30:00',
+            //             stick: true
+            //           });
                 //Show a dialog to create a new Event
+                
                 var templateNameDialog = ngDialog.open({
                     template: 'Appointments/partials/appointments.appointment-details-dialog.html',
                     className: 'ngdialog-theme-default',
@@ -29,6 +60,37 @@
                     controller: function($scope, $stateParams, Appointments, Account) {
                       // $scope.prescription = $scope.parent.prescription;
                       var user = Account.getAuthenticatedAccount();
+                      $scope.selectStopTime = function(item) {
+                        console.log(item);
+                        if(item == "15 minutes") {
+                            $scope.dateTo = $scope.originalDate.add(15*60*1000).format();
+                        }
+                        else if(item == "30 minutes") {
+                            $scope.dateTo = date.add(30*60*1000).format();
+                        }
+                        else if(item == "45 minutes") {
+                            $scope.dateTo = date.add(45*60*1000).format();
+                        }
+                        else {
+                            $scope.dateTo = date.add(15*60*1000).format();
+                        }
+                      }
+                      $scope.saveAppointment = function() {
+                        $scope.eventSources[0].events.push({
+                        title: $scope.patient.firstName+' '+$scope.patient.lastName,
+                        start: $scope.dateFrom,
+                        end: $scope.dateTo,
+                        stick: true
+                      });
+                        //closeDialog
+                        ngDialog.close();
+                      }
+                      // $scope.eventSources[0].events.push({
+                      //   title: 'FCB-5555',
+                      //   start: '2016-05-01T09:30:00',
+                      //   end: '2016-05-01T10:30:00',
+                      //   stick: true
+                      // });
                       // $scope.saveAsTemplate = UpsertPrescriptionAsTemplate;
                       // Prescription.getTemplateById({sessionId: user.sessionId,doctorId: '101',templateId:'7575027259136053',columnsToGet:''},function(response){console.log(response);});
                      
@@ -49,6 +111,7 @@
                       //   });
                       }
                 });
+                
             }
         };
         $scope.alertOnDrop = function() {
@@ -61,7 +124,8 @@
         $scope.eventOnClick = function(event) {
             alert("evemt clicked");
         };
-        $scope.eventSources = {
+        $scope.eventSources = [
+                                {
                                     events: [
                                         {
                                             title: 'Event1',
@@ -73,13 +137,20 @@
                                         },
                                         {
                                             title: 'Event33',
-                                            start: '2016-04-27T03:30:00'
+                                            start: '2016-04-30T03:30:00',
+                                            end: '2016-04-30T04:30:00'
                                         }
                                         // etc...
                                     ],
                                     color: 'yellow',   // an option!
                                     textColor: 'black' // an option!
-                                };
+                                }
+                            ];
+        // $scope.eventSources[0].events.push({
+        //                 title: 'FCB-1',
+        //                 start: '2016-05-01T00:00:00',
+        //                 end: '2016-05-01T01:30:00'
+        //               });
 
         /* config object */
         $scope.uiConfig = {

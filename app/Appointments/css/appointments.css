@@ -1,0 +1,10 @@
+.firstCol {
+	display: inline-block;
+	min-width: 125px;
+}
+.secondCol {
+	display: inline-block;
+}
+.calFormRow {
+	padding: 10px;
+}

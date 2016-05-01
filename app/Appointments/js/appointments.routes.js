@@ -16,7 +16,7 @@
                                 }
                             })
                             .state('PatientAppointments', {
-                                url: 'patients/:patientId/book-appointment',
+                                url: '/book-appointment/:patientId',
                                 templateUrl: 'Appointments/partials/appointments.index.html',
                                 controller: 'AppointmentsIndexCtrl',
                                 ncyBreadcrumb: {
