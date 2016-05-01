@@ -122,7 +122,7 @@
             alert("alert on resize");
         };
         $scope.eventOnClick = function(event) {
-            alert("evemt clicked");
+            //alert("evemt clicked");
         };
         $scope.eventSources = [
                                 {
