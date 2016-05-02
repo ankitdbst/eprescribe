@@ -18,7 +18,6 @@
                 <th>Date Added</th> 
                 <th>Patient Name</th> 
                 <th>Mobile Number</th> 
-                <th>Comments</th> 
                 <th>Status</th> 
                 <th></th>
                 <th></th>
@@ -32,7 +31,6 @@
                     <a href="#/patients/edit/{{taskObj.patient.patientId}}"> {{taskObj.patient.patientName}} </a>
                 </td>
                 <td>{{taskObj.patient.mobile}}</td> 
-                <td>{{taskObj.comments}}</td> 
                 <td ng-class="{{taskObj.status == 'Approved' ? 'text-success' : (taskObj.status == 'Rejected' ? 'text-danger' : '')}}">{{taskObj.status}}</td> 
                 <td>
                     <a href="#/patients/{{taskObj.patient.patientId}}/prescriptions/8737517305399508" class="btn btn-default"> Open Prescription </a>
