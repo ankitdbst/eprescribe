@@ -18,13 +18,28 @@
 
     function LoginCtrl($scope, $rootScope, $state, Account, $stateParams, Patient) {
 
+        //If Flag for logout is true...then logout..
+        if ($stateParams.signIn == "logOut") {
+            Account.logout();
+        } else {
+            //Now check if cookies are present, if yes then directly move forward instead of asking for login again!
+            checkIfAlreadyLoggedIn();
+        }
+
+        //If no cookie is present then ask for login..
         Initialize();
 
         //Assign Functions..
         $scope.signIn = signIn;
         $scope.toggleModal = toggleModal;
 
-        toggleModal($stateParams.signIn);
+        function checkIfAlreadyLoggedIn() {
+            if (Account.isAuthenticated()) {
+                var account = Account.getAuthenticatedAccount();
+                postSuccessfulLoginProcessing(account.loggedInUser.ImageURL);
+                return;
+            }
+        }
 
         function signIn() {
             $scope.data = {};
@@ -45,9 +60,9 @@
                     $scope.alertMessage = "Invalid Credentials, Please try again!";
                 } else
                 {
-                    postLoginProcessing(response);
-                    //Navigate to First Page in menu
-                    $state.go('PatientsList');
+                    //Fetch Doctor Profile here 
+                    GetDoctorProfile(response);
+                    postSuccessfulLoginProcessing();
                 }
             }
         }
@@ -72,16 +87,21 @@
                 columnsToGet: "settings,userType,userId,firstName,midlleName,lastName,mobile,clinic"
             }, function (response) {
                 account.loggedInUser = response;
+                //Set Image URL of Logged in user..
+                account.loggedInUser.ImageURL = $rootScope.getImageURL(account.baseURL, account.userId, account.sessionId, account.userId);
                 //Now store Doctor Profile in cookie..
                 Account.setAuthenticatedAccount(account, GetCookieExpiryTime());
+                setImageURLInRootScope(account.loggedInUser.ImageURL);
             });
         }
 
-        function postLoginProcessing(account) {
-            //Fetch Doctor Profile here 
-            GetDoctorProfile(account);
-            //Set doctor image profile..
-            $rootScope.loggedInUserImageURL = $rootScope.getImageURL(account.baseURL, account.userId, account.sessionId, account.userId);
+        function setImageURLInRootScope(url) {
+            //Store Image in RootScope so that it can be accessed at index.html and we can show profile pic at top right!
+            $rootScope.loggedInUserImageURL = url;
+        }
+
+        function postSuccessfulLoginProcessing(url) {
+            setImageURLInRootScope(url);
             //start showing menu items
             $rootScope.showMenu = true;
             $('#loginModal').modal('hide');
@@ -91,6 +111,8 @@
             $('#wrapper').removeClass('hero-unit');
             getPendingTasks();
             getPendingMessages();
+            //Navigate to First Page in menu
+            $state.go('PatientsList');
         }
 
         function getPendingMessages() {
@@ -128,13 +150,13 @@
             $rootScope.showMenu = false;
             $rootScope.pageHeader = "";
             $scope.rememberMe = true;
-            //necessary to remove any existing cookies..
-            Account.logout();
+            //decide which popup to show either Login OR Register..
+            toggleModal($stateParams.signIn);
         }
 
         function toggleModal(signIn) {
-            //Open respective model!
-            if (signIn == "true") {
+            //when asking for Login Modal to show OR logout flag is true..
+            if (signIn == "true" || signIn == "logOut") {
                 $('#loginModal').modal('show');
                 $('#registerModal').modal('hide');
             } else {
