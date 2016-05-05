@@ -1,3 +1,4 @@
+(function () {
 'use strict';
 
 // Declare app level module which depends on views, and components
@@ -64,7 +65,7 @@ angular.module('ERemediumWebApp', [
             $rootScope.go = function (path) {
                 $location.path(path);
             };
-            
+
             $rootScope.getImageURL = function(baseURL, loggedInUserId, sessionId, userId) {
                 var inputParams = { user: loggedInUserId, sessionId: sessionId, imgIdOfUser: userId };
                 return baseURL + "userservice/GetImage?" + $.param(inputParams);
@@ -116,3 +117,4 @@ angular.element(document).ready(function ($) {
 
 angular.module('ERemediumWebApp.config', []);
 angular.module('ERemediumWebApp.routes', []);
+}) ();
