@@ -1,0 +1,62 @@
+<div>
+	<h4><center>Schedule Appointment</center></h4>
+<div class="calFormRow">
+	<div class="firstCol">
+Patient Id: 
+</div>
+<div class="secondCol">
+{{patientId}}
+</div>
+</div>
+<div class="calFormRow">
+	<div class="firstCol">
+Patient Name: 
+</div>
+<div class="secondCol">
+	<div ng-if="patientId != undefined">
+		 {{patient.firstName}} {{patient.lastName}}
+	</div>
+	<input ng-if="patientId == undefined" type="text" ng-model="patientName" class=" form-control template-name-input" placeholder="Enter Patient Name"/>
+</div>
+</div>
+<div class="calFormRow">
+	<div class="firstCol">
+Doctor Name: 
+</div>
+<div class="secondCol">
+{{doctor.firstName}} {{doctor.lastName}}
+</div>
+</div>
+<div class="calFormRow">
+	<div class="firstCol">
+Doctor Id: 
+	</div>
+	<div class="secondCol">
+{{doctor.doctorId}}
+</div>
+</div>
+<div class="calFormRow">
+	<div class="firstCol">
+StartTime:
+</div>
+<div class="secondCol">
+{{startTime}}
+</div>
+</div>
+<div class="calFormRow">
+	<div class="firstCol">
+Duration:
+</div>
+<div class="secondCol">
+<select class="form-control" ng-model="duration" ng-change="selectStopTime(duration)"
+            ng-options="interval for interval in intervals">
+</select>
+</div>
+</div>
+<div class="calFormBtn">
+<button type="button" class="btn btn-primary" ng-click="saveAppointment()"
+                ng-disabled="formPrescription.$invalid">
+ Done
+</button>
+</div>
+</div>

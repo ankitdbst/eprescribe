@@ -22,6 +22,7 @@
         $scope.savePatientPeripheralDetails = SavePatientPeripheralDetails;
         $scope.openPrescriptions = OpenPrescriptions;
         $scope.getAllPrescriptionsAccess = GetAllPrescriptionsAccess;
+        $scope.bookAppointment = BookAppointment;
 
         $scope.uploader = {};
 
@@ -201,7 +202,7 @@
                 detailType: 'userHistory',
                 columnsToGet: ""
             }, function (response) {
-                $scope.patient.history = response[response.length - 1];
+                $scope.patient.history = response[0];
             });
         }
 
@@ -215,12 +216,18 @@
                 detailType: 'userAllergy',
                 columnsToGet: ""
             }, function (response) {
-                $scope.patient.alergy = response[response.length - 1];
+                $scope.patient.alergy = response[0];
             });
         }
 
         function OpenPrescriptions() {
             $state.go('PrescriptionIndex', {
+                patientId: $stateParams.patientId
+            });
+        }
+
+        function BookAppointment() {
+            $state.go('PatientAppointments', {
                 patientId: $stateParams.patientId
             });
         }

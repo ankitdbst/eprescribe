@@ -15,6 +15,15 @@
                                   parent: 'PatientsList'
                                 }
                             })
+                            .state('PatientAppointments', {
+                                url: '/book-appointment/:patientId',
+                                templateUrl: 'Appointments/partials/appointments.index.html',
+                                controller: 'AppointmentsIndexCtrl',
+                                ncyBreadcrumb: {
+                                  label: 'Appointments',
+                                  parent: 'PatientsList'
+                                }
+                            })
                 }
             ]);
 })();

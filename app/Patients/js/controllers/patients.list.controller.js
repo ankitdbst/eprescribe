@@ -27,6 +27,7 @@
             $rootScope.pageHeader = "Patients";
             $scope.patient = {};
             $scope.patient.search = '';
+            $('.modal-backdrop').remove();
             //retrieve full patient list from backend..
             GetPatientList();
         }

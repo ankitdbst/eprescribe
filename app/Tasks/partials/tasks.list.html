@@ -15,28 +15,36 @@
         <thead>
             <tr>
                 <th>Type</th>                     
+                <th>Date Added</th> 
                 <th>Patient Name</th> 
                 <th>Mobile Number</th> 
-                <th>Address</th> 
-                <th>Date Added</th> 
-                <th>Comments</th> 
-                <th>Action</th>
+                <th>Status</th> 
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="taskObj in taskList| filter: inputSearch | orderBy:dateadded"> 
                 <td>{{taskObj.type}}</td>
+                <td>{{taskObj.dateadded| date:'medium' }}</td> 
                 <td>
-                    <a href="#/patients/edit/{{taskObj.patient.patientId}}"> {{$rootScope.getFullName(taskObj.patient)}} </a>
+                    <a href="#/patients/edit/{{taskObj.patient.patientId}}"> {{taskObj.patient.patientName}} </a>
                 </td>
                 <td>{{taskObj.patient.mobile}}</td> 
-                <td>{{$rootScope.getFullAddress(taskObj.patient)}}</td> 
-                <td>{{taskObj.dateadded}}</td> 
-                <td>{{taskObj.comments}}</td> 
+                <td ng-class="{{taskObj.status == 'Approved' ? 'text-success' : (taskObj.status == 'Rejected' ? 'text-danger' : '')}}">{{taskObj.status}}</td> 
                 <td>
-                    <button type="button" class="btn btn-primary"> {{ buttonText(taskObj.type)}}
-                        <span class="fa fa-sign-in fa-stack-1x"></span>
-                    </button>
+                    <a href="#/patients/{{taskObj.patient.patientId}}/prescriptions/8737517305399508" class="btn btn-default"> Open Prescription </a>
+                </td>
+                <td>
+                    <span ng-show="{{taskObj.type === 'Lab Results'}}">
+                        <a href="#/patients/{{taskObj.patient.patientId}}/prescriptions/8737517305399508" class="btn btn-primary"> View Lab Results </a>
+                    </span>
+                    <span ng-show="{{taskObj.type != 'Lab Results'}}">
+                        <a href="#/patients/{{taskObj.patient.patientId}}/prescriptions/8737517305399508" class="btn btn-success"> 
+                            <i class="fa fa-check fa-1x"> </i> Approve </a>
+                        <a href="#/patients/{{taskObj.patient.patientId}}/prescriptions/8737517305399508" class="btn btn-danger"> 
+                            <i class="fa fa-remove fa-1x"> </i> Reject </a>
+                    </span>
                 </td> 
             </tr>
         </tbody>
