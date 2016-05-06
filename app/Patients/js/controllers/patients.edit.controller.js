@@ -181,9 +181,11 @@
 
         function GetUserProfile() {
             $scope.myPromise = Patient.get({
-                user: $stateParams.patientId,
+                user: account.userId,
                 sessionId: account.sessionId,
                 isDoctor: false,
+                userId: $stateParams.patientId,
+                doctorId: account.userId,
                 mobile: "",
                 columnsToGet: "sex,modifiedBy,userType,patientId,parentId,hasFullAccess,dependants,bloodgroup,age,userId,midlleName,firstName,isUpdate,searchCol,lastName,status,relation,modifiedDate,creationDate,createdBy,landlineNumber,address,email,dob,isDependant,mobile,alternateMobileNumber"
             }, function (response) {

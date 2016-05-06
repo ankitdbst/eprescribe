@@ -183,9 +183,11 @@
         function GetUserProfile() {
             if($stateParams.patientId !== undefined) {
                 $scope.myPromise = Appointments.get({
-                    user: $stateParams.patientId,
+                    user: $scope.account.userId,
                     sessionId: $scope.account.sessionId,
                     isDoctor: false,
+                    userId: $stateParams.patientId,
+                    doctorId: $scope.account.userId,
                     mobile: "",
                     columnsToGet: ""
                 }, function (response) {
@@ -200,6 +202,8 @@
                 user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
                 isDoctor: true,
+                userId: $scope.account.userId,
+                doctorId: "",
                 mobile: "",
                 columnsToGet: ""
             }, function (response) {

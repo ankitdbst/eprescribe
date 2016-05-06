@@ -143,6 +143,8 @@
                 user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
                 isDoctor: true,
+                userId: $scope.account.userId,
+                doctorId: "",
                 mobile: "",
                 columnsToGet: "sex,clinic,modifiedBy,settings,specializations,education,password,medicalregnumber,userType,patientId,parentId,userId,age,midlleName,experience,firstName,searchCol,aboutme,lastName,services,status,relation,modifiedDate,creationDate,briefsummary,doctorId,memberships,mobile"
             }, function (response) {

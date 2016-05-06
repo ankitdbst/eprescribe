@@ -23,21 +23,9 @@
         function Initialize() {
             $rootScope.pageHeader = "";
             $('#verifyOTPModal').modal('show');
-            GetUserProfile();
+            GenerateOTP();
         }
 
-        function GetUserProfile() {
-            $scope.myPromise = Patient.get({
-                user: $stateParams.patientId,
-                sessionId: $scope.account.sessionId,
-                isDoctor: false,
-                mobile: "",
-                columnsToGet: ""
-            }, function (response) {
-                $scope.patient = response;
-                GenerateOTP();
-            });
-        }
         function GenerateOTP() {
             //Setup parameters.
             var params = {
@@ -80,8 +68,6 @@
                     $scope.showAlert = true;
                 } else if (response.respCode == 1) {
                     postProcessing();
-                    /* When successfully verified, this should be set at back end, should be a doctor - patient map property..
-                     patient.hasFullAccess = true; */
                     $state.go('PatientNewOrEdit', {patientId: $stateParams.patientId}, {reload: true});
                 } else {
                     $scope.alertMessage = response.response + ". Please enter correct OTP.";
