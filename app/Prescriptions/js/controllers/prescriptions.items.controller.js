@@ -17,25 +17,6 @@
         Initialize();
 
         function Initialize() {
-            $scope.instructions = [
-                'SOS',
-                'After Breakfast',
-                'After Defecation',
-                'After Dinner',
-                'After Lunch',
-                'After Meals',
-                'At Bed Time',
-                'Before Breakfast',
-                'Before Dinner',
-                'Before Lunch',
-                'Before Meals',
-                'In Between Food',
-                'On Empty Stomach',
-                'With Hot Water',
-                'With Milk',
-                'With Warm Water',
-                'With Water'
-            ];
             $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
             $scope.times = ['Morning', 'Afternoon', 'Night'];
             $scope.dosages = [
@@ -67,6 +48,7 @@
             $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
             $scope.times = ['Morning', 'Afternoon', 'Night'];
 
+            GetMedicineInstructions();
             GetAdviseInstructions();
         }
 
@@ -104,6 +86,19 @@
             $scope.prescription[itemsStr].push({});
         }
 
+        function GetMedicineInstructions() {
+            $scope.medicineInstructions = Prescription.getMedicineInstruction({
+                user: user.userId,
+                sessionId: user.sessionId,
+                doctorId: user.userId,
+                columnsToGet: ""
+            }, function (response) {
+                $scope.medicineInstructions = response;
+            }
+            );
+            $scope.myPromise = $scope.medicineInstructions.$promise;
+        }
+        
         function GetAdviseInstructions() {
             $scope.adviseInstructions = Prescription.getAdvisesInstruction({
                 user: user.userId,

@@ -27,7 +27,7 @@
             <div ng-if="editable">
                 <div class="input-group input-group--autocomplete">
                     <input type="text" ng-model="advise.instructions" class="form-control"
-                           placeholder="Add Instructions..." uib-typeahead="instruction.name for instruction in adviseInstructions" typeahead-min-length="0"/>
+                           placeholder="Add Instructions..." uib-typeahead="instruction.testInstruction for instruction in adviseInstructions | filter:$viewValue | limitTo:10" typeahead-min-length="0"/>
                 </div>
             </div>
         </td>

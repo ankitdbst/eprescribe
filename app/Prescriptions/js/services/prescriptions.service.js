@@ -72,6 +72,11 @@
               method: 'POST',
               url: 'http://52.76.165.4/ERService/labservice/GetAdvisesInstruction',
               isArray: true
+            },
+            getMedicineInstruction: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/medcineservice/GetIntakeInstruction',
+              isArray: true
             }
           };
 
