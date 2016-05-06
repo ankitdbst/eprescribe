@@ -166,6 +166,10 @@
                     if ($scope.patient.dob) {
                         $scope.patient.dob = new Date($scope.patient.dob);
                     }
+                    //If it was a new patient creation..then refresh the page once..to set the correct URL..
+                    if ($stateParams.patientId == '') {
+                        $state.go('PatientNewOrEdit', {patientId: $scope.patient.patientId}, {reload: true});
+                    }
                     EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
