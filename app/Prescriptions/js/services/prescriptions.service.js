@@ -67,6 +67,11 @@
               method: 'POST',
               url: 'http://52.76.165.4/ERService/labservice/LabTestAutocomplete',
               isArray: true
+            },
+            getAdvisesInstruction: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/labservice/GetAdvisesInstruction',
+              isArray: true
             }
           };
 
