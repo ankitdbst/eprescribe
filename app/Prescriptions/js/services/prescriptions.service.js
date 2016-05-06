@@ -35,7 +35,7 @@
             },
             listLabs: {
               method: 'POST',
-              url: 'http://52.76.165.4/ERService/pharmaservice/ListPharma',//TODO put in correct contract!
+              url: 'http://52.76.165.4/ERService/labservice/ListLab',
               isArray: true
             },
             placeOrder: {

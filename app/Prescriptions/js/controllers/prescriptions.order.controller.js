@@ -51,10 +51,11 @@
                 user: user.userId,
                 sessionId: user.sessionId,
                 city: user.loggedInUser.clinic.city,
-                limit: 10,
+                doctorId: user.userId,
                 columnsToGet: ""
             }, function (response) {
                 $scope.pharmacies = response;
+                $scope.order.pharmacy = response[0];
             });
         }
 
@@ -63,10 +64,11 @@
                 user: user.userId,
                 sessionId: user.sessionId,
                 city: user.loggedInUser.clinic.city,
-                limit: 10,
+                doctorId: user.userId,
                 columnsToGet: ""
             }, function (response) {
                 $scope.labs = response;
+                $scope.order.lab = response[0];
             });
         }
 
@@ -76,7 +78,8 @@
                 sessionId: user.sessionId,
                 doctorId: user.userId,
                 pid: $stateParams.prescriptionId,
-                pharmaId: $scope.order.pharmacy.pharmaId,
+                pharmaId: $scope.order.pharmacy == undefined ? "" : $scope.order.pharmacy.pharmaId,
+                labId: $scope.order.lab == undefined ? "" : $scope.order.lab.labId,
                 deliveryAddress: {
                     addressLine1: $scope.order.address.addressLine1,
                     addressLine2: $scope.order.address.addressLine2,
