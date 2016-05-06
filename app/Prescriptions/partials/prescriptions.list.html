@@ -38,14 +38,14 @@
             <td ng-if="!canvasEnabled">{{ prescription.diagnosis}}</td>
             <td>
                 <ul class="eremedium-prescription-item-list list-unstyled">
-                    <li ng-repeat="medicine in prescription.medcines| limitTo: 2">
+                    <li ng-repeat="medicine in prescription.medcines">
                         <span class="label label-default">{{medicine.name}}</span>
                     </li>
                 </ul>
             </td>
             <td>
                 <ul class="eremedium-prescription-item-list list-unstyled">
-                    <li ng-repeat="advise in prescription.advises| limitTo: 2">
+                    <li ng-repeat="advise in prescription.advises">
                         <span class="label label-info">{{advise.name}}</span>
                     </li>
                 </ul>

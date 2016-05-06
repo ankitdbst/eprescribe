@@ -94,7 +94,7 @@
                     $scope.alertMessage = section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
                     //If all goes good, then ask him to relogin
-                    $state.go('login', {signIn: true});
+                    $state.go('login', {signIn: 'logOut'});
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
@@ -125,7 +125,7 @@
                     $scope.alertClass = "alert-success";
                     //If settings are updated, then ask him to relogin
                     if (section == "Settings") {
-                        $state.go('login', {signIn: true});
+                        $state.go('login', {signIn: 'logOut'});
                     }
                     //If all else goes good, rebind the data..
                     $scope.doctor = response.doctor;
