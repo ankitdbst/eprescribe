@@ -15,8 +15,6 @@
     var user = Account.getAuthenticatedAccount();
 
     //Initialize
-    $scope.dispenseUnits = ['Tablet', 'Bottle', 'Injection'];
-    $scope.dosageUnits = ['tablet', 'ml', 'mg'];
     $scope.instructions = [
       'SOS',
       'After Breakfast',
@@ -39,15 +37,6 @@
     $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     $scope.times = ['Morning', 'Afternoon', 'Night'];
 
-    $scope.favorites = [
-      'Crocin',
-      'Glycomed',
-      'Disprin',
-      'Combiflam',
-      'Asprin',
-      'Zandu Bam',
-      'Digene'
-    ];
 
     $scope.dosages = [
       "N/A",
@@ -74,18 +63,11 @@
       "3 - 3 - 3 - 3"
     ];
 
-    $scope.advises = [
-      'Absolute Eosinophil Count',
-      'ACTH Stimulation Test',
-      'Alpha Fetoprotien (Adult)',
-      'Amlicor MTB Test',
-      'Anti-LA Antibody',
-      'Anti-Double Stranded DNA AntiBody'
-    ];
 
     $scope.delete = Delete;
     $scope.add = AddItem;
     $scope.search = SearchMedicine;
+    $scope.searchAdvises = SearchAdvises;
     $scope.flag = 1;
 
     // Move to constants service
@@ -117,6 +99,32 @@
       var itemsStr = $scope.type + 's';
       $scope.prescription[itemsStr].push({});
     }
+    
+    function SearchAdvises(searchText) {
+      if(searchText == undefined || searchText == ""){
+        //Just return Favourite Advises only. This is onClick only
+        var params = {
+          user: user.userId,
+          sessionId: user.sessionId,
+          doctorId: user.userId,
+          limit: 10,
+          columnsToGet: ""
+        };
+        $scope.myPromise = Prescription.getFavouriteAdvises(params).$promise;
+        return Prescription.getFavouriteAdvises(params).$promise;
+      }
+      var params = {
+        user: user.userId,
+        sessionId: user.sessionId,
+        doctorId: user.userId,
+        searchText: searchText,
+        limit: 10,
+        columnsToGet: ""
+      };
+      $scope.myPromise = Prescription.searchAdvises(params).$promise;
+      return Prescription.searchAdvises(params).$promise;
+    }
+
 
     function SearchMedicine(searchText) {
       if(searchText == undefined || searchText == ""){
@@ -126,7 +134,7 @@
           user: user.loggedInUser.mobile,
           sessionId: user.sessionId,
           doctorId: user.userId,
-          limit: 5,
+          limit: 10,
           columnsToGet: ""
         };
         $scope.myPromise = Prescription.getFavouriteMed(params).$promise;
@@ -137,7 +145,7 @@
         sessionId: user.sessionId,
         doctorId: user.userId,
         searchText: searchText,
-        limit: 5,
+        limit: 10,
         columnsToGet: ""
       };
       $scope.myPromise = Prescription.searchMed(params).$promise;

@@ -57,6 +57,16 @@
               method: 'POST',
               url: 'http://52.76.165.4/ERService/medcineservice/GetFavouriteMed',
               isArray: true
+            },
+            getFavouriteAdvises: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/labservice/GetFavouriteTest',
+              isArray: true
+            },
+            searchAdvises: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/labservice/LabTestAutocomplete',
+              isArray: true
             }
           };
 
