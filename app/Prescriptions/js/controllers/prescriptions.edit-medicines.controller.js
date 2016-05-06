@@ -41,6 +41,7 @@
             GetVitals();
             GetHistory();
             GetAllergies();
+            GetInstructions();
         }
         
         $scope.templateList = Prescription.getTemplates(params, function (response) {
@@ -212,6 +213,19 @@
             }, function (response) {
                 $scope.patient.alergy = response[0];
             });
+        }
+        
+        function GetInstructions() {
+            $scope.instructions = Prescription.getInstruction({
+                user: user.userId,
+                sessionId: user.sessionId,
+                doctorId: user.userId,
+                columnsToGet: ""
+            }, function (response) {
+                $scope.instructions = response;
+            }
+            );
+            $scope.myPromise = $scope.instructions.$promise;
         }
     }
 })();
