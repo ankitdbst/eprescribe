@@ -1,0 +1,13 @@
+{
+  "dev": {
+    "API_ENDPOINT": "http://eremedium.com/ERService"
+  },
+
+  "stage": {
+    "API_ENDPOINT": "http://eremedium.com/ERServiceStg"
+  },
+
+  "prod": {
+    "API_ENDPOINT": "http://eremedium.com/ERServiceProd"
+  }
+}

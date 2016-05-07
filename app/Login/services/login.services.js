@@ -2,14 +2,14 @@
     'use strict';
     angular.module('ERemediumWebApp.login.services')
 
-            .factory('Login', ['$resource', function ($resource) {
+            .factory('Login', ['$resource','API_ENDPOINT', function ($resource, API_ENDPOINT) {
                     var resourceUrl = ''; // We have different resource url for different actions, so we will enter them in actions
                     var paramDefaults = {}; // Currently no param defaults
 
                     var actions = {
                         validateCredentials: {
                             method: 'POST',
-                            url: 'http://eremedium.com/ERService/userservice/ValidateCredentials'
+                            url: API_ENDPOINT + '/userservice/ValidateCredentials'
                         }
                     };
 

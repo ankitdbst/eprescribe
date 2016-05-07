@@ -1,86 +1,86 @@
 (function () {
   'use strict';
   angular.module('ERemediumWebApp.prescriptions.services')
-      .factory('Prescription', ['$resource', function ($resource) {
+      .factory('Prescription', ['$resource', 'API_ENDPOINT', function ($resource, API_ENDPOINT) {
           var resourceUrl = ''; // We have different resource url for different actions, so we will enter them in actions
           var paramDefaults = {}; // Currently no param defaults
 
           var actions = {
             upsert: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/prescription/UpsertPrescription'
+              url: API_ENDPOINT + '/prescription/UpsertPrescription'
             },
             list: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/prescription/ListPrescription',
+              url: API_ENDPOINT + '/prescription/ListPrescription',
               isArray: true
             },
             get: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/prescription/GetPrescription'
+              url: API_ENDPOINT + '/prescription/GetPrescription'
             },
             query: {
               method: 'GET',
-              url: 'http://eremedium.com/ERService/prescription/SearchPrescription'
+              url: API_ENDPOINT + '/prescription/SearchPrescription'
             },
             searchMed: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/medcineservice/MedAutocomplete',
+              url: API_ENDPOINT + '/medcineservice/MedAutocomplete',
               isArray: true
             },
             listPharma: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/pharmaservice/ListPharma',
+              url: API_ENDPOINT + '/pharmaservice/ListPharma',
               isArray: true
             },
             listLabs: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/labservice/ListLab',
+              url: API_ENDPOINT + '/labservice/ListLab',
               isArray: true
             },
             placeOrder: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/orderservice/Order',
+              url: API_ENDPOINT + '/orderservice/Order',
               isArray: false
             },
             getTemplates: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/prescription/ListTemplate',
+              url: API_ENDPOINT + '/prescription/ListTemplate',
               isArray: true
             },
             getTemplateById: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/prescription/GetTemplateById',
+              url: API_ENDPOINT + '/prescription/GetTemplateById',
               isArray: false
             },
             getFavouriteMed: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/medcineservice/GetFavouriteMed',
+              url: API_ENDPOINT + '/medcineservice/GetFavouriteMed',
               isArray: true
             },
             getFavouriteAdvises: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/labservice/GetFavouriteTest',
+              url: API_ENDPOINT + '/labservice/GetFavouriteTest',
               isArray: true
             },
             searchAdvises: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/labservice/LabTestAutocomplete',
+              url: API_ENDPOINT + '/labservice/LabTestAutocomplete',
               isArray: true
             },
             getAdvisesInstruction: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/labservice/GetAdvisesInstruction',
+              url: API_ENDPOINT + '/labservice/GetAdvisesInstruction',
               isArray: true
             },
             getMedicineInstruction: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/medcineservice/GetIntakeInstruction',
+              url: API_ENDPOINT + '/medcineservice/GetIntakeInstruction',
               isArray: true
             },
             getInstruction: {
               method: 'POST',
-              url: 'http://eremedium.com/ERService/prescription/ListInstruction',
+              url: API_ENDPOINT + '/prescription/ListInstruction',
               isArray: true
             }
           };

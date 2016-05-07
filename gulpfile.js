@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     gulpif = require('gulp-if'),
     uglify = require('gulp-uglify'),
     minifyCss = require('gulp-minify-css'),
-    del = require('del');
+    del = require('del'),
+    ngConfig = require('gulp-ng-config');
 
 // Parse html and create min.js/min.css
 gulp.task('useref', function() {
@@ -33,6 +34,17 @@ gulp.task('copyFonts', function() {
 gulp.task('copyWacomMem', function() {
   return gulp.src('app/Utils/js/lib/*.mem', {base: 'app/Utils/js/lib'})
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('loadConfig', function() {
+  var type = util.env.type || "dev";
+  var base_dir = type == "dev" ? "app" : "dist";
+  gulp.src('app/config.json')
+    .pipe(ngConfig('ERemediumWebApp.config', {
+      environment: type,
+      createModule: false,
+    }))
+    .pipe(gulp.dest(base_dir + "/js"));
 });
 
 gulp.task('build', ['useref', 'copyWacomMem', 'copyImages', 'copyFonts']);
