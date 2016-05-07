@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     ngConfig = require('gulp-ng-config');
 
 // Parse html and create min.js/min.css
-gulp.task('useref', function() {
+gulp.task('useref', ['loadConfig'], function() {
   if (util.env.type === 'dev') return; // do nothing on dev environments
   util.log("Cleaning dist...");
   del('dist/{js,css}/eremedium.{js,css}');
@@ -51,7 +51,7 @@ gulp.task('loadConfig', function() {
     .pipe(gulp.dest(base_dir + "/js"));
 });
 
-gulp.task('build', ['useref', 'copyWacomMem', 'copyImages', 'copyFonts', 'loadConfig']);
+gulp.task('build', ['useref', 'copyWacomMem', 'copyImages', 'copyFonts']);
 
 // configure the jshint task
 gulp.task('jshint', function() {
