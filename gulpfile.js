@@ -35,8 +35,8 @@ gulp.task('copyFonts', function() {
 })
 
 gulp.task('copyWacomMem', function() {
-  return gulp.src('app/Utils/js/lib/*.mem', {base: 'app/Utils/js/lib'})
-    .pipe(gulp.dest('dist'));
+  return gulp.src('app/Utils/js/lib/WacomInkEngine.js.mem', {base: 'app/Utils/js/lib'})
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('loadConfig', function() {
