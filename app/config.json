@@ -4,7 +4,7 @@
   },
 
   "stage": {
-    "API_ENDPOINT": "http://eremedium.com/ERServiceStg"
+    "API_ENDPOINT": "http://eremedium.com/ERService"
   },
 
   "prod": {
