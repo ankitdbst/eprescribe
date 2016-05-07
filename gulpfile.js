@@ -40,15 +40,12 @@ gulp.task('copyWacomMem', function() {
 });
 
 gulp.task('loadConfig', function() {
-  var type = util.env.type || "dev";
-  util.log("Generating config for ", type);
-  var base_dir = type == "dev" ? "app" : "dist";
   gulp.src('app/config.json')
     .pipe(ngConfig('ERemediumWebApp.config', {
       environment: type,
       createModule: false,
     }))
-    .pipe(gulp.dest(base_dir + "/js"));
+    .pipe(gulp.dest('app/js'));
 });
 
 gulp.task('build', ['useref', 'copyWacomMem', 'copyImages', 'copyFonts']);
