@@ -94,7 +94,7 @@
                     $scope.alertMessage = section + " Saved Successfully!";
                     $scope.alertClass = "alert-success";
                     //If all goes good, then ask him to relogin
-                    $state.go('login', {signIn: true});
+                    $state.go('login', {signIn: 'logOut'});
                 } else {
                     $scope.alertMessage = response.response;
                     $scope.alertClass = "alert-danger";
@@ -125,7 +125,7 @@
                     $scope.alertClass = "alert-success";
                     //If settings are updated, then ask him to relogin
                     if (section == "Settings") {
-                        $state.go('login', {signIn: true});
+                        $state.go('login', {signIn: 'logOut'});
                     }
                     //If all else goes good, rebind the data..
                     $scope.doctor = response.doctor;
@@ -143,6 +143,8 @@
                 user: $scope.account.userId,
                 sessionId: $scope.account.sessionId,
                 isDoctor: true,
+                userId: $scope.account.userId,
+                doctorId: "",
                 mobile: "",
                 columnsToGet: "sex,clinic,modifiedBy,settings,specializations,education,password,medicalregnumber,userType,patientId,parentId,userId,age,midlleName,experience,firstName,searchCol,aboutme,lastName,services,status,relation,modifiedDate,creationDate,briefsummary,doctorId,memberships,mobile"
             }, function (response) {

@@ -8,7 +8,7 @@
                 <div class="form-group col-md-4">
                     <label for="pharmacy">Pharmacy</label>
                     <select class="form-control"
-                            ng-options="pharmacy.pharmaName for pharmacy in pharmacies" id="pharmacy"  name="pharmacy" ng-model="order.pharmacy" required>
+                            ng-options="pharmacy.address.name for pharmacy in pharmacies" id="pharmacy"  name="pharmacy" ng-model="order.pharmacy" required>
                     </select>
                 </div>
             </div>
@@ -20,8 +20,8 @@
             <div class="form-group clearfix">
                 <div class="form-group col-md-4">
                     <label for="lab">Lab</label>
-                     <select class="form-control"
-                            ng-options="lab for lab in labs" id="lab"  name="lab" ng-model="order.lab" required>
+                    <select class="form-control"
+                            ng-options="lab.address.name for lab in labs" id="lab"  name="lab" ng-model="order.lab" required>
                     </select>
                 </div>
             </div>
@@ -32,29 +32,29 @@
         <div class="panel-body">
             <div class="form-group clearfix">
                 <p>
-                    Is the address you'd like to use displayed below? If so, select the corresponding address. Or you can <a ui-sref="PrescriptionOrder.PatientNewOrEditAddress">enter a new delivery address</a>.
+                    Select the corresponding address. Or you can <a ui-sref="PrescriptionOrder.PatientNewOrEditAddress">enter a new delivery address</a>.
                 </p>
                 <hr>
                 <div class="radio col-md-3 eremedium-delivery-address" ng-repeat="address in addresses">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios" ng-value="address" ng-model="order.address">
-                        <address>
-                            <strong>{{prescription.patient.firstName + " " + prescription.patient.lastName}}</strong><br>
-                            {{address.addressLine1}}, {{address.addressLine2}}<br>
-                            {{address.city}}, {{address.state}}, {{address.pincode}}
-                        </address>
-                    </label>
+
+                    <input type="radio" name="optionsRadios" id="optionsRadios" ng-value="address" ng-model="order.address" required="">
+                    <address>
+                        <strong>{{prescription.patient.firstName + " " + prescription.patient.lastName}}</strong><br>
+                        {{address.addressLine1}}, {{address.addressLine2}}<br>
+                        {{address.city}}, {{address.state}}, {{address.pincode}}
+                    </address>
+
                 </div>
             </div>
         </div>
     </div>
     <br>
     <div class="form-group">
-        <div class="error-summary alert alert-danger" ng-show="(formPrescriptionOrder.pharmacy.$touched && formPrescriptionOrder.lab.$touched) &&
-                                (formPrescriptionOrder.pharmacy.$error.required && formPrescriptionOrder.lab.$error.required)">
-            <p>Please select either Lab or Pharmacy (or both)!</p>
+        <div class="error-summary alert alert-danger" ng-show="(formPrescriptionOrder.pharmacy.$touched && formPrescriptionOrder.lab.$touched && formPrescriptionOrder.optionsRadios.$touched) &&
+                                        (formPrescriptionOrder.pharmacy.$error.required && formPrescriptionOrder.lab.$error.required && formPrescriptionOrder.optionsRadios.$error.required)">
+            <p>Please select either Lab or Pharmacy (or both) and valid Delivery Address!</p>
         </div>
-        <button type="button" class="btn btn-primary" ng-click="order()" ng-disabled="formPrescriptionOrder.pharmacy.$error.required && formPrescriptionOrder.lab.$error.required">
+        <button type="button" class="btn btn-primary" ng-click="order()" ng-disabled="formPrescriptionOrder.pharmacy.$error.required && formPrescriptionOrder.lab.$error.required && formPrescriptionOrder.optionsRadios.$error.required">
             <i class="fa fa-thumbs-up"></i> Confirm Order
         </button>
         <button type="button" class="btn btn-default" ng-click="close()">

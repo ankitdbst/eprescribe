@@ -37,24 +37,6 @@
     $scope.days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
     $scope.times = ['Morning', 'Afternoon', 'Night'];
 
-    $scope.favorites = [
-      'Crocin',
-      'Glycomed',
-      'Disprin',
-      'Combiflam',
-      'Asprin',
-      'Zandu Bam',
-      'Digene'
-    ];
-
-    $scope.advises = [
-      'Absolute Eosinophil Count',
-      'ACTH Stimulation Test',
-      'Alpha Fetoprotien (Adult)',
-      'Amlicor MTB Test',
-      'Anti-LA Antibody',
-      'Anti-Double Stranded DNA AntiBody'
-    ];
 
     var itemStr = $scope.$parent.itemStr;
     var itemsStr = $scope.$parent.itemsStr;

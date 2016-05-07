@@ -35,7 +35,7 @@
             },
             listLabs: {
               method: 'POST',
-              url: 'http://52.76.165.4/ERService/pharmaservice/ListPharma',//TODO put in correct contract!
+              url: 'http://52.76.165.4/ERService/labservice/ListLab',
               isArray: true
             },
             placeOrder: {
@@ -56,6 +56,31 @@
             getFavouriteMed: {
               method: 'POST',
               url: 'http://52.76.165.4/ERService/medcineservice/GetFavouriteMed',
+              isArray: true
+            },
+            getFavouriteAdvises: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/labservice/GetFavouriteTest',
+              isArray: true
+            },
+            searchAdvises: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/labservice/LabTestAutocomplete',
+              isArray: true
+            },
+            getAdvisesInstruction: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/labservice/GetAdvisesInstruction',
+              isArray: true
+            },
+            getMedicineInstruction: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/medcineservice/GetIntakeInstruction',
+              isArray: true
+            },
+            getInstruction: {
+              method: 'POST',
+              url: 'http://52.76.165.4/ERService/prescription/ListInstruction',
               isArray: true
             }
           };

@@ -70,12 +70,16 @@
             <items editable="true" type="medcine" prescription="prescription"></items>
         </div>
         <div class="advises-list">
-            <h4>Advises</h4>
             <hr>
             <items editable="true" type="advise" prescription="prescription"></items>
         </div>
         <div class="row prescription-other">
-            <div class="form-group col-md-3">
+            <hr>
+            <div class="col-md-7">
+                <input type="text" ng-model="prescription.instructions" class="form-control"
+                       placeholder="Any other Instructions.." uib-typeahead="instruction.statement for instruction in instructions | filter:$viewValue | limitTo:10" typeahead-min-length="0"/>
+            </div>
+            <div class="col-md-5">
                 <label for="nextVisit">Next Visit</label>
                 <input ng-model="prescription.nextVisit.date" type="datetime-local" id="nextVisit" placeholder="Schedule Next Visit"/>
             </div>

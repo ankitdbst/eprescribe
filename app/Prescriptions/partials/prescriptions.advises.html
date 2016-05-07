@@ -1,45 +1,42 @@
 <div cg-busy="myPromise"></div>
 <table class="table table-striped" ng-show="prescription.advises.length">
-  <thead>
+    <thead>
     <th ng-if="!editable">#</th>
     <th>Test</th>
     <th>Instructions</th>
     <th ng-if="editable"></th>
-  </thead>
-  <tbody>
+</thead>
+<tbody>
     <tr ng-repeat="advise in prescription.advises">
-      <td ng-if="!editable">{{ $index+1 }}</td>
-      <td>
-        <div ng-if="!editable">
-          {{ advise.name }}
-        </div>
-        <div ng-if="editable">
-          <input type="text" ng-model="advise.name" class="form-control"
-                 placeholder="Start typing the name of the test..." uib-typeahead="advise for advise in advises | filter:$viewValue | limitTo: 5" typeahead-min-length="0"/>
-          <!--<br>-->
-          <!--<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>-->
-          <!--<div ng-show="noResults">-->
-              <!--<i class="glyphicon glyphicon-remove"></i> No Results Found-->
-          <!--</div>-->
-          <!--<div class="help-block" ng-messages="formPrescription.adviseName.$error" ng-if="formPrescription.adviseName.$touched">-->
-              <!--<p ng-message="required">Advise Name is mandatory!</p>-->
-          <!--</div>-->
-        </div>
-      </td>
-      <td>
-        <div ng-if="!editable">
-          {{ advise.instructions }}
-        </div>
-        <div ng-if="editable">
-          <textarea class="form-control" ng-model="advise.instructions" rows="1" id="comments" placeholder="Instructions"></textarea>
-        </div>
-      </td>
-      <td ng-if="editable">
-        <ul class="list-inline list-unstyled">
-          <li><a ng-click="delete($index)" ng-show="prescription.advises.length > 1">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></li>
-        </ul>
-      </td>
+        <td ng-if="!editable">{{ $index + 1}}</td>
+        <td>
+            <div ng-if="!editable">
+                {{ advise.name}}
+            </div>
+            <div ng-if="editable">
+                <div class="input-group input-group--autocomplete">
+                    <input type="text" ng-model="advise.name" class="form-control"
+                           placeholder="Advise name..." uib-typeahead="advise.name for advise in searchAdvises($viewValue)" typeahead-min-length="0"/>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div ng-if="!editable">
+                {{ advise.instructions}}
+            </div>
+            <div ng-if="editable">
+                <div class="input-group input-group--autocomplete">
+                    <input type="text" ng-model="advise.instructions" class="form-control"
+                           placeholder="Add Instructions..." uib-typeahead="instruction.testInstruction for instruction in adviseInstructions | filter:$viewValue | limitTo:10" typeahead-min-length="0"/>
+                </div>
+            </div>
+        </td>
+        <td ng-if="editable">
+            <ul class="list-inline list-unstyled">
+                <li><a ng-click="delete($index)" ng-show="prescription.advises.length > 1">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></li>
+            </ul>
+        </td>
     </tr>
-  </tbody>
+</tbody>
 </table>

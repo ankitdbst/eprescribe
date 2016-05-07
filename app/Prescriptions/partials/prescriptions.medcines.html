@@ -39,7 +39,7 @@
       </div>
       <div ng-if="editable">
         <input type="text" ng-model="medicine.frequency.intakeInst" class="form-control"
-             placeholder="How to take?" uib-typeahead="instruction for instruction in instructions | filter:$viewValue | limitTo:5" typeahead-min-length="0"/>
+             placeholder="How to take?" uib-typeahead="instruction.medInstruction for instruction in medicineInstructions | filter:$viewValue | limitTo:10" typeahead-min-length="0"/>
       </div>
     </td>
     <td>

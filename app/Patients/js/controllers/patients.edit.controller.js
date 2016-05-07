@@ -166,6 +166,10 @@
                     if ($scope.patient.dob) {
                         $scope.patient.dob = new Date($scope.patient.dob);
                     }
+                    //If it was a new patient creation..then refresh the page once..to set the correct URL..
+                    if ($stateParams.patientId == '') {
+                        $state.go('PatientNewOrEdit', {patientId: $scope.patient.patientId}, {reload: true});
+                    }
                     EditMode(false);
                 } else {
                     $scope.alertMessage = response.response;
@@ -177,9 +181,11 @@
 
         function GetUserProfile() {
             $scope.myPromise = Patient.get({
-                user: $stateParams.patientId,
+                user: account.userId,
                 sessionId: account.sessionId,
                 isDoctor: false,
+                userId: $stateParams.patientId,
+                doctorId: account.userId,
                 mobile: "",
                 columnsToGet: "sex,modifiedBy,userType,patientId,parentId,hasFullAccess,dependants,bloodgroup,age,userId,midlleName,firstName,isUpdate,searchCol,lastName,status,relation,modifiedDate,creationDate,createdBy,landlineNumber,address,email,dob,isDependant,mobile,alternateMobileNumber"
             }, function (response) {

@@ -83,6 +83,8 @@
                 user: account.userId,
                 sessionId: account.sessionId,
                 isDoctor: true,
+                userId: account.userId,
+                doctorId: "",
                 mobile: "",
                 columnsToGet: "settings,userType,userId,firstName,midlleName,lastName,mobile,clinic"
             }, function (response) {
