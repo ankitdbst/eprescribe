@@ -13,6 +13,9 @@ var gulp = require('gulp'),
 // Parse html and create min.js/min.css
 gulp.task('useref', function() {
   if (util.env.type === 'dev') return; // do nothing on dev environments
+  util.log("Cleaning dist...");
+  del('dist/{js,css}/eremedium.{js,css}');
+
   return gulp.src('app/**/*.html')
     .pipe(useref({}, lazypipe().pipe(sourcemaps.init, { loadMaps: true })))
     .pipe(sourcemaps.write('maps'))
