@@ -9,16 +9,16 @@
                     var actions = {
                         getProfile: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/GetUserById',
+                            url: 'http://eremedium.com/ERService/userservice/GetUserById',
                             isArray: false
                         },
                         saveProfile: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/UpsertUser'
+                            url: 'http://eremedium.com/ERService/userservice/UpsertUser'
                         },
                         changePassword: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/SetPassword'
+                            url: 'http://eremedium.com/ERService/userservice/SetPassword'
                         }
                     };
 

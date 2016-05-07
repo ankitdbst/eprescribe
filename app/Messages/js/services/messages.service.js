@@ -9,12 +9,12 @@
                     var actions = {
                         sendSMS: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/communicationservice/SendSMS'
+                            url: 'http://eremedium.com/ERService/communicationservice/SendSMS'
                         },
                         getDeliveryReport: {
                             //TODO..
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/communicationservice/GetDeliveryReport',
+                            url: 'http://eremedium.com/ERService/communicationservice/GetDeliveryReport',
                             isArray: true
                         }
                     };

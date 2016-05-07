@@ -9,59 +9,59 @@
                     var actions = {
                         upsert: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/UpsertUser'
+                            url: 'http://eremedium.com/ERService/userservice/UpsertUser'
                         },
                         upsertPeripheralDetails: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/InsertUserHistory'
+                            url: 'http://eremedium.com/ERService/userservice/InsertUserHistory'
                         },
                         search: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/SearchUser',
+                            url: 'http://eremedium.com/ERService/userservice/SearchUser',
                             isArray: true
                         },
                         get: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/GetUserById',
+                            url: 'http://eremedium.com/ERService/userservice/GetUserById',
                             isArray: false
                         },
                         query: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/GetUsersForDoctor',
+                            url: 'http://eremedium.com/ERService/userservice/GetUsersForDoctor',
                             isArray: true
                         },
                         getPeripheralDetails: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/GetUserHistory',
+                            url: 'http://eremedium.com/ERService/userservice/GetUserHistory',
                             isArray: true
                         },
                         getPeripheralDetailsById: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/GetUserHistoryById',
+                            url: 'http://eremedium.com/ERService/userservice/GetUserHistoryById',
                             isArray: false
                         },
                         getDocuments: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/GetUserDocument',
+                            url: 'http://eremedium.com/ERService/userservice/GetUserDocument',
                             isArray: true
                         },
                         upsertDocument: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/InsertUserDocument'
+                            url: 'http://eremedium.com/ERService/userservice/InsertUserDocument'
                         },
                         getDocumentById: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/GetUserDocumentById',
+                            url: 'http://eremedium.com/ERService/userservice/GetUserDocumentById',
                             isArray: false
                         },
                         generateOTP: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/communicationservice/GenerateOTP',
+                            url: 'http://eremedium.com/ERService/communicationservice/GenerateOTP',
                             isArray: false
                         },
                         verifyOTP: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/communicationservice/VerifyOTP',
+                            url: 'http://eremedium.com/ERService/communicationservice/VerifyOTP',
                             isArray: false
                         }
                     };

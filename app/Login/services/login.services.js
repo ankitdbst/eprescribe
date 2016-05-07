@@ -9,7 +9,7 @@
                     var actions = {
                         validateCredentials: {
                             method: 'POST',
-                            url: 'http://52.76.165.4/ERService/userservice/ValidateCredentials'
+                            url: 'http://eremedium.com/ERService/userservice/ValidateCredentials'
                         }
                     };
 
@@ -29,7 +29,7 @@
                                     }
                                 });
                                 //Store once in cookies..and use everywhere..
-                                account.baseURL = "http://52.76.165.4/ERService/"
+                                account.baseURL = "http://eremedium.com/ERService/"
                                 setAuthenticatedAccount(account);
                             }
                             if (angular.isDefined(loginHandler)) {
