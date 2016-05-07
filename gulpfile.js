@@ -47,7 +47,7 @@ gulp.task('loadConfig', function() {
     .pipe(gulp.dest(base_dir + "/js"));
 });
 
-gulp.task('build', ['useref', 'copyWacomMem', 'copyImages', 'copyFonts']);
+gulp.task('build', ['useref', 'copyWacomMem', 'copyImages', 'copyFonts', 'loadConfig']);
 
 // configure the jshint task
 gulp.task('jshint', function() {
