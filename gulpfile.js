@@ -19,7 +19,7 @@ gulp.task('useref', ['loadConfig'], function() {
   return gulp.src('app/**/*.html')
     .pipe(useref({}, lazypipe().pipe(sourcemaps.init, { loadMaps: true })))
     .pipe(sourcemaps.write('maps'))
-//    .pipe(gulpif('*.js', uglify()))
+    .pipe(gulpif('*.js', uglify()))
     .pipe(gulpif('*.css', minifyCss()))
     .pipe(gulp.dest('dist'));
 });
