@@ -1,6 +1,6 @@
 logs/*
 !.gitkeep
-app/js/config.js
+app/js/generated/config.js
 node_modules/
 bower_components/
 dist/

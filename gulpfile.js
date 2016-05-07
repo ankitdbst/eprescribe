@@ -48,7 +48,7 @@ gulp.task('loadConfig', function() {
       environment: type,
       createModule: false,
     }))
-    .pipe(gulp.dest('app/js'));
+    .pipe(gulp.dest('app/js/generated'));
 });
 
 gulp.task('build', ['useref', 'copyWacomMem', 'copyImages', 'copyFonts']);
