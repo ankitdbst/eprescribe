@@ -20,7 +20,7 @@
     "shelljs": "^0.2.6"
   },
   "scripts": {
-    "postinstall": "bower install --config.directory=${npm_package_config_bower_dir}",
+    "postinstall": "gulp loadConfig && bower install --config.directory=${npm_package_config_bower_dir}",
     "prestart": "npm install",
     "start": "http-server -a 0.0.0.0 -p 8000 -c-1",
     "pretest": "npm install",
