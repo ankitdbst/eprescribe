@@ -35,7 +35,7 @@
 
     $scope.doctorName = $rootScope.getFullName(user.loggedInUser);
     var params = {
-      user: user.loggedInUser.mobile,
+      user: user.userId,
       sessionId: user.sessionId,
       doctorId: user.userId,
       patientId: patientId,
