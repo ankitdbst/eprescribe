@@ -19,7 +19,7 @@ gulp.task('useref', ['loadConfig'], function() {
   return gulp.src('app/**/*.html')
     .pipe(useref({}, lazypipe().pipe(sourcemaps.init, { loadMaps: true })))
     .pipe(sourcemaps.write('maps'))
-//    .pipe(gulpif('*.js', uglify()))
+    .pipe(gulpif('*.js', uglify()))
     .pipe(gulpif('*.css', minifyCss()))
     .pipe(gulp.dest('dist'));
 });
@@ -35,20 +35,20 @@ gulp.task('copyFonts', function() {
 })
 
 gulp.task('copyWacomMem', function() {
-  return gulp.src('app/Utils/js/lib/*.mem', {base: 'app/Utils/js/lib'})
-    .pipe(gulp.dest('dist'));
+  return gulp.src('app/Utils/js/lib/WacomInkEngine.js.mem', {base: 'app/Utils/js/lib'})
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('loadConfig', function() {
   var type = util.env.type || "dev";
   util.log("Generating config for ", type);
-  var base_dir = type == "dev" ? "app" : "dist";
+//  var base_dir = type == "dev" ? "app" : "dist";
   gulp.src('app/config.json')
     .pipe(ngConfig('ERemediumWebApp.config', {
       environment: type,
       createModule: false,
     }))
-    .pipe(gulp.dest(base_dir + "/js"));
+    .pipe(gulp.dest('app/js/generated'));
 });
 
 gulp.task('build', ['useref', 'copyWacomMem', 'copyImages', 'copyFonts']);

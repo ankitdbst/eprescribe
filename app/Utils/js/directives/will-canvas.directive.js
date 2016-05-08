@@ -230,6 +230,7 @@
         },
 
         loadImage: function(img) {
+          if(_.isUndefined(img)) return;
           var width = this.canvas.width,
               height = this.canvas.height;
           var image = document.createElement('img');

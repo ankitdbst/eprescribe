@@ -1,5 +1,7 @@
 logs/*
 !.gitkeep
+app/js/generated/config.js
+app/Utils/js/lib/WacomInkEngine.full.js
 node_modules/
 bower_components/
 dist/

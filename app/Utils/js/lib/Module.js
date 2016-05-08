@@ -57,7 +57,9 @@ Module.getScriptPrefixURL = function(name) {
 }
 
 if (!Module.worker)
-	Module.memoryInitializerPrefixURL = Module.getScriptPrefixURL("Module.js") + "/";
+  // Need to remove hard-coding from ehre, currently this points to the concatenated/minified js
+  var prefixURL = Module.getScriptPrefixURL("Module.js") || Module.getScriptPrefixURL("eremedium.js");
+	Module.memoryInitializerPrefixURL = prefixURL + "/";
 
 Module.addPostScript(function() {
 	Object.defineProperty(Module.VectorInterval.prototype, "length", {get: function() {return this.size();}});

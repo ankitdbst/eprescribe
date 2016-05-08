@@ -33,7 +33,7 @@ angular.module('ERemediumWebApp', [
     'ERemediumWebApp.appointments'
 ])
 
-        .run(function ($rootScope, $location, $state) {
+        .run(['$rootScope', '$location', '$state', function ($rootScope, $location, $state) {
             $rootScope.getFullName = function (inputPatientObject) {
                 if (angular.isUndefined(inputPatientObject)) {
                     return;
@@ -83,7 +83,7 @@ angular.module('ERemediumWebApp', [
                   $state.go(aac);
                 }
               });
-        });
+        }]);
 
 //For correctly applying Active Class on Side Menu
 $(".sidebar-nav a").on("click", function () {
