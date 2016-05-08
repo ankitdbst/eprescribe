@@ -16,7 +16,7 @@
                     return $resource(resourceUrl, paramDefaults, actions);
                 }])
 
-            .factory('Account', ['Login', '$cookies', '$rootScope', function (Login, $cookies, $rootScope) {
+            .factory('Account', ['Login', '$cookies', '$rootScope', 'API_ENDPOINT', function (Login, $cookies, $rootScope, API_ENDPOINT) {
 
                     function login(params, loginHandler) {
                         return Login.validateCredentials(params).$promise.then(function (response) {
@@ -29,7 +29,7 @@
                                     }
                                 });
                                 //Store once in cookies..and use everywhere..
-                                account.baseURL = "http://eremedium.com/ERService/"
+                                account.baseURL = API_ENDPOINT;
                                 setAuthenticatedAccount(account);
                             }
                             if (angular.isDefined(loginHandler)) {

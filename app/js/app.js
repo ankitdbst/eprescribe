@@ -68,7 +68,7 @@ angular.module('ERemediumWebApp', [
 
             $rootScope.getImageURL = function(baseURL, loggedInUserId, sessionId, userId) {
                 var inputParams = { user: loggedInUserId, sessionId: sessionId, imgIdOfUser: userId };
-                return baseURL + "userservice/GetImage?" + $.param(inputParams);
+                return baseURL + "/userservice/GetImage?" + $.param(inputParams);
             }
 
               /*
