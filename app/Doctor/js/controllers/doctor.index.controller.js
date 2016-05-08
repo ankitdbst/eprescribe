@@ -80,6 +80,7 @@
             //Setup parameters.
             var params = {
                 user: $scope.doctor.doctorId,
+                sessionId: $scope.account.sessionId,//SessionId should always be present!
                 newPassword: $scope.doctor.password
             };
 
