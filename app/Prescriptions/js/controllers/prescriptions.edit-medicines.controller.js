@@ -43,7 +43,7 @@
             GetAllergies();
             GetInstructions();
         }
-        
+
         $scope.templateList = Prescription.getTemplates(params, function (response) {
             for (var i = 0; i < $scope.templateList.length; i++)
             {
@@ -134,45 +134,7 @@
                 showClose: true,
                 closeByEscape: false,
                 closeByDocument: false,
-                controller: function ($scope, $stateParams, Prescription, Account) {
-                    // $scope.prescription = $scope.parent.prescription;
-                    var user = Account.getAuthenticatedAccount();
-                    $scope.saveAsTemplate = UpsertPrescriptionAsTemplate;
-
-                    function UpsertPrescriptionAsTemplate() {
-                        var params = {
-                            user: user.userId,
-                            sessionId: user.sessionId,
-                            isTemplate: "true",
-                            templateName: $scope.template_name,
-                            prescription: $scope.prescription
-                        };
-
-                        ['medcines', 'advises'].forEach(function (itemStr) {
-                            var len = $scope.prescription[itemStr].length;
-                            if (_.isEmpty($scope.prescription[itemStr][len - 1]) ||
-                                    Object.keys($scope.prescription[itemStr][len - 1]).length == 1) {
-                                $scope.prescription[itemStr].pop();
-                            }
-                        });
-                        // Prescription.getTemplateById({sessionId: user.sessionId,doctorId: '101',templateId:'7575027259136053',columnsToGet:''},function(response){console.log(response);});
-                        $scope.myPromise = Prescription.upsert(params, function (response) {
-                            if (_.isEqual(response.respCode, 1)) {
-                                $scope.closeThisDialog({
-                                    state: 'saved',
-                                    data: response.pid
-                                });
-                                $state.go('PrescriptionIndex.Detail', {
-                                    prescriptionId: response.pid,
-                                    patientId: $stateParams.patientId
-                                });
-                            } else {
-                                // Show Error
-                                console.log(response);
-                            }
-                        });
-                    }
-                }
+                controller: 'PrescriptionTemplateCtrl'
             });
         }
 
@@ -188,7 +150,7 @@
                 $scope.patient.vital = response[0];
             });
         }
-        
+
         function GetHistory() {
             Patient.getPeripheralDetails({
                 user: user.userId,
@@ -214,7 +176,7 @@
                 $scope.patient.alergy = response[0];
             });
         }
-        
+
         function GetInstructions() {
             $scope.instructions = Prescription.getInstruction({
                 user: user.userId,
